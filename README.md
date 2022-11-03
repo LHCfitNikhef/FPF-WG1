@@ -1,2 +1,48 @@
 # FPF-WG1
 Working Group 1 "Neutrino interactions and hadron structure" of the Forward Physics Facility
+
+## $\nu\rm{FPF}$
+
+[nufpf](https://github.com/juanrojochacon/FPF-WG1/tree/main/nufpf) provides the computation of the differential cross section. It is a wrapper around [Yadism](https://github.com/NNPDF/yadism) and [PineAPPL](https://github.com/NNPDF/pineappl). The workflow is the following: Yadism takes care of computing the coefficient functions and dump them as PineAPPL grids, PineAPPL then perform the convolution with the Parton Distribution Function (PDF).
+
+#### Dependencies
+
+The following are the packages required to run $\nu\rm{FPF}$:
+- [poetry](https://python-poetry.org/): handles the packaging and the dependency management
+- [lhapdf](https://lhapdf.hepforge.org/): evaluates the parton density functions to be convoluted with the PineAPPL grids
+
+#### Install the package
+
+To install the package, first clone the repository:
+```bash
+git clone https://github.com/juanrojochacon/FPF-WG1 --depth 1
+```
+then just run the following command:
+```bash
+poetry install
+```
+The [nufpf](https://github.com/juanrojochacon/FPF-WG1/tree/main/nufpf) package provides various command line interface, to know more about the various features just type:
+```bash
+poetry run nufpf --help
+```
+
+#### Generating predictions
+
+First we need to generate a Yadism theory card containing the input settings and the observables to be computed (which in our case would be the structure functions). To do so, just input in the following command:
+```bash
+poetry run nufpf xsecs runcards -a ${A_VALUE}
+```
+Otherwise specified this will generate a folder called `theory` in the current directory which contains the theory run cards. These theory cards can then be used to generate the PineAPPL grids using the following command:
+```bash
+poetry run nufpf xsecs grids ${Path_to_Cards}
+```
+This will dump the grids into the same folder as above which can then be convoluted with a PDF set in the following way:
+```bash
+poetry run nufpf xsecs generate_lhapdf ${Path_to_Grids} ${PDFSET_NAME}
+```
+The resulting object will be a grid following the LHAPDF format in which the entries are the structure functions:
+$$F_2^{\nu N}, F_L^{\nu N}, xF_3^{\nu N}, F_2^{\bar{\nu} N}, F_L^{\bar{\nu} N}, xF_3^{\bar{\nu} N}, \langle F_2^N \rangle, \langle F_L^N \rangle, \langle xF_3^N \rangle$$
+The next step is then to multiply the structure functions with the corresponding coefficients in order to compute the cross section:
+```bash
+poetry run nufpf xsecs predictions ${PDFSET_NAME}
+```
