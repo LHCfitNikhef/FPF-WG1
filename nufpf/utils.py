@@ -61,7 +61,7 @@ def write(content: dict, path: pathlib.Path, what=None):
 
 def theory(update: Optional[dict] = None) -> dict:
     """Load and return internal theory runcard."""
-    assets = pkg / "theory" / "assets" / "theory_200.yaml" 
+    assets = pkg / "assets" / "theory_200.yaml" 
     runcard = yaml.safe_load(assets.read_text(encoding="utf-8"))
 
     if update is not None:
