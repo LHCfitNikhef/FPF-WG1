@@ -24,7 +24,7 @@ def main(cards: pathlib.Path, destination: pathlib.Path):
     """
     with tempfile.TemporaryDirectory() as tmpdir:
         tmpdir = pathlib.Path(tmpdir).absolute()
-        full_data_name = str(cards).split("-")[1][:-4]
+        full_data_name = cards.stem.split("-")[-1]
 
         # extract tar content
         if cards.suffix == ".tar":
@@ -53,7 +53,7 @@ def main(cards: pathlib.Path, destination: pathlib.Path):
                     _logger.info(f"Dumped {res_path.name}")
 
         file_name = (
-            f"grids-{full_data_name}.tar.gz" if full_data_name != "" else f"grids.tar.gz"
+            f"grids-{full_data_name}.tar" if full_data_name != "" else f"grids.tar"
         )
         with tarfile.open(destination / file_name, "w") as tar:
             for path in grids_dest.iterdir():

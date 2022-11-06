@@ -4,7 +4,7 @@ import logging
 import pathlib
 import tarfile
 import tempfile
-from typing import Optional
+from typing import Optional, Union
 
 import lhapdf
 import numpy as np
@@ -26,15 +26,15 @@ def theory_error(
     grid: pineappl.grid.Grid,
     pdf: str,
     prescription: list[tuple[float, float]],
-    xgrid: npt.NDArray[np.float_],
-    reshape: Optional[bool] = True,
+    xgrid: Optional[Union[npt.NDArray[np.float_], None]] = None,
+    reshape: Optional[bool] = False,
 ) -> Prediction:
     """Compute theory uncertainties using scale variation methods."""
     pdfset = lhapdf.mkPDF(pdf)
     pred = grid.convolute_with_one(
         2212, pdfset.xfxQ2, pdfset.alphasQ2, xi=prescription
     )
-    if reshape:
+    if reshape and xgrid is not None:
         pred = np.array(pred).T.reshape((*xgrid.shape, len(pred)))
     else:
         pred = np.array(pred).T
@@ -44,8 +44,8 @@ def theory_error(
 def pdf_error(
     grid: pineappl.grid.Grid,
     pdf: str,
-    xgrid: npt.NDArray[np.float_],
-    reshape: Optional[bool] = True,
+    xgrid: Optional[Union[npt.NDArray[np.float_], None]] = None,
+    reshape: Optional[bool] = False,
 ) -> Prediction:
     """Compute PDF uncertainties for a given observables."""
     pred = []
@@ -55,7 +55,7 @@ def pdf_error(
         )
         pred.append(member_pred)
 
-    if reshape:
+    if reshape and xgrid is not None:
         pred = np.array(pred).T.reshape((*xgrid.shape, len(pred)))
     else:
         pred = np.array(pred).T
@@ -107,9 +107,9 @@ def parse_yadism_pred(
     }
     return grids_info_specs, combined_replica
 
-
-def main(
+def dump_xsecs_as_datfile(
     grids: pathlib.Path,
+    input_grids: npt.NDArray,
     pdf: str,
     destination: pathlib.Path,
     err: str = "pdf",
@@ -138,16 +138,79 @@ def main(
         preds_dest = tmpdir / "predictions"
         preds_dest.mkdir()
 
-        # This has to be exactly the same as in the runcard generation
-        # TODO: Read the details about the kinematics from PineAPPL grid
-        x = dict(min=1e-5, max=1.0, num=25)
-        q2 = dict(min=5, max=1e5, num=30)
-        q2_grid = np.geomspace(q2["min"], q2["max"], num=int(q2["num"]))
-        lognx = int(x["num"] / 3)
-        linnx = int(x["num"] - lognx)
-        xgrid_log = np.logspace(np.log10(x["min"]), -1, lognx + 1)
-        xgrid_lin = np.linspace(0.1, 1, linnx)
-        x_grid = np.concatenate([xgrid_log[:-1], xgrid_lin])
+        predictions_dict, atomic_mass_number = {}, []
+        for gpath in grids.iterdir():
+            if "pineappl" not in gpath.name:
+                continue
+            kind = gpath.stem.split(".")[0].split("_")[0] # nu or nub
+            a_nb = gpath.stem.split("-")[0].split("_")[-1] # A value
+
+            grid = pineappl.grid.Grid.read(gpath)
+
+            if err == "theory":
+                pred, central, bulk, err_source = theory_error(
+                    grid,
+                    pdf,
+                    defs.nine_points,
+                )
+            elif err == "pdf":
+                pred, central, bulk, err_source = pdf_error(
+                    grid,
+                    pdf,
+                )
+            else:
+                raise ValueError(f"Invalid error type '{err}'")
+            atomic_mass_number.append(a_nb)
+            predictions_dict[kind] = np.expand_dims(pred.T[0], axis=-1)
+
+        combined_predictions = np.concatenate(
+            [input_grids, predictions_dict["nu"], predictions_dict["nub"]],
+            axis=-1,
+        )
+        np.savetxt(
+            f"{destination}/diff_xsecs_a{atomic_mass_number[0]}.txt",
+            combined_predictions,
+            header=f"x y Q2 xsec_nu xsec_nub",
+            fmt="%e %e %e %e %e",
+        )
+        _logger.info(
+            f"The .dat file containing the xsec predictions is stored in "
+            f"{destination}/diff_xsecs_a{atomic_mass_number[0]}.txt"
+        )
+
+
+def dump_sfs_as_lahpdf_grids(
+    grids: pathlib.Path,
+    input_grids: npt.NDArray,
+    pdf: str,
+    destination: pathlib.Path,
+    err: str = "pdf",
+):
+    """Run predictions computation.
+
+    Parameters
+    ----------
+    grids: pathlib.Path
+        path to grids archive
+    pdf: str
+        LHAPDF name of the PDF to be used
+    err: str
+        type of error to be used
+    """
+    utils.mkdest(destination)
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tmpdir = pathlib.Path(tmpdir).absolute()
+
+        # extract tar content
+        if grids.suffix == ".tar":
+            utils.extract_tar(grids, tmpdir)
+            grids = tmpdir / "grids"
+
+        preds_dest = tmpdir / "predictions"
+        preds_dest.mkdir()
+
+        x_grid, q2_grid = input_grids[:, 0], input_grids[:, -1]
         xgrid, _ = np.meshgrid(*tuple((q2_grid, x_grid)))
 
         predictions_dictionary = {}
@@ -166,12 +229,14 @@ def main(
                     pdf,
                     defs.nine_points,
                     xgrid,
+                    reshape=True,
                 )
             elif err == "pdf":
                 pred, central, bulk, err_source = pdf_error(
                     grid,
                     pdf,
                     xgrid,
+                    reshape=True,
                 )
             else:
                 raise ValueError(f"Invalid error type '{err}'")

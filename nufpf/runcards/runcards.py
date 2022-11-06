@@ -6,15 +6,16 @@ import pathlib
 import tarfile
 import tempfile
 
+import numpy.typing as npt
 from .. import theory, utils
 
 _logger = logging.getLogger(__name__)
 
 
-def generate_cards(x: dict, q2: dict, A: int, destination: pathlib.Path):
+def generate_cards(igrid: npt.NDArray, A: int, obs: str, destination: pathlib.Path):
     """Generate yadism runcards with the given kinametics"""
     utils.mkdest(destination)
-    ocards = theory.runcards.observables(x, q2, A)
+    ocards = theory.runcards.observables(igrid, A, obs)
     theory_card = utils.theory()
 
     with tempfile.TemporaryDirectory() as tmpdir:

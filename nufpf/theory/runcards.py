@@ -2,32 +2,35 @@
 """Generate runcards with x and A fixed."""
 import copy
 
-import numpy as np
+import numpy.typing as npt
 from yadmark.data.observables import default_card
 
 from . import defs
 
 
-def observables(x: dict, q2: dict, A: int) -> dict:
+def observables(input_grid: npt.NDArray, A: int, obs: str) -> dict:
     """Collect all yadism runcards."""
     run_nu = copy.deepcopy(default_card)
     run_nu["prDIS"] = "CC"
     run_nu["ProjectileDIS"] = "neutrino"
 
-    # Construct the (x, Q2) knots for the predictions
-    q2_grid = np.geomspace(q2["min"], q2["max"], num=int(q2["num"]))
-    lognx = int(x["num"] / 3)
-    linnx = int(x["num"] - lognx)
-    xgrid_log = np.logspace(np.log10(x["min"]), -1, lognx + 1)
-    xgrid_lin = np.linspace(0.1, 1, linnx)
-    x_grid = np.concatenate([xgrid_log[:-1], xgrid_lin])
+    # Construct the input kinematics as a dictionary
+    if obs == "XSEC":
+        kins = [
+            dict(zip(['x', 'y', 'Q2'], [float(k) for k in kin]))
+            for kin in input_grid
+        ]
+        run_nu["observables"] = {"XSHERACC": kins}
+    elif obs == "SF":
+        input_grid[:, 1] = 0
+        kins = [
+            dict(zip(['x', 'y', 'Q2'], [float(k) for k in kin]))
+            for kin in input_grid
+        ]
+        run_nu["observables"] = {"F2": kins, "F3": kins, "FL": kins}
+    else:
+        raise ValueError("Observable type non-recognised!")
 
-    kins = []
-    for xv in x_grid:
-        for q2v in q2_grid:
-            kins.append({"x": float(xv), "Q2": float(q2v), "y": 0.0})
-
-    run_nu["observables"] = {"F2": kins, "F3": kins, "FL": kins}
     run_nu["TargetDIS"] = defs.targets[A]
     run_nb = copy.deepcopy(run_nu)
     run_nb["ProjectileDIS"] = "antineutrino"

@@ -4,11 +4,24 @@
 import click
 import pathlib
 import numpy as np
+import pandas as pd
 
 from . import base
 from ..grids import grids
 from ..runcards import runcards
 from .. import xsecs
+
+def parse_inputgrid(csv_grid: pd.DataFrame):
+    """Parse the input grid knots given read from the CSV."""
+    parsed_inputs = []
+    igrid = csv_grid[["Log10(x)", "y", "Log10(Q^2 / GeV^2)"]]
+    for index, kinematic in enumerate(igrid.values.T):
+        if index != 1:
+            parsed_inputs.append(10 ** kinematic)
+        else:
+            parsed_inputs.append(kinematic)
+    return np.asarray(parsed_inputs).T
+
 
 @base.command.group("xsecs")
 def subcommand():
@@ -16,19 +29,9 @@ def subcommand():
 
 
 @subcommand.command("runcards")
-@click.option(
-    "-x",
-    "--x_grids",
-    default=None,
-    help="""Stringified dictionary containing specs for x-grid"""
-    """" e.g. '{"min": 0.01, "max": 1.0, "num": 100}'.""",
-)
-@click.option(
-    "-q",
-    "--q2_grids",
-    default=None,
-    help="""Stringified dictionary containing specs for Q2-grid"""
-    """" e.g. '{"min": 0.001, "max": 100000, "num": 200}'.""",
+@click.argument(
+    "input_grids",
+    type=click.Path(exists=True, path_type=pathlib.Path),
 )
 @click.option(
     "-a",
@@ -38,25 +41,22 @@ def subcommand():
     help="""Atomic mass number value. Default: 1""",
 )
 @click.option(
+    "--obs",
+    type=click.Choice(["SF", "XSEC"], case_sensitive=False),
+    default="XSEC",
+    help="Observable type: SF [Struct Func], XSEC [Cross Sec]",
+)
+@click.option(
     "-d",
     "--destination",
     type=click.Path(path_type=pathlib.Path),
     default=pathlib.Path.cwd().absolute() / "theory",
     help="Destination to store the PineAPPL grid (default: $PWD/theory)",
 )
-def sub_runcards(x_grids, q2_grids, a_value, destination):
+def sub_runcards(input_grids, a_value, obs, destination):
     """Generate the Yadism cards for a fixed proton/nucleus A."""
-    if x_grids is not None:
-        x_grids = eval(x_grids)
-    else:
-        x_grids = dict(min=1e-5, max=1.0, num=25)
-
-    if q2_grids is not None:
-        q2_grids = eval(q2_grids)
-    else:
-        q2_grids = dict(min=5, max=1e5, num=30)
-
-    runcards.generate_cards(x_grids, q2_grids, a_value, destination)
+    igrid = parse_inputgrid(pd.read_csv(input_grids))
+    runcards.generate_cards(igrid, a_value, obs, destination)
 
 
 @subcommand.command("grids")
@@ -68,7 +68,7 @@ def sub_runcards(x_grids, q2_grids, a_value, destination):
     "-d",
     "--destination",
     type=click.Path(path_type=pathlib.Path),
-    default=pathlib.Path.cwd().absolute(),
+    default=pathlib.Path.cwd().absolute() / "theory",
     help="Destination to store the PineAPPL grid (default: $PWD/theory)",
 )
 def sub_grids(runcards, destination):
@@ -86,13 +86,17 @@ def sub_grids(runcards, destination):
     grids.main(runcards.absolute(), destination.absolute())
 
 
-@subcommand.command("generate_lhapdf")
+@subcommand.command("generate_sfs_lhapdf")
 @click.argument("grids", type=click.Path(exists=True, path_type=pathlib.Path))
+@click.argument(
+    "input_grids",
+    type=click.Path(exists=True, path_type=pathlib.Path),
+)
 @click.argument("pdf")
 @click.option(
     "--err",
     type=click.Choice(["pdf", "theory"], case_sensitive=False),
-    default="theory",
+    default="pdf",
 )
 @click.option(
     "-d",
@@ -101,17 +105,47 @@ def sub_grids(runcards, destination):
     default=pathlib.Path.cwd().absolute(),
     help="Destination to store the LHAPDF set (default: $PWD)",
 )
-def sub_predictions(grids, pdf, err, destination):
-    """Generate predictions from yadism grids.
-
-    GRIDS is a path to folder (or tar folder) containing the grids, one per
-    observable.
-    PDF is the pdf to be convoluted with the grids, in order to obtain the
-    structure functions predictions.
-
+def sub_generate_sfs_lhapdf(grids, input_grids, pdf, err, destination):
+    """Compute the Structure Function predictions and dump them into
+    LHAPDF grid format.
     """
-    xsecs.main(
+    input_grids = parse_inputgrid(pd.read_csv(input_grids))
+    xsecs.dump_sfs_as_lahpdf_grids(
         grids.absolute(),
+        input_grids,
+        pdf,
+        err=err,
+        destination=destination.absolute(),
+    )
+
+
+@subcommand.command("generate_xsecs_datfile")
+@click.argument("grids", type=click.Path(exists=True, path_type=pathlib.Path))
+@click.argument(
+    "input_grids",
+    type=click.Path(exists=True, path_type=pathlib.Path),
+)
+@click.argument("pdf")
+@click.option(
+    "--err",
+    type=click.Choice(["pdf", "theory"], case_sensitive=False),
+    default="pdf",
+)
+@click.option(
+    "-d",
+    "--destination",
+    type=click.Path(path_type=pathlib.Path),
+    default=pathlib.Path.cwd().absolute(),
+    help="Destination to store the LHAPDF set (default: $PWD)",
+)
+def sub_generate_xsecs_datfile(grids, input_grids, pdf, err, destination):
+    """Compute the differential cross section and dump the results as
+    a .dat file.
+    """
+    input_grids = parse_inputgrid(pd.read_csv(input_grids))
+    xsecs.dump_xsecs_as_datfile(
+        grids.absolute(),
+        input_grids,
         pdf,
         err=err,
         destination=destination.absolute(),
