@@ -43,14 +43,14 @@ This will dump the grids into the same folder as above which can then be convolu
 * **Computing differential cross sections:**
 To compute the differential cross sections and dump the results into a `.txt` just run the following command:
 ```bash
-poetry run nufpf xsecs generate_xsecs_datfile ${Path_to_Grids} igrids/xyQ2.csv ${PDFSET_NAME} [-a ${A_VALUE}]
+poetry run nufpf xsecs generate_xsecs_datfile ${Path_to_Grids} igrids/xyQ2.csv ${PDFSET_NAME}
 ```
 This will generate a file called `diff_xsecs_a${A_VALUE}.txt` which otherwise specificied is stored in the current path.
 
 * **Computing structure functions:**
 Instead, if one wants to compute structure functions, just type the following command:
 ```bash
-poetry run nufpf xsecs generate_sfs_lhapdf ${Path_to_Grids} igrids/xyQ2.csv ${PDFSET_NAME} [-a ${A_VALUE}]
+poetry run nufpf xsecs generate_sfs_lhapdf ${Path_to_Grids} igrids/xyQ2.csv ${PDFSET_NAME}
 ```
 The resulting object will be a grid following the LHAPDF format in which the entries are the structure functions:
 $$F_2^{\nu N}, F_L^{\nu N}, xF_3^{\nu N}, F_2^{\bar{\nu} N}, F_L^{\bar{\nu} N}, xF_3^{\bar{\nu} N}, \langle F_2^N \rangle, \langle F_L^N \rangle, \langle xF_3^N \rangle$$
