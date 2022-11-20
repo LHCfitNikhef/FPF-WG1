@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Proviede commands and sub-commands for the xsecs modules"""
+"""
+Provide commands and sub-commands for computing the
+differential cross sections using the xsecs.py modules.
+"""
 
 import click
 import pathlib
@@ -17,7 +20,7 @@ def parse_inputgrid(csv_grid: pd.DataFrame):
     igrid = csv_grid[["Log10(x)", "y", "Log10(Q^2 / GeV^2)"]]
     for index, kinematic in enumerate(igrid.values.T):
         if index != 1:
-            parsed_inputs.append(10 ** kinematic)
+            parsed_inputs.append(10**kinematic)
         else:
             parsed_inputs.append(kinematic)
     return np.asarray(parsed_inputs).T
@@ -148,5 +151,31 @@ def sub_generate_xsecs_datfile(grids, input_grids, pdf, err, destination):
         input_grids,
         pdf,
         err=err,
+        destination=destination.absolute(),
+    )
+
+
+@subcommand.command("multiply_sfs")
+@click.argument(
+    "input_grids",
+    type=click.Path(exists=True, path_type=pathlib.Path),
+)
+@click.argument("pdf")
+@click.option(
+    "-d",
+    "--destination",
+    type=click.Path(path_type=pathlib.Path),
+    default=pathlib.Path.cwd().absolute(),
+    help="Destination to store the LHAPDF set (default: $PWD)",
+)
+def sub_multiply_sfs(input_grids, pdf, destination):
+    """
+    Takes a LHAPDF set of structure functions and multiply with the
+    corresponding factors to compute the differential cross sections.
+    """
+    input_grids = parse_inputgrid(pd.read_csv(input_grids))
+    xsecs.multiply_sfs_xsecs(
+        input_grids,
+        pdf,
         destination=destination.absolute(),
     )

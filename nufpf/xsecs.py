@@ -12,6 +12,7 @@ from typing import Optional, Union
 import lhapdf
 import numpy as np
 import numpy.typing as npt
+import pandas as pd
 import pineappl
 
 from . import utils
@@ -21,7 +22,7 @@ _logger = logging.getLogger(__name__)
 
 Prediction = tuple[npt.NDArray[np.float_], int, slice, str]
 ROUNDING = 6
-# The labels and IDs in utils.LHAPDF_ID have to match exactly
+PDF_MEMBER = 0
 SFS_LABEL = ["F2nu", "FLnu", "xF3nu", "F2nub", "FLnub", "xF3nub"]
 
 
@@ -110,77 +111,6 @@ def parse_yadism_pred(
     }
     return grids_info_specs, combined_replica
 
-def dump_xsecs_as_datfile(
-    grids: pathlib.Path,
-    input_grids: npt.NDArray,
-    pdf: str,
-    destination: pathlib.Path,
-    err: str = "pdf",
-):
-    """Run predictions computation.
-
-    Parameters
-    ----------
-    grids: pathlib.Path
-        path to grids archive
-    pdf: str
-        LHAPDF name of the PDF to be used
-    err: str
-        type of error to be used
-    """
-    utils.mkdest(destination)
-
-    with tempfile.TemporaryDirectory() as tmpdir:
-        tmpdir = pathlib.Path(tmpdir).absolute()
-
-        # extract tar content
-        if grids.suffix == ".tar":
-            utils.extract_tar(grids, tmpdir)
-            grids = tmpdir / "grids"
-
-        preds_dest = tmpdir / "predictions"
-        preds_dest.mkdir()
-
-        predictions_dict, atomic_mass_number = {}, []
-        for gpath in grids.iterdir():
-            if "pineappl" not in gpath.name:
-                continue
-            kind = gpath.stem.split(".")[0].split("_")[0] # nu or nub
-            a_nb = gpath.stem.split("-")[0].split("_")[-1] # A value
-
-            grid = pineappl.grid.Grid.read(gpath)
-
-            if err == "theory":
-                pred, central, bulk, err_source = theory_error(
-                    grid,
-                    pdf,
-                    defs.nine_points,
-                )
-            elif err == "pdf":
-                pred, central, bulk, err_source = pdf_error(
-                    grid,
-                    pdf,
-                )
-            else:
-                raise ValueError(f"Invalid error type '{err}'")
-            atomic_mass_number.append(a_nb)
-            predictions_dict[kind] = np.expand_dims(pred.T[0], axis=-1)
-
-        combined_predictions = np.concatenate(
-            [input_grids, predictions_dict["nu"], predictions_dict["nub"]],
-            axis=-1,
-        )
-        np.savetxt(
-            f"{destination}/diff_xsecs_a{atomic_mass_number[0]}.txt",
-            combined_predictions,
-            header=f"x y Q2 xsec_nu xsec_nub",
-            fmt="%e %e %e %e %e",
-        )
-        _logger.info(
-            f"The .txt file containing the xsec predictions is stored in "
-            f"'{destination.relative_to(pathlib.Path.cwd())}/diff_xsecs_a{atomic_mass_number[0]}.txt'"
-        )
-
 
 def dump_sfs_as_lahpdf_grids(
     grids: pathlib.Path,
@@ -267,3 +197,109 @@ def dump_sfs_as_lahpdf_grids(
         stacked_pred = construct_stacked_predictions(predictions_dictionary)
         grid_info, cpred = parse_yadism_pred(stacked_pred, x_grid, q2_grid)
         utils.dump_lhapdf(f"YADISM_{nuc_info[0]}", nuc_info[0], cpred, grid_info)
+
+
+def dump_xsecs_as_datfile(
+    grids: pathlib.Path,
+    input_grids: npt.NDArray,
+    pdf: str,
+    destination: pathlib.Path,
+    err: str = "pdf",
+):
+    """Run predictions computation.
+
+    Parameters
+    ----------
+    grids: pathlib.Path
+        path to grids archive
+    pdf: str
+        LHAPDF name of the PDF to be used
+    err: str
+        type of error to be used
+    """
+    utils.mkdest(destination)
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tmpdir = pathlib.Path(tmpdir).absolute()
+
+        # extract tar content
+        if grids.suffix == ".tar":
+            utils.extract_tar(grids, tmpdir)
+            grids = tmpdir / "grids"
+
+        preds_dest = tmpdir / "predictions"
+        preds_dest.mkdir()
+
+        predictions_dict, atomic_mass_number = {}, []
+        for gpath in grids.iterdir():
+            if "pineappl" not in gpath.name:
+                continue
+            kind = gpath.stem.split(".")[0].split("_")[0] # nu or nub
+            a_nb = gpath.stem.split("-")[0].split("_")[-1] # A value
+
+            grid = pineappl.grid.Grid.read(gpath)
+
+            if err == "theory":
+                pred, central, bulk, err_source = theory_error(
+                    grid,
+                    pdf,
+                    defs.nine_points,
+                )
+            elif err == "pdf":
+                pred, central, bulk, err_source = pdf_error(
+                    grid,
+                    pdf,
+                )
+            else:
+                raise ValueError(f"Invalid error type '{err}'")
+            atomic_mass_number.append(a_nb)
+            predictions_dict[kind] = np.expand_dims(pred.T[0], axis=-1)
+
+        combined_predictions = np.concatenate(
+            [input_grids, predictions_dict["nu"], predictions_dict["nub"]],
+            axis=-1,
+        )
+        np.savetxt(
+            f"{destination}/diff_xsecs_a{atomic_mass_number[0]}.txt",
+            combined_predictions,
+            header=f"x y Q2 xsec_nu xsec_nub",
+            fmt="%e %e %e %e %e",
+        )
+        _logger.info(
+            f"The .txt file containing the xsec predictions is stored in "
+            f"'{destination.relative_to(pathlib.Path.cwd())}/diff_xsecs_a{atomic_mass_number[0]}.txt'"
+        )
+
+
+def multiply_sfs_xsecs(
+    input_grids: npt.NDArray,
+    pdf: str,
+    destination: pathlib.Path,
+):
+    mkpdf = lhapdf.mkPDF(pdf, PDF_MEMBER)
+
+    def xsec(x, y, Q2, l):
+        """Given x, y and Q2 as input it returns the differential
+        cross section according to the XSHERACC definition of
+        https://yadism.readthedocs.io/en/latest/theory/intro.html.
+        Use l=0 for neutrinos and l=1 for antineutrinos.
+        """
+
+        F2 = mkpdf.xfxQ2(1001 + 1000 * l, x, Q2)
+        FL = mkpdf.xfxQ2(1002 + 1000 * l, x, Q2)
+        xF3 = mkpdf.xfxQ2(1003 + 1000 * l, x, Q2)
+
+        yp = 1 + (1 - y)**2
+        ym = 1 - (1 - y)**2
+        yL = y**2
+
+        N = 1.0 / 4.0 * yp
+
+        return N * (F2 - yL / yp * FL + (-1) ** l * ym / yp * xF3)
+
+    results = []
+    for kins in input_grids:
+        results.append([*kins, xsec(*kins, 0), xsec(*kins, 1)])
+
+    df = pd.DataFrame(results, columns=["x", "y", "Q2", "xsec_nu", "xsec_nub"])
+    df.to_csv(f"{destination}/res_from_lhapdf.csv", index=False)
