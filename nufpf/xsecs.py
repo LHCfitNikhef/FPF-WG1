@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Compute the Structure Function predictions and dump them into LHAPDF."""
+"""
+Compute the differential cross section given a PineAPPL grid and
+dump the results into a .txt file.
+"""
 import logging
 import pathlib
 import tarfile
@@ -174,8 +177,8 @@ def dump_xsecs_as_datfile(
             fmt="%e %e %e %e %e",
         )
         _logger.info(
-            f"The .dat file containing the xsec predictions is stored in "
-            f"{destination}/diff_xsecs_a{atomic_mass_number[0]}.txt"
+            f"The .txt file containing the xsec predictions is stored in "
+            f"'{destination.relative_to(pathlib.Path.cwd())}/diff_xsecs_a{atomic_mass_number[0]}.txt'"
         )
 
 
