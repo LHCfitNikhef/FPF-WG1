@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """Provide extra scripts subcommand."""
 import click
-import numpy as np
 
 from .. import integrate
 from . import base
@@ -37,15 +36,15 @@ def subcommand():
     "-x",
     "--x_grids",
     default=None,
-    help="""Stringified dictionary containing specs for x-grid"""
-    """" e.g. '{"min": 0.01, "max": 1.0, "num": 100}'.""",
+    help="""Stringified list containing specs for x-range"""
+    """" e.g. '[1e-5, 1]'.""",
 )
 @click.option(
     "-q",
     "--q2_grids",
     default=None,
-    help="""Stringified dictionary containing specs for Q2-grid"""
-    """" e.g. '{"min": 0.001, "max": 100000, "num": 200}'.""",
+    help="""Stringified dictionary containing specs for Q2-range"""
+    """" e.g. '[1.65, 1e4]'.""",
 )
 def sub_integrate(pdfset, a_value, e_nu, type, x_grids, q2_grids):
     """Compute the integral of a Structure Function given a LHAPDF ID.
@@ -54,17 +53,13 @@ def sub_integrate(pdfset, a_value, e_nu, type, x_grids, q2_grids):
     """
     if x_grids is not None:
         x_grids = eval(x_grids)
-        xgrid = np.geomspace(x_grids["min"], x_grids["max"], num=x_grids["num"])
     else:
-        xgrid = None
+        x_grids = None
 
     if q2_grids is not None:
         q2_grids = eval(q2_grids)
-        q2grid = np.geomspace(
-            q2_grids["min"], q2_grids["max"], num=q2_grids["num"]
-        )
     else:
-        q2grid = None
+        q2_grids = None
 
     if type == "neutrino":
         lepton_type = 0
@@ -73,4 +68,4 @@ def sub_integrate(pdfset, a_value, e_nu, type, x_grids, q2_grids):
     else:
         raise ValueError("Type not determined")
 
-    integrate.main(pdfset, a_value, e_nu, lepton_type, xgrid, q2grid)
+    integrate.main(pdfset, a_value, e_nu, lepton_type, x_grids, q2_grids)
