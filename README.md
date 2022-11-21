@@ -65,7 +65,7 @@ the following [location](https://data.nnpdf.science/FPF-DIS/).
 
 Currently, the total cross section is computed by reading the structure functions from the
 LHAPDF set and follows the procedure described in this [paper](https://arxiv.org/pdf/1808.02034.pdf).
-For instance, to compute the total inclusive cross section for the interaction of a *neutrino* to
+For instance, to compute the total cross section for the interaction of a *neutrino* to
 a free-proton target with an energy $E_\nu = 5 \cdot 10^3~\mathrm{GeV}$, one can simply run the
 following command:
 ```bash

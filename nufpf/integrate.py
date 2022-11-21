@@ -27,7 +27,7 @@ def xs(
     integrand,
     x_range: list,
     q2_range: list,
-    nucleon_mass: float,
+    target_mass: float,
     e_nu: float,
 ):
     """
@@ -35,7 +35,7 @@ def xs(
     compute the integral of the function wrt dx and dy.
     """
 
-    threshold = 2.0 * nucleon_mass * e_nu
+    threshold = 2.0 * target_mass * e_nu
     integral = integrate.dblquad(
         integrand,
         max(q2_range[0], 1.65), # Q2min
@@ -49,24 +49,16 @@ def xs(
 
 def xsec_as_enu_unc(
     mkpdfs,
-    a_value: int,
+    m_target: float,
     enu: float,
     type: int,
 ):
     """Compute the differential cross section for a fixed $E_\nu$."""
 
-    # Compute the nucleus mass
-    A, Z = a_value, MAP_AZ[a_value][0]
-    if A != 1:
-        m_nucleus = MAP_AZ[a_value][1] / (Z * M_PROTON + (A - Z) * M_NEUTRON)
-    else:
-        m_nucleus = M_PROTON
-    console.print(f"Mass of the target Mn={m_nucleus} GeV.")
-
     def xsec_as_enu(x, q2):
 
         # Compute the value of `y` for a given Enu
-        y = q2 / (2. * x * m_nucleus * enu)
+        y = q2 / (2. * x * m_target * enu)
         yp, ym = 1 + (1 - y)**2, 1 - (1 - y)**2
 
         # Extract the individual cross structure functions
@@ -81,7 +73,7 @@ def xsec_as_enu_unc(
         prefac_funct =  1 / (x * (1 + (q2 / MW**2))**2)
         return prefac_funct * prefac_const * result
 
-    return xsec_as_enu, m_nucleus, enu
+    return xsec_as_enu
 
 
 def integrate_diffxs(
@@ -100,9 +92,17 @@ def integrate_diffxs(
     if q2_range is None:
         q2_range = [mkpdfs.q2Min, mkpdfs.q2Max]
 
-    integrand, m_nuc, enu = xsec_as_enu_unc(mkpdfs, a_value, enu, type)
+    # Compute the mass of the target
+    A, Z = a_value, MAP_AZ[a_value][0]
+    if A != 1:
+        m_target = MAP_AZ[a_value][1] / (Z * M_PROTON + (A - Z) * M_NEUTRON)
+    else:
+        m_target = M_PROTON
+    console.print(f"Mass of the target Mn={m_target} GeV.")
 
-    return xs(integrand, x_range, q2_range, m_nuc, enu)
+    integrand = xsec_as_enu_unc(mkpdfs, m_target, enu, type)
+
+    return xs(integrand, x_range, q2_range, m_target, enu)
 
 
 def main(
