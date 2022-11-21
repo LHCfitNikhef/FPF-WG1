@@ -58,3 +58,16 @@ The next step is then to multiply the structure functions with the corresponding
 ```bash
 poetry run nufpf xsecs multiply_sfs ${LHAPDF_SETNAME}
 ```
+For convenience, pre-computed LHAPDF sets for free-proton, iron, and lead target are available in
+the following [location](https://data.nnpdf.science/FPF-DIS/).
+
+* **Computing total cross sections:**
+
+Currently, the total cross section is computed by reading the structure functions from the
+LHAPDF set and follows the procedure described in this [paper](https://arxiv.org/pdf/1808.02034.pdf).
+For instance, to compute the total inclusive cross section for the interaction of a *neutrino* to
+a free-proton target with an energy $E_\nu = 5 \cdot 10^3~\mathrm{GeV}$, one can simply run the
+following command:
+```bash
+nufpf extra integrate YADISM_SFS_A1 -a 1 -e 5e3 --type neutrino
+```
