@@ -20,7 +20,7 @@ def observables(input_grid: npt.NDArray, A: int, obs: str) -> dict:
             dict(zip(['x', 'y', 'Q2'], [float(k) for k in kin]))
             for kin in input_grid
         ]
-        run_nu["observables"] = {"XSHERACC": kins}
+        run_nu["observables"] = {"XSFPFCC": kins}
     elif obs == "SF":
         input_grid[:, 1] = 0
         kins = [
