@@ -8,15 +8,17 @@ exptags = ["FASER$\\nu$ $\\nu_\\mu$", "FASER$\\nu$ $\\bar{\\nu}_\\mu$",
 expstrs = ["FASER#nu, #nu_{#mu}","FASER#nu, #bar{#nu}_{#mu}",
            "FASER#nu2, #nu_{#mu}","FASER#nu2, #bar{#nu}_{#mu}"]
 
-subdirs=["datafiles/","lhc/","fpf/","neutrinoDIS/","pseudodata/"]
-datadir=""
+subdirs=['datafiles/','lhc/','fpf/','neutrinoDIS/','pseudodata/']
+datadir=''
 for subdir in subdirs:
     datadir+=subdir
     if not os.path.exists(datadir):
         os.mkdir(datadir)
-#FIXME for now, theory grids replaced by constant table (Max's results)
-if not os.path.exists(datadir+"th/"):
-    os.mkdir(datadir+"th/")
+if not os.path.exists(datadir+'th/'):
+    os.mkdir(datadir+'th/')
+#if not os.path.exists(datadir+'theory/'): # TODO
+#    print os.getcwd()+'/'+datadir+'theory/'
+#    os.symlink(os.getcwd()+'/../theory/',os.getcwd()+'/'+datadir+'theory/')
 
 for iexp,expID in enumerate(expIDs):
     infile = "../results/binned_events_" + expID + suffix
@@ -43,7 +45,7 @@ for iexp,expID in enumerate(expIDs):
         #Estimates based on J. Rojo's and T. Ariga's slides in FPF5 meeting
         #EnuUnc.append(0.3)   #Neutrino E unc ~ 30%
         ElUnc.append(0.3)    #Lepton E unc ~ 30%
-        EhUnc.append(0.4)    #Hadronic FS E unc ~30-50% => avg 40%
+        EhUnc.append(0.3)    #Hadronic FS E unc ~30-50% => let's be optimistic
         #theta unc. = 1 mrad, tan(theta) < 0.5, so O(theta unc)>1%. 
         #Should be bin-dependent, but let's take universal 10% for simplicity
         #Optimistically relative unc. > 0.001/0.46 and 
@@ -52,14 +54,24 @@ for iexp,expID in enumerate(expIDs):
 
     #Vary pseudodata
     sigmavar=[]
+    fcorr=1.  #Data w/ correlated systematics would be more constraining
+    fred=1.   #Reduction factor, expect improvements in detector accuracy etc
+    uncor=[]
     for isig,sig in enumerate(sigma):
-        expUnc  = ElUnc[   isig]**2
-        expUnc += EhUnc[   isig]**2
-        expUnc += thetaUnc[isig]**2
-        #expUnc += EnuUnc[  isig]**2
+        #Gather unc. estimates into an uncorrelated unc. for PDF fits,
+        #estimating correlations would be out of scope for now
+        expUnc  = (fcorr*fred*ElUnc[   isig])**2
+        expUnc += (fcorr*fred*EhUnc[   isig])**2
+        expUnc += (fcorr*fred*thetaUnc[isig])**2
+        #expUnc += (fcorr*fred*EnuUnc[  isig])**2 #FIXME check if this should be there
+        uncor.append(np.sqrt(expUnc))
+
+        #Form pseudodata: vary M.Fieg's results by the estimated exp. unc.
+        expUnc += stat[isig]**2  #Also stat. unc. factors into the variations
         expUnc = np.sqrt(expUnc)
-        sigmavar.append(abs(sig*(1. + expUnc*np.random.normal())))
-    
+        sigmavar.append(sig*(1. + expUnc*np.random.normal()))
+
+    #FIXME remove when PineAPPL interface implemented, obsolete test functionality
     #Write predictions as a constant value table
     f = open(datadir+"/th/"+expID+"-th.dat", "w")
     for ix, x in enumerate(xlo):
@@ -75,55 +87,55 @@ for iexp,expID in enumerate(expIDs):
     f = open(datadir+expID+"-thexp.dat", "w")
     f.write("* "+exptags[iexp]+"CC DIS pseudodata\n")
     f.write("&Data\n")
-    f.write("   Name = \'"+exptags[iexp]+"\'\n")
+    f.write("   Name = '"+exptags[iexp]+"'\n")
     f.write("   IndexDataset = "+str(137+iexp)+"\n") #Assign unique IDs to datasets
-    f.write("   Reaction = \'CC nup\'\n\n")
+    f.write("   Reaction = 'CC nup'\n\n")
     f.write("   NData = "+str(len(xlo))+"\n")
-    f.write("   NColumn = 9\n")
-    f.write("   ColumnType = \'Flag\',3*\'Bin\',\'Sigma\',4*\'Error\'\n")
-    f.write("   ColumnName = \'binFlag\',\'x\',\'Q2min\',\'Q2max\',\'Sigma\',\'stat\',")
-    f.write(               "\'"+expname+"El\',\'"+expname+"theta\',\'"+expname+"Eh\'\n\n")
-    f.write("   TheoryType = \'expression\'\n")
-    f.write("   TermName   = \'K\'\n")
-    f.write("   TermType   = \'reaction\'\n")
-    f.write("   TermSource = \'KFactor\'\n")
+    f.write("   NColumn = 7\n")
+    f.write("   ColumnType = 'Flag',3*'Bin','Sigma',2*'Error'\n")
+    f.write("   ColumnName = 'binFlag','x','Q2min','Q2max','Sigma','stat','uncor'\n")
+    f.write("   TheoryType = 'expression\'\n")
+    f.write("   TermName   = 'K'\n")
+    f.write("   TermType   = 'reaction'\n")
+    f.write("   TermSource = 'KFactor'\n")
     #FIXME below must eventually point to actual grids
-    f.write("   TermInfo   = \'FileName="+datadir+"th/"+expID+"-th.dat:FileColumn=4\'\n")
-    f.write("   TheorExpr  = \'K\'\n\n")
-    f.write("   Percent = 3*True\n")
+    f.write("   TermInfo   = 'FileName="+datadir+"th/"+expID+"-th.dat:FileColumn=4'\n")
+    f.write("   TheorExpr  = 'K'\n\n")
+    f.write("   Percent = 2*True\n")
     f.write("&End\n")
     f.write("&PlotDesc\n")
     f.write("   PlotN = 4\n")
-    f.write("   PlotDefColumn = \'Q2min\'\n")
-    f.write("   PlotVarColumn = \'x\'\n")
-    f.write("   PlotDefValue = 4., 10., 100., 1000.\n")
-    f.write("   PlotOptions(1)  = \'Experiment:"+expstrs[iexp]+"@ExtraLabel:#nu p (CC)")
+    f.write("   PlotDefColumn = 'Q2min'\n")
+    f.write("   PlotVarColumn = 'x'\n")
+    f.write("   PlotDefValue = 4., 10., 100., 1100.\n")
+    f.write("   PlotOptions(1)  = 'Experiment:"+expstrs[iexp]+"@ExtraLabel:#nu p (CC)")
     f.write(  " @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2}")
-    f.write(  " @Title:Q^{2}_{min} = 4 @Ymin:0.01@Xlog@Ylog\'\n")
-    f.write("   PlotOptions(2)  = \'Experiment:"+expstrs[iexp]+"@ExtraLabel:#nu p (CC)")
+    f.write(  " @Title:Q^{2}_{min} = 4 @Ymin:0.01@Xlog@Ylog'\n")
+    f.write("   PlotOptions(2)  = 'Experiment:"+expstrs[iexp]+"@ExtraLabel:#nu p (CC)")
     f.write(  " @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2}")
-    f.write(  " @Title:Q^{2}_{min} = 10 @Ymin:0.01@Xlog@Ylog\'\n")
-    f.write("   PlotOptions(3)  = \'Experiment:"+expstrs[iexp]+"@ExtraLabel:#nu p (CC)")
+    f.write(  " @Title:Q^{2}_{min} = 10 @Ymin:0.01@Xlog@Ylog'\n")
+    f.write("   PlotOptions(3)  = 'Experiment:"+expstrs[iexp]+"@ExtraLabel:#nu p (CC)")
     f.write(  " @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2}")
-    f.write(  " @Title:Q^{2}_{min} = 100 @Ymin:0.01@Xlog@Ylog\'\n")
-    f.write("   PlotOptions(4)  = \'Experiment:"+expstrs[iexp]+"@ExtraLabel:#nu p (CC)")
+    f.write(  " @Title:Q^{2}_{min} = 100 @Ymin:0.01@Xlog@Ylog'\n")
+    f.write("   PlotOptions(4)  = 'Experiment:"+expstrs[iexp]+"@ExtraLabel:#nu p (CC)")
     f.write(  " @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2}")
-    f.write(  " @Title:Q^{2}_{min} = 1000 @Ymin:0.01@Xlog@Ylog\'\n")
+    f.write(  " @Title:Q^{2}_{min} = 1000 @Ymin:0.01@Xlog@Ylog'\n")
     f.write("&End\n")
     f.write("*binFlag       xavg           Q2min           Q2max")
-    f.write("           Sigma            stat")
-    f.write("              El           theta              Eh\n")
+    f.write("           Sigma            stat           uncor\n")
     for ix, x in enumerate(xlo):
         f.write("1  ")
         f.write("{:16.6f}".format(xav[ix]))
         f.write("{:16.6f}".format(Q2lo[ix]))
         f.write("{:16.6f}".format(Q2hi[ix]))
         f.write("{:16.6e}".format(sigmavar[ix]))
-        #Uncertainties, given in %
         f.write("{:16.6f}".format(100.*stat[ix]))
-        f.write("{:16.6f}".format(100.*ElUnc[ix]))
-        f.write("{:16.6f}".format(100.*thetaUnc[ix]))
-        f.write("{:16.6f}".format(100.*EhUnc[ix]))
+        f.write("{:16.6f}".format(100.*uncor[ix]))
+        ##Uncertainties, given in %
+        ##However, would require correlation matrix, use uncor instead
+        #f.write("{:16.6f}".format(100.*ElUnc[ix]))
+        #f.write("{:16.6f}".format(100.*thetaUnc[ix]))
+        #f.write("{:16.6f}".format(100.*EhUnc[ix]))
+        f.write("\n")        
         
-        f.write("\n")
     f.close()

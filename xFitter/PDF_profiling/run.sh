@@ -1,7 +1,7 @@
 # The commands to perform Hessian PDF profiling w/ xFitter, do e.g.
 #    sh run.sh
 
-PDF="PDF4LHC21_40"  #N.B. or plots only! Change also in parameters.yaml
+PDF="PDF4LHC21"  #N.B. or plots only! Change also in parameters.yaml
 
 ### OPTS w/o/ scaling 95% cl -> 68%, e.g. CT PDFs
 #PLOTOPTS="--asym --therr --bands --q2all --relative-errors"
