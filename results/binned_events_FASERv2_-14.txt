@@ -1,5 +1,5 @@
 Experiment = FASERv2 | Neutrino = -14 | Exp. Target density (nucleons / cm3) = 10^(25.1) | Exp. Target Length = 200 cm | Total Events = 62732.1
-x_lower x_upper x_avg     Q2_lower[GeV^2] Q2_upper[GeV^2] Q2_avg[GeV^2] E_nu_lower[GeV] E_nu_upper[GeV] E_nu_avg[GeV] log10(d^sigma/dxdQ2(x_avg,Q2_avg,Enu_avg) / GeV^-2) N_events N_events_errs = Sqrt[N_events] MC_Samples
+x_lower x_upper x_avg     Q2_lower[GeV^2] Q2_upper[GeV^2] Q2_avg[GeV^2] E_nu_lower[GeV] E_nu_upper[GeV] E_nu_avg[GeV] log10(d^sigma/dxdQ2(x_avg,Q2_avg,Enu_avg) / pb GeV^-2) N_events N_events_errs = Sqrt[N_events] MC_Samples
 0.00174 0.00240 0.00208     4.0               10.0                6.8     11.34            5698.27            3727.80                0.5498                                  12.43035      3.52567          6818577  
 0.00240 0.00329 0.00285     4.0               10.0                6.9     11.34            5698.27            3496.12                0.4761                                  29.95597      5.47321          7693286  
 0.00240 0.00329 0.00289     10.0               100.0                17.0     11.34            5698.27            4417.47                0.4581                                  26.77888      5.17483          762734  
