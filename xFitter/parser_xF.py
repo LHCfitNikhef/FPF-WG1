@@ -1,5 +1,6 @@
 import numpy as np
 import os
+from distutils.dir_util import copy_tree
 
 suffix = ".txt"
 expIDs = ["FASERv_14","FASERv_-14", "FASERv2_14","FASERv2_-14"]
@@ -10,16 +11,19 @@ expstrs = ["FASER#nu, #nu_{#mu}","FASER#nu, #bar{#nu}_{#mu}",
 
 subdirs=['datafiles/','lhc/','fpf/','neutrinoDIS/','pseudodata/']
 datadir=''
+gridname='nu_A_1-XSFPFCC.pineappl.lz4'
+
+#Produce subdirectories for tables
 for subdir in subdirs:
     datadir+=subdir
     if not os.path.exists(datadir):
         os.mkdir(datadir)
 if not os.path.exists(datadir+'th/'):
     os.mkdir(datadir+'th/')
-#if not os.path.exists(datadir+'theory/'): # TODO
-#    print os.getcwd()+'/'+datadir+'theory/'
-#    os.symlink(os.getcwd()+'/../theory/',os.getcwd()+'/'+datadir+'theory/')
+if not os.path.exists(datadir+'grids/'):
+    copy_tree('../theory/grids-xsecs_A1/grids/', datadir+'grids/')
 
+#Read results, write tables
 for iexp,expID in enumerate(expIDs):
     infile = "../results/binned_events_" + expID + suffix
     #Read the predictions / pseudodata template
@@ -71,18 +75,18 @@ for iexp,expID in enumerate(expIDs):
         expUnc = np.sqrt(expUnc)
         sigmavar.append(sig*(1. + expUnc*np.random.normal()))
 
-    #FIXME remove when PineAPPL interface implemented, obsolete test functionality
-    #Write predictions as a constant value table
-    f = open(datadir+"/th/"+expID+"-th.dat", "w")
-    for ix, x in enumerate(xlo):
-        f.write("{:16.6f}".format(Q2lo[ix]))
-        f.write("{:16.6f}".format(Q2hi[ix]))
-        f.write("{:16.6f}".format(xlo[ix]))
-        f.write("{:16.6e}".format(sigma[ix]))  
-        f.write("\n")
-    f.close()
+#    #Test functionality to write predictions as a constant value table
+#    f = open(datadir+"/th/"+expID+"-th.dat", "w")
+#    for ix, x in enumerate(xlo):
+#        f.write("{:16.6f}".format(Q2lo[ix]))
+#        f.write("{:16.6f}".format(Q2hi[ix]))
+#        f.write("{:16.6f}".format(xlo[ix]))
+#        f.write("{:16.6e}".format(sigma[ix]))  
+#        f.write("\n")
+#    f.close()
 
     #Write xFitter table
+    test=False
     expname="FASERv2" if "v2" in exptags[iexp] else "FASERv"
     f = open(datadir+expID+"-thexp.dat", "w")
     f.write("* "+exptags[iexp]+"CC DIS pseudodata\n")
@@ -95,12 +99,17 @@ for iexp,expID in enumerate(expIDs):
     f.write("   ColumnType = 'Flag',3*'Bin','Sigma',2*'Error'\n")
     f.write("   ColumnName = 'binFlag','x','Q2min','Q2max','Sigma','stat','uncor'\n")
     f.write("   TheoryType = 'expression\'\n")
-    f.write("   TermName   = 'K'\n")
     f.write("   TermType   = 'reaction'\n")
-    f.write("   TermSource = 'KFactor'\n")
-    #FIXME below must eventually point to actual grids
-    f.write("   TermInfo   = 'FileName="+datadir+"th/"+expID+"-th.dat:FileColumn=4'\n")
-    f.write("   TheorExpr  = 'K'\n\n")
+    if test:
+        f.write("   TermName   = 'K'\n")
+        f.write("   TermSource = 'KFactor'\n")
+        f.write("   TermInfo   = 'FileName="+datadir+"th/"+expID+"-th.dat:FileColumn=4'\n")
+        f.write("   TheorExpr  = 'K'\n\n")
+    else:
+        f.write("   TermName   = 'P'\n")
+        f.write("   TermSource = 'PineAPPL'\n")
+        f.write("   TermInfo   = 'GridName="+datadir+"grids/"+gridname+"'\n")
+        f.write("   TheorExpr  = 'P'\n\n")
     f.write("   Percent = 2*True\n")
     f.write("&End\n")
     f.write("&PlotDesc\n")
