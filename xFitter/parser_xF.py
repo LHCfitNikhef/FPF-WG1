@@ -109,7 +109,7 @@ for iexp,expID in enumerate(expIDs):
         f.write("   TermName   = 'P'\n")
         f.write("   TermSource = 'PineAPPL'\n")
         f.write("   TermInfo   = 'GridName="+datadir+"grids/"+gridname+"'\n")
-        f.write("   TheorExpr  = '10**P'\n\n")
+        f.write("   TheorExpr  = 'P'\n\n")
     f.write("   Percent = 2*True\n")
     f.write("&End\n")
     f.write("&PlotDesc\n")
