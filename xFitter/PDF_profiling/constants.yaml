@@ -1,6 +1,6 @@
 # EW parameters
 Mz : 91.1876
-Mw : 80.385
+Mw : 80.398
 Mh : 125.9
 
 Wz : 2.4952
@@ -8,20 +8,20 @@ Ww : 2.085
 Wh : 1d-3
 Wtp: 2.0d0
 
-gf : 1.16638e-5
+gf : 1.1663787e-5
 convFac : 0.389379338e9
-alphaem : 7.29735e-3
+alphaem : 0.007496252
 
-sin2thW :  0.23127
-Vud : 0.97427
-Vus : 0.2254
-Vub : 0.00358
-Vcd : 0.22520
-Vcs : 0.97344 
-Vcb : 0.04156
-Vtd : 0.00872
-Vts : 0.04076
-Vtb : 0.999133
+sin2thW :  0.23126
+Vud : 0.97428 
+Vus : 0.22530 
+Vub : 0.003470
+Vcd : 0.22520 
+Vcs : 0.97345 
+Vcb : 0.041000
+Vtd : 0.00862 
+Vts : 0.04030 
+Vtb : 0.999152
 
 # lepton masses:
 men : 1e-10
@@ -37,9 +37,9 @@ mdn : 0.06983
 mst : 0.150
 
 # heavy quark masses:
-mch : 1.47
-mbt : 4.50
-mtp : 170.5
+mch : 1.51
+mbt : 4.92
+mtp : 172.5
 
 # QCD parameters
 Order: NLO

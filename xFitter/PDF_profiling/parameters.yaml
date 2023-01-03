@@ -34,7 +34,7 @@ Evolutions:
 #  antiproton:
 #    class: FlipCharge
 
-Q0 : 1.378404875209 # Initial scale =sqrt(1.9)
+Q0 : 1.65 #1.378404875209 # Initial scale =sqrt(1.9)
 
 ? !include constants.yaml
 
@@ -67,7 +67,6 @@ byReaction:
     muF: 1.0
     muR: 1.0
     PDG: 2212
-    Order : NLO
     norm: 0
   
 # Specify HF scheme used for DIS NC processes:
