@@ -26,6 +26,21 @@ def parse_inputgrid(csv_grid: pd.DataFrame):
     return np.asarray(parsed_inputs).T
 
 
+def parse_pseudodata(file: pathlib.Path):
+    """Parse the input pseudodata knots given read from the CSV."""
+    pseudo_arr = np.loadtxt(file, skiprows=2)
+
+    # Extract only the kinematics (x_avg, Q2_avg, Enu_avg)
+    table = pd.DataFrame(pseudo_arr[:, [2, 5, 8]], columns=['x', 'q2', 'enu'])
+
+    x = table["x"].astype(float, errors="raise")  # Object -> float
+    enu = table["enu"].astype(float, errors="raise")  # Object -> float
+    q2 = table["q2"].astype(float, errors="raise")  # Object -> float
+    table["y"] = q2 / (2 * x * enu * 0.938)
+
+    return table[["x", "y", "q2"]].values
+
+
 @base.command.group("xsecs")
 def subcommand():
     """Commands for generating cross-sections"""
@@ -50,15 +65,26 @@ def subcommand():
     help="Observable type: SF [Struct Func], XSEC [Cross Sec]",
 )
 @click.option(
+    "--sgrid/--no-sgrid",
+    default=True,
+    help="Specify if the input grids is a pseudodata or not",
+)
+@click.option(
     "-d",
     "--destination",
     type=click.Path(path_type=pathlib.Path),
     default=pathlib.Path.cwd().absolute() / "theory",
     help="Destination to store the PineAPPL grid (default: $PWD/theory)",
 )
-def sub_runcards(input_grids, a_value, obs, destination):
+def sub_runcards(input_grids, a_value, obs, sgrid, destination):
     """Generate the Yadism cards for a fixed proton/nucleus A."""
-    igrid = parse_inputgrid(pd.read_csv(input_grids))
+    if sgrid:
+        igrid = parse_inputgrid(pd.read_csv(input_grids))
+    elif not sgrid:
+        igrid = parse_pseudodata(input_grids)
+    else:
+        raise ValueError("The input value is not recognised!")
+
     runcards.generate_cards(igrid, a_value, obs, destination)
 
 
