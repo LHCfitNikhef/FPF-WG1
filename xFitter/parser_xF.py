@@ -7,10 +7,10 @@ expIDs = ["FASERv_14",
           "FASERv_-14",
           "FASERv2_14",
           "FASERv2_-14"]
-grids = ['nu_A_1-XSFPFCC.pineappl.lz4',  #neutrino
+grids = ['nu_A_1-XSFPFCC.pineappl.lz4',   #neutrino
          'nub_A_1-XSFPFCC.pineappl.lz4',  #antineutrino
-         'nu_A_1-XSFPFCC.pineappl.lz4',  #FIXME shouldn't FASERv 1 and 2...
-         'nub_A_1-XSFPFCC.pineappl.lz4']  #FIXME ...have different grids?
+         'nu_A_1-XSFPFCC.pineappl.lz4',
+         'nub_A_1-XSFPFCC.pineappl.lz4']
 exptags = ["FASER$\\nu$ $\\nu_\\mu$", "FASER$\\nu$ $\\bar{\\nu}_\\mu$", 
            "FASER$\\nu$2 $\\nu_\\mu$","FASER$\\nu$2 $\\bar{\\nu}_\\mu$"]
 expstrs = ["FASER#nu, #nu_{#mu}","FASER#nu, #bar{#nu}_{#mu}",
@@ -24,11 +24,10 @@ for subdir in subdirs:
     datadir+=subdir
     if not os.path.exists(datadir):
         os.mkdir(datadir)
-#if not os.path.exists(datadir+'th/'):
-#    os.mkdir(datadir+'th/')
-#if not os.path.exists(datadir+'grids/'):
-#    copy_tree('../theory/grids-xsecs_A1/grids/', datadir+'grids/')
-#TODO to be useful, the above should also extract the grids etc.
+if not os.path.exists(datadir+'grids/'):
+    copy_tree('../theory/', datadir+'grids/')
+#TODO to be most useful, should also untar the file.
+#However, python tarfile is unsafe so you better do it manually
 
 #Read results, write tables
 for iexp,expID in enumerate(expIDs):
@@ -116,7 +115,7 @@ for iexp,expID in enumerate(expIDs):
     else:
         f.write("   TermName   = 'P'\n")
         f.write("   TermSource = 'PineAPPL'\n")
-        f.write("   TermInfo   = 'GridName="+datadir+"grids/"+gridname+"'\n")
+        f.write("   TermInfo   = 'GridName="+datadir+"grids/"+expID.replace('-','m')+'/grids-xsecs_A1/grids/'+gridname+"'\n")
         f.write("   TheorExpr  = 'P'\n\n")
     f.write("   Percent = 2*True\n")
     f.write("&End\n")
