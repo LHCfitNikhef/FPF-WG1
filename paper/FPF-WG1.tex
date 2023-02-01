@@ -1,0 +1,439 @@
+\documentclass[11pt,a4paper]{article}
+\pdfoutput=1
+
+\usepackage[colorlinks=true, linkcolor=black!50!blue, urlcolor=blue, citecolor=blue, anchorcolor=blue]{hyperref}
+\usepackage[font=small,labelfont=bf,margin=0mm,labelsep=period,tableposition=top]{caption}
+\usepackage[a4paper,top=1.5cm,bottom=2cm,left=1.5cm,right=1.5cm,bindingoffset=0mm]{geometry}
+
+\usepackage{placeins,cite}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{afterpage}
+\usepackage{epsfig}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{ulem}
+\usepackage{url}
+\usepackage{booktabs,multirow}
+\usepackage{textcomp}
+\graphicspath{{../}{./figures/}}
+
+
+\makeatletter
+\def\thickhline{%
+             \noalign{\ifnum0 =`}\fi\hrule \@height \thickarrayrulewidth \futurelet
+             \reserved@a\@xthickhline}
+\def\@xthickhline{\ifx\reserved@a\thickhline
+                \vskip\doublerulesep
+                \vskip -\thickarrayrulewidth
+                \fi
+                \ifnum0 =`{\fi}}
+\makeatother
+\newlength{\thickarrayrulewidth}
+\setlength{\thickarrayrulewidth}{3\arrayrulewidth}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{arrows.meta}
+\usepackage{varwidth}
+\usepackage{xcolor}
+%['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
+\definecolor{mtplotlib1}{HTML}{1f77b4}
+\definecolor{mtplotlib2}{HTML}{ff7f0e}
+\definecolor{mtplotlib3}{HTML}{2ca02c}
+\definecolor{mtplotlib4}{HTML}{d62728}
+
+\tikzset{%
+  >={Latex[width=2mm,length=2mm]},
+  % Specifications for style of nodes:
+            base/.style = {rectangle, rounded corners, draw=black,
+                           minimum width=4cm, minimum height=1cm,
+                           text centered}, %, font=\sffamily},
+            mystyle/.style={rectangle, rounded corners, draw=black,
+            minimum width=12cm, minimum height=1cm,
+            text centered}, %, font=\sffamily},
+    col0/.style = {base, fill=white!30},
+    col1/.style = {base, fill=mtplotlib1!30},
+    col11/.style = {mystyle, fill=mtplotlib1!30},
+    col2/.style = {base, fill=mtplotlib2!30},
+    col3/.style = {base, fill=mtplotlib3!30},
+    col4/.style = {base, minimum width=2.5cm, fill=mtplotlib4!15,}%font=\ttfamily},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\smallfrac#1#2{\hbox{$\frac{#1}{#2}$}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\ben}{\begin{enumerate}}
+\newcommand{\een}{\end{enumerate}}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+\newcommand{\lc}{\left[}
+\newcommand{\rc}{\right]}
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\as}{\alpha_s}
+\newcommand{\aq}{\alpha_s\left( Q^2 \right)}
+\newcommand{\amz}{\alpha_s\left( M_Z^2 \right)}
+\newcommand{\aqq}{\alpha_s \left( Q^2_0 \right)}
+\newcommand{\aqz}{\alpha_s \left( Q^2_0 \right)}
+\def\toinf#1{\mathrel{\mathop{\sim}\limits_{\scriptscriptstyle
+{#1\rightarrow\infty }}}}
+\def\tozero#1{\mathrel{\mathop{\sim}\limits_{\scriptscriptstyle
+{#1\rightarrow0 }}}}
+\def\toone#1{\mathrel{\mathop{\sim}\limits_{\scriptscriptstyle
+{#1\rightarrow1 }}}}
+\def\frac#1#2{{{#1}\over {#2}}}
+\def\gsim{\mathrel{\rlap{\lower4pt\hbox{\hskip1pt$\sim$}}
+    \raise1pt\hbox{$>$}}}       
+\def\lsim{\mathrel{\rlap{\lower4pt\hbox{\hskip1pt$\sim$}}
+    \raise1pt\hbox{$<$}}}       
+\newcommand{\mrexp}{\mathrm{exp}}
+\newcommand{\dat}{\mathrm{dat}}
+\newcommand{\one}{\mathrm{(1)}}
+\newcommand{\two}{\mathrm{(2)}}
+\newcommand{\art}{\mathrm{art}}
+\newcommand{\rep}{\mathrm{rep}}
+\newcommand{\net}{\mathrm{net}}
+\newcommand{\stopp}{\mathrm{stop}}
+\newcommand{\sys}{\mathrm{sys}}
+\newcommand{\stat}{\mathrm{stat}}
+\newcommand{\pdf}{\mathrm{pdf}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\minn}{\mathrm{min}}
+\newcommand{\mut}{\mathrm{mut}}
+\newcommand{\partt}{\mathrm{part}}
+\newcommand{\dof}{\mathrm{dof}}
+\newcommand{\NS}{\mathrm{NS}}
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\gen}{\mathrm{gen}}
+\newcommand{\parr}{\mathrm{par}}
+\newcommand{\val}{\mathrm{val}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\checkk}{\mathrm{check}}
+\newcommand{\reff}{\mathrm{ref}}
+\newcommand{\Mll}{M_{ll}}
+\newcommand{\extra}{\mathrm{extra}}
+\newcommand{\draft}[1]{}
+\newcommand{\comment}[1]{{\bf \it  #1}}
+\newcommand{\todo}[1]{\footnote{{\bfseries{\color{red} TODO} #1}}} % For todo's
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\newcommand{\tmop}[1]{\ensuremath{\operatorname{#1}}}
+\newcommand{\tmtextit}[1]{{\itshape{#1}}}
+\newcommand{\tmtextrm}[1]{{\rmfamily{#1}}}
+\newcommand{\tmtexttt}[1]{{\ttfamily{#1}}}
+
+\usepackage{tabularx}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\DeclareRobustCommand{\RG}[1]{{\color{magenta}\textbf{[RG: #1]}}\xspace}
+
+\definecolor{darkblue}{rgb}{0.0,0,0.5}
+\definecolor{darkgreen}{rgb}{0.0,0.3,0.0}
+\definecolor{redish}{rgb}{0.675,0,0.2}
+\definecolor{red}{rgb}{0.8,0,0}
+\definecolor{green}{rgb}{0,0.6,0}
+\definecolor{bluish}{rgb}{0.2,0.2,0.675}
+\definecolor{mygrey}{rgb}{0.6,0.6,0.6}
+
+\usepackage{tikz} 
+\usetikzlibrary{shapes,arrows,positioning,automata,backgrounds,calc,er,patterns,arrows.meta}
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.0.0}
+\usepackage{varwidth}
+\usepackage{xcolor}
+%['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
+\definecolor{mtplotlib1}{HTML}{1f77b4}
+\definecolor{mtplotlib2}{HTML}{ff7f0e}
+\definecolor{mtplotlib3}{HTML}{2ca02c}
+\definecolor{mtplotlib4}{HTML}{d62728}
+
+\tikzset{%
+  >={Latex[width=2mm,length=2mm]},
+  % Specifications for style of nodes:
+            base/.style = {rectangle, rounded corners, draw=black,
+                           minimum width=4cm, minimum height=1cm,
+                           text centered}, %, font=\sffamily},
+            mystyle/.style={rectangle, rounded corners, draw=black,
+            minimum width=12cm, minimum height=1cm,
+            text centered}, %, font=\sffamily},
+    col0/.style = {base, fill=white!30},
+    col1/.style = {base, fill=mtplotlib1!30},
+    col11/.style = {mystyle, fill=mtplotlib1!30},
+    col2/.style = {base, fill=mtplotlib2!30},
+    col3/.style = {base, fill=mtplotlib3!30},
+    col4/.style = {base, minimum width=2.5cm, fill=mtplotlib4!15,}%font=\ttfamily},
+}
+
+\usepackage{tabularx}
+\usepackage{subcaption}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\DeclareRobustCommand{\RG}[1]{{\color{magenta}\textbf{[RG: #1]}}\xspace}
+
+%%%%% raquel: color marks %%%%%
+%\usepackage{color} 
+\newcommand{\raq}[1]{{\bf\color{orange} #1}}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%% jaco: wider spacing in tables %%%%%
+\renewcommand{\arraystretch}{1.7}
+\def\lra#1{\overset{\text{\scriptsize$\leftrightarrow$}}{#1}}
+
+
+
+\begin{document}
+\newgeometry{top=1.5cm,bottom=1.5cm,left=1.5cm,right=1.5cm,bindingoffset=0mm}
+
+\vspace{0.7cm}
+
+\begin{center}
+  {\Large \bf FPF WG1: Neutrino Interactions and Hadronic Structure}
+\vspace{1.1cm}
+
+
+\vspace{1.0cm}
+
+{\bf \large Abstract}
+
+\end{center}
+Notes to collect the studies
+carried out in WG1 of the Forward
+Physics Facility study: {\bf  Neutrino Interactions and Hadronic Structure}
+
+\tableofcontents
+
+\section{Recap of DIS kinematics}
+
+The double-differential cross-section for neutrino-nucleus scattering
+can be decomposed
+in terms of three independent structure functions $F_i^{\nu A}(x,Q^2)$ with $i=1,2,3$.
+%
+Focusing on the charged-current (CC) scattering case, mediated
+by the exchange of a $W^+$ weak boson, the differential
+ cross section reads
+\be
+\label{eq:neutrino_DIS_xsec}
+\frac{d^2\sigma^{\nu A}(x,Q^2,y)}{dxdy} =  \frac{G_F^2s/2\pi}{\lp 1+Q^2/m_W^2\rp^2}\lc (1-y)F^{\nu A}_2(x,Q^2) + y^2xF^{\nu A}_1(x,Q^2) + y\lp 1-\frac{y}{2}\rp xF^{\nu A}_3(x,Q^2)\rc  \, ,
+\ee
+where $s=2m_N E_\nu$ is the neutrino-nucleon center of mass energy squared, $m_N$ is the nucleon mass,
+$E_\nu$ is the incoming neutrino energy,
+and the inelasticity $y$ is defined as $y=Q^2/(2x m_n E_{\nu})$.
+%
+For the time being we are neglecting target mass 
+corrections.
+%
+An analogous expression holds for  antineutrino 
+scattering, mediated
+by the exchange of a $W^-$ weak boson, with the only difference being a sign change
+in front of the parity-violating structure function $xF_3$,
+\be
+\label{eq:antineutrino_DIS_xsec}
+\frac{d^2\sigma^{\bar{\nu} A}(x,Q^2,y)}{dxdy} =  \frac{G_F^2s/2\pi}{\lp 1+Q^2/m_W^2\rp^2}\lc (1-y)F^{\bar{\nu} A}_2(x,Q^2) + y^2xF^{\bar{\nu} A}_1(x,Q^2) - y\lp 1-\frac{y}{2}\rp xF^{\bar{\nu} A}_3(x,Q^2)\rc  \, .
+\ee
+While the differential cross-section depends on three kinematic variables, $(x,Q^2,y)$,
+the structure functions themselves depend only on $x$ and $Q^2$.
+%
+Furthermore, both the cross-section and the structure functions depend
+on the atomic mass number $A$ of the target nucleus via nuclear modifications of the free-nucleon
+structure functions.
+
+Alternatively, Eq.~(\ref{eq:neutrino_DIS_xsec}) can be expressed in terms
+of the longitudinal structure function  $F_L^{\nu A}(x,Q^2)$ defined
+by $F_L = F_2-2xF_1$, leading to
+\be
+\label{eq:neutrino_DIS_xsec_FL}
+\frac{d^2\sigma^{\nu A}(x,Q^2,y)}{dxdy} =  \frac{G_F^2s/4\pi}{\lp 1+Q^2/m_W^2\rp^2}\lc Y_+F^{\nu A}_2(x,Q^2) - y^2F^{\nu A}_L(x,Q^2) +Y_- xF^{\nu A}_3(x,Q^2)\rc  \, ,
+\ee
+where $Y_\pm = 1 \pm (1-y)^2$ and with a counterpart expression for anti-neutrino scattering,
+\be
+\label{eq:antineutrino_DIS_xsec_FL}
+\frac{d^2\sigma^{\bar{\nu} A}(x,Q^2,y)}{dxdy} =  \frac{G_F^2s/4\pi}{\lp 1+Q^2/m_W^2\rp^2}\lc Y_+F^{\bar{\nu} A}_2(x,Q^2) - y^2F^{\bar{\nu} A}_L(x,Q^2) -Y_- xF^{\bar{\nu} A}_3(x,Q^2)\rc  \, ,
+\ee
+%
+Expressing the differential cross-section as in Eq.~(\ref{eq:neutrino_DIS_xsec_FL}) is advantageous
+because in the parton model (and in perturbative QCD at leading order) the longitudinal
+structure function vanishes, $F_L^{\nu A}(x,Q^2)=0$.
+%
+The combination of neutrino and antineutrino measurements makes possible disentangling
+the different structure functions, for example the cross-section difference
+\be
+\label{eq:neutrino_DIS_xsec_FL_diff}
+\frac{d^2\sigma^{\nu A}(x,Q^2,y)}{dxdy} - \frac{d^2\sigma^{\bar{\nu} A}(x,Q^2,y)}{dxdy}=  \frac{G_F^2s Y_-}
+{4\pi \lp 1+Q^2/m_W^2\rp^2}\lc    xF^{\nu A}_3(x,Q^2)+  xF^{\bar{\nu} A}_3(x,Q^2)\rc \, ,
+\ee
+is proportional to the parity-violating structure function $xF_3$ averaged over neutrinos
+and antineutrinos.
+
+When both the momentum transfer squared $Q^2$
+and the  hadronic final-state
+invariant mass $W$ given by
+\be
+W^2 = m_N^2 + Q^2 \frac{(1-x)}{x} \, ,
+\ee
+are large enough, $Q^2 \gsim {\rm few~GeV}^2$ and $W \gsim 2$ GeV
+respectively, we find ourselves in the
+deep-inelastic scattering region where
+structure functions can be evaluated in perturbative QCD in terms of a factorised
+convolution of process-dependent partonic scattering cross-sections and
+of process-independent parton distribution functions,
+\be
+\label{eq:sfs_pqcd}
+ F^{\nu A}_i(x,Q^2) = \sum_{j=q,\bar{q},g}\int_x^1 \frac{dz}{z}\, C_{i,j}^{\nu N}(z,\alpha_s(Q^2))f^{(A)}_j\lp \frac{x}{z},Q^2\rp \, , \quad i = 2,3,L \, ,
+ \ee
+ where $j$ is an index that runs over all possible partonic initial states
+ and $C_{i,j}^{\nu N}$ is the process-dependent (but target-independent) coefficient function.
+ %
+ The latter can be expressed  as a series expansion in powers of the strong
+ coupling $\alpha_s(Q^2)$,
+ \be
+ \label{eq:coeff_fun_expansion}
+ C_{i,j}^{\nu N}(z,\alpha_s(Q^2)) = \sum_{k=0}^m \lp \alpha_s(Q^2) \rp^{k} C_{i,j}^{\nu N(k)}(z) \, .
+ \ee
+ The leading-order ($k=0$)  term is independent of $\alpha_s$ since the Born scattering
+ is mediated by the weak interaction.
+ %
+ At leading order and considering a proton target, $n_f=4$ active quark flavours,
+ neglecting charm mass effects and assuming a diagonal CKM matrix,
+ we can express the $F_2^{\nu p}$ and $xF_3^{\nu p}$ structure functions as
+ follows
+ \bea
+ F_2^{\nu p}(x,Q^2) &=& 2x\lp f_{\bar{u}} + f_{d} + f_{s} + f_{\bar{c}} \rp(x,Q^2) \, , \nonumber  \\
+ F_2^{\bar{\nu} p}(x,Q^2) &=& 2x\lp f_u + f_{\bar{d}} + f_{\bar{s}} + f_c \rp(x,Q^2) \, , \label{eq:neutrinoSFs} \\
+ xF_3^{\nu p}(x,Q^2) &=& 2x\lp -f_{\bar{u}} + f_d +f_s - f_{\bar{c}}\rp(x,Q^2)  \, , \nonumber\\
+ xF_3^{\bar{\nu} p}(x,Q^2) &=& 2x\lp f_u - f_{\bar{d}} -f_{\bar{s}} + f_{c}\rp(x,Q^2) \, . \nonumber
+ \eea
+ The corresponding expressions for a neutron target and or isoscalar target can be obtained
+ from isospin symmetry, for instance the LO structure functions for
+ neutrino-neutron scattering are
+ \bea
+ F_2^{\nu n}(x,Q^2) &=& 2x\lp f_{\bar{d}} + f_{u} + f_{s} + f_{\bar{c}} \rp(x,Q^2) \, , \nonumber  \\
+ F_2^{\bar{\nu} n}(x,Q^2) &=& 2x\lp f_d + f_{\bar{u}} + f_{\bar{s}} + f_c \rp(x,Q^2) \, , \label{eq:antineutrinoSFs} \\
+ xF_3^{\nu n}(x,Q^2) &=& 2x\lp -f_{\bar{d}} + f_u +f_s - f_{\bar{c}}\rp(x,Q^2)  \, , \nonumber\\
+ xF_3^{\bar{\nu} n}(x,Q^2) &=& 2x\lp f_d - f_{\bar{u}} -f_{\bar{s}} + f_{c}\rp(x,Q^2) \, . \nonumber
+ \eea
+ 
+
+\section{DIS pseudo-data generation}
+
+The first goal is to produce projections
+for DIS pseudo-data at the FPF based on
+some idealised detector concepts and
+some initial choice of neutrino fluxes
+e.g.~\cite{Kling:2021gos}.
+%
+This requires a knowledge of the detector geometry
+and material, as well as of the double-differential
+neutrino interaction cross-section. 
+%
+Since we aim to produce pseudo-data binned in $(x,Q^2)$,
+for each simulated event we need to determine the 
+final-state kinematics. 
+
+Specifically, we would like to evaluate the
+number of charged-current neutrino interaction events
+within the detector volume in different bins
+of the incoming neutrino energy $E_\nu$, the Bjorken
+variable $x$ and the momentum transfer square $Q^2$,
+\begin{equation}
+    N_{\rm ev}(E_\nu, x, Q^2) \, ,
+\end{equation}
+for some binning in these three kinematic variables.
+%
+This can be evaluated as
+\begin{equation}
+\label{eq:nev_v1}
+    N_{\rm ev}(E_\nu, x, Q^2) =  \frac{d^2\sigma^{\nu A}(x,Q^2,y)}{dxdy} \mathcal{L}(E_{\nu}) \, ,
+\end{equation}
+where $\mathcal{L}(E_{\nu}) $ is the incoming neutrino
+luminosity which accounts for the detector geometry
+and material density. 
+%
+Eq.~(\ref{eq:nev_v1}) can be integrated to
+determine the actual number of events within
+the bin boundaries.
+
+\section{Experimental acceptance performance}
+
+\paragraph{AdvSND} 
+\begin{itemize}
+    \item The detectors will be able to track muons that have energy greater
+    than $20~\rm{GeV}$ (the values for the other charged leptons remain to be
+    determined) with an acceptance angle of 100 mrad for the muons and 
+    500 mrad for the both electrons and tau.
+    \item In addition, the information on the charge of the outgoing leptons
+    can also be accessed.
+    \item It should also be possible to reconstruct the hadronic final states
+    by measuring the total energy.
+\end{itemize}
+
+\paragraph{FLArE}
+\begin{itemize}
+    \item The detectors will be able to detect electrons with energy up to
+    $1~\rm{TeV}$ and an acceptance angel as high as 0.5 rad. For the muons,
+    the detectors will only be able to track them up to $1.5~\rm{GeV}$ with
+    a scattering angle reaching up to 0.4 mrad. The reconstruction of the
+    tau's angle and energy instead will be very difficult. However, it might
+    be possible to find the vertex of a particular tau decay if fine position
+    resolution is achieved.
+    \item With the current baseline design of the detector, it will not be
+    possible to access the information on the sign of the charged leptons.
+    \item It should also be possible to reconstruct the hadronic final
+    states but the reconstruction efficiency and particles will depend on
+    the type of particles. It is expected that the final states hadrons will
+    be dominated by pions, protons, and neutrons.
+    \item Regarding the systematic errors on the charged lepton energy and
+    scattering angle, it is expected to get $5\%$ energy resolution for
+    electrons and about 15 mrad in angular resolution. Due to the large
+    missing energy in the detector, $30\%$ energy resolution is probably
+    achievable for muons with about 5 mrad angular resolution.
+\end{itemize}
+
+\section{Impact in proton PDF fits}
+
+Once we have generated pseudo-data for the 
+neutrino DIS charged-current structure functions
+in bins of $(x,Q^2,y)$, and assuming that uncertainties
+are purely of statistical origin, we can assess their
+impact on proton PDFs.
+%
+At a first step we neglect nuclear effects
+and treat data as corresponding to a free isoscalar
+nucleon with $A=1$.
+
+\section{Impact in nuclear PDF fits}
+
+Next we account for the nuclear dependence of
+the measured neutrino structure functions.
+
+\section{Description of the $\nu$FPF codes}
+
+The part that computes the differential cross sections is taken care by the python
+package $\nu$FPF. By default, it computes the HERA cross section defined as
+\begin{equation}
+    \frac{d^2\tilde{\sigma}^{A}}{dxdy} \lp x,Q^2,y \rp =  \frac{1}{2}\lc (1-y)F^{\nu A}_2(x,Q^2) + y^2xF^{\nu A}_1(x,Q^2)
+    + (-1)^\ell  y\lp 1-\frac{y}{2}\rp xF^{\nu A}_3(x,Q^2)\rc ,
+\end{equation}
+where $\ell = 0$ for leptons and $\ell = 1$ for anti-leptons. Thus, in order to compare with 
+Eq.~\ref{eq:neutrino_DIS_xsec} one needs to multiply the above equation with $G_F^2s/2 \pi (1 + Q^2/m^2_W)^2$.
+
+\bibliographystyle{utphys}
+\bibliography{FPF-WG1}
+
+\end{document}
+
