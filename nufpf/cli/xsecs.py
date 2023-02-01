@@ -161,17 +161,28 @@ def sub_generate_sfs_lhapdf(grids, input_grids, pdf, err, destination):
     default="pdf",
 )
 @click.option(
+    "--sgrid/--no-sgrid",
+    default=True,
+    help="Specify if the input grids is a pseudodata or not",
+)
+@click.option(
     "-d",
     "--destination",
     type=click.Path(path_type=pathlib.Path),
     default=pathlib.Path.cwd().absolute(),
     help="Destination to store the LHAPDF set (default: $PWD)",
 )
-def sub_generate_xsecs_datfile(grids, input_grids, pdf, err, destination):
+def sub_generate_xsecs_datfile(grids, input_grids, pdf, err, sgrid, destination):
     """Compute the differential cross section and dump the results as
     a .dat file.
     """
-    input_grids = parse_inputgrid(pd.read_csv(input_grids))
+    if sgrid:
+        input_grids = parse_inputgrid(pd.read_csv(input_grids))
+    elif not sgrid:
+        input_grids = parse_pseudodata(input_grids)
+    else:
+        raise ValueError("The input value is not recognised!")
+
     xsecs.dump_xsecs_as_datfile(
         grids.absolute(),
         input_grids,
