@@ -1,0 +1,58 @@
+* FASER$\nu$ $\bar{\nu}_\mu$ CC DIS pseudodata
+&Data
+   Name = 'FASER$\nu$ $\bar{\nu}_\mu$'
+   IndexDataset = 138
+   Reaction = 'CC nup'
+
+   NData = 28
+   NColumn = 6
+   ColumnType = 'Flag',2*'Bin','Sigma',2*'Error'
+   ColumnName = 'binFlag','x','Q2','Sigma','stat','uncor'
+   TheoryType = 'expression'
+   TermType   = 'reaction'
+   TermName   = 'P'
+   TermSource = 'PineAPPL'
+   TermInfo   = 'GridName=datafiles/lhc/fpf/neutrinoDIS/pseudodata/grids/FASERv_m14/grids-xsecs_A1/grids/nub_A_1-XSFPFCC.pineappl.lz4'
+   TheorExpr  = 'P'
+
+   Percent = 2*True
+&End
+&PlotDesc
+   PlotN = 4
+   PlotDefColumn = 'Q2'
+   PlotVarColumn = 'x'
+   PlotDefValue = 3., 5., 11., 110., 1100.
+   PlotOptions(1)  = 'Experiment:FASER#nu #bar{#nu}_#mu@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 4 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(2)  = 'Experiment:FASER#nu #bar{#nu}_#mu@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 10 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(3)  = 'Experiment:FASER#nu #bar{#nu}_#mu@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 100 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(4)  = 'Experiment:FASER#nu #bar{#nu}_#mu@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 1000 @Ymin:0.01@Xlog@Ylog'
+&End
+*binFlag          x              Q2           Sigma            stat           uncor
+1          0.019170       50.400000    3.453027e-01       29.529634       43.588989
+1          0.026310       52.000000    3.059145e-01       22.600972       43.588989
+1          0.036120       52.900000    2.233572e-01       19.247543       43.588989
+1          0.036580      197.100000    1.460158e-01       27.554901       43.588989
+1          0.049610       53.600000    1.151596e-01       19.233195       43.588989
+1          0.050150      245.400000    6.528298e-02       26.180720       43.588989
+1          0.068130       54.000000    1.010881e-01       15.667076       43.588989
+1          0.068820      311.800000    5.416266e-02       20.409733       43.588989
+1          0.093540        7.000000    7.554400e-02       30.002673       43.588989
+1          0.093580       54.300000    7.552661e-02       13.708677       43.588989
+1          0.094430      400.400000    3.690626e-02       17.684370       43.588989
+1          0.128550       54.500000    3.543235e-02       14.634105       43.588989
+1          0.129220      466.900000    1.353942e-02       19.245922       43.588989
+1          0.176540        7.000000    3.209224e-02       30.677070       43.588989
+1          0.176580       54.600000    2.970298e-02       13.188773       43.588989
+1          0.177150      498.900000    1.303467e-02       16.157449       43.588989
+1          0.242540        7.000000    2.355049e-02       29.311912       43.588989
+1          0.242570       54.700000    2.168203e-02       11.977395       43.588989
+1          0.243070      516.700000    1.056331e-02       13.398367       43.588989
+1          0.333240       54.800000    9.862795e-03       13.916806       43.588989
+1          0.333700      527.400000    4.777492e-03       15.168278       43.588989
+1          0.457800       54.900000    5.452554e-03       15.222044       43.588989
+1          0.458210      534.400000    2.608555e-03       16.183606       43.588989
+1          0.628910       54.900000    3.773984e-03       14.444376       43.588989
+1          0.629330      539.100000    1.990673e-03       13.727295       43.588989
+1          0.635890     2931.200000    2.747261e-04       30.795763       43.588989
+1          0.864010       54.900000    1.395725e-03       19.055338       43.588989
+1          0.864390      542.100000    7.870458e-04       16.527551       43.588989
