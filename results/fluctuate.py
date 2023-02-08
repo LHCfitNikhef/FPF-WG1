@@ -28,15 +28,18 @@ def fluctuate_data(files_covmat, files_central_values, flavor):
 
     # read statistical uncertainty
     for file_covmat, file_cv in zip(files_covmat, files_central_values):
-        stat = np.loadtxt(file_covmat + ".txt", usecols=(11), unpack=True, skiprows=2)
-        covmat = np.diag(stat)
-
+        num_events_error = np.loadtxt(file_covmat + ".txt", usecols=(11), unpack=True, skiprows=2)
+        
         x, y, Q2, sigmanu, sigmanub = np.loadtxt(
             file_cv + ".txt", usecols=(0, 1, 2, 3, 4), unpack=True, skiprows=1
         )
         if flavor == 14:
+            stat = 1./num_events_error*sigmanu
+            covmat = np.diag(stat)
             sigma_fluctuated = np.random.multivariate_normal(sigmanu, covmat)
         elif flavor == -14:
+            stat = 1./num_events_error*sigmanub
+            covmat = np.diag(stat)
             sigma_fluctuated = np.random.multivariate_normal(sigmanub, covmat)
         else:
             print("Only flavors 14 and -14 available")
@@ -47,5 +50,5 @@ def fluctuate_data(files_covmat, files_central_values, flavor):
 
 if __name__ == "__main__":
 
-    fluctuate_data(input_files_covmat_nu, input_files_central_values_nu, 14)
+    #fluctuate_data(input_files_covmat_nu, input_files_central_values_nu, 14)
     fluctuate_data(input_files_covmat_nub, input_files_central_values_nub, -14)
