@@ -330,6 +330,7 @@ of process-independent parton distribution functions,
  
 
 \section{DIS pseudo-data generation}
+\label{sec:pseudo-data_generation}
 
 The first goal is to produce projections
 for DIS pseudo-data at the FPF based on
@@ -448,6 +449,80 @@ impact on proton PDFs.
 At a first step we neglect nuclear effects
 and treat data as corresponding to a free isoscalar
 nucleon with $A=1$.
+
+The expected impact of the FPF data on global PDF fits is assessed by a profiling procedure~\cite{Paukkunen:2014zia, Schmidt:2018hvu, AbdulKhalek:2018rok, HERAFitterdevelopersTeam:2015cre}, based on minimizing the function
+%TODO correlations are also included here, as we hopefully get there in the end -- if not, remove terms involving correlations+pseudodata
+\begin{equation}
+\chi^2 = 
+\sum_{i=1}^{N_{\textrm{bins}}} 
+\frac{\left(  \sigma_i^{\textrm{pd}}
+            + \Gamma_i^{\alpha,\textrm{pd}}
+              b_\alpha^{\textrm{pd}}
+            - \sigma_i^{\textrm{th}}
+            - \Gamma_i^{\beta,\textrm{th}}
+              b_\beta^{\textrm{th}}
+     \right)^2
+     }{\Delta_i^2}
++ \sum_\alpha (b_\alpha^{\textrm{pd}})^2
++ \sum_\beta  (b_\beta^{\textrm{th}})^2 \, .
+\label{eq:profilingchi2}
+\end{equation}
+Here the pseudodata 
+$\sigma_i^{\textrm{pd}}$ 
+is obtained from the central theoretical prediction 
+$\sigma_i^{\textrm{th}}$ 
+for each bin $i$ out of $N_{\textrm{bins}}$ by varying it with the statistical uncertainties 
+$\delta_i^{\textrm{stat}}$, 
+obtained in the procedure desribed in Section~\ref{sec:pseudo-data_generation}, 
+as 
+%TODO once more complete uncertainty estimates are there, add them to the variation
+$\sigma_i^{\textrm{pd}} = \sigma_i^{\textrm{th}}(1 + r_i \delta_i^{\textrm{stat}})$, 
+with $r_i$ a univariate Gaussian random number.
+%
+The correlated uncertainties for the pseudodata and the theoretical prediction 
+are contained in the nuisance parameter vectors $b^{\textrm{pd}}$ and $b^{\textrm{th}}$, respectively, and the uncorrelated uncertainties in $\Delta_i$.
+%
+Their effect on $\sigma^{\textrm{th}}$ and $\sigma^{\textrm{pd}}$
+is described by the matrices $\Gamma_i^{\textrm{pd}}$ and $\Gamma_i^{\textrm{th}}$.
+The indices $\alpha$ and $\beta$ then run over the uncertainty nuisance parameters for the pseudodata and the theoretical prediction, respectively.
+%
+The nuisance parameter values $b^{\textrm{th(min)}}$ that minimize Eq.~\eqref{eq:profilingchi2} give the central PDFs $f'_0$ optimized to the profiled dataset in the form
+\begin{equation}
+f_0' = f_0
+      + \sum_\beta b_\beta^{\textrm{th(min)}} 
+        \left(  \frac{f_\beta^+   -  f_\beta^- }{2}
+              -    b_\beta^{\textrm{th(min)}}
+                \frac{f_\beta^+ + f_\beta^- - 2f_0}{2}
+        \right),
+\end{equation}
+where $f_0$ is the original central PDF and the up and down variation eigenvectors are given by $f^+, f^-$. The decrease in the uncertainties of the shifted PDFs indicates the enhancement that including the FPF data in the global PDF fit could bring. Here, the profiling studies are performed using version 2.2.1 of the \textsc{xFitter} open-source QCD analysis framework~\cite{Alekhin:2014irh, Bertone:2017tig, xFitter:2022zjb, xFitter:web}, extended to support the use of \textsc{PineAPPL} grids~\cite{christopher_schwan_2023_7499507, Carrazza:2020gss}.
+%
+Using the PDF4LHC21~\cite{PDF4LHCWorkingGroup:2022cjn} PDF set, the results are illustrated by comparing the fractional uncertainties of the original PDF set to those obtained after profiling. 
+This is shown for the valence quark, gluon and the singlet distributions in Fig.~\ref{FASERv2_profiling} for FASER$\nu$2 pseudodata, while Fig.~\ref{FASERv_profiling} indicates the impact of FASER$\nu$. FASER$\nu$2 is observed to provide tighter constraints on the PDFs, with the effects being the most prominent for the valence and sea quark distributions.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{./figs_xFitter/FASERv2_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.4\textwidth]{./figs_xFitter/FASERv2_q2_10000_pdf_dv_ratio.pdf}\\
+\includegraphics[width=0.4\textwidth]{./figs_xFitter/FASERv2_q2_10000_pdf_g_ratio.pdf}
+\includegraphics[width=0.4\textwidth]{./figs_xFitter/FASERv2_q2_10000_pdf_Sea_ratio.pdf}
+\caption{The fractional uncertainties in the valence quark, gluon and singlet PDFs as a function of the momentum fraction $x$ at the scale $Q^2 = 10000 \, \textrm{GeV}^2$. The profiling is performed using the
+PDF4LHC21 set and the pseudodata for FASER$\nu$2. The original uncertainty of PDF4LHC21 is
+indicated by the red band, while the blue band demonstrates the profiled result.}
+\label{FASERv2_profiling}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{./figs_xFitter/FASERv_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.4\textwidth]{./figs_xFitter/FASERv_q2_10000_pdf_dv_ratio.pdf}\\
+\includegraphics[width=0.4\textwidth]{./figs_xFitter/FASERv_q2_10000_pdf_g_ratio.pdf}
+\includegraphics[width=0.4\textwidth]{./figs_xFitter/FASERv_q2_10000_pdf_Sea_ratio.pdf}
+\caption{The fractional uncertainties in the valence quark, gluon and singlet PDFs as a function of the momentum fraction $x$ at the scale $Q^2 = 10000 \, \textrm{GeV}^2$. The profiling is performed using the
+PDF4LHC21 set and the pseudodata for FASER$\nu$. The original uncertainty of PDF4LHC21 is
+indicated by the red band, while the blue band demonstrates the profiled result.}
+\label{FASERv_profiling}
+\end{figure}
 
 \section{Impact in nuclear PDF fits}
 
