@@ -33,13 +33,14 @@ if not os.path.exists(mdir+'grids/'):
 #Param  sDir     Subdirectory under mdir where to write the tables
 #       expID    The filename part with experiment name and particle  
 #       index    Dataset must be assigned a unique index
+#       binF     Flags (int 1 or 0) if bin used in fit or not
 #       x,Q2     Vec. of x and Q^2 values for each data point
 #       xsec     Vec. of cross-sections
 #       stat     Vec. of statistical uncertainties for each data point
-#       uncor    ^-||- uncorrelated uncertainties
-#       sStr     Names of sources of systematic uncertainty
-#       syst     Matrix of syst. unc. values
-def xFtableWriter(sdir,expID,index,x,Q2,xsec,stat,uncor,sStr,syst):
+#       uncor    Vec. of uncorrelated uncertainties
+#       sStr     Names of correlated systematic uncertainty sources
+#       syst     Matrix of corr. syst. unc. values
+def xFtableWriter(sdir,expID,index,binF,x,Q2,xsec,stat,uncor,sStr,syst):
     #LaTeX and ROOT style strings for experiment identification
     exptag = expID.replace("v",    "$\\nu$"              )\
                   .replace("_14", " $\\nu_{\\mu}$"       )\
@@ -54,6 +55,9 @@ def xFtableWriter(sdir,expID,index,x,Q2,xsec,stat,uncor,sStr,syst):
     #Lightweight test mode: write predictions as a constant value table
     test=False
 
+    if not os.path.exists(mdir+sdir):
+        os.mkdir(mdir+sdir)
+
     expname="FASERv2" if "v2" in expID else "FASERv"
     f = open(mdir+sdir+expID+"-thexp.dat", "w")
     f.write("* "+exptag+" CC DIS pseudodata\n")
@@ -64,9 +68,9 @@ def xFtableWriter(sdir,expID,index,x,Q2,xsec,stat,uncor,sStr,syst):
     f.write("   NData = "+str(len(x))+"\n")
     Nerr = len(sStr)
     if useStat:
-		Nerr = Nerr+1
+        Nerr = Nerr+1
     if useUncor:
-		Nerr = Nerr+1
+        Nerr = Nerr+1
     Ncol=1+2+1+Nerr
     f.write("   NColumn = "+str(Ncol)+"\n")
     f.write("   ColumnType = 'Flag',2*'Bin','Sigma'")
@@ -79,7 +83,7 @@ def xFtableWriter(sdir,expID,index,x,Q2,xsec,stat,uncor,sStr,syst):
     if useUncor:
         f.write(",'uncor'")
     for s in sStr:
-		f.write(",'"+s+"'")
+        f.write(",'"+s+"'")
     f.write(    "\n")
     f.write("   TheoryType = 'expression\'\n")     
     f.write("   TermType   = 'reaction'\n")
@@ -93,8 +97,7 @@ def xFtableWriter(sdir,expID,index,x,Q2,xsec,stat,uncor,sStr,syst):
         f.write("   TermName   = 'P'\n")
         f.write("   TermSource = 'PineAPPL'\n")
         f.write("   TermInfo   = 'GridName="+mdir+"grids/"\
-                                            +expID.replace('-','m')\
-                                            +'/grids-xsecs_A1/grids/'\
+                                            +expID.replace('-','m')+'/'\
                                             +gridname+"'\n")
         f.write("   TheorExpr  = 'P'\n\n")
     f.write("   Percent = 2*True\n")
@@ -127,27 +130,25 @@ def xFtableWriter(sdir,expID,index,x,Q2,xsec,stat,uncor,sStr,syst):
     if useUncor:
         f.write("           uncor")
     for su in sStr:        
-		f.write("%16s" % su)
+        f.write("%16s" % su)
     f.write("\n")
+    ixsec=0
     for ix in range(len(x)):
-        f.write("1  ")
+        f.write("  "+str(binF[ix]))
         f.write("{:16.6f}".format(x[ix]))
         f.write("{:16.6f}".format(Q2[ix]))
-        f.write("{:16.6e}".format(xsec[ix]))
+        if binF[ix]==1:
+            f.write("{:16.6e}".format(xsec[ixsec]))
+            ixsec += 1
+        else:
+            f.write("        0.000000")
         if useStat:
-            f.write("{:16.6f}".format(100.*stat[ix]))
+            f.write("{:16.6f}".format(100.*stat[ix])) #Turn into %
         if useUncor:
-            f.write("{:16.6f}".format(100.*uncor[ix]))
+            f.write("{:16.6f}".format(100.*uncor[ix])) #Turn into %
         for isu,su in enumerate(sStr):  #Systematic uncertainties
-            f.write("{:16.6f}".format(100.*syst[isu][ix]))			
-        #TODO rm below if obsolete
-        ##Uncertainties, given in %
-        ##However, would require correlation matrix, use uncor instead
-        #f.write("{:16.6f}".format(100.*ElUnc[ix]))
-        #f.write("{:16.6f}".format(100.*thetaUnc[ix]))
-        #f.write("{:16.6f}".format(100.*EhUnc[ix]))
-        f.write("\n")        
-        
+            f.write("{:16.6f}".format(100.*syst[isu][ix]))          
+        f.write("\n")                
     f.close()
 # END xFtableWriter
 
@@ -156,56 +157,74 @@ for iexp,expID in enumerate(expIDs):
 
     #Flags for including uncertainties
     useStat  = True
-    useUncor = False
+    useUncor = True
     #Syst. unc are included if a non-empty array is provided
 
-	#True:  write tables for preliminary xFitter run
-	#False: write final tables to be used as pseudodata in fits.
+    #True:  write tables for preliminary xFitter run
+    #False: write final tables to be used as pseudodata in fits.
     writePrel = False
 
     #Init
+    binF=[]
     xlo,xhi,xav=[],[],[]
     Q2lo,Q2hi,Q2av=[],[],[]
     sigma,stat,uncor=[],[],[]
-    EnuUnc,ElUnc,EhUnc,thetaUnc=[],[],[],[]
  
     gridname = grids[iexp]
-    infile = "../results/binned_events_" + expID + suffix
+    infile = "../results/binned_sysevents_" + expID + suffix
     #Read the predictions / pseudodata template
     f = open(infile, "r")
     lines=f.readlines()
     lines.pop(0)    #Remove 2 lines of header
     lines.pop(0)
     for l in lines:
-        xlo.append(       float(l.split()[0]))
-        xhi.append(       float(l.split()[1]))
-        xav.append(       float(l.split()[2]))
-        Q2lo.append(      float(l.split()[3]))
-        Q2hi.append(      float(l.split()[4]))
-        Q2av.append(      float(l.split()[5]))
-        sigma.append(10.**float(l.split()[9]))  #Cnvrt from log10(sigma)
+        lsplit = l.split()
+        binF.append(1)
+        xlo.append(float(lsplit[0]))
+        xhi.append(float(lsplit[1]))
+        xavstr=lsplit[2]
+        if xavstr=="nan":
+            xav.append(0.5*(xlo[-1]+xhi[-1]))
+        else:
+            xav.append(float(xavstr))
+        Q2lo.append(float(lsplit[3]))
+        Q2hi.append(float(lsplit[4]))
+        Q2avstr = lsplit[5]
+        if Q2avstr=="nan":
+            Q2av.append(0.5*(Q2lo[-1]+Q2hi[-1]))
+        else:
+            Q2av.append(float(Q2avstr))
+        sigstr = lsplit[9]
+        if sigstr=="nan":
+            sigma.append(0.)
+            binF[-1]=0
+        else:
+            sigma.append(10.**float(sigstr))  #Convert from log10(sigma)
+        Nevtstr = lsplit[10]
         if useStat:
-            stat.append(float(l.split()[11])/float(l.split()[10]))
-        #Assume perfect detector, uncertainties only in energies and lepton angle
-        #Also assume perfect flavor and sign recognition
-        #Estimates based on J. Rojo's and T. Ariga's slides in FPF5 meeting
-        #EnuUnc.append(0.3)   #Neutrino E unc ~ 30%
-        ElUnc.append(0.3)    #Lepton E unc ~ 30%
-        EhUnc.append(0.3)    #Hadronic FS E unc ~30-50% => let's be optimistic
-        #theta unc. = 1 mrad, tan(theta) < 0.5, so O(theta unc)>1%. 
-        #Should be bin-dependent, but take universal 10% for simplicity
-        #Optimistically relative unc. > 0.001/0.46 and 
-        thetaUnc.append(0.1)
+            if Nevtstr=="0.00000":
+                stat.append(0.)             
+                binF[-1]=0
+            else:
+                stat.append(float(lsplit[11])/float(Nevtstr))
+        if useUncor:
+            if Nevtstr=="0.00000":
+                uncor.append(0.)             
+                binF[-1]=0
+            else:
+                uncor.append(float(lsplit[12])/float(Nevtstr))
     f.close()
 
+    uncorALT=np.multiply(0.5,uncor)  #Optimistic scen., smaller unc.
     xsecvar=[]
+    xsecvarALT=[]
     fcorr=1.  #Data w/ correlated systematics would be more constraining
     fred=1.   #Reduction factor: improvements in detector accuracy etc
 
     #Write xFitter tables for prel run
     if writePrel:
         xFtableWriter(PDF+"/prel/",expID,137+iexp, \
-                      xav,Q2av,sigma,stat,uncor,[],[])
+                      binF,xav,Q2av,sigma,stat,uncor,[],[])
 
     #Write xFitter tables for final run
     else:
@@ -221,26 +240,22 @@ for iexp,expID in enumerate(expIDs):
             xsec.append(float(l.split()[6]))
         f.close()
  
-        #Vary pseudodata
-        for ixs,xs in enumerate(xsec): #FIXME should be below! Then use xsecvar! 
-            #Gather unc estimates into an uncorrelated unc for fits,
-            #estimating correlations would be out of scope for now
-            expUnc  = (fcorr*fred*ElUnc[   ixs])**2
-            expUnc += (fcorr*fred*EhUnc[   ixs])**2
-            expUnc += (fcorr*fred*thetaUnc[ixs])**2
-            #expUnc += (fcorr*fred*EnuUnc[  isig])**2 #FIXME check if this should be there
+        #Form pseudodata: vary results by the estimated exp. unc.
+        for ixs,xs in enumerate(xsec):
+            expUnc    = 0
+            expUncALT = 0
+            if useStat:
+                expUnc    += stat[ixs]**2
+                expUncALT += stat[ixs]**2
             if useUncor:
-                uncor.append(np.sqrt(expUnc))
-    
-            #Form pseudodata: results by the estimated exp. unc.
-            expUnc += stat[ixs]**2  #Also stat. unc. factors into the variations
-            expUnc = np.sqrt(expUnc)
-            if useUncor:
-                xsecvar.append(xs*(1. + expUnc*np.random.normal()))
-            elif useStat:
-                xsecvar.append(xs*(1. + stat[ixs]*np.random.normal()))
-            else:
-				xsecvar.append(xs)
+                expUnc    +=    uncor[ixs]**2
+                expUncALT += uncorALT[ixs]**2
+            expUnc    = np.sqrt(expUnc)
+            expUncALT = np.sqrt(expUncALT)
+            xsecvar.append(   xs*(1. +    expUnc*np.random.normal()))
+            xsecvarALT.append(xs*(1. + expUncALT*np.random.normal()))
         xFtableWriter(PDF+"/",expID,137+iexp, \
-                      xav,Q2av,xsecvar,stat,uncor,[],[]) #TODO syst unc matrix
+                      binF,xav,Q2av,xsecvar,stat,uncor,[],[])
+        xFtableWriter(PDF+"/uncorHalf/",expID,137+iexp, \
+                      binF,xav,Q2av,xsecvarALT,stat,uncorALT,[],[])
 # END "main"
