@@ -3,16 +3,13 @@
 
 &InFiles
   ! Number of intput files
-    NInputFiles = 4
+    NInputFiles = 1
  
   ! Input files:
 
      InputFileNames = 
     ! FPF pseudodata
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv_14-thexp.dat',
      'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv_-14-thexp.dat',
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_14-thexp.dat',
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_-14-thexp.dat'
 &End
 
 &InCorr
