@@ -1,5 +1,5 @@
 # FPF-WG1
-Working Group 1 "Neutrino interactions and hadron structure" of the Forward Physics Facility
+Working Group 1 "Neutrino interactions and hadron structure" of the Forward Physics Facility. The following branch is specific to NNPDF-related fits.
 
 ## $\nu\rm{FPF}$
 
