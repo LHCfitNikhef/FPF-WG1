@@ -1,0 +1,85 @@
+\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{10}
+
+\bibitem{Kling:2021gos}
+F.~Kling and L.~J. Nevay, ``{Forward neutrino fluxes at the LHC},''
+  \href{http://dx.doi.org/10.1103/PhysRevD.104.113008}{{\em Phys. Rev. D}
+  {\bfseries 104} no.~11, (2021) 113008},
+  \href{http://arxiv.org/abs/2105.08270}{{\ttfamily arXiv:2105.08270
+  [hep-ph]}}.
+
+\bibitem{Paukkunen:2014zia}
+H.~Paukkunen and P.~Zurita, ``{PDF reweighting in the Hessian matrix
+  approach},'' \href{http://dx.doi.org/10.1007/JHEP12(2014)100}{{\em JHEP}
+  {\bfseries 12} (2014) 100}, \href{http://arxiv.org/abs/1402.6623}{{\ttfamily
+  arXiv:1402.6623 [hep-ph]}}.
+
+\bibitem{Schmidt:2018hvu}
+C.~Schmidt, J.~Pumplin, C.~P. Yuan, and P.~Yuan, ``{Updating and optimizing
+  error parton distribution function sets in the Hessian approach},''
+  \href{http://dx.doi.org/10.1103/PhysRevD.98.094005}{{\em Phys. Rev. D}
+  {\bfseries 98} no.~9, (2018) 094005},
+  \href{http://arxiv.org/abs/1806.07950}{{\ttfamily arXiv:1806.07950
+  [hep-ph]}}.
+
+\bibitem{AbdulKhalek:2018rok}
+R.~Abdul~Khalek, S.~Bailey, J.~Gao, L.~Harland-Lang, and J.~Rojo, ``Towards
+  ultimate parton distributions at the high-luminosity {LHC},''
+  \href{http://dx.doi.org/10.1140/epjc/s10052-018-6448-y}{{\em Eur. Phys. J. C}
+  {\bfseries 78} (2018) 962}, \href{http://arxiv.org/abs/1810.03639}{{\ttfamily
+  arXiv:1810.03639 [hep-ph]}}.
+
+\bibitem{HERAFitterdevelopersTeam:2015cre}
+{\bfseries HERAFitter developers' team} Collaboration, S.~Camarda {\em et~al.},
+  ``{QCD analysis of $W$- and $Z$-boson production at Tevatron},''
+  \href{http://dx.doi.org/10.1140/epjc/s10052-015-3655-7}{{\em Eur. Phys. J. C}
+  {\bfseries 75} no.~9, (2015) 458},
+  \href{http://arxiv.org/abs/1503.05221}{{\ttfamily arXiv:1503.05221
+  [hep-ph]}}.
+
+\bibitem{Alekhin:2014irh}
+S.~Alekhin {\em et~al.}, ``{HERAFitter}, open source {QCD} fit project,''
+  \href{http://dx.doi.org/10.1140/epjc/s10052-015-3480-z}{{\em Eur. Phys. J. C}
+  {\bfseries 75} (2015) 304},
+\href{http://arxiv.org/abs/1410.4412}{{\ttfamily arXiv:1410.4412 [hep-ph]}}.
+%%CITATION = ARXIV:1410.4412;%%.
+
+\bibitem{Bertone:2017tig}
+V.~Bertone, M.~Botje, D.~Britzger, {\em et~al.}, ``{xFitter} 2.0.0: An open
+  source {QCD} fit framework,''
+  \href{http://dx.doi.org/10.22323/1.297.0203}{{\em PoS} {\bfseries DIS2017}
+  (2018) 203},
+\href{http://arxiv.org/abs/1709.01151}{{\ttfamily arXiv:1709.01151 [hep-ph]}}.
+%%CITATION = ARXIV:1709.01151;%%.
+
+\bibitem{xFitter:2022zjb}
+{\bfseries xFitter} Collaboration, H.~Abdolmaleki {\em et~al.}, ``{xFitter: An
+  Open Source QCD Analysis Framework. A resource and reference document for the
+  Snowmass study},''
+\newblock 6, 2022.
+\newblock \href{http://arxiv.org/abs/2206.12465}{{\ttfamily arXiv:2206.12465
+  [hep-ph]}}.
+
+\bibitem{xFitter:web}
+xFitter Developers'~Team.
+\newblock \url{https://www.xfitter.org/xFitter/}.
+
+\bibitem{christopher_schwan_2023_7499507}
+C.~Schwan, A.~Candido, F.~Hekhorn, and S.~Carrazza, ``Nnpdf/pineappl: v0.5.9,''
+  Jan., 2023.
+\newblock \url{https://doi.org/10.5281/zenodo.7499507}.
+
+\bibitem{Carrazza:2020gss}
+S.~Carrazza, E.~R. Nocera, C.~Schwan, and M.~Zaro, ``{PineAPPL: combining EW
+  and QCD corrections for fast evaluation of LHC processes},''
+  \href{http://dx.doi.org/10.1007/JHEP12(2020)108}{{\em JHEP} {\bfseries 12}
+  (2020) 108}, \href{http://arxiv.org/abs/2008.12789}{{\ttfamily
+  arXiv:2008.12789 [hep-ph]}}.
+
+\bibitem{PDF4LHCWorkingGroup:2022cjn}
+{\bfseries PDF4LHC Working Group} Collaboration, R.~D. Ball {\em et~al.},
+  ``{The PDF4LHC21 combination of global PDF fits for the LHC Run III},''
+  \href{http://dx.doi.org/10.1088/1361-6471/ac7216}{{\em J. Phys. G} {\bfseries
+  49} no.~8, (2022) 080501}, \href{http://arxiv.org/abs/2203.05506}{{\ttfamily
+  arXiv:2203.05506 [hep-ph]}}.
+
+\end{thebibliography}\endgroup

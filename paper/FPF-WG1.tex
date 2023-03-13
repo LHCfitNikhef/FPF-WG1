@@ -203,8 +203,21 @@
 \vspace{0.7cm}
 
 \begin{center}
-  {\Large \bf Deep-Inelastic Scattering with TeV Neutrinos at the LHC}
-\vspace{1.1cm}
+  {\Large \bf The LHC as a Neutrino-Ion Collider }\\
+  \vspace{1.1cm}
+  {\small
+Max Fieg$^{1}$, Tommaso Giani$^{2,3}$, Peter Krack$^{2,3}$  Giacomo Magni$^{2,3}$, \\[0.1cm] Toni Makela$^{4}$,
+    Tanjona Rabemananjara$^{2,3}$, and Juan Rojo$^{2,3}$, 
+  }\\
+  
+\vspace{0.7cm}
+
+{\it \small
+	~$^1$ UC Irvine  \\[0.1cm]
+ 	~$^2$Department of Physics and Astronomy, Vrije Universiteit, NL-1081 HV Amsterdam\\[0.1cm]
+  	~$^3$Nikhef Theory Group, Science Park 105, 1098 XG Amsterdam, The Netherlands\\[0.1cm]
+        ~$^4$ IPJ \\[0.1cm]
+ }
 
 
 \vspace{1.0cm}
@@ -212,9 +225,35 @@
 {\bf \large Abstract}
 
 \end{center}
-Notes to collect the studies
-carried out in WG1 of the Forward
-Physics Facility study: {\bf  Neutrino Interactions and Hadronic Structure}
+
+Proton-proton collisions at the LHC produce a collimated beam large flux of high-energy neutrinos,
+which until recently escaped detection and hence we not used for physics.
+%
+Detection and analysis of these far-forward LHC neutrinos is taking now place at the
+FASER$\nu$ and SND@LHC experiments, and would be uniquely scrutinized
+at the proposed Forward Physics Facility (FPF).
+%
+In this work we demonstrate that exploiting this high-energy far-forward neutrino beam
+provides new constraints on the quark and gluon substructure of nucleons and nuclei.
+%
+We generate projections for inclusive and charm (dimuon)
+deep-inelastic scattering (DIS) structure functions
+at cross-sections for all ongoing and planned far-forward LHC neutrinos experiments,
+including the expected systematic uncertainties.
+%
+By means of both the xFitter and NNPDF frameworks we quantify the impact of the FPF
+measurements on proton and nuclear structure, showing stringent constraints specially
+in quark flavour separation.
+%
+Our analysis demonstrates that instrumenting the far-forward region to exploit the HL-LHC
+neutrino fluxes effectively realises a  Neutrino-Ion Collider with
+center of mass  energy around 100 GeV at CERN, fully complementary
+and operating concurrently to the
+Electron-Ion Collider in the US.
+
+
+
+
 
 \tableofcontents
 
@@ -369,12 +408,10 @@ Eq.~(\ref{eq:nev_v1}) can be integrated to
 determine the actual number of events within
 the bin boundaries.
 
-\newline
-\newline
 We start with a perfect detector.
-\newline
-\newline
-For bins in $x,Q^2,E_{\nu}$, we start with the \href{https://github.com/juanrojochacon/FPF-WG1/blob/main/results/diff_xsecs_a1.txt}{differential cross section},$\frac{d^2\sigma(x,Q^2,E_{\nu}}{dxdQ^2})$ [pb GeV$^{-2}$] as output from {\tt YADISM} and convovle with the \href{https://github.com/KlingFelix/FastNeutrinoFluxSimulation/tree/main/Fluxes}{neutrino flux}, $\frac{dN_{\nu}}{dE_{\nu}}$. So for a detector with $n_T$ nuclear target density and $L_T$ length, we calculate the event rate per bin as
+
+
+For bins in $x,Q^2,E_{\nu}$, we start with the \href{https://github.com/juanrojochacon/FPF-WG1/blob/main/results/diff_xsecs_a1.txt}{differential cross section},$\frac{d^2\sigma(x,Q^2,E_{\nu}}{dxdQ^2})$ [pb GeV$^{-2}$] as output from {\tt YADISM} and convolve with the \href{https://github.com/KlingFelix/FastNeutrinoFluxSimulation/tree/main/Fluxes}{neutrino flux}, $\frac{dN_{\nu}}{dE_{\nu}}$. So for a detector with $n_T$ nuclear target density and $L_T$ length, we calculate the event rate per bin as
 
 \begin{equation}
     N_{\rm ev}/{\rm bin} = n_T L_T\int_{Q^2_{min}}^{Q^2_{max}}\int_{x_{min}}^{x_{max}}\int_{E_{\nu,min}}^{E_{\nu , max}} \frac{dN_{\nu}}{dE_{\nu}}\left(\frac{d^2\sigma(x,Q^2,E_{\nu})}{dxdQ^2}\right) dQ^2 dx dE_{\nu}.
@@ -389,11 +426,12 @@ Using a MC integration, we can calculate $N_{\rm ev}/{\rm bin}$ by sampling $N$ 
 
 where $f(x_i,Q^2_i,E_{\nu ,i}) = \frac{dN_{\nu}}{dE_{\nu,i}}\left(\frac{d^2\sigma(x_i,Q^2_i,E_{\nu,i})}{dxdQ^2}\right)$. 
 
-The statistical uncertainty for each bin is then defined by a gaussian distribution with fractional uncertainty $1/\sqrt{N{\rm ev}/{\rm bin}}$, i.e. $\delta N_{\rm ev}/{\rm bin} = \sqrt{N_{\rm ev} /{\rm bin}$
-\newline
-Following this prescription, we can produce plots which characterize the event rate for a particular neutrino species at a particular experiment. 
+The statistical uncertainty for each bin is then defined by a Gaussian distribution with fractional uncertainty $1/\sqrt{N{\rm ev}/{\rm bin}}$, i.e. $\delta N_{\rm ev}/{\rm bin} = \sqrt{N_{\rm ev}} /{\rm bin}$
 
-Results for FASER$\nu$2 can be found \href{https://github.com/juanrojochacon/FPF-WG1/tree/main/results}{here}. The .txt files will display which neutrino species was considered, and also compile experimental geometries and target details in the header. In the subfolder \href{https://github.com/juanrojochacon/FPF-WG1/tree/main/results/Summaries}{summaries}, plots can be found which show the event rate in $x,Q^2$ space, integrating over the entire neutrino spectrum. The event rate for muon neutrinos at FASER$\nu$2 is shown in Fig~\ref{fig:fasernu2_muon}.
+
+  Following this prescription, we can produce plots which characterize the event rate for a particular neutrino species at a particular experiment. 
+
+Results for FASER$\nu$2 can be found \href{https://github.com/juanrojochacon/FPF-WG1/tree/main/results}{here}. The .txt files will display which neutrino species was considered, and also compile experimental geometries and target details in the header. In the sub-folder \href{https://github.com/juanrojochacon/FPF-WG1/tree/main/results/Summaries}{summaries}, plots can be found which show the event rate in $x,Q^2$ space, integrating over the entire neutrino spectrum. The event rate for muon neutrinos at FASER$\nu$2 is shown in Fig~\ref{fig:fasernu2_muon}.
 
 \begin{figure}[h]
     \centering
@@ -422,14 +460,14 @@ Taking FASER${\nu}$2 as an example, we can write the experimental cuts and uncer
 \label{fasernu2systematic_errors}
 \end{align}
 
-We first generate a MC dataset, $D_0$, over this space with $N = 10^7$ samples and calculate $x,Q^2,E_{\nu}$ for each event, removing samples with $y > 1$. We then integrate according to Eq. \ref{MCintegration} to produce a distribution of events with bins in $x,Q^2,E_{\nu}$. We then smear each sample according to a gaussian distribution with widths given by Eq.~\ref{fasernu2systematic_errors} to produce a new data set $D_i$ and repeat to produce $M = 10$ event distributions($M>10$ can later be used, but $M = 10$ appears to be stable). For each bin we take the standard deviation to produce the systematic errors per bin (denoted as "N\textunderscore sys\textunderscore errs" in files named "binned\textunderscore sysevents... .txt" \href{https://github.com/juanrojochacon/FPF-WG1/tree/main/results}{here}). 
+We first generate a MC dataset, $D_0$, over this space with $N = 10^7$ samples and calculate $x,Q^2,E_{\nu}$ for each event, removing samples with $y > 1$. We then integrate according to Eq. \ref{MCintegration} to produce a distribution of events with bins in $x,Q^2,E_{\nu}$. We then smear each sample according to a Gaussian distribution with widths given by Eq.~\ref{fasernu2systematic_errors} to produce a new data set $D_i$ and repeat to produce $M = 10$ event distributions($M>10$ can later be used, but $M = 10$ appears to be stable). For each bin we take the standard deviation to produce the systematic errors per bin (denoted as "N\textunderscore sys\textunderscore errs" in files named "binned\textunderscore sys-events... .txt" \href{https://github.com/juanrojochacon/FPF-WG1/tree/main/results}{here}). 
 
-For FASER${\nu}$2, the systematic erros typically dominate over statsitcal errors, at about $10\%$. 
+For FASER${\nu}$2, the systematic errors typically dominate over statistical errors, at about $10\%$. 
 
 \begin{figure}[h]
     \centering
     \includegraphics[width = 1\textwidth]{error_plot_FASERv2_14.pdf}
-    \caption{Event rates with errorbars at FASER$\nu$2 for $\nu_{\mu} N \rightarrow \mu^- X$} summed over $Q^2$. The errobars along the x-axis showing the width of the $x$-bins, and are not showing any type of error.
+    \caption{Event rates with error bars at FASER$\nu$2 for $\nu_{\mu} N \rightarrow \mu^- X$} summed over $Q^2$. The error bars along the x-axis showing the width of the $x$-bins, and are not showing any type of error.
     \label{fig:my_label}
 \end{figure}
 
@@ -504,7 +542,7 @@ is obtained from the central theoretical prediction
 $\sigma_i^{\textrm{th}}$ 
 for each bin $i$ out of $N_{\textrm{bins}}$ by varying it with the statistical uncertainties 
 $\delta_i^{\textrm{stat}}$, 
-obtained in the procedure desribed in Section~\ref{sec:pseudo-data_generation}, 
+obtained in the procedure described in Section~\ref{sec:pseudo-data_generation}, 
 as 
 %TODO once more complete uncertainty estimates are there, add them to the variation
 $\sigma_i^{\textrm{pd}} = \sigma_i^{\textrm{th}}(1 + r_i \delta_i^{\textrm{stat}})$, 
