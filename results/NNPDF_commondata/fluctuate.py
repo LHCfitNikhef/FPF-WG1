@@ -13,59 +13,53 @@ input_files_covmat_nub = [
 ]
 
 input_files_central_values_nu = [
-    "./NNPDF_commondata/pineappl_tables/binned_events_FASERv_14",
-    "./NNPDF_commondata/pineappl_tables/binned_events_FASERv2_14",
+    "./pineappl_tables/pseudodata_binned_events_FASERv_14",
+    "./pineappl_tables/pseudodata_binned_events_FASERv2_14",
 ]
 
 
 input_files_central_values_nub = [
-    "./NNPDF_commondata/pineappl_tables/binned_events_FASERv_-14",
-    "./NNPDF_commondata/pineappl_tables/binned_events_FASERv2_-14",
+    "./pineappl_tables/pseudodata_binned_events_FASERv_-14",
+    "./pineappl_tables/pseudodata_binned_events_FASERv2_-14",
 ]
 
 
 def fluctuate_data(files_covmat, files_central_values, flavor):
-
     # read statistical uncertainty
     for file_covmat, file_cv in zip(files_covmat, files_central_values):
-        num_events_error = np.loadtxt(file_covmat + ".txt", usecols=(11), unpack=True, skiprows=2)
-        
+        res, num_events_error = np.loadtxt(
+            f"./../{file_covmat}.txt", usecols=(9, 11), unpack=True, skiprows=2
+        )
+
         x, y, Q2, sigmanu, sigmanub = np.loadtxt(
             file_cv + ".txt", usecols=(0, 1, 2, 3, 4), unpack=True, skiprows=1
         )
 
-        sigma_fluctuated = []
+        # save unfluctuated data with stat error
+        if flavor == 14:
+            pseudodata_summary = np.asarray([res, sigmanu, 1 / num_events_error])
+        if flavor == -14:
+            pseudodata_summary = np.asarray([res, sigmanub, 1 / num_events_error])
+
+        np.savetxt(f"{file_cv}_dbg.txt", pseudodata_summary.T)
 
         if flavor == 14:
-            stat = 1./num_events_error*sigmanu
-            #covmat = np.diag(stat)
-            for i in range(0,stat.size):
-                positive = False
-                while positive is not True:
-                    pseudodata = np.random.normal(sigmanu[i], stat[i])
-                    if (pseudodata>0):
-                        positive=True
-                sigma_fluctuated.append(pseudodata)
+            stat = 1.0 / num_events_error * sigmanu
+            covmat = np.diag(stat**2)
+            sigma_fluctuated = np.random.multivariate_normal(sigmanu, covmat)
 
         elif flavor == -14:
-            stat = 1./num_events_error*sigmanub
-            #covmat = np.diag(stat)
-            for i in range(0,stat.size):
-                positive = False
-                while positive is not True:
-                    pseudodata = np.random.normal(sigmanub[i], stat[i])
-                    if (pseudodata>0):
-                        positive=True
-                sigma_fluctuated.append(pseudodata)
+            stat = 1.0 / num_events_error * sigmanub
+            covmat = np.diag(stat**2)
+            sigma_fluctuated = np.random.multivariate_normal(sigmanub, covmat)
+
         else:
             print("Only flavors 14 and -14 available")
 
-        sigma_fluctuated = np.asarray(sigma_fluctuated)
         fluctuated_res = np.asarray([x, y, Q2, sigma_fluctuated, stat])
-        np.savetxt(file_cv + "_fluctuated_positive.txt", fluctuated_res.T)
+        np.savetxt(file_cv + "_fluctuated.txt", fluctuated_res.T)
 
 
 if __name__ == "__main__":
-
     fluctuate_data(input_files_covmat_nu, input_files_central_values_nu, 14)
     fluctuate_data(input_files_covmat_nub, input_files_central_values_nub, -14)
