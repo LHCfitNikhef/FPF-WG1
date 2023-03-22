@@ -4,6 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+#include <map>
 #include <math.h>
 #include <random>
 #include <stdio.h>
@@ -11,6 +12,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <utility>
 
 using namespace std;
 
@@ -59,24 +61,6 @@ double str2d(string str) {
     sstream >> d;
     return d;
 }
-
-//AUX function to read column "iRead" into "arr" from datafile "input" */
-bool readCols(string input, int iRead, vector<double> &arr) {
-    ifstream in;    
-    if (!inStreamOpen(in, input)) return false;        
-    string line, stmp;
-    stringstream sstream;
-    double dtmp;
-    while (getline(in,line)) {
-        sstream.str("");    sstream.clear();    //Reinit
-        sstream << line;
-        for (int i=0; i!=iRead; ++i)  sstream >> stmp;
-        sstream >> dtmp;
-        arr.push_back(dtmp);
-    }
-    in.close();    
-    return true;
-} //readCols
 
 //AUX function to replace all instances of substring "oldsub" by "newsub" in
 //the input "instr". Returns a new string.
@@ -153,7 +137,8 @@ void xFtableWriter(string mdir, string sdir,
     dirCheck(mdir+sdir);
         
     fstream out;
-    outStreamOpen(out,mdir+sdir+expID+"-thexp.dat");
+    string outname = mdir+sdir+expID+"-thexp.dat";
+    outStreamOpen(out,outname);
     out << "* " << exptag << " CC DIS pseudodata\n";
     out << "&Data\n";
     out << "   Name = '" << exptag << "'\n";
@@ -235,7 +220,7 @@ void xFtableWriter(string mdir, string sdir,
     int ixsec=0;
     double statCut=50.;  //Ignore bins w/ sat uncertainty above this percentage
     for (int ix=0; ix!=x.size(); ++ix) {        
-        if (stat[ix]*100.>statCut) binF[ix]=0;
+        if (stat[ix]*100.>statCut || xsec[ixsec]<0) binF[ix]=0;
         out << "  " << binF[ix];
         out << setfill(' ') << setw(16) << x[ix];
         out << setfill(' ') << setw(16) << Q2[ix];
@@ -246,17 +231,19 @@ void xFtableWriter(string mdir, string sdir,
         //Turn err into %
         if (useStat)  out << setfill(' ') << setw(16) << 100.*stat[ix];
         if (useUncor) out << setfill(' ') << setw(16) << 100.*uncor[ix];
+        //FIXME syst?
         for (int isu=0; isu!=sStr.size();++isu) {  //Systematic uncertainties
             out << setfill(' ') << setw(16) << 100.*syst[isu][ix];
         }
         out << endl; 
     }
     out.close();
+    cout << "Wrote " << outname << endl;
 }// END xFtableWriter
 
 //AUX function to read binned_events files under ../results
 //The results are saved by appending into the vecs passed by reference
-void readBinnedEvents(string infile, bool useStat, bool useUncor,
+void readBinnedEvents(string infile, bool useStat, bool useUnc,
                       vector<int>&    binF1,
                       vector<double>& xlo1,
                       vector<double>& xhi1,
@@ -266,10 +253,10 @@ void readBinnedEvents(string infile, bool useStat, bool useUncor,
                       vector<double>& Q2av1,
                       vector<double>& sigma1,
                       vector<double>& stat1,
-                      vector<double>& uncor1)
+                      vector<double>& unc1)
 {
     //Read the predictions / pseudodata template
-    cout << "Processing " << infile << endl;
+    cout << "Processing " << infile;
     ifstream in;
     inStreamOpen(in,infile);
     vector<string> lines;
@@ -284,14 +271,10 @@ void readBinnedEvents(string infile, bool useStat, bool useUncor,
         binF1.push_back(1);
         xlo1.push_back(str2d(lsplit[0]));
         xhi1.push_back(str2d(lsplit[1]));
-        string xavstr = lsplit[2];
-        if (xavstr=="nan") xav1.push_back(0.5*(xlo1.back()+xhi1.back()));
-        else xav1.push_back(str2d(xavstr));
+        xav1.push_back(0.5*(xlo1.back()+xhi1.back()));
         Q2lo1.push_back(str2d(lsplit[3]));
         Q2hi1.push_back(str2d(lsplit[4]));
-        string Q2avstr = lsplit[5];
-        if (Q2avstr=="nan") Q2av1.push_back(0.5*(Q2lo1.back()+Q2hi1.back()));
-        else Q2av1.push_back(str2d(Q2avstr));
+        Q2av1.push_back(0.5*(Q2lo1.back()+Q2hi1.back()));
         string sigstr = lsplit[9];
         if (sigstr=="nan") {
             sigma1.push_back(0.);
@@ -305,14 +288,15 @@ void readBinnedEvents(string infile, bool useStat, bool useUncor,
             }
             else stat1.push_back(str2d(lsplit[11])/str2d(Nevtstr));
         }
-        if (useUncor) {
+        if (useUnc) {
             if (Nevtstr=="0.00000") {
-                uncor1.push_back(0.);
+                unc1.push_back(0.);
                 binF1.back() = 0;
-            } else uncor1.push_back(str2d(lsplit[12])/str2d(Nevtstr));
+            } else unc1.push_back(str2d(lsplit[12])/str2d(Nevtstr));
         } 
     } //for l : lines
     in.close();
+    cout << "...done" << endl;
 } // END readBinnedEvents
 
 // AUX function to read th_orig from preliminary xFitter run(s)
@@ -335,16 +319,14 @@ vector<double> readPrelXsec(string prelname) {
     return xsec1;
 }
     
-// BEGIN "main"
-int main() {
+void writeDats(string PDF) {
 
     //True:  write tables for preliminary xFitter run
     //False: write final tables to be used as pseudodata in fits.
-    bool writePrel = false;
+    bool writePrel = true;
 
-    string PDF="PDF4LHC21";
     string suffix = ".txt";
-    vector<string> expnames = {"FASERv","FASERv2"};
+    vector<string> expnames = {"FASERv","FASERv2","FASERv2_optimistic"};
     vector<string> nuIDs = {"14","-14","+-14"};
     string mdir = "datafiles/lhc/fpf/neutrinoDIS/pseudodata/";
     
@@ -366,28 +348,29 @@ int main() {
                 
             iexp += 1;
             //Flags for including uncertainties
-            bool useStat  = true;
-            bool useUncor = true;
+            bool useStat = true;
+            bool useUnc  = true;
+            if (writePrel) useUnc = false;
             //Syst. unc are included if a non-empty array is provided
         
             //Init
             string expID = expname + "_" + nuID;
             string infile;
             vector<int> binF;
-            vector<double> xlo,xhi,xav,Q2lo,Q2hi,Q2av,sigma,stat,uncor;
+            vector<double> xlo,xhi,xav,Q2lo,Q2hi,Q2av,sigma,stat,unc;
             vector<int> binFp,binFm;
-            vector<double> xlom,xhim,xavm,Q2lom,Q2him,Q2avm,sigmam,statm,uncorm;
+            vector<double> xlom,xhim,xavm,Q2lom,Q2him,Q2avm,sigmam,statm,uncm;
+            string binevtbase = "../results/" + expname 
+                                              +"/binned_sysevents_";
             if (nuID.find("+-")!=string::npos) {
                 //Read nu
-                infile = "../results/binned_sysevents_"
-                       + replace(expID,"+-","") + suffix;
+                infile = binevtbase + replace(expID,"+-","") + suffix;
                 binFp.clear();
-                readBinnedEvents(infile,useStat,useUncor,
+                readBinnedEvents(infile,useStat,useUnc,
                                  binFp,xlo,xhi,xav,Q2lo,Q2hi,Q2av,
-                                 sigma,stat,uncor);
+                                 sigma,stat,unc);
                 //Read nub
-                infile = "../results/binned_sysevents_"
-                       + replace(expID,"+-","-") + suffix;
+                infile = binevtbase + replace(expID,"+-","-") + suffix;
                 binFm.clear();
                 xlom.clear();
                 xhim.clear();
@@ -397,111 +380,122 @@ int main() {
                 Q2avm.clear();
                 sigmam.clear();
                 statm.clear();
-                uncorm.clear();
-                readBinnedEvents(infile,useStat,useUncor,
+                uncm.clear();
+                readBinnedEvents(infile,useStat,useUnc,
                                  binFm,xlom,xhim,xavm,Q2lom,Q2him,Q2avm,
-                                 sigmam,statm,uncorm);
+                                 sigmam,statm,uncm);
+                cout << stat.size()  << " "
+                     << statm.size() << " "
+                     << unc.size()   << " "
+                     << uncm.size()  << endl;
+
                 //Form data vecs for combined nu+nub case
                 for (int i=0; i!=xlo.size(); ++i) {                    
                     binF.push_back(binFp[i]*binFm[i]);
                     sigma[i] += sigmam[i];
-                    stat[ i] = sqrt( stat[i]*stat[i]  +  statm[i]*statm[i]);
-                    uncor[i] = sqrt(uncor[i]*uncor[i] + uncorm[i]*uncorm[i]);
+                    if (useStat) stat[i] = sqrt(  stat[i]*stat[i]
+                                                +statm[i]*statm[i]);
+                    if (useUnc) unc[i] = sqrt(  unc[i]*unc[i]
+                                              +uncm[i]*uncm[i]);                    
                 }
             } else {
-                infile = "../results/binned_sysevents_" + expID + suffix;
-                readBinnedEvents(infile,useStat,useUncor,
+                infile = binevtbase + expID + suffix;
+                readBinnedEvents(infile,useStat,useUnc,
                                  binF,xlo,xhi,xav,Q2lo,Q2hi,Q2av,
-                                 sigma,stat,uncor);
+                                 sigma,stat,unc);
             }
     
             vector<double> dvtmp;
             vector<string> svtmp;
             vector< vector<double> > systtmp;
+            vector< vector<double> > systunc;
     
             //Write xFitter tables for prel run
             if (writePrel) xFtableWriter(mdir,PDF+"/prel/",expname,nuID,
                                          iexp,binF,xav,Q2av,sigma,
-                                         stat,uncor,svtmp,systtmp);
+                                         stat,unc,svtmp,systtmp);
             else { //write xFitter tables for final run
-                
          
                 //Read xFitter output from preliminary run
                 vector<double> xsec;
-                if (expID.find("+-")!=string::npos) {
-                    vector<double> xsecp = readPrelXsec("PDF_profiling/"
-                                                        +PDF+"/prel/"
-                                                        +replace(expID,"+-","")
-                                                        +"/output/"
-                                                        +"fittedresults.txt"
-                                                        +"_set_0000");
-                    vector<double> xsecm = readPrelXsec("PDF_profiling/"
-                                                        +PDF+"/prel/"
-                                                        +replace(expID,"+-","m")
-                                                        +"/output/"
-                                                        +"fittedresults.txt"
-                                                        +"_set_0000");
-                    //Only take xsec at indices where both files have binFlag 1
-                    int ip=0;
-                    int im=0;
-                    for (int ibF=0; ibF!=binF.size(); ++ibF) {                        
-                        if ((ip >= xsecp.size()) || (im > xsecm.size())) break;
-                        if (binFp[ibF]==1 && binFm[ibF]==1) {
-                            xsec.push_back(xsecp[ip]+xsecm[im]);
-                            ++ip;
-                            ++im;
-                        } else if (binFp[ibF]) ++ip;
-                        else if   (binFm[ibF]) ++im;
-                    }
-                } else xsec=readPrelXsec("PDF_profiling/"+PDF+"/prel/"
-                                         +replace(expID,"-","m")
-                                         +"/output/fittedresults.txt_set_0000");
+                //if (expID.find("+-")!=string::npos) {
+                //    vector<double> xsecp = readPrelXsec("PDF_profiling/"
+                //                                        +PDF+"/prel/"
+                //                                        +replace(expID,"+-","")
+                //                                        +"/output/"
+                //                                        +"fittedresults.txt"
+                //                                        +"_set_0000");
+                //    vector<double> xsecm = readPrelXsec("PDF_profiling/"
+                //                                        +PDF+"/prel/"
+                //                                        +replace(expID,"+-","m")
+                //                                        +"/output/"
+                //                                        +"fittedresults.txt"
+                //                                        +"_set_0000");
+                //    //Only take xsec at indices where both files have binFlag 1
+                //    int ip=0;
+                //    int im=0;
+                //    for (int ibF=0; ibF!=binF.size(); ++ibF) {                        
+                //        if ((ip >= xsecp.size()) || (im > xsecm.size())) break;
+                //        if (binFp[ibF]==1 && binFm[ibF]==1) {
+                //            xsec.push_back(xsecp[ip]+xsecm[im]);
+                //            ++ip;
+                //            ++im;
+                //        } else if (binFp[ibF]) ++ip;
+                //        else if   (binFm[ibF]) ++im;
+                //    }
+                //} else 
+                xsec=readPrelXsec("PDF_profiling/"+PDF+"/prel/"
+                                  +replace(replace(expID,"-","m"),"+","p")
+                                  +"/output/fittedresults.txt_set_0000");
          
+                //FIXME will the "options" here be relevant anymore?
                 //Form pseudodata: vary results by the estimated exp. unc.
-                vector<double> xsv;         //Cross sections varied 
-                vector<double> xsvuncor05;  //..w/in different combinations
-                vector<double> xsvstat;     //...of uncertainties
-                vector<double> uncor05;     //Optimistic case: halved uncor unc.
-                for (double u : uncor) uncor05.push_back(0.5*u);
+                vector<double> xsv;       //Cross sections varied 
+                vector<double> xsvunc05;  //..w/in different combinations
+                vector<double> xsvstat;   //...of uncertainties
+                vector<double> unc05;     //Optimistic case: half unc.
+                for (double u : unc) unc05.push_back(0.5*u);
                 for (int ixs=0; ixs!=xsec.size(); ++ixs) {                    
                     double xs = xsec[ixs];
                     double err=0.;
-                    double erruncor05=0.;
+                    double errunc05=0.;
                     double errstat=0.;
                     if (useStat) {
                         double stat2 = stat[ixs]*stat[ixs];
-                        err        += stat2;
-                        erruncor05 += stat2;
-                        errstat    += stat2;
+                        err      += stat2;
+                        errunc05 += stat2;
+                        errstat  += stat2;
                     }
-                    if (useUncor) {
-                        err        +=   uncor[ixs]*uncor[ixs];
-                        erruncor05 += uncor05[ixs]*uncor05[ixs];
+                    if (useUnc) {
+                        err      +=   unc[ixs]*unc[ixs];
+                        errunc05 += unc05[ixs]*unc05[ixs];
                     }
-                    err        = sqrt(err);
-                    erruncor05 = sqrt(erruncor05);
-                    errstat    = sqrt(errstat);
+                    err      = sqrt(err);
+                    errunc05 = sqrt(errunc05);
+                    errstat  = sqrt(errstat);
                     double rndm = distribution(generator);
-                    xsv.push_back(       xs*(1.+       err*rndm));
-                    xsvuncor05.push_back(xs*(1.+erruncor05*rndm));
-                    xsvstat.push_back(   xs*(1.+   errstat*rndm));
+                    xsv.push_back(     xs*(1.+     err*rndm));
+                    xsvunc05.push_back(xs*(1.+errunc05*rndm));
+                    xsvstat.push_back( xs*(1.+ errstat*rndm));
                 }
         
                 //Write tables for final runs
-                xFtableWriter(mdir,PDF+"/",
+                systunc.clear();
+                systunc.push_back(unc);
+                xFtableWriter(mdir,PDF+"/syst/",
                               expname,nuID,iexp,
                               binF,xav,Q2av,xsv,
-                              stat,uncor,
-                              svtmp,systtmp);
+                              stat,dvtmp,
+                              svtmp,systunc);
                 xFtableWriter(mdir,PDF+"/noVar/",
                               expname,nuID,iexp, 
                               binF,xav,Q2av,xsec,
-                              stat,uncor,
+                              stat,unc,
                               svtmp,systtmp);
                 xFtableWriter(mdir,PDF+"/uncorHalf/",
                               expname,nuID,iexp, 
-                              binF,xav,Q2av,xsvuncor05,
-                              stat,uncor05,
+                              binF,xav,Q2av,xsvunc05,
+                              stat,unc05,
                               svtmp,systtmp);
                 xFtableWriter(mdir,PDF+"/statOnly/",
                               expname,nuID,iexp, 
@@ -517,10 +511,102 @@ int main() {
         cout << "Wrote tables for preliminary xFitter runs" << endl;
         cout << "These are used for obtaining predictions convoluted w/ "
              << PDF << endl;
-        cout << "which then enter the final fit/profilin stage. Now run the\n"
+        cout << "which then enter the final fit/profiling stage. Now run the\n"
              << "preliminary fits, then rerun this code w/ writePrel = false"
              << endl;
     } else cout << "Wrote tables for final xFitter runs" << endl;
 
+} // END writeDats
+
+void writeCovs(string PDF) {
+
+    string datadir = "./datafiles/lhc/fpf/neutrinoDIS/pseudodata/";
+    ifstream in;
+    fstream out;
+    string line;
+    stringstream sstream;
+    pair<double,double> bintmp;
+    int i1,i2;  //Index tmps
+    double xlo,xhi,Q2lo,Q2hi,cov;
+    vector<string> expnames = {"FASERv","FASERv2","FASERv2_optimistic"};
+    vector<string> nuIDs = {"14","-14","+-14"};
+
+    for (string expname : expnames) {
+
+        //Read bin map, find avgs
+        map< int, pair<double,double> > binmap;
+        inStreamOpen(in,"../results/"+expname+"/CovMap.txt");
+        getline(in,line);  //Skip header
+        while (getline(in,line)) {
+            sstream.str("");  sstream.clear();
+            sstream << line;
+            sstream >> i1 >> xlo >> xhi >> Q2lo >> Q2hi;
+            bintmp.first  = 0.5*(xlo +xhi );
+            bintmp.second = 0.5*(Q2lo+Q2hi);
+            binmap[i1] = bintmp;            
+        }
+        in.close();
+
+        //Read and write covariance matrix tables
+        int ind1,ind2;
+        for (string nuID_in : nuIDs) {
+
+            string nuID   = replace(nuID_in,"-+","+-");
+            string expID  = expname + "_" + nuID;
+            string exptag = replace(expID, "v",     "$\\nu$");
+            exptag        = replace(exptag,"_14",  " $\\nu_{\\mu}$");
+            exptag        = replace(exptag,"_-14", " $\\bar{\\nu}_{\\mu}$");
+            exptag        = replace(exptag,"_+-14"," $\\nu_{\\mu}+\\bar{\\nu}_{\\mu}$");
+
+            inStreamOpen(in,"../results/"+expname+"/covariance_"
+                                         +expID+".txt");
+            vector<int> i1s,i2s;
+            vector<double> covs;
+            while (getline(in,line)) {
+                sstream.str("");  sstream.clear();
+                sstream << line;
+                sstream >> i1 >> i2 >> cov;
+                i1s.push_back(i1);
+                i2s.push_back(i2);
+                covs.push_back(cov);
+            }
+            in.close();        
+
+            //Write covariance matrix table in xFitter format            
+            string outname = datadir+PDF+"/"+expID+".cov";
+            outStreamOpen(out,outname);
+            out << "! Covariance matrix" << endl;
+            out << "&StatCorr"           << endl;
+            out << "  Name1 = '" << exptag << "'"   << endl;
+            out << "  Name2 = '" << exptag << "'\n" << endl;
+            out << "  NIdColumns1 = 2"          << endl;
+            out << "  NIdColumns2 = 2\n"        << endl;
+            out << "  IdColumns1 = 'x', 'Q2'"   << endl;
+            out << "  IdColumns2 = 'x', 'Q2'\n" << endl;
+            out << "  NCorr = " << covs.size()  << "\n" << endl;
+            out << "  MatrixType = 'Systematic covariance matrix'" << endl;            
+            out << "&End" << endl;
+            //Matrix values
+            for (int i=0; i!=covs.size(); ++i) {
+                out << setfill(' ') << setw(12) << binmap[i1s[i]].first;
+                out << setfill(' ') << setw(12) << binmap[i1s[i]].second;
+                out << setfill(' ') << setw(12) << binmap[i2s[i]].first;
+                out << setfill(' ') << setw(12) << binmap[i2s[i]].second;
+                out << setfill(' ') << setw(12) << covs[i] << endl;
+            }
+            out.close();
+            cout << "Wrote " << outname << endl;
+        }
+
+    } //loop exps
+    
+ 
+} // END writeCovs
+
+// BEGIN "main"
+int main() {
+    string PDF = "PDF4LHC21";
+    writeCovs(PDF);
+    writeDats(PDF);
     return 1;
 } // END main
