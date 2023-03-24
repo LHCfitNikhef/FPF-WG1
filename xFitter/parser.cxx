@@ -141,12 +141,13 @@ void xFtableWriter(string mdir, string sdir,
     outStreamOpen(out,outname);
     out << "* " << exptag << " CC DIS pseudodata\n";
     out << "&Data\n";
-    out << "   Name = '" << exptag << "'\n";
+    out << "   Name = '" << replace(exptag,"_optimistic"," optimistic")
+        << "'\n";
     out << "   IndexDataset = " << index << "\n"; //Give set a unique ID
     out << "   Reaction = 'CC nup'\n\n";
     out << "   NData = " << x.size() << "\n";
     int Nerr = sStr.size();
-    if (useStat) ++Nerr;
+    if (useStat)  ++Nerr;
     if (useUncor) ++Nerr;
     int Ncol = 1 + 2 + 1 + Nerr;
     out << "   NColumn = " << Ncol << "\n";
@@ -165,11 +166,11 @@ void xFtableWriter(string mdir, string sdir,
         out << "   TermSource = 'PineAPPL','PineAPPL'\n";
         out << "   TermInfo   = 'GridName="
             << mdir << "grids/"
-            << replace(expID,"+-","")
+            << replace(replace(expID,"_optimistic",""),"+-","")
             << "/nu_A_1-XSFPFCC.pineappl.lz4',\n";
         out << "                'GridName="
             << mdir << "grids/"
-            << replace(expID,"+-","m")
+            << replace(replace(expID,"_optimistic",""),"+-","m")
             << "/nub_A_1-XSFPFCC.pineappl.lz4'\n";
         out << "   TheorExpr  = 'P+A'\n\n";
     } else {        
@@ -179,11 +180,11 @@ void xFtableWriter(string mdir, string sdir,
         out << "   TermInfo   = 'GridName=";
         if (nuID.find("-")!=string::npos) {
             out << mdir << "grids/"
-                << replace(expID,"-","m")
+                << replace(replace(expID,"_optimistic",""),"-","m")
                 << "/nub_A_1-XSFPFCC.pineappl.lz4'\n";
         } else {            
             out << mdir << "grids/"
-                << replace(expID,"-","m")
+                << replace(replace(expID,"_optimistic",""),"-","m")
                 << "/nu_A_1-XSFPFCC.pineappl.lz4'\n";
         }
         out << "   TheorExpr  = 'P'\n\n";
@@ -231,7 +232,6 @@ void xFtableWriter(string mdir, string sdir,
         //Turn err into %
         if (useStat)  out << setfill(' ') << setw(16) << 100.*stat[ix];
         if (useUncor) out << setfill(' ') << setw(16) << 100.*uncor[ix];
-        //FIXME syst?
         for (int isu=0; isu!=sStr.size();++isu) {  //Systematic uncertainties
             out << setfill(' ') << setw(16) << 100.*syst[isu][ix];
         }
@@ -323,7 +323,7 @@ void writeDats(string PDF) {
 
     //True:  write tables for preliminary xFitter run
     //False: write final tables to be used as pseudodata in fits.
-    bool writePrel = true;
+    bool writePrel = false;
 
     string suffix = ".txt";
     vector<string> expnames = {"FASERv","FASERv2","FASERv2_optimistic"};
@@ -384,11 +384,7 @@ void writeDats(string PDF) {
                 readBinnedEvents(infile,useStat,useUnc,
                                  binFm,xlom,xhim,xavm,Q2lom,Q2him,Q2avm,
                                  sigmam,statm,uncm);
-                cout << stat.size()  << " "
-                     << statm.size() << " "
-                     << unc.size()   << " "
-                     << uncm.size()  << endl;
-
+                
                 //Form data vecs for combined nu+nub case
                 for (int i=0; i!=xlo.size(); ++i) {                    
                     binF.push_back(binFp[i]*binFm[i]);
@@ -406,9 +402,8 @@ void writeDats(string PDF) {
             }
     
             vector<double> dvtmp;
-            vector<string> svtmp;
-            vector< vector<double> > systtmp;
-            vector< vector<double> > systunc;
+            vector<string> svtmp, systnames;
+            vector< vector<double> > systtmp, systunc;
     
             //Write xFitter tables for prel run
             if (writePrel) xFtableWriter(mdir,PDF+"/prel/",expname,nuID,
@@ -444,11 +439,11 @@ void writeDats(string PDF) {
                 //        else if   (binFm[ibF]) ++im;
                 //    }
                 //} else 
+                
                 xsec=readPrelXsec("PDF_profiling/"+PDF+"/prel/"
                                   +replace(replace(expID,"-","m"),"+","p")
                                   +"/output/fittedresults.txt_set_0000");
          
-                //FIXME will the "options" here be relevant anymore?
                 //Form pseudodata: vary results by the estimated exp. unc.
                 vector<double> xsv;       //Cross sections varied 
                 vector<double> xsvunc05;  //..w/in different combinations
@@ -482,11 +477,13 @@ void writeDats(string PDF) {
                 //Write tables for final runs
                 systunc.clear();
                 systunc.push_back(unc);
+                systnames.clear();
+                systnames.push_back("syst");
                 xFtableWriter(mdir,PDF+"/syst/",
                               expname,nuID,iexp,
                               binF,xav,Q2av,xsv,
                               stat,dvtmp,
-                              svtmp,systunc);
+                              systnames,systunc);
                 xFtableWriter(mdir,PDF+"/noVar/",
                               expname,nuID,iexp, 
                               binF,xav,Q2av,xsec,
@@ -577,8 +574,12 @@ void writeCovs(string PDF) {
             outStreamOpen(out,outname);
             out << "! Covariance matrix" << endl;
             out << "&StatCorr"           << endl;
-            out << "  Name1 = '" << exptag << "'"   << endl;
-            out << "  Name2 = '" << exptag << "'\n" << endl;
+            out << "  Name1 = '"
+                << replace(exptag,"_optimistic"," optimistic")
+                << "'"   << endl;
+            out << "  Name2 = '"
+                << replace(exptag,"_optimistic"," optimistic")
+                << "'\n" << endl;
             out << "  NIdColumns1 = 2"          << endl;
             out << "  NIdColumns2 = 2\n"        << endl;
             out << "  IdColumns1 = 'x', 'Q2'"   << endl;
