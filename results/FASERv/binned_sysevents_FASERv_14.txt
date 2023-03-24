@@ -1,4 +1,4 @@
-Experiment = FASERv | Neutrino = 14 | Exp. Target density (nucleons / cm3) = 10^(25.1) | Exp. Target Length = 100 cm | Total Events = 1741.1
+Experiment = FASERv | Neutrino = 14 | Exp. Target density (nucleons / cm3) = 10^(25.1) | Exp. Target Length = 100 cm | Total Events = 1741.1 |del_theta = 1.0 mrad, theta_max = 463.6 mrad |del_Elepton = 30.0 % , Elepton_min = 100.0, Elepton_max = 5698.0|del_Ehadron = 50.0 %, Ehadron_min = 100.0, Ehadron_max = 5698.0
 x_lower x_upper x_avg     Q2_lower[GeV^2] Q2_upper[GeV^2] Q2_avg[GeV^2] E_nu_lower[GeV] E_nu_upper[GeV] E_nu_avg[GeV] log10(d^sigma/dxdQ2(x_avg,Q2_avg,Enu_avg) / (pb / GeV^-2)) N_events N_events_errs = Sqrt[N_events] N_sys_errs MC_Samples
 0.00010 0.00014 nan     4.0               10.0                nan     11.34            5698.00            nan                nan                                  0.00000      0.00000  0.00000         10  
 0.00010 0.00014 nan     10.0               100.0                nan     11.34            5698.00            nan                nan                                  0.00000      0.00000  0.00000         10  
