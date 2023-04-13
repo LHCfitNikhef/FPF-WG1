@@ -60,7 +60,7 @@ def subcommand():
 )
 @click.option(
     "--obs",
-    type=click.Choice(["SF", "XSEC"], case_sensitive=False),
+    type=click.Choice(["SF", "XSEC", "SF_CHARM"], case_sensitive=False),
     default="XSEC",
     help="Observable type: SF [Struct Func], XSEC [Cross Sec]",
 )

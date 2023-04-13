@@ -6,6 +6,7 @@ import tarfile
 import tempfile
 
 import yadism
+from yadbox.export import dump_pineappl_to_file
 
 from .. import utils
 
@@ -49,7 +50,7 @@ def main(cards: pathlib.Path, destination: pathlib.Path):
                         else f"{obs}.pineappl.lz4"
                     )
                     res_path = grids_dest / file_name
-                    output.dump_pineappl_to_file(res_path, obs)
+                    dump_pineappl_to_file(output, res_path, obs)
                     _logger.info(f"Dumped {res_path.name}")
 
         file_name = (

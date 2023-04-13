@@ -28,6 +28,13 @@ def observables(input_grid: npt.NDArray, A: int, obs: str) -> dict:
             for kin in input_grid
         ]
         run_nu["observables"] = {"F2": kins, "F3": kins, "FL": kins}
+    elif obs == "SF_CHARM":
+        input_grid[:, 1] = 0
+        kins = [
+            dict(zip(['x', 'y', 'Q2'], [float(k) for k in kin]))
+            for kin in input_grid
+        ]
+        run_nu["observables"] = {"F2_charm": kins, "F3_charm": kins, "FL_charm": kins}
     else:
         raise ValueError("Observable type non-recognised!")
 
