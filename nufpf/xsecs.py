@@ -278,24 +278,34 @@ def multiply_sfs_xsecs(
 ):
     mkpdf = lhapdf.mkPDF(pdf, PDF_MEMBER)
 
-    def xsec(x, y, Q2, l):
+    def xsec(x, y, Q2, type):
         """Given x, y and Q2 as input it returns the differential
         cross section according to the XSHERACC definition of
         https://yadism.readthedocs.io/en/latest/theory/intro.html.
         Use l=0 for neutrinos and l=1 for antineutrinos.
         """
 
-        F2 = mkpdf.xfxQ2(1001 + 1000 * l, x, Q2)
-        FL = mkpdf.xfxQ2(1002 + 1000 * l, x, Q2)
-        xF3 = mkpdf.xfxQ2(1003 + 1000 * l, x, Q2)
+        # F2 = mkpdf.xfxQ2(1001 + 1000 * l, x, Q2)
+        # FL = mkpdf.xfxQ2(1002 + 1000 * l, x, Q2)
+        # xF3 = mkpdf.xfxQ2(1003 + 1000 * l, x, Q2)
+        # yp = 1 + (1 - y)**2
+        # ym = 1 - (1 - y)**2
+        # yL = y**2
+        # N = 1.0 / 4.0 * yp
+        # return N * (F2 - yL / yp * FL + (-1) ** l * ym / yp * xF3)
 
-        yp = 1 + (1 - y)**2
-        ym = 1 - (1 - y)**2
-        yL = y**2
+        yp, ym = 1 + (1 - y)**2, 1 - (1 - y)**2
+        # Extract the individual cross structure functions
+        f2  = mkpdfs.xfxQ2(1001 + 1000 * type, x, Q2)
+        fl  = mkpdfs.xfxQ2(1002 + 1000 * type, x, Q2)
+        xf3 = mkpdfs.xfxQ2(1003 + 1000 * type, x, Q2)
 
-        N = 1.0 / 4.0 * yp
+        result = (yp * f2 - (y**2) * fl + (-1) ** type * ym * xf3)
 
-        return N * (F2 - yL / yp * FL + (-1) ** l * ym / yp * xF3)
+        # Normalization as defined in https://arxiv.org/pdf/1808.02034.pdf
+        prefac_const = (G_FERMI**2 * INVGEV2_TO_PB) / (4.0 * np.pi)
+        prefac_funct =  1 / (2 * x * (1 + (Q2 / Q2**2))**2)
+        return prefac_funct * prefac_const * result
 
     results = []
     for kins in input_grids:
