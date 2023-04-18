@@ -23,6 +23,10 @@ _logger = logging.getLogger(__name__)
 Prediction = tuple[npt.NDArray[np.float_], int, slice, str]
 ROUNDING = 6
 PDF_MEMBER = 0
+GEV_CM2_CONV = 3.893793e10
+MW = 80.398
+G_FERMI = 1.663787e-5 # GeV^-2
+INVGEV2_TO_PB = GEV_CM2_CONV / 100.0  # pb
 SFS_LABEL = ["F2nu", "FLnu", "xF3nu", "F2nub", "FLnub", "xF3nub"]
 
 
@@ -61,6 +65,8 @@ def pdf_error(
 
     if reshape and xgrid is not None:
         pred = np.array(pred).T.reshape((*xgrid.shape, len(pred)))
+        # Make sure to not include Member 0
+        pred = pred[:, :, 1:]
     else:
         pred = np.array(pred).T
     return pred, 0, slice(1, -1), "PDF replicas"
@@ -82,6 +88,10 @@ def parse_yadism_pred(
     q2_dic_specs: np.ndarray,
 ):
     prediction_infoq2 = [round(q, ROUNDING) for q in q2_dic_specs]
+
+    # Compute the central replicas and prepend to array
+    central = np.expand_dims(np.mean(predictions, axis=0), axis=0)
+    predictions = np.concatenate([central, predictions], axis=0)
 
     # Append the average to the array block
     copied_pred = np.copy(predictions)
@@ -143,7 +153,8 @@ def dump_sfs_as_lahpdf_grids(
         preds_dest = tmpdir / "predictions"
         preds_dest.mkdir()
 
-        x_grid, q2_grid = input_grids[:, 0], input_grids[:, -1]
+        x_grid = np.unique(input_grids[:, 0])
+        q2_grid = np.unique(input_grids[:, -1])
         xgrid, _ = np.meshgrid(*tuple((q2_grid, x_grid)))
 
         predictions_dictionary = {}
@@ -285,26 +296,18 @@ def multiply_sfs_xsecs(
         Use l=0 for neutrinos and l=1 for antineutrinos.
         """
 
-        # F2 = mkpdf.xfxQ2(1001 + 1000 * l, x, Q2)
-        # FL = mkpdf.xfxQ2(1002 + 1000 * l, x, Q2)
-        # xF3 = mkpdf.xfxQ2(1003 + 1000 * l, x, Q2)
-        # yp = 1 + (1 - y)**2
-        # ym = 1 - (1 - y)**2
-        # yL = y**2
-        # N = 1.0 / 4.0 * yp
-        # return N * (F2 - yL / yp * FL + (-1) ** l * ym / yp * xF3)
-
         yp, ym = 1 + (1 - y)**2, 1 - (1 - y)**2
         # Extract the individual cross structure functions
-        f2  = mkpdfs.xfxQ2(1001 + 1000 * type, x, Q2)
-        fl  = mkpdfs.xfxQ2(1002 + 1000 * type, x, Q2)
-        xf3 = mkpdfs.xfxQ2(1003 + 1000 * type, x, Q2)
+        f2  = mkpdf.xfxQ2(1001 + 1000 * type, x, Q2)
+        fl  = mkpdf.xfxQ2(1002 + 1000 * type, x, Q2)
+        xf3 = mkpdf.xfxQ2(1003 + 1000 * type, x, Q2)
 
         result = (yp * f2 - (y**2) * fl + (-1) ** type * ym * xf3)
 
         # Normalization as defined in https://arxiv.org/pdf/1808.02034.pdf
         prefac_const = (G_FERMI**2 * INVGEV2_TO_PB) / (4.0 * np.pi)
-        prefac_funct =  1 / (2 * x * (1 + (Q2 / Q2**2))**2)
+        # TODO: Check where the factor of 2 is coming from
+        prefac_funct =  1 / (2 * x * (1 + (Q2 / MW**2))**2) / 2
         return prefac_funct * prefac_const * result
 
     results = []
@@ -312,4 +315,22 @@ def multiply_sfs_xsecs(
         results.append([*kins, xsec(*kins, 0), xsec(*kins, 1)])
 
     df = pd.DataFrame(results, columns=["x", "y", "Q2", "xsec_nu", "xsec_nub"])
-    df.to_csv(f"{destination}/res_from_lhapdf.csv", index=False)
+    # df.to_csv(f"{destination}/res_from_lhapdf.csv", index=False)
+    combined_predictions = np.concatenate(
+            [
+                input_grids,
+                np.expand_dims(df["xsec_nu"].values, axis=-1),
+                np.expand_dims(df["xsec_nub"].values, axis=-1)
+            ],
+            axis=-1,
+        )
+    np.savetxt(
+        f"{destination}/diff_xsecs_sfs.txt",
+        combined_predictions,
+        header=f"x y Q2 xsec_nu xsec_nub",
+        fmt="%e %e %e %e %e",
+    )
+    _logger.info(
+        f"The .txt file containing the xsec predictions is stored in "
+        f"'{destination.relative_to(pathlib.Path.cwd())}/diff_xsecs_sfs.txt'"
+    )
