@@ -233,6 +233,8 @@ def dump_xsecs_as_datfile(
     with tempfile.TemporaryDirectory() as tmpdir:
         tmpdir = pathlib.Path(tmpdir).absolute()
 
+        output_name = grids.stem.replace("grids", "diff")
+        output_name += "iso" if "_iso" in pdf else ""
         # extract tar content
         if grids.suffix == ".tar":
             utils.extract_tar(grids, tmpdir)
@@ -241,7 +243,7 @@ def dump_xsecs_as_datfile(
         preds_dest = tmpdir / "predictions"
         preds_dest.mkdir()
 
-        predictions_dict, atomic_mass_number = {}, []
+        predictions_dict = {}
         for gpath in grids.iterdir():
             if "pineappl" not in gpath.name:
                 continue
@@ -263,7 +265,6 @@ def dump_xsecs_as_datfile(
                 )
             else:
                 raise ValueError(f"Invalid error type '{err}'")
-            atomic_mass_number.append(a_nb)
             predictions_dict[kind] = np.expand_dims(pred.T[0], axis=-1)
 
         combined_predictions = np.concatenate(
@@ -271,14 +272,14 @@ def dump_xsecs_as_datfile(
             axis=-1,
         )
         np.savetxt(
-            f"{destination}/diff_xsecs_a{atomic_mass_number[0]}.txt",
+            f"{destination}/{output_name}.txt",
             combined_predictions,
             header=f"x y Q2 xsec_nu xsec_nub",
             fmt="%e %e %e %e %e",
         )
         _logger.info(
             f"The .txt file containing the xsec predictions is stored in "
-            f"'{destination.relative_to(pathlib.Path.cwd())}/diff_xsecs_a{atomic_mass_number[0]}.txt'"
+            f"'{destination.relative_to(pathlib.Path.cwd())}/{output_name}.txt'"
         )
 
 
