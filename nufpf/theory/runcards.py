@@ -18,27 +18,25 @@ def observables(input_grid: npt.NDArray, A: int, obs: str) -> dict:
     # Construct the input kinematics as a dictionary
     if obs == "XSEC":
         kins = [
-            dict(zip(['x', 'y', 'Q2'], [float(k) for k in kin]))
+            dict(zip(["x", "y", "Q2"], [float(k) for k in kin]))
             for kin in input_grid
         ]
         run_nu["observables"] = {"XSFPFCC": kins}
     elif obs == "SF":
-        kins = []
         x_grid = np.unique(input_grid[:, 0])
         q2_grid = np.unique(input_grid[:, -1])
-
-        for xv in x_grid:
-            for q2v in q2_grid:
-                kins.append({"x": float(xv), "Q2": float(q2v), "y": 0.0})
-
-        run_nu["observables"] = {"F2": kins, "F3": kins, "FL": kins}
-    elif obs == "SF_CHARM":
-        input_grid[:, 1] = 0
         kins = [
-            dict(zip(['x', 'y', 'Q2'], [float(k) for k in kin]))
+            {"x": float(xv), "Q2": float(q2v), "y": 0.0}
+            for xv in x_grid
+            for q2v in q2_grid
+        ]
+        run_nu["observables"] = {"F2": kins, "F3": kins, "FL": kins}
+    elif obs == "XSEC_CHARM":
+        kins = [
+            dict(zip(["x", "y", "Q2"], [float(k) for k in kin]))
             for kin in input_grid
         ]
-        run_nu["observables"] = {"F2_charm": kins, "F3_charm": kins, "FL_charm": kins}
+        run_nu["observables"] = {"XSFPFCC_charm": kins}
     else:
         raise ValueError("Observable type non-recognised!")
 

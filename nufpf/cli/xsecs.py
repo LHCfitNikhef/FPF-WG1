@@ -14,6 +14,7 @@ from ..grids import grids
 from ..runcards import runcards
 from .. import xsecs
 
+
 def parse_inputgrid(csv_grid: pd.DataFrame):
     """Parse the input grid knots given read from the CSV."""
     parsed_inputs = []
@@ -31,7 +32,7 @@ def parse_pseudodata(file: pathlib.Path):
     pseudo_arr = np.loadtxt(file, skiprows=2)
 
     # Extract only the kinematics (x_avg, Q2_avg, Enu_avg)
-    table = pd.DataFrame(pseudo_arr[:, [2, 5, 8]], columns=['x', 'q2', 'enu'])
+    table = pd.DataFrame(pseudo_arr[:, [2, 5, 8]], columns=["x", "q2", "enu"])
 
     x = table["x"].astype(float, errors="raise")  # Object -> float
     enu = table["enu"].astype(float, errors="raise")  # Object -> float
@@ -60,7 +61,7 @@ def subcommand():
 )
 @click.option(
     "--obs",
-    type=click.Choice(["SF", "XSEC", "SF_CHARM"], case_sensitive=False),
+    type=click.Choice(["SF", "XSEC", "XSEC_CHARM"], case_sensitive=False),
     default="XSEC",
     help="Observable type: SF [Struct Func], XSEC [Cross Sec]",
 )
@@ -172,7 +173,9 @@ def sub_generate_sfs_lhapdf(grids, input_grids, pdf, err, destination):
     default=pathlib.Path.cwd().absolute(),
     help="Destination to store the LHAPDF set (default: $PWD)",
 )
-def sub_generate_xsecs_datfile(grids, input_grids, pdf, err, sgrid, destination):
+def sub_generate_xsecs_datfile(
+    grids, input_grids, pdf, err, sgrid, destination
+):
     """Compute the differential cross section and dump the results as
     a .dat file.
     """
