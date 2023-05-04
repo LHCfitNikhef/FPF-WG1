@@ -191,6 +191,7 @@ def sub_generate_xsecs_datfile(
         input_grids,
         pdf,
         err=err,
+        file_name=input_grids.stem,
         destination=destination.absolute(),
     )
 
