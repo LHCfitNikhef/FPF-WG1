@@ -180,15 +180,15 @@ def sub_generate_xsecs_datfile(
     a .dat file.
     """
     if sgrid:
-        input_grids = parse_inputgrid(pd.read_csv(input_grids))
+        igrids = parse_inputgrid(pd.read_csv(input_grids))
     elif not sgrid:
-        input_grids = parse_pseudodata(input_grids)
+        igrids = parse_pseudodata(input_grids)
     else:
         raise ValueError("The input value is not recognised!")
 
     xsecs.dump_xsecs_as_datfile(
         grids.absolute(),
-        input_grids,
+        igrids,
         pdf,
         err=err,
         file_name=input_grids.stem,
