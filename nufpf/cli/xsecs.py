@@ -86,7 +86,7 @@ def sub_runcards(input_grids, a_value, obs, sgrid, destination):
     else:
         raise ValueError("The input value is not recognised!")
 
-    runcards.generate_cards(igrid, a_value, obs, destination)
+    runcards.generate_cards(igrid, a_value, obs, destination, input_grids.stem)
 
 
 @subcommand.command("grids")
