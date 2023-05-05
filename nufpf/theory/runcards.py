@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Generate runcards with x and A fixed."""
 import copy
+import numpy as np
 
 import numpy.typing as npt
 from yadmark.data.observables import default_card
@@ -17,17 +18,25 @@ def observables(input_grid: npt.NDArray, A: int, obs: str) -> dict:
     # Construct the input kinematics as a dictionary
     if obs == "XSEC":
         kins = [
-            dict(zip(['x', 'y', 'Q2'], [float(k) for k in kin]))
+            dict(zip(["x", "y", "Q2"], [float(k) for k in kin]))
             for kin in input_grid
         ]
         run_nu["observables"] = {"XSFPFCC": kins}
     elif obs == "SF":
-        input_grid[:, 1] = 0
+        x_grid = np.unique(input_grid[:, 0])
+        q2_grid = np.unique(input_grid[:, -1])
         kins = [
-            dict(zip(['x', 'y', 'Q2'], [float(k) for k in kin]))
-            for kin in input_grid
+            {"x": float(xv), "Q2": float(q2v), "y": 0.0}
+            for xv in x_grid
+            for q2v in q2_grid
         ]
         run_nu["observables"] = {"F2": kins, "F3": kins, "FL": kins}
+    elif obs == "XSEC_CHARM":
+        kins = [
+            dict(zip(["x", "y", "Q2"], [float(k) for k in kin]))
+            for kin in input_grid
+        ]
+        run_nu["observables"] = {"XSFPFCC_charm": kins}
     else:
         raise ValueError("Observable type non-recognised!")
 

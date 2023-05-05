@@ -6,6 +6,7 @@ import tarfile
 import tempfile
 
 import yadism
+from yadbox.export import dump_pineappl_to_file
 
 from .. import utils
 
@@ -24,7 +25,8 @@ def main(cards: pathlib.Path, destination: pathlib.Path):
     """
     with tempfile.TemporaryDirectory() as tmpdir:
         tmpdir = pathlib.Path(tmpdir).absolute()
-        full_data_name = cards.stem.split("-")[-1]
+        a_value = cards.stem.split("-")[-1]
+        obs_name = cards.stem.split("-")[-2]
 
         # extract tar content
         if cards.suffix == ".tar":
@@ -49,11 +51,13 @@ def main(cards: pathlib.Path, destination: pathlib.Path):
                         else f"{obs}.pineappl.lz4"
                     )
                     res_path = grids_dest / file_name
-                    output.dump_pineappl_to_file(res_path, obs)
+                    dump_pineappl_to_file(output, res_path, obs)
                     _logger.info(f"Dumped {res_path.name}")
 
         file_name = (
-            f"grids-{full_data_name}.tar" if full_data_name != "" else f"grids.tar"
+            f"grids-{obs_name}-{a_value}.tar"
+            if a_value != ""
+            else f"grids.tar"
         )
         with tarfile.open(destination / file_name, "w") as tar:
             for path in grids_dest.iterdir():

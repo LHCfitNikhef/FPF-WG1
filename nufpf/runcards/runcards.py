@@ -23,7 +23,7 @@ def generate_cards(igrid: npt.NDArray, A: int, obs: str, destination: pathlib.Pa
         utils.write(theory_card, tmpdir / "theory.yaml")
         for name, observable_card in ocards.items():
             utils.write(observable_card, tmpdir / f"obs-{name}.yaml")
-            tarpath = destination / f"runcards-xsecs_A{A}.tar"
+            tarpath = destination / f"runcards-{obs.lower()}-a{A}.tar"
 
             with tarfile.open(tarpath, "w") as tar:
                 for tmppath in tmpdir.iterdir():

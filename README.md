@@ -56,7 +56,7 @@ The resulting object will be a grid following the LHAPDF format in which the ent
 $$F_2^{\nu N}, F_L^{\nu N}, xF_3^{\nu N}, F_2^{\bar{\nu} N}, F_L^{\bar{\nu} N}, xF_3^{\bar{\nu} N}, \langle F_2^N \rangle, \langle F_L^N \rangle, \langle xF_3^N \rangle$$
 The next step is then to multiply the structure functions with the corresponding coefficients in order to compute the cross section:
 ```bash
-poetry run nufpf xsecs multiply_sfs ${LHAPDF_SETNAME}
+poetry run nufpf xsecs multiply_sfs igrids/xyQ2.csv ${LHAPDF_SETNAME}
 ```
 For convenience, pre-computed LHAPDF sets for free-proton, iron, and lead target are available in
 the following [location](https://data.nnpdf.science/FPF-DIS/).
