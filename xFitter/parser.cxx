@@ -178,10 +178,10 @@ vector< vector<double> > readBinnedEvents(string infile, bool useStat, bool useS
 //       binF_in    Flags 1/0 if bin used in fit; "in"=doubles, changed to int
 //       x,Q2       Vec. of x and Q^2 values for each data point
 //       xsec       Vec. of cross-sections
-//       stat       Vec. of statistical uncertainties for each data point
-//       uncor      Vec. of uncorrelated uncertainties
+//       stat       Vec. of statistical uncertainties for each data point (in %)
+//       uncor      Vec. of uncorrelated uncertainties (in %)
 //       systnames  Names of correlated systematic uncertainty sources
-//       syst       Matrix of corr. syst. unc. values
+//       syst       Matrix of corr. syst. unc. values (in %)
 //Returns false if bin mismatch found & tables not written, otherwise true.
 bool xFtableWriter(string mdir, string sdir,
                    string expname, string nuID_in, int index, 
@@ -308,22 +308,25 @@ bool xFtableWriter(string mdir, string sdir,
     for (auto su : systnames) out << setfill(' ') << setw(16) << su;
     out << endl;
     int ixsec=0;
-    double statCut=50.;  //Ignore bins w/ stat uncertainty above this percentage TODO report if used!
+    double uncCut=50.;  //Ignore bins w/ any unc above this %
     for (int ix=0; ix!=x.size(); ++ix) {
         out << "  ";
-        if (stat[ix]*100.>statCut || xsec[ixsec]<0) out << 0;         //N.B. don't modify binF[ix],
-        else                                        out << binF[ix];  //keep below consistent*!
+        int bt = binF[ix];  //N.B. don't modify binF[ix], consistency* required!
+        if      (stat[ix] > uncCut) bt=0;
+        else if (xsec[ixsec] < 0  ) bt=0;         
+        for (int isu=0; isu!=syst.size(); ++isu) if (syst[isu][ix]>uncCut) bt=0;
+        out << bt;
         out << setfill(' ') << setw(16) << x[ix];
         out << setfill(' ') << setw(16) << Q2[ix];
-        if (xsecWriteAll || binF[ix]==1) {  //*what matters here is the original *
+        if (xsecWriteAll || binF[ix]==1) {  //what matters here is the original*
             out << setfill(' ') << setw(16) << xsec[ixsec];
             ++ixsec;
         } else out << "        0.000000";
         //Turn err into %
-        if (useStat)  out << setfill(' ') << setw(16) << 100.*stat[ix];
-        if (useUncor) out << setfill(' ') << setw(16) << 100.*uncor[ix];
-        for (int isu=0; isu!=systnames.size();++isu) {  //Syst. unc.
-            out << setfill(' ') << setw(16) << 100.*syst[isu][ix];
+        if (useStat)  out << setfill(' ') << setw(16) << stat[ix];
+        if (useUncor) out << setfill(' ') << setw(16) << uncor[ix];
+        for (int isu=0; isu!=syst.size(); ++isu) {  //Syst. unc.
+            out << setfill(' ') << setw(16) << syst[isu][ix];
         }
         out << endl; 
 
@@ -443,16 +446,17 @@ bool writeDatPrel(string PDF, string expname, string nuID, int iexp, bool useSta
     string binevtbase = "../results/" + expname + "/binned_sysevents_";
 
     //Links to grids
-    string gridsub = replace(replace(expID,"_optimistic",""),"-","m"))
+    string gridsub = replace(replace(expID,"_optimistic",""),"-","m");
     dirCheck(mdir+"grids/");  //Also check if grids exist / to be downloaded / ln -s
-    dirCheck(mdir+"grids/"+gridsub;
+    dirCheck(mdir+"grids/"+gridsub);
     string thpath = "../theory/"+gridsub;
     if (system(("ls "+thpath+"/grids").c_str())==512) {
         system(("tar -xf "+thpath+"/grids-xsecs_A1.tar").c_str());
     }
     for (string gd : {"nu_A_1-XSFPFCC.pineappl.lz4","nub_A_1-XSFPFCC.pineappl.lz4"}) {
         if (system(("ls "+mdir+"grids/"+gridsub+"/"+gd).c_str())==512) {
-            system(("ln -s "+thpath+"/grids/"+gd).c_str());
+            system(("ln -s "+thpath+"/grids/"+gd
+                        +" "+mdir+"grids/"+gridsub+"/"+gd).c_str());
         }
     }
 
@@ -500,16 +504,14 @@ bool writeDatPrel(string PDF, string expname, string nuID, int iexp, bool useSta
         
         //Form data vecs for combined nu+nub case 
         for (int i=0; i!=xlo.size(); ++i) {
-            cout << "DEBUG 5 " << i << " a" << endl;
             if (dAgree( xav[i],  xavm[i]) && dAgree(Q2av[i], Q2avm[i])) {  //Bins match
-                cout << "DEBUG 5 " << i << " b" << endl;
                 binF.push_back(binFp[i]*binFm[i]);
                 sigma[i] += sigmam[i];
                 double Nsum = N[i]+Nm[i];
-                if (useStat) stat[i] = sqrt(Nsum)/Nsum;
+                if (useStat) stat[i] = (Nsum>0 ? sqrt(Nsum)/Nsum : 0.);
                 for (int j=0; useSyst && j!=syst.size(); ++j) {                        
                     syst[j][i] += systm[j][i];
-                    syst[j][i] /= Nsum;
+                    syst[j][i] *= (Nsum>0 ? 1./Nsum : 0.);
                 }
             } else {  //Bin mismatch
                 binF.push_back(0.);
@@ -533,7 +535,12 @@ bool writeDatPrel(string PDF, string expname, string nuID, int iexp, bool useSta
         N     = BE[8];
         int isyst = (useStat ? 10 : 9);
         if (useStat) stat = BE[9];
-        for (int i=isyst; i<BE.size(); ++i) syst.push_back(BE[i]/N[i]);
+        for (int i=isyst; i<BE.size(); ++i) syst.push_back(BE[i]);
+        for (int j=0; j!=syst.size(); ++j) {
+            for (int i=0; i!=syst[j].size(); ++i) {
+                syst[j][i] *= (N[i]>0 ? 1./N[i] : 0.);
+            }
+        }
     }
 
     //Compute unc as quadratic sum of all systs here
@@ -555,6 +562,14 @@ bool writeDatPrel(string PDF, string expname, string nuID, int iexp, bool useSta
          if (i>0) sstream << ":A";  //Additive unc.s, if many given
          systnames.push_back(sstream.str());
      }
+
+    //Turn unc.s into %. N.B. only done for prel tables, final tables read the
+    //unc.s from prel tables where they're hence already in %
+    for (int i=0; i!=uncor.size(); ++i) {
+		uncor[i] *= 100.;
+        stat[i] *= 100.;
+        for (int j=0; j!=syst.size(); ++j) syst[j][i] *= 100.;
+    }
 
     //Write prel table
     return xFtableWriter(mdir,PDF+"/prel/",expname,nuID,iexp,
@@ -616,7 +631,8 @@ bool writeDatFinal(string PDF, string expname, string nuID, int iexp) {
     if (useUncor) uncor = Mdat[colMap["uncor"]];
     
     //Assume 1st syst unc is named "syst"
-    for (int i=colMap["syst"]; i<cols.size(); ++i) {
+    int isyst = colMap["Sigma"] + 1 + (int)useStat + (int)useUncor;
+    for (int i=isyst; i<cols.size(); ++i) {
         systnames.push_back(cols[i]);
         systunc.push_back(Mdat[i]);
     }
@@ -655,11 +671,12 @@ bool writeDatFinal(string PDF, string expname, string nuID, int iexp) {
         //Quadratic sums of various combinations of stat & syst uncs
         double syst2=0;
         for (int i=0; i!=systunc.size(); ++i) syst2 += pow(systunc[i][ixs],2);
-        double stat2 = (useStat ? pow(stat[ixs],2) : 0.);        
+        double stat2 = (useStat ? pow(stat[ixs],2) : 0.);
+        stat2 *= 0.0001;  syst2 *= 0.0001;  //Div by 100^2 since given in %
         double errstat       = sqrt(stat2);
         double errstatsyst   = sqrt(stat2 + syst2);
         double errstatsyst05 = sqrt(stat2 + syst2*0.25);  //0.25=0.5^2
-        double rndm1 = distribution(generator);
+        double rndm = distribution(generator);
         
         //Vary x-sec to obtain pseuodata 
         double xs = xsec[ixs];
@@ -698,7 +715,7 @@ bool writeDatFinal(string PDF, string expname, string nuID, int iexp) {
     //                   stat,uncor,                    //stat, uncor
     //                   svtmp,systtmp)) return false;  //systnames, systmatrix
 
-    ////Debug: no variation in pseudodata, to check chi2=0 case
+    ////No variation in pseudodata, for checking chi2=0 case
     //if (!xFtableWriter(mdir,PDF+"/noVar/",
     //                   expname,nuID,iexp, 
     //                   binF,xav,Q2av,xsec,            //3 bins, x-sec
@@ -808,13 +825,13 @@ void writeCov(string PDF, string expname, vector<string> nuIDs) {
 int main() {
 
     //BEGIN user input
-    vector<string> PDFs = {"PDF4LHC21","EPPS21nlo_CT18Anlo_W184"};
+    vector<string> PDFs = {"PDF4LHC21"};//,"EPPS21nlo_CT18Anlo_W184"};
     vector<string> expnames = {"FASERv","FASERv2","FASERv2_optimistic"};
     vector<string> nuIDs = {"14","-14","+-14"};
 
     //True:  write tables for preliminary xFitter run
     //False: write final tables to be used as pseudodata in fits.
-    bool prel = true;
+    bool prel = false;
 
     //Flags for including uncertainties -- turn off if binned_events don't contain these
     bool useStat = true;  //Do binned_events tables contain stat unc?
