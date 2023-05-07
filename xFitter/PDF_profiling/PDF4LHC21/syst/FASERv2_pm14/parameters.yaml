@@ -66,6 +66,7 @@ byReaction:
   PineAPPL:
     muF: 1.0
     muR: 1.0
+    PDG: 2212
     norm: 0
   
 # Specify HF scheme used for DIS NC processes:
