@@ -446,7 +446,7 @@ bool writeDatPrel(string PDF, string expname, string nuID, int iexp, bool useSta
     string binevtbase = "../results/" + expname + "/binned_sysevents_";
 
     //Links to grids
-    string gridsub = replace(replace(expID,"_optimistic",""),"-","m");
+    string gridsub = replace(replace(replace(expID,"_optimistic",""),"+-",""),"-","m");
     dirCheck(mdir+"grids/");  //Also check if grids exist / to be downloaded / ln -s
     dirCheck(mdir+"grids/"+gridsub);
     string thpath = "../theory/"+gridsub;
@@ -566,7 +566,7 @@ bool writeDatPrel(string PDF, string expname, string nuID, int iexp, bool useSta
     //Turn unc.s into %. N.B. only done for prel tables, final tables read the
     //unc.s from prel tables where they're hence already in %
     for (int i=0; i!=uncor.size(); ++i) {
-		uncor[i] *= 100.;
+        uncor[i] *= 100.;
         stat[i] *= 100.;
         for (int j=0; j!=syst.size(); ++j) syst[j][i] *= 100.;
     }
@@ -825,7 +825,7 @@ void writeCov(string PDF, string expname, vector<string> nuIDs) {
 int main() {
 
     //BEGIN user input
-    vector<string> PDFs = {"PDF4LHC21"};//,"EPPS21nlo_CT18Anlo_W184"};
+    vector<string> PDFs = {"PDF4LHC21","EPPS21nlo_CT18Anlo_W184"};
     vector<string> expnames = {"FASERv","FASERv2","FASERv2_optimistic"};
     vector<string> nuIDs = {"14","-14","+-14"};
 
