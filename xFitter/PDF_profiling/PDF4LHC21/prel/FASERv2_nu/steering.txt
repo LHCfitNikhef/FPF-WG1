@@ -9,7 +9,7 @@
 
      InputFileNames = 
     ! FPF pseudodata
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv_-14-thexp.dat',
+     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/prel/FASERv2_nu-thexp.dat',
 &End
 
 &InCorr
