@@ -10,7 +10,7 @@ PDF="PDF4LHC21"  #N.B. or plots only! Change also in parameters.yaml
 #PLOTOPTS="--splitplots-eps  --therr --bands --q2all --relative-errors --scale68 --xrange 1e-6:0.99"
 PLOTOPTS="--therr --bands --q2all --relative-errors"
 
-ln -s ../../../datafiles
+ln -s ../../../../datafiles
 
 # Run xFitter:
 xfitter
