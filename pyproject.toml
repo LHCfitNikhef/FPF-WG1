@@ -10,6 +10,7 @@ click = "^8.1.3"
 yadism = "0.11.4"
 eko = "0.9.4"
 pineappl = "0.5.5"
+seaborn = "0.12.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
