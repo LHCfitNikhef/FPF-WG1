@@ -1,7 +1,7 @@
 * FASER$\nu$2 $\bar{\nu}_{\mu}$ CC DIS pseudodata
 &Data
    Name = 'FASER$\nu$2 $\bar{\nu}_{\mu}$'
-   IndexDataset = 138
+   IndexDataset = 141
    Reaction = 'CC nup'
 
    NData = 60
