@@ -742,7 +742,7 @@ bool writeDatFinal(string PDF, string expname, string nuID, int iexp) {
 } // END writeDatFinal
 
 
-void writeCov(string PDF, string expname, vector<string> nuIDs) {
+bool writeCov(string PDF, string expname, vector<string> nuIDs) {
     string datadir = "./datafiles/lhc/fpf/neutrinoDIS/pseudodata/";
     ifstream in;
     fstream out;
@@ -750,21 +750,7 @@ void writeCov(string PDF, string expname, vector<string> nuIDs) {
     stringstream sstream;
     pair<double,double> bintmp;
     int i1,i2;  //Index tmps
-    double xlo,xhi,Q2lo,Q2hi,cov;
-
-    //Read bin map, find avgs
-    map< int, pair<double,double> > binmap;
-    inStreamOpen(in,"../results/clipped_nan/"+expname+"/CovMap.txt");
-    getline(in,line);  //Skip header
-    while (getline(in,line)) {
-        sstream.clear();  sstream.str("");
-        sstream << line;
-        sstream >> i1 >> xlo >> xhi >> Q2lo >> Q2hi;
-        bintmp.first  = 0.5*(xlo +xhi );
-        bintmp.second = 0.5*(Q2lo+Q2hi);
-        binmap[i1] = bintmp;            
-    }
-    in.close();
+    double xlo,xhi,xav,Q2lo,Q2hi,Q2av,cov;
 
     //Read and write covariance matrix tables
     int ind1,ind2;
@@ -777,9 +763,32 @@ void writeCov(string PDF, string expname, vector<string> nuIDs) {
         exptag        = replace(exptag,"_-14", " $\\bar{\\nu}_{\\mu}$");
         exptag        = replace(exptag,"_+-14"," $\\nu_{\\mu}+\\bar{\\nu}_{\\mu}$");
 
+        
+        //Deduce cov. mat bin map fom binned events
+        map< int, pair<double,double> > binmap;
+        string suffix = ".txt";
+        string infile = "../results/" + expname
+                      + "/clipped_nan/clipped_nan_binned_sysevents_"
+                      + replace(expID,"+-","") //FIXME when nu+nub available
+                      + suffix;
+        inStreamOpen(in,infile);
+        for (int i=0; i!=2; ++i) getline(in,line);  //Skip 2 lines of header
+        i1=0;  //Init
+        while (getline(in,line)) {
+            sstream.clear();  sstream.str("");
+            sstream << setprecision(15) << line;
+            sstream >> xlo >> xhi >> xav >> Q2lo >> Q2hi >> Q2av;
+            bintmp.first  = xav;
+            bintmp.second = Q2av;
+            binmap[i1] = bintmp;            
+            ++i1;
+        }
+        in.close();
+
         //Read covariance matrix entries
-        inStreamOpen(in,"../results/"+expname+"/covariance_"
-                                     +expID+".txt");
+        inStreamOpen(in,"../results/" + expname
+                        + "/clipped_nan/clipped_nan_covariance_"
+                        + expID + suffix);
         vector<int> i1s,i2s;
         vector<double> covs;
         while (getline(in,line)) {
@@ -812,22 +821,23 @@ void writeCov(string PDF, string expname, vector<string> nuIDs) {
         out << "&End" << endl;
         //Matrix values
         for (int i=0; i!=covs.size(); ++i) {
-            out << setfill(' ') << setw(12) << binmap[i1s[i]].first;
-            out << setfill(' ') << setw(12) << binmap[i1s[i]].second;
-            out << setfill(' ') << setw(12) << binmap[i2s[i]].first;
-            out << setfill(' ') << setw(12) << binmap[i2s[i]].second;
-            out << setfill(' ') << setw(12) << covs[i] << endl;
+            out << setfill(' ') << setw(20) << setprecision(15) << binmap[i1s[i]].first;
+            out << setfill(' ') << setw(20) << setprecision(15) << binmap[i1s[i]].second;
+            out << setfill(' ') << setw(20) << setprecision(15) << binmap[i2s[i]].first;
+            out << setfill(' ') << setw(20) << setprecision(15) << binmap[i2s[i]].second;
+            out << setfill(' ') << setw(20) << setprecision(15) << covs[i] << endl;
         }
         out.close();
         cout << "Wrote " << outname << endl;
     }
 
+    return true;
 } // END writeCov
 
 int main() {
 
     //BEGIN user input
-    vector<string> PDFs = {"PDF4LHC21"};//,"EPPS21nlo_CT18Anlo_W184"};
+    vector<string> PDFs = {"PDF4LHC21","EPPS21nlo_CT18Anlo_W184"};
     vector<string> expnames = {"FASERv2"};
     vector<string> nuIDs = {"nu","nub"}; //TODO add charge discr. case when available
 
@@ -845,7 +855,7 @@ int main() {
     for (string PDF : PDFs) {
         for (string expname : expnames) {
             for (string nuID : nuIDs) {
-                //writeCov(PDF,expname,nuIDs); //FIXME enable when covmap available
+                if (!writeCov(PDF,expname,nuIDs)) return -1;
                 if (prel) {
                     if (!writeDatPrel(PDF,expname,nuID,iexp,useStat,useSyst)) return -1;
                 } else {
