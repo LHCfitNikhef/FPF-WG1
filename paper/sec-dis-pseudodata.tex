@@ -2,49 +2,40 @@
 \label{sec:dis_pseudodata}
 
 We begin by describing the procedure adopted to generate
-projections for LHC neutrino DIS structure functions, including
-the models for the expected systematic uncertainties associated
-to the various experiments.
+projections for DIS structure functions associated to LHC neutrinos.
+%
+Assembling these projections requires defining the kinematic acceptance
+and expected yields of the various ongoing and proposed experiments,
+assessing the performance of their response in order to estimate
+the corresponding systematic uncertainties,
+and then evaluating pseudo-data based on specific underlying theory assumption which should be consistent
+with the settings of the subsequent (nuclear) PDF analyses.
+
+In this section, for completeness first of all we provide a recap of the kinematics
+of neutrino DIS structure function measurements.
+%
+Then we present an overview of the LHC far-forward neutrino detectors that
+will be considered in the present study.
+%
+The calculation of event yields in bins of $x,Q^2$, and neutrino energy $E_\nu$ in terms
+of the incoming neutrino fluxes is presented next, resulting in quantitative predictions
+for the kinematic coverage and statistical uncertainties.
+%
+Finally, we discuss how for each of the considered experiments the dominant systematic
+uncertainties are evaluated and which assumptions are taken about their bin-to-bin correlations.
 
 
-\subsection{Recap of DIS kinematics}
+\subsection{Neutrino deep-inelastic scattering}
 
-The double-differential cross-section for neutrino-nucleus scattering
-can be decomposed
-in terms of three independent structure functions $F_i^{\nu A}(x,Q^2)$ with $i=1,2,3$.
+The theoretical framework underlying neutrino DIS is well known, see e.g.~\cite{Candido:2023utz}
+and references therein.
 %
-Focusing on the charged-current (CC) scattering case, mediated
-by the exchange of a $W^+$ weak boson, the differential
- cross section reads
-\be
-\label{eq:neutrino_DIS_xsec}
-\frac{d^2\sigma^{\nu A}(x,Q^2,y)}{dxdy} =  \frac{G_F^2s/2\pi}{\lp 1+Q^2/m_W^2\rp^2}\lc (1-y)F^{\nu A}_2(x,Q^2) + y^2xF^{\nu A}_1(x,Q^2) + y\lp 1-\frac{y}{2}\rp xF^{\nu A}_3(x,Q^2)\rc  \, ,
-\ee
-where $s=2m_N E_\nu$ is the neutrino-nucleon center of mass energy squared, $m_N$ is the nucleon mass,
-$E_\nu$ is the incoming neutrino energy,
-and the inelasticity $y$ is defined as $y=Q^2/(2x m_n E_{\nu})$.
+For completeness, we provide here a short overview of the neutrino DIS formalism.
 %
-For the time being we are neglecting target mass 
-corrections.
-%
-An analogous expression holds for  antineutrino 
-scattering, mediated
-by the exchange of a $W^-$ weak boson, with the only difference being a sign change
-in front of the parity-violating structure function $xF_3$,
-\be
-\label{eq:antineutrino_DIS_xsec}
-\frac{d^2\sigma^{\bar{\nu} A}(x,Q^2,y)}{dxdy} =  \frac{G_F^2s/2\pi}{\lp 1+Q^2/m_W^2\rp^2}\lc (1-y)F^{\bar{\nu} A}_2(x,Q^2) + y^2xF^{\bar{\nu} A}_1(x,Q^2) - y\lp 1-\frac{y}{2}\rp xF^{\bar{\nu} A}_3(x,Q^2)\rc  \, .
-\ee
-While the differential cross-section depends on three kinematic variables, $(x,Q^2,y)$,
-the structure functions themselves depend only on $x$ and $Q^2$.
-%
-Furthermore, both the cross-section and the structure functions depend
-on the atomic mass number $A$ of the target nucleus via nuclear modifications of the free-nucleon
-structure functions.
-
-Alternatively, Eq.~(\ref{eq:neutrino_DIS_xsec}) can be expressed in terms
-of the longitudinal structure function  $F_L^{\nu A}(x,Q^2)$ defined
-by $F_L = F_2-2xF_1$, leading to
+The double-differential cross-section for neutrino-nucleus charged-current scattering
+can be expressed in terms of three
+independent structure functions $F_2^{\nu A}(x,Q^2)$, $xF_3^{\nu A}(x,Q^2)$
+and $F_L^{\nu A}(x,Q^2)$ as follows
 \be
 \label{eq:neutrino_DIS_xsec_FL}
 \frac{d^2\sigma^{\nu A}(x,Q^2,y)}{dxdy} =  \frac{G_F^2s/4\pi}{\lp 1+Q^2/m_W^2\rp^2}\lc Y_+F^{\nu A}_2(x,Q^2) - y^2F^{\nu A}_L(x,Q^2) +Y_- xF^{\nu A}_3(x,Q^2)\rc  \, ,
@@ -54,68 +45,99 @@ where $Y_\pm = 1 \pm (1-y)^2$ and with a counterpart expression for anti-neutrin
 \label{eq:antineutrino_DIS_xsec_FL}
 \frac{d^2\sigma^{\bar{\nu} A}(x,Q^2,y)}{dxdy} =  \frac{G_F^2s/4\pi}{\lp 1+Q^2/m_W^2\rp^2}\lc Y_+F^{\bar{\nu} A}_2(x,Q^2) - y^2F^{\bar{\nu} A}_L(x,Q^2) -Y_- xF^{\bar{\nu} A}_3(x,Q^2)\rc  \, ,
 \ee
+where $s=2m_N E_\nu$ is the neutrino-nucleon center of mass energy squared, $m_N$ is the nucleon mass,
+$E_\nu$ is the incoming neutrino energy,
+and the inelasticity is $y=Q^2/(2x m_n E_{\nu})$.
 %
-Expressing the differential cross-section as in Eq.~(\ref{eq:neutrino_DIS_xsec_FL}) is advantageous
-because in the parton model (and in perturbative QCD at leading order) the longitudinal
-structure function vanishes, $F_L^{\nu A}(x,Q^2)=0$.
+While structure functions depend only on $x$ and $Q^2$, the differential
+cross-section depends also on the neutrino energy $E_\nu$ (or alternatively
+on the inelasticity $y$).
 %
-The combination of neutrino and antineutrino measurements makes possible disentangling
-the different structure functions, for example the cross-section difference
-\be
-\label{eq:neutrino_DIS_xsec_FL_diff}
-\frac{d^2\sigma^{\nu A}(x,Q^2,y)}{dxdy} - \frac{d^2\sigma^{\bar{\nu} A}(x,Q^2,y)}{dxdy}=  \frac{G_F^2s Y_-}
-{4\pi \lp 1+Q^2/m_W^2\rp^2}\lc    xF^{\nu A}_3(x,Q^2)+  xF^{\bar{\nu} A}_3(x,Q^2)\rc \, ,
-\ee
-is proportional to the parity-violating structure function $xF_3$ averaged over neutrinos
-and antineutrinos.
+Structure functions $F^{\nu A}_i(x,Q^2)$ and $F^{\bar{\nu} A}_i(x,Q^2)$ depend on the nuclear target $A$ entering
+for the neutrino scattering through the nuclear modifications of the proton PDFs.
 
-When both the momentum transfer squared $Q^2$
-and the  hadronic final-state
-invariant mass $W$ given by
+Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}) and~(\ref{eq:antineutrino_DIS_xsec_FL}) are valid in the  inelastic
+scattering regime, defined as the kinematic region for which the 
+hadronic final-state
+invariant mass $W$  satisfies
 \be
-W^2 = m_N^2 + Q^2 \frac{(1-x)}{x} \, ,
+W^2 = \lp m_N^2 + Q^2 \frac{(1-x)}{x} \rp \gsim \lp 2\,{\rm GeV} \rp^2\, ,
 \ee
-are large enough, $Q^2 \gsim {\rm few~GeV}^2$ and $W \gsim 2$ GeV
-respectively, we find ourselves in the
-deep-inelastic scattering region where
-structure functions can be evaluated in perturbative QCD in terms of a factorised
-convolution of process-dependent partonic scattering cross-sections and
-of process-independent parton distribution functions,
+given that for smaller values of $W^2$  neutrino scattering is dominated by either quasi-elastic scattering
+or the resonance production region.
+%
+Provided the momentum transfer becomes large enough, $Q^2 \gsim {\rm few~GeV}^2$,
+the inelastic structure functions Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}) and~(\ref{eq:antineutrino_DIS_xsec_FL})
+can be decomposed in terms of a convolution of partonic scattering cross-sections  $C_{i,j}^{\nu N}(x,\alpha_s)$ and
+of process-independent PDFs $f^{(A)}_j\lp x,Q^2\rp$, 
 \be
 \label{eq:sfs_pqcd}
- F^{\nu A}_i(x,Q^2) = \sum_{j=q,\bar{q},g}\int_x^1 \frac{dz}{z}\, C_{i,j}^{\nu N}(z,\alpha_s(Q^2))f^{(A)}_j\lp \frac{x}{z},Q^2\rp \, , \quad i = 2,3,L \, ,
+ F^{\nu A}_i(x,Q^2) = \sum_{j=q,\bar{q},g}\int_x^1 \frac{dz}{z}\, C_{i,j}^{\nu N}(z,\alpha_s(Q^2))f^{(A)}_j\lp \frac{x}{z},Q^2\rp \, , \quad i = 2,3,L \, .
  \ee
- where $j$ is an index that runs over all possible partonic initial states
- and $C_{i,j}^{\nu N}$ is the process-dependent (but target-independent) coefficient function.
+ Eq.~(\ref{eq:sfs_pqcd}) holds both for inclusive and for heavy quark production structure functions,
+ thought in the latter case one needs to account for mass-dependent effects.
  %
- The latter can be expressed  as a series expansion in powers of the strong
- coupling $\alpha_s(Q^2)$,
- \be
- \label{eq:coeff_fun_expansion}
- C_{i,j}^{\nu N}(z,\alpha_s(Q^2)) = \sum_{k=0}^m \lp \alpha_s(Q^2) \rp^{k} C_{i,j}^{\nu N(k)}(z) \, .
- \ee
- The leading-order ($k=0$)  term is independent of $\alpha_s$ since the Born scattering
- is mediated by the weak interaction.
+ Neutrino structure functions can be computed up to N$^3$LO for the massless case
+ and up to NNLO (with respect to the Born cross-section) for the charm production
+ case~\cite{Gao:2017kkx}.
  %
- At leading order and considering a proton target, $n_f=4$ active quark flavours,
- neglecting charm mass effects and assuming a diagonal CKM matrix,
- we can express the $F_2^{\nu p}$ and $xF_3^{\nu p}$ structure functions as
- follows
+ We discuss in Sect.~\ref{sec:settings} the
+ tools~\cite{Candido:2022tld,yadism,Candido:2023utz,Carrazza:2020gss} used in this work to
+ evaluate neutrino DIS structure functions in order to generate
+ LHC neutrino pseudo-data.
+ %
+ In this work we don't consider structure functions in the shallow inelastic scattering region (SIS)
+ defined by $Q^2 \lsim {\rm few~GeV}^2$, for which a different approach
+ must the  adopted for their evaluation~\cite{Candido:2023utz}.
+
+ Each different structure function provides complementary sensitivity
+ to the partonic flavour decompositions of nucleons.
+ %
+ To illustrate this sensitivity, one can consider a leading order (LO) calculation
+ for a proton target, $n_f=4$ active quark flavours,
+ neglecting charm mass effects and assuming a diagonal CKM matrix.
+ %
+ In this scenario one can express the $F_2^{\nu p}$ and $xF_3^{\nu p}$ structure functions as
+ follows:
  \bea
  F_2^{\nu p}(x,Q^2) &=& 2x\lp f_{\bar{u}} + f_{d} + f_{s} + f_{\bar{c}} \rp(x,Q^2) \, , \nonumber  \\
  F_2^{\bar{\nu} p}(x,Q^2) &=& 2x\lp f_u + f_{\bar{d}} + f_{\bar{s}} + f_c \rp(x,Q^2) \, , \label{eq:neutrinoSFs} \\
  xF_3^{\nu p}(x,Q^2) &=& 2x\lp -f_{\bar{u}} + f_d +f_s - f_{\bar{c}}\rp(x,Q^2)  \, , \nonumber\\
  xF_3^{\bar{\nu} p}(x,Q^2) &=& 2x\lp f_u - f_{\bar{d}} -f_{\bar{s}} + f_{c}\rp(x,Q^2) \, . \nonumber
  \eea
- The corresponding expressions for a neutron target and or isoscalar target can be obtained
- from isospin symmetry, for instance the LO structure functions for
- neutrino-neutron scattering are
+ The corresponding expressions for a neutron target are obtained from isospin symmetry
  \bea
  F_2^{\nu n}(x,Q^2) &=& 2x\lp f_{\bar{d}} + f_{u} + f_{s} + f_{\bar{c}} \rp(x,Q^2) \, , \nonumber  \\
  F_2^{\bar{\nu} n}(x,Q^2) &=& 2x\lp f_d + f_{\bar{u}} + f_{\bar{s}} + f_c \rp(x,Q^2) \, , \label{eq:antineutrinoSFs} \\
  xF_3^{\nu n}(x,Q^2) &=& 2x\lp -f_{\bar{d}} + f_u +f_s - f_{\bar{c}}\rp(x,Q^2)  \, , \nonumber\\
- xF_3^{\bar{\nu} n}(x,Q^2) &=& 2x\lp f_d - f_{\bar{u}} -f_{\bar{s}} + f_{c}\rp(x,Q^2) \, . \nonumber
+ xF_3^{\bar{\nu} n}(x,Q^2) &=& 2x\lp f_d - f_{\bar{u}} -f_{\bar{s}} + f_{c}\rp(x,Q^2) \, , \nonumber
  \eea
+ while for an isoscalar, free-nucleon target denoted by $N$ one has
+ \bea
+ F_2^{\nu N}(x,Q^2) &=& 2x\lp f_{u^+} + f_{d^+} + 2f_s + 2f_{\bar{c}} \rp(x,Q^2) \, , \nonumber  \\
+ F_2^{\bar{\nu} N}(x,Q^2) &=& 2x\lp f_{u^+} + f_{d^+} + 2f_{\bar{s}} + 2f_c \rp(x,Q^2) \, , \label{eq:neutrinoSFs} \\
+ xF_3^{\nu N}(x,Q^2) &=& 2x\lp f_{u^-} + f_{d^-} +2f_s - 2f_{\bar{c}}\rp(x,Q^2)  \, , \nonumber\\
+ xF_3^{\bar{\nu} N}(x,Q^2) &=& 2x\lp   f_{u^-} + f_{d^-}-2f_{\bar{s}} +2 f_{c}\rp(x,Q^2) \, , \nonumber
+ \eea
+ in terms of the valence and sea PDF combinations defined by
+ \be
+ f_{q^+} (x,Q^2)\equiv \lp f_{q}+f_{\bar{q}}\rp(x,Q^2) \, , \qquad
+ f_{q^-} (x,Q^2)\equiv \lp f_{q}- f_{\bar{q}}\rp(x,Q^2) \, .
+ \ee
+ From this partonic decomposition we see that even for isoscalar targets separate measurements
+ for neutrinos and antineutrinos are not equivalent since in general neither $f_{s^-}$ nor
+ $f_{c^-}$ are expected to vanish.
+
+ In the projections presented in this work, when interpreting the LHC neutrino structure
+ functions in terms of proton PDFs we assume isoscalar free-nucleon targets and neglect
+ nuclear PDF modifications.
+ %
+ When evaluating structure functions for a tungsten (W) target, we keep into account
+ that the target is not isoscalar when evaluating the physical observables.
+ 
+
+ \subsection{Far-forward neutrino detectors at the LHC}
+ \label{sec:neutrinoDetectors}
  
 
 \subsection{DIS pseudo-data generation}
