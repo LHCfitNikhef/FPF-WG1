@@ -4,4 +4,4 @@ default:
 	pdflatex FPF-WG1	
 
 clean:
-	rm -rf *~ *.out *.toc *.log FPF-WG1.pdf *.aux *.blg *.bbl 
+	rm -rf *~ *.out *.toc *.log FPF-WG1.pdf *.aux *.blg *.bbl  scripts/*.pdf scripts/*~

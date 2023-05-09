@@ -166,3 +166,4 @@ cython_debug/
 *.tex#
 paper/.\#FPF-WG1.tex
 *.toc
+paper/FPF-WG1.pdf
