@@ -453,10 +453,11 @@ bool writeDatPrel(string PDF, string expname, string nuID, int iexp, bool useSta
     if (system(("ls "+thpath+"/grids").c_str())==512) {
         system(("tar -xf "+thpath+"/grids-xsecs_A1.tar").c_str());
     }
+    string thpath4ln =  "../../../../../../../../theory/" + gridsub;
     for (string gd : {"nu_A_1-XSFPFCC.pineappl.lz4","nub_A_1-XSFPFCC.pineappl.lz4"}) {
         if (system(("ls "+mdir+"grids/"+gridsub+"/"+gd).c_str())==512) {
-            system(("ln -s "+thpath+"/grids/"+gd
-                        +" "+mdir+"grids/"+gridsub+"/"+gd).c_str());
+            system(("ln -s " + thpath4ln + "/grids/" + gd
+                        +" " + mdir + "grids/" + gridsub + "/" + gd).c_str());
         }
     }
 
@@ -708,12 +709,12 @@ bool writeDatFinal(string PDF, string expname, string nuID, int iexp) {
                        stat,dvtmp,                    //stat, uncor
                        svtmp,systtmp)) return false;  //systnames, systmatrix
 
-    ////Syst unc considered fully uncorrelated
-    //if (!xFtableWriter(mdir,PDF+"/uncor/",
-    //                   expname,nuID,iexp, 
-    //                   binF,xav,Q2av,xsv,             //3 bins, x-sec
-    //                   stat,uncor,                    //stat, uncor
-    //                   svtmp,systtmp)) return false;  //systnames, systmatrix
+    //Syst unc considered fully uncorrelated
+    if (!xFtableWriter(mdir,PDF+"/uncor/",
+                       expname,nuID,iexp, 
+                       binF,xav,Q2av,xsv,             //3 bins, x-sec
+                       stat,uncor,                    //stat, uncor
+                       svtmp,systtmp)) return false;  //systnames, systmatrix
 
     ////No variation in pseudodata, for checking chi2=0 case
     //if (!xFtableWriter(mdir,PDF+"/noVar/",
