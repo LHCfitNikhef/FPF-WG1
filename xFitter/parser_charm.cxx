@@ -225,7 +225,8 @@ bool xFtableWriter(string mdir, string sdir,
     dirCheck(mdir+sdir);
         
     fstream out;
-    string outname = mdir+sdir+expID+"-thexp.dat";
+    string thexp="_charm-thexp.dat";
+    string outname = mdir+sdir+expID+thexp;
     outStreamOpen(out,outname);
     out << "* " << exptag << " CC DIS pseudodata\n";
     out << "&Data\n";
@@ -346,7 +347,8 @@ vector< vector<double> > xFtableReader(vector<string>& colNames,
     vector<double> vtmp;
     vector< vector<double> > Mtmp;
     string expID  = expname + "_" + nuID;
-    string infile = mdir + sdir + expID + "-thexp.dat";
+    string thexp="_charm-thexp.dat";
+    string infile = mdir + sdir + expID + thexp;
 
     //Open xFitter .dat file for reading
     inStreamOpen(in,infile);
@@ -798,7 +800,7 @@ bool writeCov(string PDF, string expname, vector<string> nuIDs) {
         in.close();        
 
         //Write covariance matrix table in xFitter format            
-        string outname = datadir+PDF+"/"+expID+".cov";
+        string outname = datadir+PDF+"/"+expID+"_charm.cov";
         outStreamOpen(out,outname);
         out << "! Covariance matrix" << endl;
         out << "&StatCorr"           << endl;
