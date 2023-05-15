@@ -9,7 +9,7 @@
 
      InputFileNames = 
     ! FPF pseudodata
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/prel/FASERv2_nub_charm-thexp.dat',
+     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/prel/FASERv2_nunub_charm-thexp.dat',
 &End
 
 &InCorr
@@ -17,7 +17,7 @@
     NCorrFiles = 0
  
   ! Correlation files:
-  !  CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/FASERv2_nub_charm.cov'
+  !  CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/FASERv2_nunub_charm.cov'
 &End
 
 &ReduceSyst
@@ -322,7 +322,7 @@
   ! NPARVAR = 3                        ! Number of parametrisation uncertainties in the LHAPDFVARSET set
   ! LHAPDFPROFILE = False              ! run only on the set specified by ILHAPDFSET
   ! LHASCALEPROFILE = True             ! Add QCD scale variations as nuisance parameters
-   SCALE68 = True                    ! Scale PDF uncertainties by a factor 1/1.645
+  ! SCALE68 = False                    ! Scale PDF uncertainties by a factor 1/1.645
   ! WriteAlphaSToMemberPDF = false
   ! NREMOVEPRIORS = 0                  ! Remove prior from the last n PDF nuisance parameters
   ! DataToTheo = True                  ! reset data to predictions corresponding to member 0, for sensitivity studies
