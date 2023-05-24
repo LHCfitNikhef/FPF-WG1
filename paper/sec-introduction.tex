@@ -1,0 +1,132 @@
+\section{Introduction and motivation}
+\label{sec:introduction}
+
+Proton-proton collisions at energy-frontier hadron colliders
+such as the LHC produce an intense collimated flux of neutrinos~\cite{Kling:2021gos}.
+%
+These neutrinos are characterised by the largest energies ever achieved in laboratory experiments
+and reaching up to  several TeV, only surpassed by astrophysical neutrinos.
+%
+Due to the lack of dedicated instrumentation in the LHC far-forward region,
+until recently these neutrinos escaped detection and hence could not be used
+for scientific enquiry.
+%
+This situation changed drastically in  March 2023
+with the reports of the first observation of LHC neutrinos~\cite{FASER:2023zcr} by the
+far-forward  FASER$\nu$~\cite{FASER:2019dxq} and SND@LHC~\cite{SHiP:2020sos} experiments.
+%
+The discovery of LHC neutrinos enables
+unprecedented scientific opportunities
+for particle and astroparticle physics both within the Standard Model and beyond it,
+see~\cite{Anchordoqui:2021ghd,Feng:2022inv}
+and references therein for a comprehensive summary.
+%
+Beyond the ongoing Run III, a dedicated suite of upgraded far-forward
+neutrino experiments hosted by a dedicated
+Forward Physics Facility (FPF)~\cite{Anchordoqui:2021ghd,Feng:2022inv} has been
+proposed to operate concurrently with the HL-LHC.
+
+Among its many possible applications, the high-energy neutrino beam produced by the LHC
+can be deployed as a sensitive probe of hadron structure.
+%
+As well known~\cite{Conrad:1997ne,Mangano:2001mj},
+measurements of neutrino structure functions in deep-inelastic scattering
+(DIS)~\cite{Candido:2023utz} provide valuable information on the parton distribution functions (PDFs)
+of nucleons and nuclei~\cite{Ethier:2020way,Gao:2017yyd,Kovarik:2019xvh}, in particular
+concerning the quark and antiquark PDF flavour separation.
+%
+Furthermore, these constraints from charged-current neutrino DIS are complementary to those
+provided by neutral-current charged-lepton DIS, being sensitive to independent
+flavour combinations.
+%
+With this motivation, several  experiments have in the past measured neutrino-nucleus
+DIS structure functions over a wide range of energies, and neutrino data
+from e.g. the CHORUS~\cite{CHORUS:2005cpn}, NuTeV~\cite{NuTeV:2001dfo},
+CCFR~\cite{Yang:2000ju}, and CDHS~\cite{Berge:1989hr} experiments enter 
+some of the most recent global determinations of proton~\cite{Hou:2019efy,Bailey:2020ooq,NNPDF:2021njg} and
+nuclear PDFs~\cite{AbdulKhalek:2022fyi,Eskola:2021nhw,Muzakka:2022wey}.
+
+As compared to previous neutrino DIS measurements,  LHC data benefits
+from higher neutrino energies  increasing the kinematic coverage
+in the $(x,Q^2)$ plane by an order of magnitude both in the small-$x$
+and the large-$Q^2$ directions~\cite{Feng:2022inv}.
+%
+Furthermore, the large number of expected neutrino scattering events enable
+structure function measurements with excellent precision,
+e.g. the  $\mathcal{O}(10^6)$ muon neutrinos expected at the FPF detectors~\cite{Kling:2021gos}
+enable sub-percent statistical uncertainties for most of the bins in the $(x,Q^2)$ plane.
+%
+However,  so far discussions about the impact of far-forward LHC neutrinos on hadronic structure
+have been restricted to the level  of qualitative estimates.
+%
+The main reason for this limitation is the lack
+of dedicated projections for the LHC neutrino structure function data, including the expected
+statistical and systematic uncertainties for the various operating and proposed detectors.
+
+The main goal of this work is to bridge this gap and quantify
+the expected impact of LHC neutrino DIS data on the PDFs of  nucleons and heavy nuclei
+for the various relevant experiments and for different assumptions about their performance
+and the integrated luminosities.
+%
+In addition to projections for FASER$\nu$ and SND@LHC based on the full Run III luminosity,
+we consider also three of the proposed FPF experiments, FLArE, AdvSND, and FASER$\nu$2.
+%
+For each detector, we generate dedicated  pseudo-data for both inclusive and charm (dimuon)
+structure functions and estimate the event yields as a function of the binning
+in $x$ and $Q^2$.
+%
+Emphasis is devoted to assessing the expected systematic uncertainties
+from the intended acceptance and performance of the LHC neutrino experiments.
+
+Following this DIS pseudo-data generation, we study their impact first
+on the proton PDFs and subsequently on the nuclear PDFs.
+%
+In the former case, this is achieved both by means of the Hessian profiling~\cite{Paukkunen:2014zia}
+of the PDF4LHC21 combination~\cite{PDF4LHCWorkingGroup:2022cjn}
+within the  {\sc\small xFitter} framework~\cite{Alekhin:2014irh} and by means
+of their direct inclusion in the open-source NNPDF fitting framework~\cite{NNPDF:2021uiq}.
+%
+In the latter case, the EPPS21 global nuclear PDF determination~\cite{Eskola:2021nhw}
+is profiled again using {\sc\small xFitter}.
+%
+Theoretical predictions for neutrino DIS structure functions are evaluated with the {\sc\small EKO}~\cite{Candido:2022tld}
+and {\sc\small YADISM}~\cite{yadism,Candido:2023utz} programs interfaced to {\sc\small PineAPPL}~\cite{Carrazza:2020gss}, with the latter providing the fast interpolation grids to be used in the fit.
+%
+To this end, a new interface between  {\sc\small PineAPPL} and {\sc\small xFitter} has been developed.
+
+Qualitatively consistent results are obtained from the analyses using both the {\sc\small xFitter}
+and NNPDF frameworks and reveal that  LHC neutrino scattering, specially
+for the high-statistics  experiments of the FPF, provides  stringent constraints
+disentangling the quark and antiquark (nuclear) PDFs of different flavours.
+%
+We find that the inclusion of systematic uncertainties does not significantly modify the
+impact of these structure function measurements on the PDFs as compared
+to an analysis that considers only statistical errors, unless extreme assumptions on the bin-by-bin
+correlation model are adopted.
+%
+We illustrate the impact that the expected improvements on the (nuclear) PDFs provided 
+on LHC neutrinos may have on precision measurements at the HL-LHC.
+%
+Our analysis demonstrates that detection and analysis of LHC far-forward neutrinos  effectively
+extends the LHC with a charged-current counterpart of the
+US-based Electron-Ion Collider (EIC)~\cite{AbdulKhalek:2021gbh}
+with comparable kinematic reach, therefore realising a ``Neutrino-Ion Collider'' at CERN
+without the need of additional accelerator infrastructure.
+
+
+The outline of this paper is as follows.
+%
+First of all, in Sect.~\ref{sec:dis_pseudodata} we describe the procedure
+adopted to generate projections for DIS structure functions associated to
+LHC neutrino scattering, including the modelling of experimental systematic
+uncertainties.
+%
+Then in Sect.~\ref{sec:settings} we discuss the theoretical settings used
+for the calculation of DIS structure functions and the methodology adopted
+to account for the constraints of LHC neutrino DIS data on proton and nuclear PDFs.
+%
+The projected impact of these structure functions on proton and nuclear
+PDFs is quantified in Sects.~\ref{sec:protonPDFs} and~\ref{sec:nuclearPDFs} respectively.
+%
+Finally we summarise in Sect.~\ref{sec:summary} and consider some possible
+directions for follow-up research.
