@@ -57,7 +57,7 @@ void dirCheck(string dir) {
 //AUX function for reliable string to double conversion
 double str2d(string str) {
     stringstream sstream;
-    sstream << str;
+    sstream << setprecision(15) << str; //FIXME change in other codes as well
     double d=0;
     if (str!="nan") sstream >> d;
     return d;
@@ -124,10 +124,10 @@ vector< vector<double> > readBinnedEvents(string infile, bool useStat, bool useS
         binF.push_back(1.);
         xlo.push_back(str2d(lsplit[0]));
         xhi.push_back(str2d(lsplit[1]));
-        xav.push_back(0.5*(xlo.back()+xhi.back()));
+        xav.push_back(str2d(lsplit[2]));
         Q2lo.push_back(str2d(lsplit[3]));
         Q2hi.push_back(str2d(lsplit[4]));
-        Q2av.push_back(0.5*(Q2lo.back()+Q2hi.back()));
+        Q2av.push_back(str2d(lsplit[5]));
 
         //Read x-sec
         string sigstr = lsplit[9];
@@ -140,7 +140,7 @@ vector< vector<double> > readBinnedEvents(string infile, bool useStat, bool useS
 
         //Read stat unc
         if (useStat && lsplit.size()>11) {
-            if (Nevtstr=="0.00000") {
+            if (Nevtstr.find("0.00000")!=string::npos) { //TODO modify in other codes as well
                 stat.push_back(0.);
                 binF.back() = 0.;
             }
@@ -173,7 +173,7 @@ vector< vector<double> > readBinnedEvents(string infile, bool useStat, bool useS
 //Param  mdir       Master directory above datatables and grids
 //       sdir       Subdirectory under mdir where to write these tables
 //       expname    Experiment name
-//       nuID       Neutrino PDG ID as str, start w/ "+-" to include both nu & antinu
+//       nuID       "nu" for neutrinos, "nub" for antineutrinos
 //       index      Dataset must be assigned a unique index
 //       binF_in    Flags 1/0 if bin used in fit; "in"=doubles, changed to int
 //       x,Q2       Vec. of x and Q^2 values for each data point
@@ -194,14 +194,14 @@ bool xFtableWriter(string mdir, string sdir,
                    vector<string> systnames, 
                    vector< vector<double> > syst)
 {
-    string nuID = replace(nuID_in,"-+","+-");
+    string nuID = replace(nuID_in,"-+","+-"); //FIXME when nu/nub case available
     string expID = expname + "_" + nuID;
 
     //LaTeX and ROOT style strings for experiment identification
     string exptag = replace(expID, "v",     "$\\nu$");
-    exptag        = replace(exptag,"_14",  " $\\nu_{\\mu}$");
-    exptag        = replace(exptag,"_-14", " $\\bar{\\nu}_{\\mu}$");
-    exptag        = replace(exptag,"_+-14"," $\\nu_{\\mu}+\\bar{\\nu}_{\\mu}$");
+    exptag        = replace(exptag,"_nu",  " $\\nu_{\\mu}$");
+    exptag        = replace(exptag,"_nub", " $\\bar{\\nu}_{\\mu}$");
+    exptag        = replace(exptag,"_+-14"," $\\nu_{\\mu}+\\bar{\\nu}_{\\mu}$"); //FIXME nu/nub when available
     string expstr = replace(exptag,"$","");
     expstr        = replace(expstr,"\\","#");    
     vector<int> binF;
@@ -249,7 +249,7 @@ bool xFtableWriter(string mdir, string sdir,
     for (auto s : systnames) out << ",'" << s << "'";
     out << "\n";
     out << "   TheoryType = 'expression\'\n";     
-    if (nuID.find("+-")!=string::npos) {
+    if (nuID.find("+-")!=string::npos) {  //TODO check when nu/nub case available
         out << "   TermType   = 'reaction','reaction'\n";
         out << "   TermName   = 'P','A'\n";
         out << "   TermSource = 'PineAPPL','PineAPPL'\n";
@@ -262,20 +262,18 @@ bool xFtableWriter(string mdir, string sdir,
             << replace(replace(expID,"_optimistic",""),"+-","m")
             << "/nub_A_1-XSFPFCC.pineappl.lz4'\n";
         out << "   TheorExpr  = 'P+A'\n\n";
-    } else {        
+    } else {
         out << "   TermType   = 'reaction'\n";
         out << "   TermName   = 'P'\n";
         out << "   TermSource = 'PineAPPL'\n";
         out << "   TermInfo   = 'GridName=";
-        if (nuID.find("-")!=string::npos) {
-            out << mdir << "grids/"
-                << replace(replace(expID,"_optimistic",""),"-","m")
-                << "/nub_A_1-XSFPFCC.pineappl.lz4'\n";
-        } else {            
-            out << mdir << "grids/"
-                << replace(replace(expID,"_optimistic",""),"-","m")
-                << "/nu_A_1-XSFPFCC.pineappl.lz4'\n";
-        }
+//      expID = expname + "_" + nuID;
+//      gridsub = expname+"_"+(nuID=="nu" ? "NU" : "NUB");  //TODO generalize when nu+nub available
+//      gd : "nu_A_1-XSFPFCC.pineappl.lz4"
+//                          +" "+mdir+"grids/"+gridsub+"/"+gd).c_str());
+        out << mdir << "grids/"
+            << replace(replace(replace(expID,"_optimistic",""),"nub","NUB"),"nu","NU")
+            << "/"+nuID+"_A_1-XSFPFCC.pineappl.lz4'\n";
         out << "   TheorExpr  = 'P'\n\n";
     }
     out << "   Percent = " << Nerr << "*True\n";
@@ -302,10 +300,12 @@ bool xFtableWriter(string mdir, string sdir,
     out <<   " @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2}";
     out <<   " @Title:Q^{2} > 1000 @Ymin:0.01@Xlog@Ylog'\n";
     out << "&End\n";
-    out << "*binFlag          x              Q2           Sigma";
-    if (useStat)  out << "            stat";
-    if (useUncor) out << "           uncor";
-    for (auto su : systnames) out << setfill(' ') << setw(16) << su;
+    out << "*binFlag" << setfill(' ') << setw(19) << "x"
+                      << setfill(' ') << setw(24) << "Q2"
+                      << setfill(' ') << setw(24) << "Sigma";
+    if (useStat)  out << setfill(' ') << setw(24) << "stat";
+    if (useUncor) out << setfill(' ') << setw(24) << "uncor";
+    for (auto su : systnames) out << setfill(' ') << setw(24) << su;
     out << endl;
     int ixsec=0;
     double uncCut=50.;  //Ignore bins w/ any unc above this %
@@ -316,17 +316,17 @@ bool xFtableWriter(string mdir, string sdir,
         else if (xsec[ixsec] < 0  ) bt=0;         
         for (int isu=0; isu!=syst.size(); ++isu) if (syst[isu][ix]>uncCut) bt=0;
         out << bt;
-        out << setfill(' ') << setw(16) << x[ix];
-        out << setfill(' ') << setw(16) << Q2[ix];
+        out << setfill(' ') << setw(24) << setprecision(15) << x[ix];
+        out << setfill(' ') << setw(24) << setprecision(15) << Q2[ix];
         if (xsecWriteAll || binF[ix]==1) {  //what matters here is the original*
-            out << setfill(' ') << setw(16) << xsec[ixsec];
+            out << setfill(' ') << setw(24) << xsec[ixsec];
             ++ixsec;
         } else out << "        0.000000";
         //Turn err into %
-        if (useStat)  out << setfill(' ') << setw(16) << stat[ix];
-        if (useUncor) out << setfill(' ') << setw(16) << uncor[ix];
+        if (useStat)  out << setfill(' ') << setw(24) << stat[ix];
+        if (useUncor) out << setfill(' ') << setw(24) << uncor[ix];
         for (int isu=0; isu!=syst.size(); ++isu) {  //Syst. unc.
-            out << setfill(' ') << setw(16) << syst[isu][ix];
+            out << setfill(' ') << setw(24) << syst[isu][ix];
         }
         out << endl; 
 
@@ -350,7 +350,7 @@ vector< vector<double> > xFtableReader(vector<string>& colNames,
     double dtmp;
     vector<double> vtmp;
     vector< vector<double> > Mtmp;
-    string nuID   = replace(nuID_in,"-+","+-");
+    string nuID   = replace(nuID_in,"-+","+-");  //FIXME when nu/nub available
     string expID  = expname + "_" + nuID;
     string infile = mdir + sdir + expID + "-thexp.dat";
 
@@ -440,24 +440,26 @@ vector< vector<double> > readPrelXsec(string prelname) {
 //Returns exit status of xFtableWriter: false if bin mismatch found & tables not written, else true.
 bool writeDatPrel(string PDF, string expname, string nuID, int iexp, bool useStat, bool useSyst) {
 
-    string expID = expname + "_" + nuID;
+    string expID = expname + "_" + (nuID=="nu" ? "nu" : "nub"); //TODO generalize when nu+nub available
     string suffix = ".txt";
     string mdir = "datafiles/lhc/fpf/neutrinoDIS/pseudodata/";
-    string binevtbase = "../results/" + expname + "/binned_sysevents_";
+    string binevtbase = "../results/" + expname
+                      + "/clipped_nan/clipped_nan_binned_sysevents_";
 
     //Links to grids
-    string gridsub = replace(replace(replace(expID,"_optimistic",""),"+-",""),"-","m");
+    string gridsub = expname+"_"+(nuID=="nu" ? "NU" : "NUB");  //TODO generalize when nu+nub available
     dirCheck(mdir+"grids/");  //Also check if grids exist / to be downloaded / ln -s
     dirCheck(mdir+"grids/"+gridsub);
     string thpath = "../theory/"+gridsub;
     if (system(("ls "+thpath+"/grids").c_str())==512) {
-        system(("tar -xf "+thpath+"/grids-xsecs_A1.tar").c_str());
+        system(("tar -xf "+thpath+"/grids-xsec-a1.tar").c_str());
     }
-    string thpath4ln =  "../../../../../../../../theory/" + gridsub;
+    string thpath4ln =  "../../../../../../../../theory/"  //TODO shouldn't this affect all codes?
+                  + gridsub + "/grids-"+expname+"_"+nuID+"-a1";
     for (string gd : {"nu_A_1-XSFPFCC.pineappl.lz4","nub_A_1-XSFPFCC.pineappl.lz4"}) {
         if (system(("ls "+mdir+"grids/"+gridsub+"/"+gd).c_str())==512) {
-            system(("ln -s " + thpath4ln + "/grids/" + gd
-                        +" " + mdir + "grids/" + gridsub + "/" + gd).c_str());
+            system(("ln -s "+thpath4ln+"/grids/"+gd
+                        +" "+mdir+"grids/"+gridsub+"/"+gd).c_str());
         }
     }
 
@@ -579,7 +581,6 @@ bool writeDatPrel(string PDF, string expname, string nuID, int iexp, bool useSta
 } // END writeDatPrel
 
 bool writeDatFinal(string PDF, string expname, string nuID, int iexp) {
-    string suffix = ".txt";
     string mdir = "datafiles/lhc/fpf/neutrinoDIS/pseudodata/";
     
     //For generating univariate Gaussian random numbers
@@ -709,12 +710,12 @@ bool writeDatFinal(string PDF, string expname, string nuID, int iexp) {
                        stat,dvtmp,                    //stat, uncor
                        svtmp,systtmp)) return false;  //systnames, systmatrix
 
-    //Syst unc considered fully uncorrelated
-    if (!xFtableWriter(mdir,PDF+"/uncor/",
-                       expname,nuID,iexp, 
-                       binF,xav,Q2av,xsv,             //3 bins, x-sec
-                       stat,uncor,                    //stat, uncor
-                       svtmp,systtmp)) return false;  //systnames, systmatrix
+    ////Syst unc considered fully uncorrelated
+    //if (!xFtableWriter(mdir,PDF+"/uncor/",
+    //                   expname,nuID,iexp, 
+    //                   binF,xav,Q2av,xsv,             //3 bins, x-sec
+    //                   stat,uncor,                    //stat, uncor
+    //                   svtmp,systtmp)) return false;  //systnames, systmatrix
 
     ////No variation in pseudodata, for checking chi2=0 case
     //if (!xFtableWriter(mdir,PDF+"/noVar/",
@@ -741,7 +742,7 @@ bool writeDatFinal(string PDF, string expname, string nuID, int iexp) {
 } // END writeDatFinal
 
 
-void writeCov(string PDF, string expname, vector<string> nuIDs) {
+bool writeCov(string PDF, string expname, vector<string> nuIDs) {
     string datadir = "./datafiles/lhc/fpf/neutrinoDIS/pseudodata/";
     ifstream in;
     fstream out;
@@ -749,21 +750,7 @@ void writeCov(string PDF, string expname, vector<string> nuIDs) {
     stringstream sstream;
     pair<double,double> bintmp;
     int i1,i2;  //Index tmps
-    double xlo,xhi,Q2lo,Q2hi,cov;
-
-    //Read bin map, find avgs
-    map< int, pair<double,double> > binmap;
-    inStreamOpen(in,"../results/"+expname+"/CovMap.txt");
-    getline(in,line);  //Skip header
-    while (getline(in,line)) {
-        sstream.clear();  sstream.str("");
-        sstream << line;
-        sstream >> i1 >> xlo >> xhi >> Q2lo >> Q2hi;
-        bintmp.first  = 0.5*(xlo +xhi );
-        bintmp.second = 0.5*(Q2lo+Q2hi);
-        binmap[i1] = bintmp;            
-    }
-    in.close();
+    double xlo,xhi,xav,Q2lo,Q2hi,Q2av,cov;
 
     //Read and write covariance matrix tables
     int ind1,ind2;
@@ -776,9 +763,32 @@ void writeCov(string PDF, string expname, vector<string> nuIDs) {
         exptag        = replace(exptag,"_-14", " $\\bar{\\nu}_{\\mu}$");
         exptag        = replace(exptag,"_+-14"," $\\nu_{\\mu}+\\bar{\\nu}_{\\mu}$");
 
+        
+        //Deduce cov. mat bin map fom binned events
+        map< int, pair<double,double> > binmap;
+        string suffix = ".txt";
+        string infile = "../results/" + expname
+                      + "/clipped_nan/clipped_nan_binned_sysevents_"
+                      + replace(expID,"+-","") //FIXME when nu+nub available
+                      + suffix;
+        inStreamOpen(in,infile);
+        for (int i=0; i!=2; ++i) getline(in,line);  //Skip 2 lines of header
+        i1=0;  //Init
+        while (getline(in,line)) {
+            sstream.clear();  sstream.str("");
+            sstream << setprecision(15) << line;
+            sstream >> xlo >> xhi >> xav >> Q2lo >> Q2hi >> Q2av;
+            bintmp.first  = xav;
+            bintmp.second = Q2av;
+            binmap[i1] = bintmp;            
+            ++i1;
+        }
+        in.close();
+
         //Read covariance matrix entries
-        inStreamOpen(in,"../results/"+expname+"/covariance_"
-                                     +expID+".txt");
+        inStreamOpen(in,"../results/" + expname
+                        + "/clipped_nan/clipped_nan_covariance_"
+                        + expID + suffix);
         vector<int> i1s,i2s;
         vector<double> covs;
         while (getline(in,line)) {
@@ -811,28 +821,29 @@ void writeCov(string PDF, string expname, vector<string> nuIDs) {
         out << "&End" << endl;
         //Matrix values
         for (int i=0; i!=covs.size(); ++i) {
-            out << setfill(' ') << setw(12) << binmap[i1s[i]].first;
-            out << setfill(' ') << setw(12) << binmap[i1s[i]].second;
-            out << setfill(' ') << setw(12) << binmap[i2s[i]].first;
-            out << setfill(' ') << setw(12) << binmap[i2s[i]].second;
-            out << setfill(' ') << setw(12) << covs[i] << endl;
+            out << setfill(' ') << setw(20) << setprecision(15) << binmap[i1s[i]].first;
+            out << setfill(' ') << setw(20) << setprecision(15) << binmap[i1s[i]].second;
+            out << setfill(' ') << setw(20) << setprecision(15) << binmap[i2s[i]].first;
+            out << setfill(' ') << setw(20) << setprecision(15) << binmap[i2s[i]].second;
+            out << setfill(' ') << setw(20) << setprecision(15) << covs[i] << endl;
         }
         out.close();
         cout << "Wrote " << outname << endl;
     }
 
+    return true;
 } // END writeCov
 
 int main() {
 
     //BEGIN user input
     vector<string> PDFs = {"PDF4LHC21","EPPS21nlo_CT18Anlo_W184"};
-    vector<string> expnames = {"FASERv","FASERv2","FASERv2_optimistic"};
-    vector<string> nuIDs = {"14","-14","+-14"};
+    vector<string> expnames = {"FASERv2"};
+    vector<string> nuIDs = {"nu","nub"}; //TODO add charge discr. case when available
 
     //True:  write tables for preliminary xFitter run
     //False: write final tables to be used as pseudodata in fits.
-    bool prel = false;
+    bool prel = true;
 
     //Flags for including uncertainties -- turn off if binned_events don't contain these
     bool useStat = true;  //Do binned_events tables contain stat unc?
@@ -844,7 +855,7 @@ int main() {
     for (string PDF : PDFs) {
         for (string expname : expnames) {
             for (string nuID : nuIDs) {
-                writeCov(PDF,expname,nuIDs);
+                if (!writeCov(PDF,expname,nuIDs)) return -1;
                 if (prel) {
                     if (!writeDatPrel(PDF,expname,nuID,iexp,useStat,useSyst)) return -1;
                 } else {

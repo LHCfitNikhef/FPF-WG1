@@ -27,6 +27,8 @@ def main(cards: pathlib.Path, destination: pathlib.Path):
         tmpdir = pathlib.Path(tmpdir).absolute()
         a_value = cards.stem.split("-")[-1]
         obs_name = cards.stem.split("-")[-2]
+        projectile = obs_name.split("_")[-1]
+        sg_name = obs_name.removesuffix(f"_{projectile}")
 
         # extract tar content
         if cards.suffix == ".tar":
@@ -46,7 +48,7 @@ def main(cards: pathlib.Path, destination: pathlib.Path):
                 data_name = cpath.name.split("-")[1][:-5]
                 for obs in observables["observables"]:
                     file_name = (
-                        f"{data_name}-{obs}.pineappl.lz4"
+                        f"{data_name}-{sg_name}-{obs}.pineappl.lz4"
                         if data_name != ""
                         else f"{obs}.pineappl.lz4"
                     )

@@ -215,6 +215,7 @@ def dump_xsecs_as_datfile(
     input_grids: npt.NDArray,
     pdf: str,
     destination: pathlib.Path,
+    file_name: str,
     err: str = "pdf",
 ):
     """Run predictions computation.
@@ -233,8 +234,8 @@ def dump_xsecs_as_datfile(
     with tempfile.TemporaryDirectory() as tmpdir:
         tmpdir = pathlib.Path(tmpdir).absolute()
 
-        output_name = grids.stem.replace("grids", "diff")
-        output_name += "iso" if "_iso" in pdf else ""
+        output_name = grids.stem.replace("grids", "diffxsec")
+        output_name += f"_{str(pdf)}"
         # extract tar content
         if grids.suffix == ".tar":
             utils.extract_tar(grids, tmpdir)
