@@ -1,4 +1,4 @@
-# FPF-WG1
+# FPF-WG1 (PDF4LHC21)
 Working Group 1 "Neutrino interactions and hadron structure" of the Forward Physics Facility
 
 ## $\nu\rm{FPF}$
