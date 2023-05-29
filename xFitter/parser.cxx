@@ -202,11 +202,12 @@ bool xFtableWriter(string mdir, string sdir,
     string expID = expname + origin + "_" + nuID;
 
     //LaTeX and ROOT style strings for experiment identification
-    string exptag = replace(expID, "v",      "$\\nu$");
+    string exptag = replace(expID, origin, replace(origin,"_"," "));
+    exptag        = replace(exptag,"Rv", "R$\\nu$");
     exptag        = replace(exptag,"_nochargediscrimination",
                                    " $\\nu_{\\mu}+\\bar{\\nu}_{\\mu}$");
-    exptag        = replace(exptag,"_nub",  " $\\bar{\\nu}_{\\mu}$");
-    exptag        = replace(exptag,"_nu",   " $\\nu_{\\mu}$");
+    exptag        = replace(exptag,"_nub", " $\\bar{\\nu}_{\\mu}$");
+    exptag        = replace(exptag,"_nu",  " $\\nu_{\\mu}$");
     string expstr = replace(exptag,"$","");
     expstr        = replace(expstr,"\\","#");    
     vector<int> binF;
@@ -357,8 +358,8 @@ vector< vector<double> > xFtableReader(vector<string>& colNames,
     double dtmp;
     vector<double> vtmp;
     vector< vector<double> > Mtmp;
-    string expID  = expname + "_" + nuID;
-    string infile = mdir + sdir + expID + origin + "-thexp.dat";
+    string expID = expname + origin + "_" + nuID;
+    string infile = mdir + sdir + expID + "-thexp.dat";
 
     //Open xFitter .dat file for reading
     inStreamOpen(in,infile);
@@ -560,7 +561,7 @@ bool writeDatFinal(string PDF,
     normal_distribution<double> distribution(0.0,1.0);
     
     //Init
-    string expID = expname + "_" + nuID;
+    string expID = expname + origin + "_" + nuID;
     string infile;
     vector<double> dvtmp;
     vector<string> svtmp, systnames;
@@ -570,11 +571,14 @@ bool writeDatFinal(string PDF,
     vector< vector<double> > prelXS;  //To contain xbins, Q2bins, th orig
     string prelname = "PDF_profiling/"+PDF+"/prel/"
                     + replace(replace(expID,"-","m"),"+","p")
-                    + origin
                     + "/output/fittedresults.txt_set_0000";
     prelXS = readPrelXsec(prelname);
     if (prelXS.size()!=3) {
         cout << "ERROR prelXS size!=3 for " << prelname << endl;
+        return false;
+    } else if (prelXS[0].size()==0) {
+        cout << "ERROR could not read preliminary x-sec from: " << endl;
+        cout << "  " << prelname << endl;
         return false;
     }
     vector<double> xb=prelXS[0],Q2b=prelXS[1],xsec=prelXS[2];
@@ -605,7 +609,7 @@ bool writeDatFinal(string PDF,
     bool useUncor = find(cols.begin(),cols.end(),"uncor")!=cols.end();
     if (useUncor) uncor = Mdat[colMap["uncor"]];
     
-    //Assume 1st syst unc is named "syst"
+    //Assume syst unc are listed after stat and uncor, if those are given
     int isyst = colMap["Sigma"] + 1 + (int)useStat + (int)useUncor;
     for (int i=isyst; i<cols.size(); ++i) {
         systnames.push_back(cols[i]);
@@ -683,12 +687,12 @@ bool writeDatFinal(string PDF,
                        stat,dvtmp,                    //stat, uncor
                        svtmp,systtmp)) return false;  //systnames, systmatrix
 
-    ////Syst unc considered fully uncorrelated
-    //if (!xFtableWriter(mdir,PDF+"/uncor/",
-    //                   expname,nuID,origin,iexp, 
-    //                   binF,xav,Q2av,xsv,             //3 bins, x-sec
-    //                   stat,uncor,                    //stat, uncor
-    //                   svtmp,systtmp)) return false;  //systnames, systmatrix
+    //Syst unc considered fully uncorrelated
+    if (!xFtableWriter(mdir,PDF+"/uncor/",
+                       expname,nuID,origin,iexp, 
+                       binF,xav,Q2av,xsv,             //3 bins, x-sec
+                       stat,uncor,                    //stat, uncor
+                       svtmp,systtmp)) return false;  //systnames, systmatrix
 
     ////No variation in pseudodata, for checking chi2=0 case
     //if (!xFtableWriter(mdir,PDF+"/noVar/",
@@ -733,11 +737,12 @@ bool writeCov(string PDF,
     int ind1,ind2;
     
     string expID  = expname + origin + "_" + nuID;
-    string exptag = replace(expID, "v",      "$\\nu$");
+    string exptag = replace(expID, origin, replace(origin,"_"," "));
+    exptag        = replace(exptag,"Rv", "R$\\nu$");
     exptag        = replace(exptag,"_nochargediscrimination",
                                    " $\\nu_{\\mu}+\\bar{\\nu}_{\\mu}$");
-    exptag        = replace(exptag,"_nub",  " $\\bar{\\nu}_{\\mu}$");
-    exptag        = replace(exptag,"_nu",   " $\\nu_{\\mu}$");
+    exptag        = replace(exptag,"_nub", " $\\bar{\\nu}_{\\mu}$");
+    exptag        = replace(exptag,"_nu",  " $\\nu_{\\mu}$");
 
     
     //Deduce cov. mat bin map fom binned events
@@ -827,7 +832,7 @@ int main() {
 
     //True:  write tables for preliminary xFitter run
     //False: write final tables to be used as pseudodata in fits.
-    bool prel = true;
+    bool prel = false;
 
     //Flags for including uncertainties -- turn off if binned_events don't contain these
     bool useStat = true;  //Do binned_events tables contain stat unc?
@@ -840,7 +845,6 @@ int main() {
         for (string expname : expnames) {
             for (string nuID : nuIDs) {
                 for (string origin : origins) {
-                    cout << "DEBUG: " << PDF << " " << expname << " " << nuID << " " << origin << endl;                    
                     if (prel) {
                         if (!writeDatPrel(PDF,expname,nuID,origin,iexp,useStat,useSyst)) return -1;
                     } else {
