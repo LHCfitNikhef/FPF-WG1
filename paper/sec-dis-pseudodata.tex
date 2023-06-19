@@ -169,9 +169,81 @@ a diagonal CKM matrix and no heavy quark mass effects.
  We also indicate the expected performance of the three FPF detectors
  and how this translates into the dominant experimental systematic
  uncertainties.
+ %
+ Since for the projection studies considered in this work we focus on muon
+ neutrino scattering, we will focus the subsequent discussion on the detection
+ performance of this neutrino flavour.
+
+ Table~\ref{tab:FPF_experiments} indicates
+ the rapidity coverage, target material,
+ muon neutrino acceptance, and the identification and reconstruction performance
+ for each of the far-forward LHC neutrino experiments considered
+ in this work.
+ %
+ More details of the information listed in this table is provided
+ in the following.
+
+  %-----------------------------------------------------------------
+\begin{table}[h!]
+  \centering
+  \small
+  \renewcommand{\arraystretch}{1.60}
+\begin{tabularx}{\textwidth}{Xcccc}
+\toprule
+Detector &  Rapidity &  Target &  Acceptance  & Performance \\
+\midrule
+FASER$\nu$  &   &     &       &              \\
+SND@LHC  &   &     &       &              \\
+\midrule
+FASER$\nu$2  &   &     &       &              \\
+AdvSND  &   &     &       &              \\
+FLArE  &   &     &       &              \\
+  \bottomrule
+\end{tabularx}
+\vspace{0.2cm}
+\caption{\small For each of the far-forward LHC neutrino experiments considered
+  in this work we indicate their rapidity coverage, target material,
+  muon neutrino acceptance, and the identification and reconstruction performance.
+  \label{tab:FPF_experiments}
+}
+\end{table}
+%-----------------------------------------------------------------
  
 
-\subsection{DIS pseudo-data generation}
+ \paragraph{AdvSND.}
+ %
+ The AdvSND far-detector will be able to track muons with energy $E_\nu \gsim 20$ GeV
+ within an acceptance of 100 mrad with information on the charge
+ of the  outgoing charged leptons.
+ %
+ The total energy of the hadronic final state can also be measured.
+ %
+ A proposed ``near-detector'' companion is being discussed for AdvSND, but
+ it would not be installed in the FPF and hence is not discussed here further.
+
+ \paragraph{FLArE.}
+ %
+ A liquid argon (LAr) detector able to track muon neutrinos
+ with energies  $E\le 1.5~\rm{TeV}$ with
+ a scattering angle reaching up to 0.4 mrad.
+ %
+ No information on the sign of the charged leptons can be extracted.
+ %
+ Reconstruction of the total energy of the hadronic final state should be
+ possible. 
+ %
+ A $\delta E_\nu\sim$30\% of energy resolution is
+ the target performance for muons, with an associated
+ $\delta \sim 5$ mrad of angular  resolution.
+
+ % Table coverage + detector performance
+
+
+
+
+ 
+
+\subsection{Differential event rate calculation}
 \label{sec:pseudo-data_generation}
 
 The first goal is to produce projections
@@ -243,7 +315,8 @@ Results for FASER$\nu$2 can be found \href{https://github.com/juanrojochacon/FPF
     \label{fig:fasernu2_muon}
 \end{figure}
 
-\subsection{Systematic Effects on Pseudodata}
+\subsection{Estimating systematic uncertainties}
+
 We now wish to understand the impact of systematic uncertainties on the event rate in $(x,Q^2,E_{\nu})$ space. For each experiment, the observables $E_{l},E_{h},\theta$ are related to $(x,Q^2,E_{\nu})$ by 
 
 \begin{align}
@@ -274,38 +347,3 @@ For FASER${\nu}$2, the systematic errors typically dominate over statistical err
     \label{fig:my_label}
 \end{figure}
 
-\subsection{Experimental acceptance performance} 
-
-\paragraph{AdvSND} 
-\begin{itemize}
-    \item The detectors will be able to track muons that have energy greater
-    than $20~\rm{GeV}$ (the values for the other charged leptons remain to be
-    determined) with an acceptance angle of 100 mrad for the muons and 
-    500 mrad for the both electrons and tau.
-    \item In addition, the information on the charge of the outgoing leptons
-    can also be accessed.
-    \item It should also be possible to reconstruct the hadronic final states
-    by measuring the total energy.
-\end{itemize}
-
-\paragraph{FLArE}
-\begin{itemize}
-    \item The detectors will be able to detect electrons with energy up to
-    $1~\rm{TeV}$ and an acceptance angel as high as 0.5 rad. For the muons,
-    the detectors will only be able to track them up to $1.5~\rm{GeV}$ with
-    a scattering angle reaching up to 0.4 mrad. The reconstruction of the
-    tau's angle and energy instead will be very difficult. However, it might
-    be possible to find the vertex of a particular tau decay if fine position
-    resolution is achieved.
-    \item With the current baseline design of the detector, it will not be
-    possible to access the information on the sign of the charged leptons.
-    \item It should also be possible to reconstruct the hadronic final
-    states but the reconstruction efficiency and particles will depend on
-    the type of particles. It is expected that the final states hadrons will
-    be dominated by pions, protons, and neutrons.
-    \item Regarding the systematic errors on the charged lepton energy and
-    scattering angle, it is expected to get $5\%$ energy resolution for
-    electrons and about 15 mrad in angular resolution. Due to the large
-    missing energy in the detector, $30\%$ energy resolution is probably
-    achievable for muons with about 5 mrad angular resolution.
-\end{itemize}
