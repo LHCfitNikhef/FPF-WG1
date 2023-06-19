@@ -185,6 +185,8 @@ for ifl in range(nfl):
         ax.set_ylim(0.96,1.06)
     if(ifl==1):
         ax.set_ylim(0.95,1.08)
+    if(ifl==2):
+        ax.set_ylim(0.95,1.08)
     if(ifl==3):
         ax.set_ylim(0.95,1.08)
     if(ifl==4):
