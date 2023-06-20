@@ -170,3 +170,4 @@ paper/FPF-WG1.pdf
 *.blg
 *.out
 *.aux
+paper/.\#sec-dis-pseudodata.tex
