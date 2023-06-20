@@ -411,7 +411,7 @@ Table~\ref{tab:integrated_rates} summarises the predicted integrated event yield
   to the DIS region,
   \be
   \label{eq:DISconditions}
-Q^2 \ge 2~{\rm GeV}^2\quad{\rm and} W^2 \ge 12.5~{\rm GeV}^2 \, .
+Q^2 \ge 2~{\rm GeV}^2\quad{\rm and}\quad  W^2 \ge 12.5~{\rm GeV}^2 \, .
 \ee
   %
   As discussed above, for FASER$\nu$ and SND@LHC we assume the integrated luminosity to
@@ -577,7 +577,7 @@ Hence, for each source of experimental systematic uncertainty we would like to e
 its impact at the level of event yields and eventually stablish also the associated
 correlation matrix.
 
-By means of tree-level DIS kinematics one can relate the variables describing the neutrino-nucleon
+By means of tree-level DIS kinematics, one can relate the variables describing the neutrino-nucleon
 hard-scattering, $(x,Q^2,E_{\nu})$,
 with those describing the leptonic and hadronic final state, namely $\lp E_{\ell},\theta_\ell, E_{h} \rp$,
 and that correspond to experimentally measured quantities.
@@ -591,27 +591,160 @@ x &=& \frac{Q^2}{2m_N(E_{\nu} - E_\ell)} = \frac{4E_\ell \lp E_\ell + E_h  \rp\s
 highlighting how the measurement of $E_{\ell}$, $\theta_\ell$, and $E_{h}$ uniquely specify the hard-scattering
 kinematics $(x,Q^2,E_{\nu})$ of the event.
 %
-Therefore, systematic uncertainties in the measurement of these final-state variables will modify
-the assignment of each event to a given bin of $x$, $Q^$, and $E_\mu$ introducing a systematic
+Therefore, systematic shifts in the measurement of these final-state variables will modify
+the assignment of each event to a given bin of $x$, $Q^2$, and $E_\mu$, introducing a systematic
 error in the event yields and hence in the measurement of the double-differential
 neutrino scattering cross-section.
 
-
-We wish to sample over the space of observables, $(E_{l},E_{h},\theta)$, perform  cuts based on detector performance, calculate the event rates, and then smear this sampling according to experimental uncertainties to estimate the uncertainty on the event rate. 
-
-Taking FASER${\nu}$2 as an example, we can write the experimental cuts and uncertainties as 
-
-\begin{align}
-100 < E_l < E_{\nu,{\rm max}} , \delta E_l = 30\% \nonumber \\
-100 < E_h < E_{\nu,{\rm max}} , \delta E_h = 50\% \nonumber \\
-0 < \theta < \tan^{-1}(0.5) , \delta\theta = 1~{\rm mrad}
+In order to determine these bin-by-bin systematic uncertainties,
+we extend the calculation delineated in Eq.~(\ref{sec:pseudo-data_generation}) as follows.
+%
+Let us consider for illustrative purposes the FASER${\nu}$2 case.
+%
+From Table~\ref{tab:FPF_experiments}, one reads that the corresponding acceptances
+and performance parameters for $E_{\ell}$, $\theta_\ell$, and $E_{h}$   are given by
+\bea
+E_\ell \ge 100~{\rm GeV} \, , \quad \delta E_\ell \sim 30\% \, ,\nonumber \\
+E_h \ge 100~{\rm GeV} \, , \quad \delta E_h \sim 30\% \, ,\\
+ \theta_\ell \le \tan^{-1}(0.5) \, , \quad \delta\theta_\ell \sim 1~{\rm mrad} \, . \nonumber 
 \label{fasernu2systematic_errors}
-\end{align}
+\eea
+In order to translate the systematic uncertainties $\delta E_\ell$, $\delta E_h $,
+and $\delta\theta_\ell$ into systematic errors associated to the binned event yields, 
+\be
+\label{eq:event_yields_systematic_error}
+\delta_{\rm sys}^{(E_\ell)} N_{\rm ev}^{(i)} \, ,\quad
+\delta_{\rm sys}^{(E_h)} N_{\rm ev}^{(i)}
+\, ,\quad
+\delta_{\rm sys}^{(\theta_\ell)} N_{\rm ev}^{(i)} \, ,\qquad i=1,\ldots,N_{\rm bin} \, ,
+\ee
+we generate first a Monte Carlo set of events, denoted by $\mathcal{D}_0$,
+composed by $N_{\rm mc} = 10^7$ samples and determine the assignment of each event
+to a point in the $\lp x,Q^2,E_{\nu}\rp$ space.
+%
+By integrating over this sample by means of Eq.~(\ref{MCintegration}) we determine
+the binned event yields for this reference $\mathcal{D}_0$ sample.
 
-We first generate a MC dataset, $D_0$, over this space with $N = 10^7$ samples and calculate $x,Q^2,E_{\nu}$ for each event, removing samples with $y > 1$. We then integrate according to Eq. \ref{MCintegration} to produce a distribution of events with bins in $x,Q^2,E_{\nu}$. We then smear each sample according to a Gaussian distribution with widths given by Eq.~\ref{fasernu2systematic_errors} to produce a new data set $D_i$ and repeat to produce $M = 10$ event distributions($M>10$ can later be used, but $M = 10$ appears to be stable). For each bin we take the standard deviation to produce the systematic errors per bin (denoted as "N\textunderscore sys\textunderscore errs" in files named "binned\textunderscore sys-events... .txt" \href{https://github.com/juanrojochacon/FPF-WG1/tree/main/results}{here}). 
+We then produce a second Monte Carlo sample $\mathcal{D}_1$ starting from the events
+of $\mathcal{D}_0$ which are then smeared with Gaussian distributions whose variances
+are given by Eq.~(\ref{fasernu2systematic_errors}).
+%
+The bin assignment of the events in the smeared sample $\mathcal{D}_1$ will
+in general be different from those of the baseline sample.
+%
+The procedure is repeated $M$ times, leading to
+$\mathcal{D}_k$ (with $k=1,\ldots,M$) smeared
+samples each one leading to a different binned event yields
+$ N_{\rm ev}^{(i)(k)}$.
+%
+Provided the number of samples $M$ is large enough, the standard deviation over samples in this $ N_{\rm ev}^{(i)(k)}$
+distribution provides the sought-for estimate of the systematic uncertainties.
+%
+Furthermore, 
+since the systematic errors are treated as uncorrelated among them,
+by producing samples where only one source of error is varied at a time
+we can determine the values of Eq.~(\ref{eq:event_yields_systematic_error}) in each bin.
 
-For FASER${\nu}$2, the systematic errors typically dominate over statistical errors, at about $10\%$. 
+The end result of the procedure is the estimate of statistical and systematic uncertainties
+for each bin of the measurement, from which a experimental covariance matrix can be constructed as
+\be
+   {\rm cov}_{ij} = \delta_{ij} \lp \delta_{\rm stat}  N_{\rm ev}^{(i)}\rp^2
+   + \lp \delta_{\rm sys}^{(E_\ell)} N_{\rm ev}^{(i)} \rp \lp \delta_{\rm sys}^{(E_\ell)} N_{\rm ev}^{(j)} \rp 
+   + \lp \delta_{\rm sys}^{(E_h)} N_{\rm ev}^{(i)} \rp \lp\delta_{\rm sys}^{(E_h)} N_{\rm ev}^{(j)}\rp 
+   + \lp \delta_{\rm sys}^{(\theta_\ell)} N_{\rm ev}^{(i)} \rp
+   \lp \delta_{\rm sys}^{(\theta_\ell)} N_{\rm ev}^{(j)} \rp
+   \, ,\qquad
+ \nonumber
+ \ee
+ for $i,j=1,\ldots,N_{\rm bin}$, and the same for the associated correlation
+ matrix of the measurement
+ \be
+ \rho_{ij} =  \frac{{\rm cov}_{ij}}{\sqrt{ {\rm cov}_{ii} }\sqrt{ {\rm cov}_{jj} } } \, . 
+ \ee
+ The relative covariance matrix, $ {\rm cov}_{ij}/( N_{\rm ev}^{(i)}N_{\rm ev}^{(j)})$, is
+ independent of the considered observable and would also apply
+ for the double-differential cross-sections Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}) and~(\ref{eq:antineutrino_DIS_xsec_FL}) which are related to the event yields by a constant factor.
+ 
+ One should emphasize that in a real experiment the actual covariance matrix will be
+ composed by a much larger number of uncertainty sources, with typical
+  HERA and LHC precision measurements characterised by up to hundreds
+ of different sources of systematic error.
+ %
+ In particular, the assumption that a single source of systematic error, say $\delta E_\ell$,
+ is fully correlated among all the bins in $(x,Q^2)$ is likely not to be realistic.
+ %
+ For this reason, here we present impact results both for the nominal correlation model,
+ for the case where systematic and statistical uncertainties are added in quadrature,
+ and intermediate scenarios.
+  
+ Fig.~\ref{fig:error_plot_FASERv2_14} (central and right panels) display
+ the integrated event yields for FASER$\nu$2 as a function of $x$ for only
+ systematic errors and for the sum in quadrature of statistical and systematic errors.
+ %
+ For most of the bins, for the baseline performance assumptions the total systematic
+ uncertainty is at the $10\%$ and dominates over the statistical uncertainties.
+ 
+ \subsection{Pseudo-data generation}
 
+ In order to generate pseudo-data for double-differential
+ neutrino scattering cross-sections at the LHC, we follow the procedure
+ used for the HL-LHC PDF projections of~\cite{AbdulKhalek:2018rok} which was
+ also adopted in~\cite{Ethier:2021ydt} and~\cite{Greljo:2021kvv} for SMEFT impact projections
+ of vector-boson scattering and high-mass Drell-Yan data at the HL-LHC, respectively.
+ %
+ The starting point are the predictions for the differential neutrino scattering
+ cross-section
+ \be
+ \label{eq:theory_dis_projections}
+ \mathcal{O}_i^{{\rm (th)}} \equiv \frac{d^2\sigma^{\nu N}(x_i,Q^2_i,y_i)}{dxdy} \, ,\quad
+ i=1,\ldots,N_{\rm bin} \, ,
+ \ee
+ with $(x_i,Q^2_i,y_i)$ being the corresponding bin centers.
+ %
+ The observables $\mathcal{O}_i $ are evaluated using {\sc\small YADISM} and {\sc\small PineAPPL}
+ as described in Sect.~\ref{sec:settings}.
+ %
+ An important point here is the choice of PDF set entering the evaluation of
+ the observable in Eq.~(\ref{eq:theory_dis_projections}): it should be consistent
+ with that of the fitting framework used to assess their impact on the (n)PDFs.
+ %
+ For instance, when using the {\sc\small xFitter} profiling of PDF4LHC21, one needs
+ to generate LHC neutrino pseudo-data also using PDF4LHC21 as input.
+ %
+ In order words, the generated pseudo-data should be fully consistent with the prior PDF
+ set used as baseline, else one is introducing artificially inconsistencies which
+ compromise the validity of the projection studies.
+ 
+ The central values for the LHC neutrino scattering pseudo-data, denoted
+ by $\mathcal{O}_i^{{\rm exp}} $, are obtained
+ by fluctuating this reference theory prediction by the statistical and systematic
+ uncertainties, that is
+ \begin{equation}
+  \label{eq:pseudo_data}
+  \mathcal{O}_i^{{\rm (exp)}}  =   \mathcal{O}_i^{{\rm (th)}}\left( 1+ r^{(i)}_{\rm stat}\delta_{i,{\rm stat}}
+  + \sum_{k=E_\ell, E_h,\theta_\ell} r_{{\rm sys},k} \,\delta_{i,{\rm sys}}^{(k)}\right) \, , \qquad i=1,\ldots,N_{\rm bin} \, ,
+ \end{equation}
+ with $r^{(i)}_{\rm stat}$ and $r_{{\rm sys},k}$ being univariate Gaussian random numbers,
+ and $\delta_{\rm stat}$ ($\delta_{\rm sys}^{(k)}$) indicate the relative statistical (systematic)
+ uncertainties associated to the $i$-th bin.
+ %
+ Note that a given systematic variation is assumed to be fully correlated among all the bins
+ in the measurement.
 
-
-\subsection{Pseudo-data generation}
+ Alternatively, we can add all uncertainties in quadrature and account for a possible
+ improvement in the systematic errors with respect to the current estimates,
+ \be
+ \delta_{{\rm tot},i}^{\rm exp} = \left( \left( \delta_i^{\rm stat}\right)^2 + \sum_{k=1}^{n_{\rm sys}}
+\left( f_{{\rm red},j}\delta_{i,j}^{\rm sys} \right)^2\right)^{1/2} \, ,
+ \ee
+ with $f_{{\rm red},j} \le 1$ quantifies the possible reduction of systematic uncertainties, and
+ then the pseudo-data is evaluated by means of
+ \begin{equation}
+  \label{eq:pseudo_data_v2}
+  \mathcal{O}_i^{{\rm (exp)}}  =   \mathcal{O}_i^{{\rm (th)}}\left( 1+ r^{(i)}_{\rm stat}\delta_{i,{\rm tot}}
+  \right) \, , \qquad i=1,\ldots,N_{\rm bin} \, .
+ \end{equation}
+ While the actual correlation model will lie somewhere between no correlation and full correlation,
+ these two approaches to generate the pseudo-data bracket the projected impact
+ on the PDFs and its dependence on the experimental correlation model.
+ 
