@@ -402,6 +402,93 @@ and then  integrating over the bin range:
 and where $N_{\rm mc}$ is chosen to be large enough such that residual Monte Carlo integration
 uncertainties are negligible.
 
+Table~\ref{tab:integrated_rates} summarises the predicted integrated event yields for the five detectors considered
+  in the present analysis, separated into electron neutrinos and antineutrinos
+  and muon neutrinos and antineutrinos.
+  %
+  These event yields are computed from Eq.~(\ref{eq:event_yields}) with the only
+  restriction that the momentum transfer and the final-state invariant mass should be restricted
+  to the DIS region, $Q^2 \ge 2$ GeV$^2$ and $W^2 \ge 12.5$ GeV$^2$.
+  %
+  As discussed above, for FASER$\nu$ and SND@LHC we assume the integrated luminosity to
+  be that of Run III while for the FPF experiments we assume the full HL-LHC
+  luminosity (3 ab$^{-1}$).
+  %
+   The numbers in parenthesis indicate the event rates corresponding to charm
+  production for those experiments with heavy flavour tagging capabilities.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-----------------------------------------------------------------
+\begin{table}[t]
+  \centering
+  \small
+  \renewcommand{\arraystretch}{1.60}
+\begin{tabularx}{\textwidth}{X|c|c|c|c|c|c}
+\toprule
+Detector & $\quad$ $N_{\nu_e}$ $\quad$ &$\quad$ $N_{\bar{\nu}_e}$$\quad$   &   $N_{\nu_e} + N_{\bar{\nu}_e}$ &
+$\quad$$N_{\nu_\mu}$ $\quad$ & $\quad$ $N_{\bar{\nu}_\mu}$ $\quad$  &   $N_{\nu_\mu} + N_{\bar{\nu}_\mu}$ \\
+\midrule
+FASER$\nu$  &    &    &   &   &    &    \\
+SND@LHC  &    &    &   &   &    &    \\
+\midrule
+FASER$\nu$2  &    &    &   &   &    &    \\
+AdvSND~(far)  &    &    &   &   &    &    \\
+FLArE &    &    &   &   &    &    \\
+  \bottomrule
+\end{tabularx}
+\vspace{0.2cm}
+\caption{\small The predicted integrated event yields for the five detectors considered
+  in the present analysis, separated into electron neutrinos and antineutrinos
+  and muon neutrinos and antineutrinos.
+  %
+  These event yields are computed from Eq.~(\ref{eq:event_yields}) with the only
+  restriction that the momentum transfer and the final-state invariant mass be restricted
+  to the DIS region, $Q^2 \ge 2$ GeV$^2$ and $W^2 \ge 12.5$ GeV$^2$.
+  %
+  The numbers in parenthesis indicate the event rates corresponding to charm
+  production.
+  \label{tab:integrated_rates}
+}
+\end{table}
+%-----------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Eq.~(\ref{eq:event_yields}) can be generalised to charm-production events, with
+the only difference beings that now the neutrino scattering cross-section is restricted
+to those processes leading to final-state charm quarks.
+%
+Assuming that charm quarks can be directly tagged by the detector one has
+\be
+\label{eq:event_yields_charm}
+  N_{\rm ev,c}^{(i)} = n_T L_T\int_{Q^{2(i)}_{\rm min}}^{Q^{2(i)}_{\rm max}}\int_{x^{(i)}_{\rm min}}^{x^{(i)}_{\rm max}}\int_{E_{\rm min}^{(i)}}^{E_{\rm max}^{(i)}} \frac{dN_{\nu}(E_\nu)}{dE_{\nu}}\left(\frac{d^2\sigma^{\nu N \to \ell + c+X}(x,Q^2,E_{\nu})}{dxdQ^2}\right) dQ^2 dx dE_{\nu} \, 
+  \ee
+  with the charm production cross-sections being discussed in~\cite{Faura:2020oom}
+  and references therein.
+  %
+  Detectors without charm-tagging capabilities can still be sensitive to charm production via
+  the semileptonic decays of the $D$-mesons, resulting in the characteristic
+  dimuon topology, where
+  \be
+ N_{\rm ev,2\mu}^{(i)} \approx N_{\rm ev,c}^{(i)} \times \mathcal{B}\lp c \to D \to \mu + X\rp \, ,
+ \ee
+ with $\mathcal{B}$ a numerical factor that accounts for charm hadronisation and the
+ resulting semileptonic decay to a muon.
+ %
+ Given that $\mathcal{B}\sim 0.1$, being able to tag directly charm quarks increases the event yields
+ of charm production events by a factor 10 as compared to reconstructing the dimuon final state.
+ %
+ Here we neglect finite acceptance effects, which can only be properly estimated by means
+ of a full detector simulation.
+
+%-----------------------------------------------------------------------
+\begin{figure}[t]
+    \centering
+\includegraphics[width=1\textwidth]{plots/Nevent_FASERv2_14.pdf}
+    \caption{Event rate per bin for muon neutrinos at FASER$\nu$2. Bins are denoted by dashed grid, and the red dot indicates the weighted average of $x,Q^2$ points in each bin. The total number of muon neutrino events calculated is $\approx2.6\times 10^5$. Note that bins were chosen somewhat arbitrarily, and can be iterated to improve PDF fits }
+    \label{fig:fasernu2_muon}
+\end{figure}
+%-----------------------------------------------------------------------
+
 
 where $f(x_i,Q^2_i,E_{\nu ,i}) = \frac{dN_{\nu}}{dE_{\nu,i}}\left(\frac{d^2\sigma(x_i,Q^2_i,E_{\nu,i})}{dxdQ^2}\right)$. 
 
@@ -412,12 +499,9 @@ The statistical uncertainty for each bin is then defined by a Gaussian distribut
 
 Results for FASER$\nu$2 can be found \href{https://github.com/juanrojochacon/FPF-WG1/tree/main/results}{here}. The .txt files will display which neutrino species was considered, and also compile experimental geometries and target details in the header. In the sub-folder \href{https://github.com/juanrojochacon/FPF-WG1/tree/main/results/Summaries}{summaries}, plots can be found which show the event rate in $x,Q^2$ space, integrating over the entire neutrino spectrum. The event rate for muon neutrinos at FASER$\nu$2 is shown in Fig~\ref{fig:fasernu2_muon}.
 
-\begin{figure}[h]
-    \centering
-\includegraphics[width=1\textwidth]{plots/Nevent_FASERv2_14.pdf}
-    \caption{Event rate per bin for muon neutrinos at FASER$\nu$2. Bins are denoted by dashed grid, and the red dot indicates the weighted average of $x,Q^2$ points in each bin. The total number of muon neutrino events calculated is $\approx2.6\times 10^5$. Note that bins were chosen somewhat arbitrarily, and can be iterated to improve PDF fits }
-    \label{fig:fasernu2_muon}
-\end{figure}
+
+
+charm production
 
 \subsection{Estimating systematic uncertainties}
 
