@@ -408,7 +408,11 @@ Table~\ref{tab:integrated_rates} summarises the predicted integrated event yield
   %
   These event yields are computed from Eq.~(\ref{eq:event_yields}) with the only
   restriction that the momentum transfer and the final-state invariant mass should be restricted
-  to the DIS region, $Q^2 \ge 2$ GeV$^2$ and $W^2 \ge 12.5$ GeV$^2$.
+  to the DIS region,
+  \be
+  \label{eq:DISconditions}
+Q^2 \ge 2~{\rm GeV}^2\quad{\rm and} W^2 \ge 12.5~{\rm GeV}^2 \, .
+\ee
   %
   As discussed above, for FASER$\nu$ and SND@LHC we assume the integrated luminosity to
   be that of Run III while for the FPF experiments we assume the full HL-LHC
@@ -480,38 +484,118 @@ Assuming that charm quarks can be directly tagged by the detector one has
  Here we neglect finite acceptance effects, which can only be properly estimated by means
  of a full detector simulation.
 
+ Fig.~\ref{fig:fasernu2_muon} displays the
+ event yields per bin,  Eq.~(\ref{eq:event_yields}),
+  for muon neutrinos detected at FASER$\nu$2.
+  %
+  We present results binned in $x$ and $Q^2$ and integrated over the neutrino energies.
+  %
+  The red dot indicates the weighted center of each bin.
+  %
+  Adding up all bin entries results into $N_{\rm ev}(\nu_\mu)\sim 3\times 10^5 $ reconstructed muon
+  neutrinos as indicated in Table~\ref{tab:integrated_rates}.
+  %
+  Kinematic cuts are such that the DIS conditions Eq.~(\ref{eq:DISconditions}) are satisfied.
+  %
+  Only bins with at least 30 events are retained.
+  %
+  One can observe the large event rates for most of the region in $\lp x,Q^2\rp$ covered,
+  which result into very competitive statistical uncertainties.
+  %
+  From Fig.~\ref{fig:fasernu2_muon} we see that the kinematic coverage of FASER$\nu$2 is
+  $x_{\rm min}\sim 10^{-3}$ at small-$x$ and $Q^2_{\rm max}\sim 10^4$ at large-$Q^2$, which represent an extension
+  of around one order of magnitude in both directions as compared to available
+  DIS neutrino data.
+
 %-----------------------------------------------------------------------
 \begin{figure}[t]
     \centering
-\includegraphics[width=1\textwidth]{plots/Nevent_FASERv2_14.pdf}
-    \caption{Event rate per bin for muon neutrinos at FASER$\nu$2. Bins are denoted by dashed grid, and the red dot indicates the weighted average of $x,Q^2$ points in each bin. The total number of muon neutrino events calculated is $\approx2.6\times 10^5$. Note that bins were chosen somewhat arbitrarily, and can be iterated to improve PDF fits }
+\includegraphics[width=0.9\textwidth]{plots/Nevent_FASERv2_14.pdf}
+\caption{The event yields per bin $ N_{\rm ev}^{(i)}$,  Eq.~(\ref{eq:event_yields}),
+  for muon neutrinos at FASER$\nu$2.
+  %
+  We present results binned in $x$ and $Q^2$ and integrating over the neutrino energies.
+  %
+  The red dot indicates the weighted center of each bin.
+  %
+  Adding up all bin entries results into $N_{\rm ev}(\nu_\mu)\sim 3\times 10^5 $ reconstructed muon
+  neutrinos. }
     \label{fig:fasernu2_muon}
 \end{figure}
 %-----------------------------------------------------------------------
 
+The event yields displayed in Fig.~\ref{fig:fasernu2_muon} determine the associated
+statistical uncertainty in each bin
+\be
+\label{eq:statistical_uncertainties}
+\delta_{\rm stat}  N_{\rm ev}^{(i)} = \sqrt{N_{\rm ev}^{(i)}} \, ,
+\ee
+such that the fractional statistical uncertainty per bin is $1/\sqrt{N_{\rm ev}^{(i)}}$.
+%
+Since here we discard bins with less than 30 events, this statistical uncertainty
+ranges between $\sim 1\%$ and $\sim 18\%$ for muon neutrinos in FASER$\nu$2 depending on the values of
+$x$ and $Q^2$ associated to this bin.
+%
+These statistical uncertainties are displayed in the left panel
+of Fig.~\ref{fig:error_plot_FASERv2_14}, which corresponds
+to the same event yields as in
+Fig.~\ref{fig:fasernu2_muon}
+now as a function of $x$ after having integrated the event yields in the range $Q^2 \in [10,100]$ GeV$^2$.
+%
+The error bar in the $y$-direction indicates the statistical uncertainties, while
+that in the $x$ direction corresponds to the width of the $x$-bins.
 
-where $f(x_i,Q^2_i,E_{\nu ,i}) = \frac{dN_{\nu}}{dE_{\nu,i}}\left(\frac{d^2\sigma(x_i,Q^2_i,E_{\nu,i})}{dxdQ^2}\right)$. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 0.95\textwidth]{plots/error_plot_FASERv2_14.pdf}
+    \caption{Same as Fig.~\ref{fig:fasernu2_muon}
+      now as a function of $x$ after having integrated the event yields in the range $Q^2 \in [10,100]$ GeV$^2$.
+      %
+      In addition to the event yields we show the error bars corresponding to
+      statistical errors only (left), systematic errors only (middle), and the
+      sum in quadrature of the two (right panel).
+      %
+      The error bars in the $x$ direction indicate the width of the adopted $x$-bins.
+      }
+    \label{fig:error_plot_FASERv2_14}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The statistical uncertainty for each bin is then defined by a Gaussian distribution with fractional uncertainty $1/\sqrt{N{\rm ev}/{\rm bin}}$, i.e. $\delta N_{\rm ev}/{\rm bin} = \sqrt{N_{\rm ev}} /{\rm bin}$
+\subsection{Systematic uncertainties}
 
+In addition to the statistical uncertainties given by Eq.~(\ref{eq:statistical_uncertainties}),
+one needs to estimate the systematic uncertainties associated to the reconstruction
+of the final state leptonic and hadronic variables as listed in Table~\ref{tab:FPF_experiments}.
+%
+For instance, an event which would be classified in a given bin in the case
+of a perfect detector may end up in a different bin in the presence of systematic
+shifts associated to the lepton energy $E_\ell$, lepton scattering angle $\theta_\ell$, and
+hadronic energy $E_h$.
+%
+Hence, for each source of experimental systematic uncertainty we would like to estimate
+its impact at the level of event yields and eventually stablish also the associated
+correlation matrix.
 
-  Following this prescription, we can produce plots which characterize the event rate for a particular neutrino species at a particular experiment. 
+By means of tree-level DIS kinematics one can relate the variables describing the neutrino-nucleon
+hard-scattering, $(x,Q^2,E_{\nu})$,
+with those describing the leptonic and hadronic final state, namely $\lp E_{\ell},\theta_\ell, E_{h} \rp$,
+and that correspond to experimentally measured quantities.
+%
+The mapping between the two sets of variables is 
+\bea
+E_{\nu} &=& E_\ell + E_h \, ,\nonumber \\
+Q^2 &=& 4E_\ell E_{\nu}\sin^2\lp {\theta_\ell/2}\rp  =  4E_\ell \lp E_\ell + E_h  \rp\sin^2\lp {\theta_\ell/2}\rp \, , \\
+x &=& \frac{Q^2}{2m_N(E_{\nu} - E_\ell)} = \frac{4E_\ell \lp E_\ell + E_h  \rp\sin^2\lp {\theta_\ell/2}\rp}{2m_NE_{h}} \, , \nonumber
+\eea
+highlighting how the measurement of $E_{\ell}$, $\theta_\ell$, and $E_{h}$ uniquely specify the hard-scattering
+kinematics $(x,Q^2,E_{\nu})$ of the event.
+%
+Therefore, systematic uncertainties in the measurement of these final-state variables will modify
+the assignbment of each event to a given bin of $x$, $Q^$, and $E_\mu$ introducing a systematic
+error in the event yields and hence in the measurement of the double-differemtial
+neutrino scattering cross-section.
 
-Results for FASER$\nu$2 can be found \href{https://github.com/juanrojochacon/FPF-WG1/tree/main/results}{here}. The .txt files will display which neutrino species was considered, and also compile experimental geometries and target details in the header. In the sub-folder \href{https://github.com/juanrojochacon/FPF-WG1/tree/main/results/Summaries}{summaries}, plots can be found which show the event rate in $x,Q^2$ space, integrating over the entire neutrino spectrum. The event rate for muon neutrinos at FASER$\nu$2 is shown in Fig~\ref{fig:fasernu2_muon}.
-
-
-
-charm production
-
-\subsection{Estimating systematic uncertainties}
-
-We now wish to understand the impact of systematic uncertainties on the event rate in $(x,Q^2,E_{\nu})$ space. For each experiment, the observables $E_{l},E_{h},\theta$ are related to $(x,Q^2,E_{\nu})$ by 
-
-\begin{align}
-E_{\nu} = E_l + E_h \nonumber \\
-Q^2 = 4E_lE_{\nu}\sin^2{\theta/2} \nonumber \\
-x = \frac{Q^2}{2m_N(E_{\nu} - E_l)}.
-\end{align}
 
 We wish to sample over the space of observables, $(E_{l},E_{h},\theta)$, perform  cuts based on detector performance, calculate the event rates, and then smear this sampling according to experimental uncertainties to estimate the uncertainty on the event rate. 
 
@@ -528,10 +612,6 @@ We first generate a MC dataset, $D_0$, over this space with $N = 10^7$ samples a
 
 For FASER${\nu}$2, the systematic errors typically dominate over statistical errors, at about $10\%$. 
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width = 1\textwidth]{plots/error_plot_FASERv2_14.pdf}
-    \caption{Event rates with error bars at FASER$\nu$2 for $\nu_{\mu} N \rightarrow \mu^- X$} summed over $Q^2$. The error bars along the x-axis showing the width of the $x$-bins, and are not showing any type of error.
-    \label{fig:my_label}
-\end{figure}
 
+
+\subsection{Pseudo-data generation}
