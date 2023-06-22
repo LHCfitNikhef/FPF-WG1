@@ -1,6 +1,5 @@
 *.tar
 fits/
-plots/
 theory/
 
 # Byte-compiled / optimized / DLL files
