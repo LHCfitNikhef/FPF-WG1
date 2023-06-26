@@ -33,13 +33,21 @@ Here the pseudodata
 $\sigma_i^{\textrm{pd}}$ 
 is obtained from the central theoretical prediction 
 $\sigma_i^{\textrm{th}}$ 
-for each bin $i$ out of $N_{\textrm{bins}}$ by varying it with the statistical uncertainties 
-$\delta_i^{\textrm{stat}}$, 
+for each bin $i$ out of $N_{\textrm{bins}}$ by varying it within bounds obtained from the statistical (systematic) uncertainties 
+$\delta_i^{\textrm{stat}}$ ($\delta_i^{\textrm{syst}}$), 
 obtained in the procedure described in Section~\ref{sec:pseudo-data_generation}, 
 as 
-%TODO once more complete uncertainty estimates are there, add them to the variation
-$\sigma_i^{\textrm{pd}} = \sigma_i^{\textrm{th}}(1 + r_i \delta_i^{\textrm{stat}})$, 
-with $r_i$ a univariate Gaussian random number.
+
+\begin{equation}
+\sigma_i^{\textrm{pd}}
+=
+\sigma_i^{\textrm{th}}
+\left( 1 + r_i \sqrt{     (\delta_i^{\textrm{stat}})^2
+                      + (f \delta_i^{\textrm{syst}})^2 }
+\right).
+\end{equation}
+Here, $r_i$ is a univariate Gaussian random number and $f = 0.5$ an effective correction factor 
+accounting for the improved constraining power of the same pseudodata set using correlated systematics, compared to solely adding all sources of uncertainty in quadrature.
 %
 The correlated uncertainties for the pseudodata and the theoretical prediction 
 are contained in the nuisance parameter vectors $b^{\textrm{pd}}$ and $b^{\textrm{th}}$, respectively, and the uncorrelated uncertainties in $\Delta_i$.
@@ -57,7 +65,7 @@ f_0' = f_0
                 \frac{f_\beta^+ + f_\beta^- - 2f_0}{2}
         \right),
 \end{equation}
-where $f_0$ is the original central PDF and the up and down variation eigenvectors are given by $f^+, f^-$. The decrease in the uncertainties of the shifted PDFs indicates the enhancement that including the FPF data in the global PDF fit could bring. Here, the profiling studies are performed using version 2.2.1 of the \textsc{xFitter} open-source QCD analysis framework~\cite{Alekhin:2014irh, Bertone:2017tig, xFitter:2022zjb, xFitter:web}, extended to support the use of \textsc{PineAPPL} grids~\cite{christopher_schwan_2023_7499507, Carrazza:2020gss}.
+where $f_0$ is the original central PDF and the up and down variation eigenvectors are given by $f^+, f^-$. The decrease in the uncertainties of the shifted PDFs indicates the enhancement that including the FPF data in the global PDF fit could bring. Here, the profiling studies are performed using version 2.2.1 of the \textsc{xFitter} open-source QCD analysis framework~\cite{Alekhin:2014irh, Bertone:2017tig, xFitter:2022zjb, xFitter:web}.
 %
 
 
@@ -65,6 +73,6 @@ where $f_0$ is the original central PDF and the up and down variation eigenvecto
 
  %
 Theoretical predictions for neutrino DIS structure functions are evaluated with the {\sc\small EKO}~\cite{Candido:2022tld}
-and {\sc\small YADISM}~\cite{yadism,Candido:2023utz} programs interfaced to {\sc\small PineAPPL}~\cite{Carrazza:2020gss}, with the latter providing the fast interpolation grids to be used in the fit.
+and {\sc\small YADISM}~\cite{yadism,Candido:2023utz} programs interfaced to {\sc\small PineAPPL}~\cite{Carrazza:2020gss, christopher_schwan_2023_7995675}, with the latter providing the fast interpolation grids to be used in the fit.
 %
-To this end, a new interface between  {\sc\small PineAPPL} and {\sc\small xFitter} has been developed
+To this end, a new interface between  {\sc\small PineAPPL} and {\sc\small xFitter} has been developed and is available with the open-source {\sc\small xFitter} code.
