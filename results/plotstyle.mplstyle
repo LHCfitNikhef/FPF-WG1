@@ -1,0 +1,61 @@
+### FIGURE
+figure.facecolor      : white
+figure.dpi            : 150
+figure.titlesize      : 14
+figure.titleweight    : bold
+figure.figsize        : 6.4, 4.8
+
+### LINES
+lines.linewidth: 1.5
+
+### ERRORBARS
+errorbar.capsize      : 2
+
+# ### GRIDS
+# grid.color            : cccccc
+# grid.linestyle        : -
+# grid.linewidth        : 0.05
+
+### PATCHES
+patch.facecolor       : 0072B2
+
+### LEGEND
+legend.fontsize       : 13
+legend.loc            : best
+legend.fancybox       : True
+legend.framealpha     : 0.8
+
+### TICKS
+xtick.top             : True
+ytick.right           : True
+xtick.major.size      : 10
+xtick.minor.size      : 5
+ytick.major.size      : 10
+ytick.minor.size      : 5
+xtick.labelsize       : 13
+ytick.labelsize       : 13
+ytick.direction       : in
+xtick.direction       : in
+
+### FONTS
+font.family           : sans-serif
+font.size             : 13
+font.weight           : bold
+
+### TEXTS
+text.usetex           : True
+text.latex.preamble   : \usepackage{amsmath}
+
+### AXES
+axes.grid             : True
+axes.axisbelow        : True
+axes.facecolor        : white
+axes.linewidth        : 1.0
+axes.titlesize        : 14
+axes.titleweight      : bold
+axes.labelsize        : 15
+axes.labelweight      : bold
+axes.spines.top       : True
+axes.spines.right     : True
+# axes.prop_cycle       : cycler('color', ['001D66', 'da3b46', 'F6AE2D', '343434', '2ca02c', '9467bd', '8c564b'])
+axes.prop_cycle       : cycler('color', ['da3b46', 'F6AE2D', '343434', '2ca02c', '9467bd', '8c564b'])
