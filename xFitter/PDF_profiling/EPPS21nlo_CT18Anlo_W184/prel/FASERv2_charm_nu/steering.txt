@@ -9,7 +9,7 @@
 
      InputFileNames = 
     ! FPF pseudodata
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/prel/FASERv2_charm_nu-thexp.dat',
+     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/prel/FASERv2_charm_nu-thexp.dat',
 &End
 
 &InCorr
@@ -17,7 +17,7 @@
     NCorrFiles = 0
  
   ! Correlation files:
-  !  CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/FASERv2_charm_nu.cov'
+  !  CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_charm_nu.corr'
 &End
 
 &ReduceSyst

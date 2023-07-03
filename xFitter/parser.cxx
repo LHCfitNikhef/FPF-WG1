@@ -112,7 +112,7 @@ vector< vector<double> > readBinnedEvents(string infile, bool useStat, bool useS
     string line;
     int step=0;
     while (getline(in,line)) {
-        if (step>1) lines.push_back(line);  //Remove 2 lines of header
+        if (step>1) lines.push_back(line);  //Omit 2 lines of header
         else ++step;
     }
     for (auto l : lines) {
@@ -136,39 +136,52 @@ vector< vector<double> > readBinnedEvents(string infile, bool useStat, bool useS
             binF.back() = 0.;
         } else sigma.push_back(str2d(sigstr));
         //} else sigma.push_back(pow(10.,str2d(sigstr)));  //ALT^ convert log10(sigma)
+
+        //Read number of events N and stat unc's effect on N, find stat unc in %
         string Nevtstr = lsplit[10];
         N.push_back(str2d(Nevtstr));
-
-        //Read stat unc
         if (useStat && lsplit.size()>11) {
             if (Nevtstr.find("0.00000")!=string::npos) {
                 stat.push_back(0.);
                 binF.back() = 0.;
             }
-            else stat.push_back(str2d(lsplit[11])/str2d(Nevtstr));
+            else stat.push_back(100.0*str2d(lsplit[11])/str2d(Nevtstr));
         }
-
+        
         //Init matrix of syst unc sources
         vector<double> empty;
-        if (useSyst && syst.size()==0) for (int i=12; i<lsplit.size(); ++i) syst.push_back(empty);
-        //Read syst unc
-        for (int i=0; useSyst && i+12<lsplit.size(); ++i) {
+        int syststart = 13;  //Read syst unc percentages starting on this column
+        if (useSyst && syst.size()==0) {
+            for (int i=syststart; i<lsplit.size(); ++i) syst.push_back(empty);
+        }
+        for (int i=0; useSyst && i+syststart<lsplit.size(); ++i) {
             if (Nevtstr=="0.00000") {
                 binF.back() = 0;
                 syst[i].push_back(0.);
-            } else syst[i].push_back(str2d(lsplit[i+12]));
+            } else syst[i].push_back(str2d(lsplit[i+syststart]));
         }
         
     }  //for l : lines
     in.close();
     cout << "...done" << endl;
 
-    vector< vector<double> > ret = {binF,xlo,xhi,xav,Q2lo,Q2hi,Q2av,sigma,N,stat};
+    vector< vector<double> > ret = {binF,xlo,xhi,xav,Q2lo,Q2hi,Q2av,sigma,N};
+    if (useStat) ret.push_back(stat);
     for (auto s : syst) ret.push_back(s); //Syst uncs
     
     return ret;    
     
 } // END readBinnedEvents
+
+string exptagConstructor(string expID, string origin) {
+    string exptag = replace(expID, origin, replace(origin,"_"," "));
+    exptag        = replace(exptag,"Rv", "R$\\nu$");
+    exptag        = replace(exptag,"_nochargediscrimination",
+                                   " $\\nu_{\\mu}+\\bar{\\nu}_{\\mu}$");
+    exptag        = replace(exptag,"_nub", " $\\bar{\\nu}_{\\mu}$");
+    exptag        = replace(exptag,"_nu",  " $\\nu_{\\mu}$");
+    return exptag;
+}
 
 //AUX function to write an xFitter table
 //Param  mdir       Master directory above datatables and grids
@@ -185,7 +198,8 @@ vector< vector<double> > readBinnedEvents(string infile, bool useStat, bool useS
 //       systnames  Names of correlated systematic uncertainty sources
 //       syst       Matrix of corr. syst. unc. values (in %)
 //Returns false if bin mismatch found & tables not written, otherwise true.
-bool xFtableWriter(string mdir, string sdir,
+bool xFtableWriter(string mdir, 
+                   string sdir,
                    string expname, 
                    string nuID,
                    string origin,
@@ -202,14 +216,9 @@ bool xFtableWriter(string mdir, string sdir,
     string expID = expname + origin + "_" + nuID;
 
     //LaTeX and ROOT style strings for experiment identification
-    string exptag = replace(expID, origin, replace(origin,"_"," "));
-    exptag        = replace(exptag,"Rv", "R$\\nu$");
-    exptag        = replace(exptag,"_nochargediscrimination",
-                                   " $\\nu_{\\mu}+\\bar{\\nu}_{\\mu}$");
-    exptag        = replace(exptag,"_nub", " $\\bar{\\nu}_{\\mu}$");
-    exptag        = replace(exptag,"_nu",  " $\\nu_{\\mu}$");
-    string expstr = replace(exptag,"$","");
-    expstr        = replace(expstr,"\\","#");    
+    
+    string exptag = exptagConstructor(expID, origin);
+    string expstr = replace(replace(exptag,"$",""),"\\","#");
     vector<int> binF;
     for (double b : binF_in) binF.push_back((int)b);
     
@@ -442,11 +451,114 @@ vector< vector<double> > readPrelXsec(string prelname) {
     in.close();
     return {xbin, Q2bin, xsec};
 }
+
+//Compute full correlation matrix based on stat and syst uncertainties
+vector<vector<double>> correlations(vector<double> N,
+                                    vector<double> stat,
+                                    vector<vector<double>> systs)
+{
+    //Init
+    vector<double> tmp;
+    for (int i=0; i!=N.size(); ++i) tmp.push_back(0.0);
+    vector< vector<double> > cov;
+    for (auto itmp : tmp) cov.push_back(tmp);
+    
+    //Find covariance matrices first, turn later into correlation matrix
+    for (int i=0; i!=N.size(); ++i) {
+        for (int j=0; j!=N.size(); ++j) {
+            //Assume uncorrelated stat unc -- technically leads to diag(1,..,1)
+            //for the relative covariance, left here for future extendability
+            if (stat.size()==N.size()) cov[i][j]+=stat[i]*stat[j]*(i==j? 1. : 0.);
+            else cout << "WARNING: can't add stat contribution to corr" << endl;
+            //Fully correlated sst unc
+            for (vector<double> syst : systs) {                
+                if (syst.size()==N.size()) cov[i][j] += syst[i]*syst[j];
+                else cout << "WARNING correlations: syst size mismatch" << endl;
+            }
+            //Only relative cov. needed, so #evts and %-conversion would cancel
+            //cov[i][j] *= N[i]*N[j];  //Left for reference
+        }
+    }
+    
+    //Construct correlation matrix from relative covariance
+    vector< vector<double> > corr = cov;
+    for (int i=0; i!=N.size(); ++i) {
+        for (int j=0; j!=N.size(); ++j) {
+            if (!dAgree(cov[i][i],0) && !dAgree(cov[j][j],0)) {
+                corr[i][j] /= (sqrt(cov[i][i])*sqrt(cov[j][j]));
+            } else corr[i][j] = 0;
+        }
+    }
+        
+    return corr;
+} // END correlations
+
+//Write covariance matrix table in xFitter format
+bool writeCorr(string expname, 
+               string nuID, 
+               string origin,
+               string nameAdd,  //Add identifier to filename, e.g. onlyEl
+               vector<double> xav,
+               vector<double> Q2av,
+               vector< vector<double> > corr)
+{               
+    string expID  = expname + origin + "_" + nuID;
+    string exptag = exptagConstructor(expID, origin);
+
+    //Check dimension agreement
+    if (xav.size()!=Q2av.size()) {
+        cout << "ERROR writeCorr xav & Q2av size mismatch in " << exptag << endl;
+        return false;
+    }
+    if (xav.size()!=corr.size()) {
+        cout << "ERROR writeCorr xav & corr size mismatch in " << exptag << endl;
+        return false;
+    }
+    for (int i=0; i!=corr.size(); ++i) {
+        if (xav.size()!=corr[i].size()) {
+            cout << "ERROR writeCorr xav & corr[" << i << "] size mismatch in "
+                 << exptag << endl;
+            return false;
+        }
+    }
+
+    string datadir = "./datafiles/lhc/fpf/neutrinoDIS/pseudodata/";    
+    string outname = datadir + expID + nameAdd + ".corr";
+    fstream out;
+    outStreamOpen(out,outname);
+    out << "! Full correlation matrix" << endl;
+    out << "&StatCorr"           << endl;
+    out << "  Name1 = '"
+        << replace(exptag,"_optimistic"," optimistic")
+        << "'"   << endl;
+    out << "  Name2 = '"
+        << replace(exptag,"_optimistic"," optimistic")
+        << "'\n" << endl;
+    out << "  NIdColumns1 = 2"          << endl;
+    out << "  NIdColumns2 = 2\n"        << endl;
+    out << "  IdColumns1 = 'x', 'Q2'"   << endl;
+    out << "  IdColumns2 = 'x', 'Q2'\n" << endl;
+    out << "  NCorr = " << xav.size()*xav.size() << "\n" << endl;
+    out << "  MatrixType = 'Full correlation matrix'" << endl;
+    out << "&End" << endl;
+    for (int i=0; i!=xav.size(); ++i) {
+        for (int j=0; j!=xav.size(); ++j) {
+            out <<setfill(' ')<<setw(20)<<setprecision(15)<< xav[ i];
+            out <<setfill(' ')<<setw(20)<<setprecision(15)<< Q2av[i];
+            out <<setfill(' ')<<setw(20)<<setprecision(15)<< xav[ j];
+            out <<setfill(' ')<<setw(20)<<setprecision(15)<< Q2av[j];
+            out <<setfill(' ')<<setw(25)<<setprecision(15)<< corr[i][j] <<endl;
+        }
+    }
+    out.close();
+    cout << "Wrote " << outname << endl;
+    
+    return true;
+} // END writeCorr
     
 //Write xFitter tables for preliminary run
 //Returns exit status of xFtableWriter: false if bin mismatch found & tables not written, else true.
-bool writeDatPrel(string PDF, 
-                  string expname, 
+bool writeDatPrel(string expname, 
                   string nuID, 
                   string origin,
                   int iexp, 
@@ -456,41 +568,56 @@ bool writeDatPrel(string PDF,
     string expID = expname + origin + "_" + nuID;
     string suffix = ".txt";
     string mdir = "datafiles/lhc/fpf/neutrinoDIS/pseudodata/";
+    dirCheck(mdir);
     string origindir = (origin=="_charm" ? "CHARM/" : "INCLUSIVE/");
     string binevtbase = "../results/"
                       + origindir
                       + expname
                       + "/clipped_nan/clipped_nan_binned_sysevents_";
 
-    //Links to grids
-    string gridsub = "grids-" + expID + "-a1";
-    dirCheck(mdir+"grids/");  //Also check if grids exist / to be downloaded / ln -s
-    dirCheck(mdir+"grids/"+gridsub);
+    //Make sure pineappl grids exist
     string thpath = "../theory/grids/";
-    if (system(("ls "+thpath+gridsub).c_str())==512) {
-        system(("tar -xf "+thpath+gridsub+".tar").c_str());
-        system(("mv grids "+thpath+gridsub).c_str());
-    }
-    string thpath4ln =  "../../../../../../../../theory/grids/" + gridsub;
-    string chorigin = origin == "_charm" ? origin : ""; 
-    for (string gd : { "nu_A_1-"+expname+origin+"-XSFPFCC"+chorigin+".pineappl.lz4",
-                      "nub_A_1-"+expname+origin+"-XSFPFCC"+chorigin+".pineappl.lz4"})
-    {
-        if (system(("ls "+mdir+"grids/"+gridsub+"/"+gd).c_str())==512) {
-            system(("ln -s "+thpath4ln+"/"+gd
-                        +" "+mdir+"grids/"+gridsub+"/"+gd).c_str());
+    string gridsub = "grids-" + expID + "-a1";  //Subdir name in git
+    string chorigin = origin == "_charm" ? origin : "";
+    vector<string> grids;
+    grids.push_back("nu_A_1-" +expname+origin+"-XSFPFCC"+chorigin+".pineappl.lz4");
+    grids.push_back("nub_A_1-"+expname+origin+"-XSFPFCC"+chorigin+".pineappl.lz4");
+    dirCheck(thpath+gridsub);
+    string gitln = "https://github.com/juanrojochacon/FPF-WG1/raw/main/";
+    bool dloadth = false;
+    for (string grid : grids) {
+        if (system(("ls "+thpath+gridsub+"/"+grid).c_str())==512) {
+            cout << "Theory for " << endl;
+            cout << "    " << thpath << gridsub << "/" << grid << endl;
+            cout << "    not found, attempting to download" << endl;
+            dloadth = true;
         }
+    }
+    if (dloadth) {
+        gitln += "theory/grids/" + gridsub + ".tar";
+        system(("wget " + gitln).c_str());
+        system(("tar -xf " + gridsub + ".tar").c_str());
+        for (string grid : grids) {
+            system(("mv grids/"+grid+" " + thpath+gridsub+"/"+grid).c_str());
+        }
+        system("rm -rf grids");
+        system(("rm " + gridsub + ".tar").c_str());
+    }
+    //Put links to main theory/grids subdirs under xfitter datafiles
+    string thpath4ln =  "../../../../../../theory/grids/";
+    if (system(("ls " + mdir + "grids/").c_str())==512) {
+        system(("ln -s " + thpath4ln + " " + mdir + "grids").c_str());
     }
     
     //Init
     string infile;
-    vector<double> binF,xlo,xhi,xav,Q2lo,Q2hi,Q2av,sigma,N,stat,uncor;
+    vector<double> binF,xlo,xhi,xav,Q2lo,Q2hi,Q2av,sigma,N,stat;
     vector<double> binFp,binFm,xlom,xhim,xavm,Q2lom,Q2him,Q2avm,sigmam,Nm,statm;
 
     //Include unc.s already in prel tables if available, handy to read all input
     //info from prel table in the next stage, no need to revisit binned_events
     vector<string> systnames;
-    vector< vector<double> > syst, systm;
+    vector< vector<double> > syst;
 
     //Read binned_events, no more need to sum tables for nochargediscrimination
     infile = binevtbase + expID + suffix;
@@ -504,49 +631,53 @@ bool writeDatPrel(string PDF,
     Q2av  = BE[6];
     sigma = BE[7];
     N     = BE[8];
-    int isyst = (useStat ? 10 : 9);
     if (useStat) stat = BE[9];
-    for (int i=isyst; i<BE.size(); ++i) syst.push_back(BE[i]);
-    for (int j=0; j!=syst.size(); ++j) {
-        for (int i=0; i!=syst[j].size(); ++i) {
-            syst[j][i] *= (N[i]>0 ? 1./N[i] : 0.);
-        }
-    }
+    for (int i=(useStat ? 10 : 9); i<BE.size(); ++i) syst.push_back(BE[i]);
+    //N.B. as of 230627 no longer required to turn uncs into % here
 
+    
     //Compute unc as quadratic sum of all systs here
-    for (int row=0; useSyst && row!=syst[0].size(); ++row) {
-        double dtmp=0;
-        for (int col=0; col!=syst.size(); ++col) {
-            dtmp += syst[col][row]*syst[col][row];
-        }
-        uncor.push_back(sqrt(dtmp));
-    }
+    //REDUNDANT since syst unc must be called uncor anyway (see below) in 
+    //current approach, including a non-empty uncor would just account for the 
+    //same sources twice, but this code is left for reference.
+    vector<double> uncor;
+    //for (int row=0; useSyst && row!=syst[0].size(); ++row) {
+    //    double dtmp=0;
+    //    for (int col=0; col!=syst.size(); ++col) {
+    //        dtmp += syst[col][row]*syst[col][row];
+    //    }
+    //    uncor.push_back(sqrt(dtmp));
+    //}
     
     //Construct generic syst unc names
     stringstream sstream;
     for (int i=0; i!=syst.size(); ++i) {
          sstream.clear();  sstream.str("");
-         sstream << "syst";
-         if (i>0) sstream << i;
-         sstream << ":C";           //Use covariance matrix
-         if (i>0) sstream << ":A";  //Additive unc.s, if many given
+         //When using full correlation matrix or systematic correlations, 
+         //systematic uncertainty columns must be called 'uncor const'
+         sstream << "uncor const";
          systnames.push_back(sstream.str());
      }
 
-    //Turn unc.s into %. N.B. only done for prel tables, final tables read the
-    //unc.s from prel tables where they're hence already in %
-    for (int i=0; i!=uncor.size(); ++i) {
-        uncor[i] *= 100.;
-        stat[i] *= 100.;
-        for (int j=0; j!=syst.size(); ++j) syst[j][i] *= 100.;
+    //Correlations with all syst unc
+    vector<vector<double>> corr = correlations(N,stat,syst);
+    if (!writeCorr(expname,nuID,origin,"",xav,Q2av,corr)) {
+        return false;
+    }
+    
+    //Correlations with only lepton energy in syst unc
+    vector< vector<double> > systEl;
+    systEl.push_back(syst[1]);  //El is 2nd syst unc in binned_events files
+    vector<vector<double>> corrEl = correlations(N,stat,systEl);
+    if (!writeCorr(expname,nuID,origin,"_onlyEl",xav,Q2av,corrEl)) {
+        return false;
     }
 
-    //Write prel table
-    return xFtableWriter(mdir,PDF+"/prel/",expname,nuID,origin,iexp,
+    //Write datatable for preliminary xFitter run
+    return xFtableWriter(mdir,"prel/",expname,nuID,origin,iexp,
                          binF,xav,Q2av,sigma,stat,uncor,systnames,syst);
-
+    
 } // END writeDatPrel
-
 
 bool writeDatFinal(string PDF, 
                    string expname, 
@@ -564,8 +695,8 @@ bool writeDatFinal(string PDF,
     string expID = expname + origin + "_" + nuID;
     string infile;
     vector<double> dvtmp;
-    vector<string> svtmp, systnames;
-    vector< vector<double> > systtmp, systunc;
+    vector<string> svtmp, systnames, systnamesEl;
+    vector< vector<double> > systtmp, systunc, systuncEl;
 
     //Read xsec values from previous xFitter run
     vector< vector<double> > prelXS;  //To contain xbins, Q2bins, th orig
@@ -586,8 +717,7 @@ bool writeDatFinal(string PDF,
     //Read input data to the previous run^, required for 
     //matching tables as xFitter output skips unused bins
     vector<string> cols;
-    vector< vector<double> > Mdat = xFtableReader(cols, mdir,
-                                                  PDF+"/prel/",
+    vector< vector<double> > Mdat = xFtableReader(cols, mdir, "prel/",
                                                   expname,nuID,origin);
     if (Mdat.size()==0) {
         cout <<"ERROR in xFtableReader at "<<PDF+"/prel/"+expID+origin<< endl;
@@ -614,6 +744,11 @@ bool writeDatFinal(string PDF,
     for (int i=isyst; i<cols.size(); ++i) {
         systnames.push_back(cols[i]);
         systunc.push_back(Mdat[i]);
+        //Assume lepton E is 2nd listed unc in binned events
+        if (i==isyst+1) {
+            systnamesEl.push_back(cols[i]);
+            systuncEl.push_back(Mdat[i]);
+        }
     }
     bool useSyst = systnames.size() > 0;
 
@@ -635,7 +770,7 @@ bool writeDatFinal(string PDF,
     }
     xsec.clear();
     xsec=xsec1;
-
+    
     //Form pseudodata: vary cross sections by the estimated exp unc
     //and different combinations of uncertainties. In forming the
     //pseudodata, correlated uncertainties are expected to be more
@@ -644,42 +779,58 @@ bool writeDatFinal(string PDF,
     //are used for the theory computation in the fit. To estimate 
     //how much better the correlated data would constrain the PDFs, 
     //a correction factor f = 0.5 is applied to the correlated case
-    vector<double> xsv, xsvstat, xsvunc05;
+    vector<double> xsv, xsvstat, xsvunc05, xsvuncEl05;
     for (int ixs=0; ixs!=xsec.size(); ++ixs) {                    
         
         //Quadratic sums of various combinations of stat & syst uncs
         double syst2=0;
         for (int i=0; i!=systunc.size(); ++i) syst2 += pow(systunc[i][ixs],2);
+        double systEl2=0;
+        if (systuncEl.size()!=0) systEl2 = pow(systuncEl[0][ixs],2);
         double stat2 = (useStat ? pow(stat[ixs],2) : 0.);
         stat2 *= 0.0001;  syst2 *= 0.0001;  //Div by 100^2 since given in %
-        double errstat       = sqrt(stat2);
-        double errstatsyst   = sqrt(stat2 + syst2);
-        double errstatsyst05 = sqrt(stat2 + syst2*0.25);  //0.25=0.5^2
+        double errstat         = sqrt(stat2);
+        double errstatsyst     = sqrt(stat2 + syst2);
+        double errstatsyst05   = sqrt(stat2 + syst2*0.25);  //0.25=0.5^2
+        double errstatsystEl05 = sqrt(stat2 + systEl2*0.25);
         double rndm = distribution(generator);
         
         //Vary x-sec to obtain pseuodata 
         double xs = xsec[ixs];
-        xsv.push_back(      xs*(1. +   errstatsyst*rndm));
-        xsvstat.push_back(  xs*(1. +       errstat*rndm));
-        xsvunc05.push_back( xs*(1. + errstatsyst05*rndm));
+        xsv.push_back(       xs*(1. +     errstatsyst*rndm));
+        xsvstat.push_back(   xs*(1. +         errstat*rndm));
+        xsvunc05.push_back(  xs*(1. +   errstatsyst05*rndm));
+        xsvuncEl05.push_back(xs*(1. + errstatsystEl05*rndm));
     }
-        
+    
     /* Write tables for final runs */
 
-    //Including syst unc
-    if (!xFtableWriter(mdir,PDF+"/syst/",
+    string sdir=""; //Init subdirectory name (of the form "PDF/uncLevel")
+    
+    //Including all syst unc
+    sdir = PDF+"/syst/";
+    if (!xFtableWriter(mdir,sdir,
                        expname,nuID,origin,iexp,
                        binF,xav,Q2av,xsv,                 //3 bins, x-sec
                        stat,dvtmp,                        //stat, uncor
-                       systnames,systunc)) return false;  //systnames, systmatrix
-    
+                       systnames,systunc)) return false;  //systnames, systmatrix                       
+                       
     //0.5x less syst var in pseudodata variation, otherwise full syst unc
-    if (!xFtableWriter(mdir,PDF+"/systVar05/",
+    sdir = PDF+"/systVar05/";
+    if (!xFtableWriter(mdir,sdir,
                        expname,nuID,origin,iexp,
                        binF,xav,Q2av,xsvunc05,            //3 bins, x-sec
                        stat,dvtmp,                        //stat, uncor
                        systnames,systunc)) return false;  //systnames, systmatrix
-    
+
+    //Include only lepton energy uncertainty in syst
+    sdir = PDF+"/systVar05El/";
+    if (!xFtableWriter(mdir,sdir,
+                       expname,nuID,origin,iexp,
+                       binF,xav,Q2av,xsvuncEl05,              //3 bins, x-sec
+                       stat,dvtmp,                            //stat, uncor
+                       systnamesEl,systuncEl)) return false;  //systnames, systmatrix
+                       
     //Stat unc only, no syst; neither as unc or in pseudodata variation
     if (!xFtableWriter(mdir,PDF+"/statOnly/",
                        expname,nuID,origin,iexp, 
@@ -718,110 +869,6 @@ bool writeDatFinal(string PDF,
     return true;
 } // END writeDatFinal
 
-
-bool writeCov(string PDF, 
-              string expname, 
-              string nuID, 
-              string origin)
-{
-    string datadir = "./datafiles/lhc/fpf/neutrinoDIS/pseudodata/";
-    ifstream in;
-    fstream out;
-    string line;
-    stringstream sstream;
-    pair<double,double> bintmp;
-    int i1,i2;  //Index tmps
-    double xlo,xhi,xav,Q2lo,Q2hi,Q2av,cov;
-
-    //Read and write covariance matrix tables
-    int ind1,ind2;
-    
-    string expID  = expname + origin + "_" + nuID;
-    string exptag = replace(expID, origin, replace(origin,"_"," "));
-    exptag        = replace(exptag,"Rv", "R$\\nu$");
-    exptag        = replace(exptag,"_nochargediscrimination",
-                                   " $\\nu_{\\mu}+\\bar{\\nu}_{\\mu}$");
-    exptag        = replace(exptag,"_nub", " $\\bar{\\nu}_{\\mu}$");
-    exptag        = replace(exptag,"_nu",  " $\\nu_{\\mu}$");
-
-    
-    //Deduce cov. mat bin map fom binned events
-    map< int, pair<double,double> > binmap;
-    string suffix = ".txt";
-    string origindir = (origin=="_charm" ? "CHARM/" : "INCLUSIVE/");
-    string infile = "../results/"
-                  + origindir
-                  + expname
-                  + "/clipped_nan/clipped_nan_binned_sysevents_"
-                  + expID
-                  + suffix;
-    if (!inStreamOpen(in,infile)) return false;
-    for (int i=0; i!=2; ++i) getline(in,line);  //Skip 2 lines of header
-    i1=0;  //Init
-    while (getline(in,line)) {
-        sstream.clear();  sstream.str("");
-        sstream << setprecision(15) << line;
-        sstream >> xlo >> xhi >> xav >> Q2lo >> Q2hi >> Q2av;
-        bintmp.first  = xav;
-        bintmp.second = Q2av;
-        binmap[i1] = bintmp;            
-        ++i1;
-    }
-    in.close();
-
-    //Read covariance matrix entries
-    string covmatfile = "../results/"
-                      + origindir
-                      + expname
-                      + "/clipped_nan/clipped_nan_covariance_"
-                      + expID
-                      + suffix;
-    if (!inStreamOpen(in,covmatfile)) return false;
-    vector<int> i1s,i2s;
-    vector<double> covs;
-    while (getline(in,line)) {
-        sstream.clear();  sstream.str("");
-        sstream << line;
-        sstream >> i1 >> i2 >> cov;
-        i1s.push_back(i1);
-        i2s.push_back(i2);
-        covs.push_back(cov);
-    }
-    in.close();        
-
-    //Write covariance matrix table in xFitter format            
-    string outname = datadir + PDF + "/" + expID + ".cov";
-    outStreamOpen(out,outname);
-    out << "! Covariance matrix" << endl;
-    out << "&StatCorr"           << endl;
-    out << "  Name1 = '"
-        << replace(exptag,"_optimistic"," optimistic")
-        << "'"   << endl;
-    out << "  Name2 = '"
-        << replace(exptag,"_optimistic"," optimistic")
-        << "'\n" << endl;
-    out << "  NIdColumns1 = 2"          << endl;
-    out << "  NIdColumns2 = 2\n"        << endl;
-    out << "  IdColumns1 = 'x', 'Q2'"   << endl;
-    out << "  IdColumns2 = 'x', 'Q2'\n" << endl;
-    out << "  NCorr = " << covs.size()  << "\n" << endl;
-    out << "  MatrixType = 'Systematic covariance matrix'" << endl;            
-    out << "&End" << endl;
-    //Matrix values
-    for (int i=0; i!=covs.size(); ++i) {
-        out << setfill(' ') << setw(20) << setprecision(15) << binmap[i1s[i]].first;
-        out << setfill(' ') << setw(20) << setprecision(15) << binmap[i1s[i]].second;
-        out << setfill(' ') << setw(20) << setprecision(15) << binmap[i2s[i]].first;
-        out << setfill(' ') << setw(20) << setprecision(15) << binmap[i2s[i]].second;
-        out << setfill(' ') << setw(20) << setprecision(15) << covs[i] << endl;
-    }
-    out.close();
-    cout << "Wrote " << outname << endl;
-    
-
-    return true;
-} // END writeCov
-
 int main() {
     
     //BEGIN user input
@@ -841,22 +888,19 @@ int main() {
 
     //Write tables
     int iexp=137;
-    for (string PDF : PDFs) {
-        for (string expname : expnames) {
-            for (string nuID : nuIDs) {
-                for (string origin : origins) {
-                    if (prel) {
-                        if (!writeDatPrel(PDF,expname,nuID,origin,iexp,useStat,useSyst)) return -1;
-                    } else {
-                        if (!writeDatFinal(PDF,expname,nuID,origin,iexp)) return -1;
-                    }
-                    if (!writeCov(PDF,expname,nuID,origin)) return -1;
-                    ++iexp;
+    for (string expname : expnames) {
+        for (string nuID : nuIDs) {
+            for (string origin : origins) {
+                if (prel) {
+                    if (!writeDatPrel(expname,nuID,origin,iexp,useStat,useSyst)) return -1;
+                } else {
+                    for (string PDF : PDFs) if (!writeDatFinal(PDF,expname,nuID,origin,iexp)) return -1;
                 }
+                ++iexp;
             }
-        }        
-    }
-
+        }
+    }        
+    
     //Print instructions before exiting
     if (prel) {
         cout << "Wrote tables for preliminary xFitter runs" << endl;

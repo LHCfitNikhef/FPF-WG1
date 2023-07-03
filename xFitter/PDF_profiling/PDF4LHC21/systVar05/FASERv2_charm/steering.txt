@@ -18,8 +18,8 @@
     NCorrFiles = 2
  
   ! Correlation files:
-    CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/FASERv2_charm_nu.cov'
-    CorrFileNames(2) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/FASERv2_charm_nub.cov'
+    CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_charm_nu.corr'
+    CorrFileNames(2) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_charm_nub.corr'
 &End
 
 &ReduceSyst

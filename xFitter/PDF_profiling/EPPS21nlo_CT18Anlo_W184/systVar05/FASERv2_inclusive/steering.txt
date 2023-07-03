@@ -18,8 +18,8 @@
     NCorrFiles = 2
  
   ! Correlation files:
-    CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/FASERv2_inclusive_nu.cov'
-    CorrFileNames(2) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/FASERv2_inclusive_nub.cov'
+    CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_inclusive_nu.corr'
+    CorrFileNames(2) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_inclusive_nub.corr'
 &End
 
 &ReduceSyst

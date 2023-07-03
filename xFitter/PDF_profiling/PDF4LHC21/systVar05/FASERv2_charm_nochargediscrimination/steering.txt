@@ -17,7 +17,7 @@
     NCorrFiles = 1
  
   ! Correlation files:
-    CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/FASERv2_charm_nochargediscrimination.cov'
+    CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_charm_nochargediscrimination.corr'
 &End
 
 &ReduceSyst

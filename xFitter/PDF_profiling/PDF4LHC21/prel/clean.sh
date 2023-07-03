@@ -6,6 +6,7 @@ for experiment in "FASERv2"; do
             rm -rf ${dir}/plots
             rm ${dir}/unpolarised.wgt
             rm ${dir}/*.pdf
+            rm ${dir}/log.txt
         done
     done
 done

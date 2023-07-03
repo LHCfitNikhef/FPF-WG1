@@ -18,8 +18,8 @@
     NCorrFiles = 2
  
   ! Correlation files:
-    CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/FASERv2_inclusive_nochargediscrimination.cov'
-    CorrFileNames(2) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/FASERv2_charm_nochargediscrimination.cov'
+    CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_inclusive_nochargediscrimination.corr'
+    CorrFileNames(2) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_charm_nochargediscrimination.corr'
 &End
 
 &ReduceSyst

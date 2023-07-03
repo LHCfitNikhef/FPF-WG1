@@ -14,7 +14,7 @@ PLOTOPTS="--therr --bands --q2all --relative-errors --scale68"
 ln -s ../../../../datafiles
 
 # Run xFitter:
-xfitter
+xfitter > log.txt
 
 # Visualize results:
 mv plots/plots.pdf plots/plots_OLD.pdf
