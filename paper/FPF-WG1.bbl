@@ -404,4 +404,40 @@ R.~D. Ball, V.~Bertone, F.~Cerutti, L.~Del~Debbio, S.~Forte, A.~Guffanti, J.~I.
   {\bfseries 849} (2011) 296--363},
   \href{http://arxiv.org/abs/1101.1300}{{\ttfamily arXiv:1101.1300 [hep-ph]}}.
 
+\bibitem{Watt:2012tq}
+G.~Watt and R.~S. Thorne, ``{Study of Monte Carlo approach to experimental
+  uncertainty propagation with MSTW 2008 PDFs},''
+  \href{http://dx.doi.org/10.1007/JHEP08(2012)052}{{\em JHEP} {\bfseries 08}
+  (2012) 052}, \href{http://arxiv.org/abs/1205.4024}{{\ttfamily arXiv:1205.4024
+  [hep-ph]}}.
+
+\bibitem{Carrazza:2015hva}
+S.~Carrazza, J.~I. Latorre, J.~Rojo, and G.~Watt, ``{A compression algorithm
+  for the combination of PDF sets},''
+  \href{http://dx.doi.org/10.1140/epjc/s10052-015-3703-3}{{\em Eur. Phys. J. C}
+  {\bfseries 75} (2015) 474}, \href{http://arxiv.org/abs/1504.06469}{{\ttfamily
+  arXiv:1504.06469 [hep-ph]}}.
+
+\bibitem{NNPDF:2017mvq}
+{\bfseries NNPDF} Collaboration, R.~D. Ball {\em et~al.}, ``{Parton
+  distributions from high-precision collider data},''
+  \href{http://dx.doi.org/10.1140/epjc/s10052-017-5199-5}{{\em Eur. Phys. J. C}
+  {\bfseries 77} no.~10, (2017) 663},
+  \href{http://arxiv.org/abs/1706.00428}{{\ttfamily arXiv:1706.00428
+  [hep-ph]}}.
+
+\bibitem{Gao:2013bia}
+J.~Gao and P.~Nadolsky, ``{A meta-analysis of parton distribution functions},''
+  \href{http://dx.doi.org/10.1007/JHEP07(2014)035}{{\em JHEP} {\bfseries 07}
+  (2014) 035}, \href{http://arxiv.org/abs/1401.0013}{{\ttfamily arXiv:1401.0013
+  [hep-ph]}}.
+
+\bibitem{Carrazza:2015aoa}
+S.~Carrazza, S.~Forte, Z.~Kassabov, J.~I. Latorre, and J.~Rojo, ``{An Unbiased
+  Hessian Representation for Monte Carlo PDFs},''
+  \href{http://dx.doi.org/10.1140/epjc/s10052-015-3590-7}{{\em Eur. Phys. J. C}
+  {\bfseries 75} no.~8, (2015) 369},
+  \href{http://arxiv.org/abs/1505.06736}{{\ttfamily arXiv:1505.06736
+  [hep-ph]}}.
+
 \end{thebibliography}\endgroup
