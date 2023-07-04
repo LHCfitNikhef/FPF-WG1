@@ -1,6 +1,0 @@
-conversion_factor: 1.0
-operands:
-   - - xsec-a1
-operation: 'null'
-target_dataset: xsec-a1
-   ~                              

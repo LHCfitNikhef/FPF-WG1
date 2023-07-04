@@ -1,6 +1,0 @@
-conversion_factor: 1.0
-operands:
-   - - xsec_charm-a1
-operation: 'null'
-target_dataset: xsec_charm-a1
-   ~                              
