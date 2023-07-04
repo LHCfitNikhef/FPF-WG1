@@ -1,5 +1,6 @@
 conversion_factor: 1.0
 operands:
-   - - FASERV2_SUM_DSIGMA_INCLUSIVE
-operation: 'null'
+   - - FASERV2NU_SUM_DSIGMA_INCLUSIVE
+   - - FASERV2NB_SUM_DSIGMA_INCLUSIVE
+operation: 'ADD'
 target_dataset: FASERV2_SUM_DSIGMA_INCLUSIVE
