@@ -16,7 +16,7 @@ Nuclear modifications associated to a tungsten target are not necessarily small 
 to a free isoscalar nucleon, and hence will affect the event rate predictions for
 the FPF experiments.
 %
-Turning the argument around, measurememnts of differential neutrino cross-sections
+Turning the argument around, measurements of differential neutrino cross-sections
 on heavy nuclear targets provide direct constraints on these nuclear modifications
 without replying on assumptions on the $A$ dependence.
 
@@ -46,13 +46,19 @@ separation.
 %
 The bands indicate the 68\% CL uncertainties.
 
+{\color{red}
+The effect of including correlated systematic uncertainties is shown in 
+Fig.~\ref{fig:profiling_syst_nuclear}
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_uv_ratio.pdf}
 \includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_dv_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_Sea_ratio.pdf}\\
-\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_g_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
 \includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_s_ratio.pdf}
 \caption{Same as Fig.~\ref{fig:profiling_baseline},
 now for the profiling of the EPPS21 global determination of nuclear PDFs,
@@ -66,6 +72,34 @@ separation.
 The bands indicate the 68\% CL uncertainties.
 }
 \label{fig:profiling_baseline_nuclear}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/syst_FASERv2_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/syst_FASERv2_q2_10000_pdf_dv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/syst_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/syst_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/syst_FASERv2_q2_10000_pdf_s_ratio.pdf}
+\caption{Same as Fig.~\ref{fig:profiling_baseline_nuclear}, 
+but accounting for the statistical as well as correlated systematic uncertainties.
+}
+\label{fig:profiling_syst_nuclear}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_dv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_s_ratio.pdf}
+\caption{Comparing Fig.~\ref{fig:profiling_baseline_nuclear}, 
+to the results obtained without charm production structure functions.
+}
+\label{fig:profiling_charm_nuclear}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

@@ -58,7 +58,6 @@ The same style of PDF comparisons will be adopted through this section.
 Results are shown at $Q^2 = 10^4 \, \textrm{GeV}^2$ and the residual shift in central values
 arising from the profiling is ignored.
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 \begin{figure}[t]
 \centering
@@ -90,13 +89,43 @@ Same as Fig.~\ref{fig:profiling_baseline} comparing FASER$\nu$2 with AdvSND and 
 
 \paragraph{Impact of systematic uncertainties.}
 %
-Same as Fig.~\ref{fig:profiling_baseline} for different scenarios concerning the experimental
-systematic uncertainties.
+The effect of including correlated systematic uncertainties is shown in 
+Fig.~\ref{fig:profiling_syst}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/syst_FASERv2_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/syst_FASERv2_q2_10000_pdf_dv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/syst_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/syst_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/syst_FASERv2_q2_10000_pdf_s_ratio.pdf}
+\caption{Same as Fig.~\ref{fig:profiling_baseline}, 
+but accounting for the statistical as well as correlated systematic uncertainties.
+}
+\label{fig:profiling_syst}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \paragraph{Impact of charm production.}
 %
-Same as Fig.~\ref{fig:profiling_baseline} comparing the baseline LHC neutrino dataset with the results
-of a profiling without the charm production structure functions.
+Fig.~\ref{fig:profiling_charm} displays a comparison of the baseline LHC neutrino dataset with the results
+of profiling without the charm production structure functions. 
+Particularly, the constraints on the $s$ PDF are observed to become more stringent 
+by virtue of the contribution of the charm production structure functions.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_dv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_s_ratio.pdf}
+\caption{Comparing the results shown in Fig.~\ref{fig:profiling_baseline} (red and blue), 
+to the results obtained without charm production structure functions (green).
+}
+\label{fig:profiling_charm}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \paragraph{The role of lepton charge separation.}
 %
