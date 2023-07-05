@@ -22,7 +22,7 @@ xfitter
 
 # Visualize results:
 mv plots/plots.pdf plots/plots_OLD.pdf
-xfitter-draw ${PLOTOPTS} output:"${DATATXT}" profile:output:"${DATATXT}+${DETECTOR}"
+xfitter-draw ${PLOTOPTS} output:"${DATATXT} (CD)" profile:../${DETSIMPLE}/output:"CD+${DETECTOR}" profile:output:"CD+${DETECTOR}, no charge id."
 mv plots/plots.pdf plots/${PDF}_vs_profiled.pdf
 
 cp plots/q2_10000_pdf_uv_ratio.pdf  ${UNCLVL}_${DETSIMPLE}_q2_10000_pdf_uv_ratio.pdf 

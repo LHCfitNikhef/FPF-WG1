@@ -20,7 +20,7 @@ PLOTOPTS="--splitplots-pdf --therr --bands --q2all --relative-errors --xrange 1e
 ln -s ../../../../datafiles
 
 # Run xFitter:
-#xfitter
+xfitter
 
 # Visualize results:
 mv plots/plots.pdf plots/plots_OLD.pdf

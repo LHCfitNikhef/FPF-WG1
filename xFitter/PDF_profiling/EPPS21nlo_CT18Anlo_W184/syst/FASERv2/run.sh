@@ -22,8 +22,7 @@ xfitter
 
 # Visualize results:
 mv plots/plots.pdf plots/plots_OLD.pdf
-xfitter-draw ${PLOTOPTS} output:"${DATATXT}" profile:output:"${DATATXT}+${DETECTOR}"
-mv plots/plots.pdf plots/${PDF}_vs_profiled.pdf
+xfitter-draw ${PLOTOPTS} output:"${DATATXT} (CD)" profile:../../statOnly/${DETSIMPLE}/output:"CD+${DETECTOR}, stat" profile:output:"CD+${DETECTOR}, stat+syst"
 
 cp plots/q2_10000_pdf_uv_ratio.pdf  ${UNCLVL}_${DETSIMPLE}_q2_10000_pdf_uv_ratio.pdf 
 cp plots/q2_10000_pdf_dv_ratio.pdf  ${UNCLVL}_${DETSIMPLE}_q2_10000_pdf_dv_ratio.pdf 
