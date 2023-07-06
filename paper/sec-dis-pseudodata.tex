@@ -808,17 +808,19 @@ for each bin of the measurement, from which a experimental covariance matrix can
  compromise the validity of the projection studies.
  
  The central values for the LHC neutrino scattering pseudo-data, denoted
- by $\mathcal{O}_i^{{\rm exp}} $, are obtained
+ by $\mathcal{O}_i^{{\rm (exp)}} $, are obtained
  by fluctuating this reference theory prediction by the statistical and systematic
  uncertainties, that is
  \begin{equation}
   \label{eq:pseudo_data}
-  \mathcal{O}_i^{{\rm (exp)}}  =   \mathcal{O}_i^{{\rm (th)}}\left( 1+ r^{(i)}_{\rm stat}\delta_{i,{\rm stat}}
-  + \sum_{k=E_\ell, E_h,\theta_\ell} r_{{\rm sys},k} \,\delta_{i,{\rm sys}}^{(k)}\right) \, , \qquad i=1,\ldots,N_{\rm bin} \, ,
+  \mathcal{O}_i^{{\rm (exp)}}
+  =   \mathcal{O}_i^{{\rm (th)}}\left( 1+ r_{i} \delta_{i}^{\rm stat}
+  + \sum_{k=E_\ell, E_h,\theta_\ell}
+    r'_{k} \,\delta_{i,k}^{{\rm sys}}\right) \, , \qquad i=1,\ldots,N_{\rm bin} \, ,
  \end{equation}
- with $r^{(i)}_{\rm stat}$ and $r_{{\rm sys},k}$ being univariate Gaussian random numbers,
- and $\delta_{\rm stat}$ ($\delta_{\rm sys}^{(k)}$) indicate the relative statistical (systematic)
- uncertainties associated to the $i$-th bin.
+ with $r_{i}$ and $r'_{k}$ being univariate Gaussian random numbers,
+ and $\delta_i^{\rm stat}$ ($\delta_{i,k}^{\rm sys}$) indicate the relative statistical (systematic)
+ uncertainties associated to the $i$-th bin (and $k$-th source of systematic uncertainty).
  %
  Note that a given systematic variation is assumed to be fully correlated among all the bins
  in the measurement.
@@ -826,15 +828,18 @@ for each bin of the measurement, from which a experimental covariance matrix can
  Alternatively, we can add all uncertainties in quadrature and account for a possible
  improvement in the systematic errors with respect to the current estimates,
  \be
- \delta_{{\rm tot},i}^{\rm exp} = \left( \left( \delta_i^{\rm stat}\right)^2 + \sum_{k=1}^{n_{\rm sys}}
-\left( f_{{\rm red},j}\delta_{i,j}^{\rm sys} \right)^2\right)^{1/2} \, ,
+ \delta_{i}^{\rm tot}
+ = \left( \left( \delta_i^{\rm stat}\right)^2 + \sum_{k=1}^{n_{\rm sys}}
+\left( \delta_{i,k}^{\rm sys} \right)^2\right)^{1/2} \, ,
  \ee
- with $f_{{\rm red},j} \le 1$ quantifies the possible reduction of systematic uncertainties, and
- then the pseudo-data is evaluated by means of
+ and the pseudo-data is evaluated by means of
  \begin{equation}
   \label{eq:pseudo_data_v2}
-  \mathcal{O}_i^{{\rm (exp)}}  =   \mathcal{O}_i^{{\rm (th)}}\left( 1+ r^{(i)}_{\rm stat}\delta_{i,{\rm tot}}
-  \right) \, , \qquad i=1,\ldots,N_{\rm bin} \, .
+  \mathcal{O}_i^{{\rm (exp)}}
+  = \mathcal{O}_i^{{\rm (th)}}
+    \left( 1+ r_i \delta_i^{\rm tot}
+    \right) \,
+    , \qquad i=1,\ldots,N_{\rm bin} \, .
  \end{equation}
  While the actual correlation model will lie somewhere between no correlation and full correlation,
  these two approaches to generate the pseudo-data bracket the projected impact
