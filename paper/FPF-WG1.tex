@@ -268,25 +268,12 @@ extends the LHC with a ``Neutrino-Ion Collider''.
 % REsults for the proton PDFs, using NNPDF and PDF4LHC21/xfitter
 \input{sec-protonPDFs}
 
-% REsults for the nuclear PDFs, using NNPDF and EPPS21/xfitter
+% Results for the nuclear PDFs using EPPS21/xfitter
 \input{sec-nuclearPDFs}
 
 % Summary and outlook
 \input{sec-summary}
 
-
-%\section{Description of the $\nu$FPF codes}
-
-%The part that computes the differential cross sections is taken care by the python
-%package $\nu$FPF. By default, it computes the HERA cross section defined as
-%\begin{equation}
-%    \frac{d^2\tilde{\sigma}^{A}}{dxdy} \lp x,Q^2,y \rp =  \frac{1}{2}\lc (1-y)F^{\nu A}_2(x,Q^2) + y^2xF^{\nu A}_1(x,Q^2)
-%    + (-1)^\ell  y\lp 1-\frac{y}{2}\rp xF^{\nu A}_3(x,Q^2)\rc ,
-%\end{equation}
-%where $\ell = 0$ for leptons and $\ell = 1$ for anti-leptons. Thus, in order to compare with 
-%Eq.~\ref{eq:neutrino_DIS_xsec} one needs to multiply the above equation with $G_F^2s/2 \pi (1 + Q^2/m^2_W)^2$.
-
-% Bibliography
 \bibliographystyle{utphys}
 \bibliography{FPF-WG1}
 
