@@ -1,9 +1,9 @@
-\section{DIS pseudo-data generation}
+\section{DIS projections for LHC far-forward experiments}
 \label{sec:dis_pseudodata}
 
 Here we describe the procedure adopted in order 
 to generate projections for the kinematic coverage
-and experimental uncertainties associated to differential measurements
+and experimental uncertainties associated to  measurements
 of neutrino-nucleus scattering at the LHC far-forward experiments.
 %
 First, we summarise the theoretical description of differential
@@ -13,24 +13,22 @@ their PDF sensitivity.
 Second, we present an  overview of the operative and proposed
 LHC far-forward neutrino detectors that
 will be considered in the present study and indicate their
-key acceptance and performance parameters.
+main acceptance and performance parameters.
 %
 By convoluting the expected muon neutrino fluxes
 with the acceptance and scattering rates of each
 of these detectors,
-we compute the foreseen event yields in bins of $x$, $Q^2$,
+we evaluate the foreseen event yields in bins of $x$, $Q^2$,
 and $E_\nu$ and therefore the associated statistical uncertainties.
 %
-Finally, we estimate how the dominant systematic
-uncertainties in each experiment translate into uncertainties in the predicted
-event rates and use this information to complete the calculation of the experimental
-covariance matrix.
+We also estimate how the systematic uncertainties in the measurement
+of final-state variables affects the experimental covariance matrix. 
 
 \subsection{Neutrino DIS revisited}
 
 The double-differential cross-section for neutrino-nucleus charged-current scattering,
 see~\cite{Candido:2023utz} and references therein,
-can be expressed in terms of 
+is expressed in terms of 
 independent structure functions $F_2^{\nu A}$, $xF_3^{\nu A}$
 and $F_L^{\nu A}$:
 \be
@@ -70,18 +68,20 @@ transfers $Q^2$, such that
 in terms of a convolution of partonic scattering cross-sections  $C_{i,j}^{\nu N}(x,\alpha_s)$ and
 of process-independent PDFs $f^{(A)}_j\lp x,Q^2\rp$.
 %
+Specifically, in this work we impose that $Q^2\ge 2$ GeV$^2$.
+%
 A similar expression holds for charm production~\cite{Faura:2020oom}, which requires
 accounting also for charm mass effects~\cite{Gao:2017kkx}.
  %
 We discuss in Sect.~\ref{sec:settings} the theoretical
 settings adopted~\cite{Candido:2022tld,yadism,Candido:2023utz,Carrazza:2020gss} to
 evaluate predictions for
-neutrino DIS structure functions, Eq.~(\ref{eq:sfs_pqcd}),
-and for differential cross-sections,
-Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}) and~(\ref{eq:antineutrino_DIS_xsec_FL}),
-in the kinematic range of relevance for LHC neutrinos.
+neutrino DIS structure functions
+and differential cross-sections,
+Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}),~(\ref{eq:antineutrino_DIS_xsec_FL}), and~(\ref{eq:sfs_pqcd}),
+in the kinematics covered by LHC neutrinos.
 
- Each neutrino structure function provides complementary sensitivity
+Different neutrino structure functions provide complementary sensitivity
  to the partonic flavour decompositions of nucleons.
  %
  To illustrate this sensitivity, consider a leading order  calculation
@@ -114,12 +114,13 @@ a diagonal CKM matrix and no heavy quark mass effects.
  f_{q^+} (x,Q^2)\equiv \lp f_{q}+f_{\bar{q}}\rp(x,Q^2) \, , \qquad
  f_{q^-} (x,Q^2)\equiv \lp f_{q}- f_{\bar{q}}\rp(x,Q^2) \, .
  \ee
- We note that even for isoscalar targets separate measurements
- for neutrinos and antineutrinos will not be equivalent, since in general neither $f_{s^-}$ nor
- $f_{c^-}$ are expected to vanish.
+ We note that, even for isoscalar targets, separate measurements
+ for neutrinos and antineutrinos will not be equivalent, since in general
+ the strange and charm sea asymmetries $f_{s^-}$ and
+ $f_{c^-}$ are not expected to vanish.
 
  In the projections presented in this work, when interpreting the LHC neutrino structure
- functions in terms of proton PDFs we will assume a isoscalar free-nucleon target and neglect
+ functions in terms of proton PDFs, we will assume a isoscalar free-nucleon target and neglect
  nuclear PDF modifications, along the lines of Eq.~(\ref{eq:neutrinoSFs_isoscalar}).
  %
  On the other hand, when evaluating structure functions
@@ -127,8 +128,8 @@ a diagonal CKM matrix and no heavy quark mass effects.
  nuclear corrections and that
  the target is not isoscalar when evaluating the physical observables.
  %
- We point out that accounting for nuclear target effects in a global proton
- PDF fit is straightforward by means of the procedure developed
+ We point out that accounting for nuclear modifications in a global proton
+ PDF fit is possible by means of the procedure developed
  in~\cite{Ball:2020xqw,Ball:2018twp}.
 
  It is illustrative to compare the PDF dependence of neutrino structure functions
@@ -147,11 +148,11 @@ a diagonal CKM matrix and no heavy quark mass effects.
  F_2^{\ell N}(x,Q^2) &=& x\lp \frac{5}{18}\lc f_{u^+} + f_{d^+}\rc
  + \frac{1}{9} f_{s^+} + \frac{4}{9} f_{c^+} \rp(x,Q^2) \, , \nonumber  
  \eea
- with $xF_3$ being negligible in this region.
+ with $xF_3$ being negligible in this region below the $Z$-pole.
  %
  Eq.~(\ref{eq:NC_chargedlepton}) showcases the complementarity between
  neutrino and charged-lepton DIS in terms of sensitivity
- to the flavour PDF decomposition.
+ to the different flavour PDF decomposition.
 
  \subsection{Far-forward neutrino detectors at the LHC}
  \label{sec:neutrinoDetectors}
@@ -190,46 +191,49 @@ a diagonal CKM matrix and no heavy quark mass effects.
   \renewcommand{\arraystretch}{1.50}
 \begin{tabularx}{\textwidth}{Xccccc}
 \toprule
-Detector &  Rapidity &  Target & Lepton sign & Acceptance  & Performance \\
-\midrule
-\multirow{2}{*}{FASER$\nu$}  &   &   Tungsten  & \multirow{2}{*}{muons}      &     &         \\
-  &   &   (1.1 ton)  &       &     &         \\
-\midrule
-\multirow{2}{*}{SND@LHC}  & \multirow{2}{*}{ $7.2 \le \eta_\nu \le 8.4$}   &  Tungsten   &       &       &       \\
-  &   &  (0.83 ton)   &       &       &       \\
+Detector &  Rapidity &  Target & Charged Lepton ID & Acceptance  & Performance \\
 \midrule
 \midrule
-\multirow{3}{*}{FASER$\nu$2}  &   & \multirow{2}{*}{Tungsten}    &   \multirow{3}{*}{only muons}     &   $E_\ell \gsim 100$ GeV  &    $\delta E_\ell \sim 30\% $     \\
+\multirow{2}{*}{FASER$\nu$}  &  \multirow{2}{*}{ $|\eta_\nu| \le 8.5$}  &   Tungsten  & \multirow{2}{*}{muons}      &   $E_\ell \gsim 100$ GeV   &    \multirow{2}{*}{n/a}       \\
+  &   &   (1.1 ton)  &       &  $\tan \theta_\ell \lsim 0.5$   &         \\
+\midrule
+\multirow{2}{*}{SND@LHC}  & \multirow{2}{*}{ $7.2 \le \eta_\nu \le 8.4$}   &  Tungsten   &   \multirow{2}{*}{n/a}    &  $E_\mu \gsim 20 $ GeV     &    \multirow{2}{*}{n/a}    \\
+  &    &  (0.83 ton)   &  &  $\theta_\mu \lsim 0.15, \theta_e \lsim 0.5$         &       \\
+\midrule
+\midrule
+\multirow{3}{*}{FASER$\nu$2}  & \multirow{3}{*}{ $|\eta_\nu| \le 8.5$}  & \multirow{2}{*}{Tungsten}    &   \multirow{3}{*}{muons}     &   $E_\ell \gsim 100$ GeV  &    $\delta E_\ell \sim 30\% $     \\
   &   &  \multirow{2}{*}{(20 ton)}   &       &  $\tan \theta_\ell \lsim 0.5$   &   $\delta \theta_\ell \sim 1$ mrad      \\
   &   &     &       &  reconstructed $E_h$ \& charm ID   &  $\delta E_h \sim 30\%$        \\
 \midrule
 \multirow{3}{*}{AdvSND~(far)}  &   \multirow{3}{*}{ $7.2 \le \eta_\nu \le 8.4$}  &
-\multirow{2}{*}{Tungsten}   &   \multirow{3}{*}{only muons}    &  $E_\mu \gsim 20 $ GeV  & \multirow{3}{*}{n/a}          \\
+\multirow{2}{*}{Tungsten}   &   \multirow{3}{*}{muons}    &  $E_\mu \gsim 20 $ GeV  & \multirow{3}{*}{n/a}          \\
   &   &   \multirow{2}{*}{(5 ton)}  &        & $\theta_\mu \lsim 0.15, \theta_e \lsim 0.5$     &           \\
   &   &     &       &  reconstructed $E_h$   &           \\
 \midrule
-\multirow{3}{*}{FLArE}  & \multirow{3}{*}{Liquid Argon}  &  & \multirow{3}{*}{ maybe muons}  &  $E_\mu \lsim 2$ GeV, $E_e \lsim 1$ TeV    &    $\delta E_e \sim 5\% $ \\
-&   &     &   & $\theta_\mu \lsim 0.4$, $\theta_e \lsim 0.5$ &    $\delta \theta_e \sim 15 $ mrad   \\
+\multirow{3}{*}{FLArE}  & \multirow{3}{*}{tbd} & \multirow{2}{*}{Liquid Argon}  & \multirow{3}{*}{ maybe muons}  &  $E_\mu \lsim 2$ GeV, $E_e \lsim 1$ TeV    &    $\delta E_e \sim 5\% $ \\
+&   &  \multirow{2}{*}{(10 ton)}   &   & $\theta_\mu \lsim 0.4$, $\theta_e \lsim 0.5$ &    $\delta \theta_e \sim 15 $ mrad   \\
  &   &     &  & reconstructed $E_h$  &    $\delta E_h \sim 30\% $   \\
   \bottomrule
 \end{tabularx}
 \vspace{0.2cm}
 \caption{\small For each of the far-forward LHC neutrino experiments considered
-  in this work, we indicate their rapidity coverage, target material, whether
+  in this work, we indicate their neutrino pseudo-rapidity coverage, target material, whether
   they can identify the sign of the outgoing charged lepton,
-  the detector acceptance for the charged lepton and hadronic final state,
+  the acceptance for the charged lepton and hadronic final state,
   and the expected reconstruction performance.
   %
-  We consider separately the acceptance and performance for electron and muon
-  neutrinos.
-  %
-  Tau neutrinos have much lower production rates and are not considered in this study.
+  We consider separately acceptance and performance for electron and muon
+  neutrinos, while tau neutrinos have lower production rates and are not considered in this study.
   %
   See the description of each experiment in the text for more details.
   %
   For the projections in this work we assume that FASER$\nu$ and SND@LHC acquire data
-  for the full Run III period, while FASER$nu$2, AdvSND, and FLArE take data
+  for the full Run III period, while FASER$\nu$2, AdvSND, and FLArE take data
   for the complete HL-LHC period.
+  %
+  An estimate of the expected 
+  systematic uncertainties is not available for FASER$\nu$ and SND@LHC, experiments
+  which nevertheless are limited by statistics.
   \label{tab:FPF_experiments}
 }
 \end{table}
