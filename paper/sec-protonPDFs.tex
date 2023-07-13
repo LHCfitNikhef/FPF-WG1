@@ -5,38 +5,42 @@
 By means of the strategy outlined in Sect.~\ref{sec:settings}, here we study the constraints that differential neutrino DIS
 cross-section measurements at the LHC have on the quark and gluon substructure of the proton.
 %
-In this section we assume an isoscalar free-nucleon target and neglect non-isoscalarity effects and nuclear modifications,
+We assume an isoscalar free-nucleon target and neglect non-isoscalarity effects and nuclear modifications,
 which are instead considered in Sect.~\ref{sec:nuclearPDFs}.
-%
-We present results first for the Hessian profiling of the PDF4LHC21 combination of global PDF sets
+
+We present results first for the Hessian profiling of the PDF4LHC21 combination,
 and second for the inclusion in the Monte Carlo fit NNPDF4.0.
 %
-We study the dependence on the result with respect to the choice of fitted dataset, the experiment considered,
-the modelling of experimental systematic uncertainties, and the availability or not of charged lepton separation.
+We study the stability of the results with respect to the inclusion of systematic uncertainties
+and  charm-tagged events, as well to the availability of outgoing lepton-charge separation.
+%
+We compare the impact of four of the experiments considered in Sect.~\ref{sec:dis_pseudodata}:
+FASER$\nu$ and SND@LHC (LHC Run III) with FASER$\nu$2 and AdvSND (HL-LHC).
 
-\subsection{Impact on PDF4LHC21}
+\subsection{Hessian profiling of PDF4LHC21}
 \label{sec:pdf4lhc21}
 
-For the Hessian profiling studies following the procedure of Sect.~\ref{sec:profiling}, the prior PDF set is taken to
+For the Hessian profiling studies based on the procedure of Sect.~\ref{sec:profiling}, the prior PDF set is taken to
 be PDF4LHC21 NNLO, a Monte Carlo combination~\cite{Watt:2012tq,Carrazza:2015hva} of three global PDF sets (CT18~\cite{Hou:2019efy},
-MSHT20~\cite{Bailey:2020ooq}, and NNPDF3.1~\cite{NNPDF:2017mvq}) for which Hessian
-representations~\cite{Gao:2013bia,Carrazza:2015aoa} are also provided.
+MSHT20~\cite{Bailey:2020ooq}, and NNPDF3.1~\cite{NNPDF:2017mvq}).
 %
-PDF4LHC21, being based on the combination of three modern global fits, provides a reasonable representation
-of our current understanding of the proton PDFs.
+The Hessian representations of PDF4LHC21 are obtained by means of the methodology developed in~\cite{Gao:2013bia,Carrazza:2015aoa}.
 %
-We profile PDF4LHC21 with the various sets of LHC neutrino pseudo-data and assess the reduction
-of PDF uncertainties in each case.
+Being based on the combination of three modern global PDF fits, PDF4LHC21 provides a robust estimate
+of  current uncertainties associated to our understanding of proton PDFs.
 %
-In this analysis, a tolerance of $T = \sqrt{\Delta \chi^2}=3$ is adopted, which is the average tolerance
+We profile PDF4LHC21 with various sets of LHC neutrino DIS projections in order to assess the stability
+of the results with respect to its different inputs, such as charm-tagged structure functions.
+%
+A tolerance of $T = \sqrt{\Delta \chi^2}=3$ is adopted, corresponding to the average tolerance
 used in the CT18 and MSHT20 Hessian determinations.
 %
-Note that we use a consistent perturbative accuracy in the prior PDF set and in the theoretical calculations.
+The consistent perturbative accuracy of the prior PDF set and the theoretical calculations entering
+the pseudo-data generation is always accounted for.
 
-In the following, we first compare the impact on PDF4LHC21 of a baseline LHC neutrino dataset and subsequently
-we assess the stability of this result with respect to a range of variations of its input.
 
-\paragraph{Baseline results.}
+
+
 %
 The baseline dataset is defined as follows.
 %
@@ -58,36 +62,6 @@ The same style of PDF comparisons will be adopted through this section.
 Results are shown at $Q^2 = 10^4 \, \textrm{GeV}^2$ and the residual shift in central values
 arising from the profiling is ignored.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_uv_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_dv_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_s_ratio.pdf}
-\caption{The fractional uncertainties (at the 68\% confidence level)
-for the up and down valence quarks, total quark singlet, strangeness, charm, and gluon PDFs
-in PDF4LHC21 compared to the results of its profiling with the baseline LHC neutrino dataset, namely
-FASER$\nu$2 with only statistical errors, both inclusive and charm structure functions, and charge flavour
-separation.
-%
-Results are shown at the scale $Q^2 = 10^4 \, \textrm{GeV}^2$ and the shift in central values
-is not considered.}
-\label{fig:profiling_baseline}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-In the following we consider the stability of the results in Fig.~\ref{fig:profiling_baseline}
-with respect to the chosen experiment and integrated luminosity, the modelling of systematic
-uncertainties, being able to identify or not charm production, and being able to tell part outgoing
-charged leptons from anti-leptons.
-
-\paragraph{Dependence with the experiments.}
-%
-Same as Fig.~\ref{fig:profiling_baseline} comparing FASER$\nu$2 with AdvSND and with FASER$\nu$.
-
-\paragraph{Impact of systematic uncertainties.}
 %
 The effect of including correlated systematic uncertainties is shown in 
 Fig.~\ref{fig:profiling_syst}.
@@ -99,12 +73,35 @@ Fig.~\ref{fig:profiling_syst}.
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/syst_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/syst_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/syst_FASERv2_q2_10000_pdf_s_ratio.pdf}
-\caption{Same as Fig.~\ref{fig:profiling_baseline}, 
-but accounting for the statistical as well as correlated systematic uncertainties.
+\caption{
+The fractional uncertainties   (68\% confidence level) at $Q^2 = 10^4 \, \textrm{GeV}^2$ 
+for the up and down valence quarks, gluon, total quark singlet, and total strangeness PDFs
+in PDF4LHC21 compared to the results of its profiling with the FASER$\nu$2
+DIS projections.
+%
+In the latter case, we consider both only statistical errors and statistical and systematic
+errors added in quadrature.
+%
+The FASER$\nu$2 dataset used here accounts for both  inclusive and charm-tagged structure functions
+as well as for outgoing lepton charge-separation.
+%
 }
 \label{fig:profiling_syst}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+In the following we consider the stability of the results in Fig.~\ref{fig:profiling_baseline}
+with respect to the chosen experiment and integrated luminosity, the modelling of systematic
+uncertainties, being able to identify or not charm production, and being able to tell part outgoing
+charged leptons from anti-leptons.
+
+\paragraph{Dependence with the experiments.}
+%
+Same as Fig.~\ref{fig:profiling_baseline} comparing FASER$\nu$2 with AdvSND and with FASER$\nu$.
+
+\paragraph{Impact of systematic uncertainties.}
+
 
 \paragraph{Impact of charm production.}
 %
