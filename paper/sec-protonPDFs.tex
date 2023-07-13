@@ -38,33 +38,24 @@ used in the CT18 and MSHT20 Hessian determinations.
 The consistent perturbative accuracy of the prior PDF set and the theoretical calculations entering
 the pseudo-data generation is always accounted for.
 
+For the baseline results, we consider FASER$\nu$2 operative for the full duration
+of the HL-LHC data-taking period.
+%
+Both inclusive and charm-tagged structure functions enter the profiling,
+and outgoing lepton charge-separation is assumed.
+%
+Fig.~\ref{fig:profiling_syst} displays the
+fractional uncertainties   (68\% confidence level) at $Q^2 = 10^4 \, \textrm{GeV}^2$ 
+for the up and down valence quarks, gluon, total quark singlet, and total strangeness PDFs
+in PDF4LHC21 compared to the results of its profiling with the FASER$\nu$2 projections.
+%
+For the latter, we consider two scenarios: first where the covariance matrix includes
+only statistical errors, and second with experimental systematic
+errors added in quadrature to the statistical ones.
+%
+Note that the residual shift in central values, which depends on the arbitrary fluctuations
+entering the pseudo-data generation, is not displayed.
 
-
-
-%
-The baseline dataset is defined as follows.
-%
-We consider the FASER$\nu$2 experiment integrated over the full duration of the HL-LHC data-taking period,
-we account both for inclusive and charm production structure functions, we consider the scenario
-in which systematic errors can be neglected, and we allow for charge separation of the outgoing lepton.
-%
-This baseline result therefore represents the best-case scenario and quantifies the maximum impact that can be expected
-on the PDFs: we then assess to which extent variations of these input choices degrade the reach of the pseudo-data.
-
-Fig.~\ref{fig:profiling_baseline} displays the fractional uncertainties at the 68\% confidence level
-for the up and down valence quarks, total quark singlet, strangeness, charm, and gluon PDFs
-in PDF4LHC21 compared to the results of its profiling with this baseline LHC neutrino dataset, namely
-FASER$\nu$2 with only statistical errors, both inclusive and charm structure functions,  and charge flavour
-separation.
-%
-The same style of PDF comparisons will be adopted through this section.
-%
-Results are shown at $Q^2 = 10^4 \, \textrm{GeV}^2$ and the residual shift in central values
-arising from the profiling is ignored.
-
-%
-The effect of including correlated systematic uncertainties is shown in 
-Fig.~\ref{fig:profiling_syst}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
@@ -96,19 +87,18 @@ with respect to the chosen experiment and integrated luminosity, the modelling o
 uncertainties, being able to identify or not charm production, and being able to tell part outgoing
 charged leptons from anti-leptons.
 
-\paragraph{Dependence with the experiments.}
-%
-Same as Fig.~\ref{fig:profiling_baseline} comparing FASER$\nu$2 with AdvSND and with FASER$\nu$.
-
-\paragraph{Impact of systematic uncertainties.}
 
 
-\paragraph{Impact of charm production.}
+
+
+
+
 %
 Fig.~\ref{fig:profiling_charm} displays a comparison of the baseline LHC neutrino dataset with the results
 of profiling without the charm production structure functions. 
 Particularly, the constraints on the $s$ PDF are observed to become more stringent 
 by virtue of the contribution of the charm production structure functions.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
@@ -117,8 +107,10 @@ by virtue of the contribution of the charm production structure functions.
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_s_ratio.pdf}
-\caption{Comparing the results shown in Fig.~\ref{fig:profiling_baseline} (red and blue), 
-to the results obtained without charm production structure functions (green).
+\caption{Same as Fig.~\ref{fig:profiling_syst}, now assessing the impact of FASER$\nu$2 structure functions
+once charm-tagged measurements are removed.
+%
+In both cases, the covariance matrix accounts for systematic uncertainties.
 }
 \label{fig:profiling_charm}
 \end{figure}
@@ -136,12 +128,20 @@ of a profiling without allowing for the possibility of outgoing lepton charge se
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/nochargediscrimination/statOnly_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/nochargediscrimination/statOnly_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/nochargediscrimination/statOnly_FASERv2_q2_10000_pdf_s_ratio.pdf}
-\caption{Comparing the results shown in Fig.~\ref{fig:profiling_baseline} (red and blue), 
-to the results obtained without identifying the charge of the outgoing lepton (green).
+\caption{
+Same as Fig.~\ref{fig:profiling_syst}, now assessing the impact of that being unable to identify
+the charge of the outgoing lepton would have on the FASER$\nu$2 reach on the proton PDFs.
+%
+In both cases, the covariance matrix accounts for systematic uncertainties.
 }
 \label{fig:profiling_nochargediscrimination}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf add discussion of experiment sensitivity}
+
+%
+Same as Fig.~\ref{fig:profiling_baseline} comparing FASER$\nu$2 with AdvSND and with FASER$\nu$.
 
 
 
