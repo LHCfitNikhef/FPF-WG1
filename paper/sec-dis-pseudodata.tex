@@ -157,108 +157,87 @@ a diagonal CKM matrix and no heavy quark mass effects.
  \subsection{Far-forward neutrino detectors at the LHC}
  \label{sec:neutrinoDetectors}
 
- As we discuss below, the calculation of differential neutrino scattering event rates
- at the LHC far-forward detectors requires two main ingredients: the energy
+ The calculation of differential neutrino scattering event rates
+ at the LHC far-forward detectors involves two main ingredients: the energy
  and flavour dependence of the incoming neutrino flux crossing
  the detector fiducial volume, on the one hand,
  and the scattering rates within the same fiducial volume, on the other hand.
  %
- In this section, we summarise the main features of each of the ongoing and future
+ In this section, we summarise the main features of each of the existing and future
  far-forward detectors considered in this study, in particular concerning
- their acceptance, geometry, and neutrino detection method.
+ their acceptance, performance, and detection method.
  %
- We also indicate the expected performance of the three FPF detectors
- and how this translates into the dominant experimental systematic
- uncertainties.
+ We focus on  muon
+ neutrino scattering, which benefits from the highest rates and is less
+ affected by uncertainties affecting $D$-meson production.
+ 
+ The kinematics of a charged-current neutrino DIS event $(x,Q^2, E_\nu)$,
+ or alternatively $(x,Q^2, y)$, are uniquely specified by the measurement of three independent
+ final-state variables,
+ such as $\lp E_\ell,\theta_\ell, W^2\rp$ or $\lp E_\ell,\theta_\ell, E_h \rp$,
+ with $E_\ell$ and $\theta_\ell$ being the energy and polar angle of the outgoing
+ charged lepton and $E_h$ the total energy of the hadronic final state.
  %
- Since for the projection studies considered in this work we focus on muon
- neutrino scattering, we will focus the subsequent discussion on the detection
- performance of this neutrino flavour.
+ Most neutrino detectors can only access $E_h$, given that $W^2$ requires
+ fully reconstructing this final state.
+ %
+ A measurement of  $\lp E_\ell,\theta_\ell, E_h \rp$ then fixed the DIS kinematics as:
+ \bea
+ E_\nu &=& E_h + E_\ell \, , \nonumber \\
+ Q^2 &=& 4 ( E_h + E_\ell) E_\ell \sin^2 \lp \theta_\ell/2\rp \, ,\\
+ x&=& \frac{4 ( E_h + E_\ell) E_\ell \sin^2 \lp \theta_\ell/2\rp}{2m_N E_h} \, .\nonumber
+ \eea
+ These relations also indicate how systematic uncertainties affecting the measurement
+ of $\lp E_\ell,\theta_\ell, E_h \rp$ translate into uncertainties in the
+ reconstructed values of  $(x,Q^2, E_\nu)$, which in turn modify the expected
+ event rates in a given bin.
 
- Table~\ref{tab:FPF_experiments} indicates
- the rapidity coverage, target material,
- muon neutrino acceptance, and the identification and reconstruction performance
- for each of the far-forward LHC neutrino experiments considered
- in this work.
- %
- More details of the information listed in this table is provided
- in the following.
-
-  %-----------------------------------------------------------------
-\begin{table}[t]
-  \centering
-  \small
-  \renewcommand{\arraystretch}{1.50}
-\begin{tabularx}{\textwidth}{Xccccc}
-\toprule
-Detector &  Rapidity &  Target & Charged Lepton ID & Acceptance  & Performance \\
-\midrule
-\midrule
-\multirow{2}{*}{FASER$\nu$}  &  \multirow{2}{*}{ $|\eta_\nu| \le 8.5$}  &   Tungsten  & \multirow{2}{*}{muons}      &   $E_\ell \gsim 100$ GeV   &    \multirow{2}{*}{n/a}       \\
-  &   &   (1.1 ton)  &       &  $\tan \theta_\ell \lsim 0.5$   &         \\
-\midrule
-\multirow{2}{*}{SND@LHC}  & \multirow{2}{*}{ $7.2 \le \eta_\nu \le 8.4$}   &  Tungsten   &   \multirow{2}{*}{n/a}    &  $E_\mu \gsim 20 $ GeV     &    \multirow{2}{*}{n/a}    \\
-  &    &  (0.83 ton)   &  &  $\theta_\mu \lsim 0.15, \theta_e \lsim 0.5$         &       \\
-\midrule
-\midrule
-\multirow{3}{*}{FASER$\nu$2}  & \multirow{3}{*}{ $|\eta_\nu| \le 8.5$}  & \multirow{2}{*}{Tungsten}    &   \multirow{3}{*}{muons}     &   $E_\ell \gsim 100$ GeV  &    $\delta E_\ell \sim 30\% $     \\
-  &   &  \multirow{2}{*}{(20 ton)}   &       &  $\tan \theta_\ell \lsim 0.5$   &   $\delta \theta_\ell \sim 1$ mrad      \\
-  &   &     &       &  reconstructed $E_h$ \& charm ID   &  $\delta E_h \sim 30\%$        \\
-\midrule
-\multirow{3}{*}{AdvSND~(far)}  &   \multirow{3}{*}{ $7.2 \le \eta_\nu \le 8.4$}  &
-\multirow{2}{*}{Tungsten}   &   \multirow{3}{*}{muons}    &  $E_\mu \gsim 20 $ GeV  & \multirow{3}{*}{n/a}          \\
-  &   &   \multirow{2}{*}{(5 ton)}  &        & $\theta_\mu \lsim 0.15, \theta_e \lsim 0.5$     &           \\
-  &   &     &       &  reconstructed $E_h$   &           \\
-\midrule
-\multirow{3}{*}{FLArE}  & \multirow{3}{*}{tbd} & \multirow{2}{*}{Liquid Argon}  & \multirow{3}{*}{ maybe muons}  &  $E_\mu \lsim 2$ GeV, $E_e \lsim 1$ TeV    &    $\delta E_e \sim 5\% $ \\
-&   &  \multirow{2}{*}{(10 ton)}   &   & $\theta_\mu \lsim 0.4$, $\theta_e \lsim 0.5$ &    $\delta \theta_e \sim 15 $ mrad   \\
- &   &     &  & reconstructed $E_h$  &    $\delta E_h \sim 30\% $   \\
-  \bottomrule
-\end{tabularx}
-\vspace{0.2cm}
-\caption{\small For each of the far-forward LHC neutrino experiments considered
-  in this work, we indicate their neutrino pseudo-rapidity coverage, target material, whether
+ Table~\ref{tab:FPF_experiments} indicates,
+for each of the far-forward LHC neutrino experiments considered
+  in this work,  their neutrino pseudo-rapidity coverage, target material, whether
   they can identify the sign of the outgoing charged lepton,
   the acceptance for the charged lepton and hadronic final state,
   and the expected reconstruction performance.
   %
   We consider separately acceptance and performance for electron and muon
-  neutrinos, while tau neutrinos have lower production rates and are not considered in this study.
+  neutrinos, while tau neutrinos have lower production rates and are neglected in this study.
   %
-  See the description of each experiment in the text for more details.
-  %
-  For the projections in this work we assume that FASER$\nu$ and SND@LHC acquire data
+  For these projections we assume that FASER$\nu$ and SND@LHC acquire data
   for the full Run III period, while FASER$\nu$2, AdvSND, and FLArE take data
   for the complete HL-LHC period.
   %
   An estimate of the expected 
   systematic uncertainties is not available for FASER$\nu$ and SND@LHC, experiments
-  which nevertheless are limited by statistics.
-  \label{tab:FPF_experiments}
-}
-\end{table}
-%-----------------------------------------------------------------
+  which are nevertheless limited by statistics.
+  %
+  In the following we provide more details about the information collected in
+  Table~\ref{tab:FPF_experiments}.
+
+%---------------------------------------------------
+  \input{tables/detectors.tex}
+%---------------------------------------------------
 
 \paragraph{FASER$\nu$.}
 %
-The ForwArd Search ExpeRiment (FASER) detector and its companion FASER$\nu$
+The ForwArd Search ExpeRiment (FASER) detector and its companion FASER$\nu$~\cite{FASER:2019aik,FASER:2019dxq}
 are located at the TI12 tunnel of the CERN accelerator complex.
 %
 Both detectors are aligned
-with the collision axis LOS  and have been taking data since the begin of Run III.
+with the collision axis line-of-sight (LOS)
+and have been acquiring data since the begin of Run III.
 %
 Neutrino scattering takes place in the FASER$\nu$
 detector, composed by interleaved emulsion and tungsten plates and
 adding up to a mass of 1.1 tons with a fiducial volume of $20~\rm{cm} \times 25~\rm{cm} \times 30~{\rm cm}$.
 %
-The FASER/FASER$\nu$ apparatus is immersed in a magnetic field which enables charged lepton
-identification, provided by two 1 m-long dipole magnets with $B=0.57$ T
+The FASER apparatus is immersed in a magnetic field  providing charged lepton
+identification thanks to two 1 m-long dipole magnets with $B=0.57$ T
 and another 1.5 m-long magnet in front of the spectrometer. 
 %
 Neutrino detection and identification can be carried out either using the emulsion
 films of FASER$\nu$2, which have the key benefit of excellent position and angular resolution,
 or instead using the electronic detector components of FASER, which enable the tagging
-of the outgoing downstream energetic muons. 
+of the outgoing downstream energetic muons.
 
 \paragraph{SND@LHC.}
 %
@@ -283,8 +262,8 @@ The electromagnetic
 
 \paragraph{FASER$\nu$2.}
 %
-A 20-ton neutrino experiment located on the line of sight (LOS)
-of the LHC neutrino beam.
+A proposed 20-ton neutrino experiment located on the LOS
+of the LHC neutrino beam to be installed in the FPF cavern.
 %
 It is based on an emulsion-based detector optimised to identify heavy flavor particles, including
 tau leptons and charm and beauty particles, arising from neutrino interactions.
@@ -320,7 +299,7 @@ The combination of FASER$\nu$2  with the nearby FASER2 detector, equipped with a
  %
  Building upon recent progress in liquid noble gas neutrino detectors over the last decade (ICARUS, MicroBooNE, SBND, ProtoDUNE, DUNE), this experiment relies on a modularized liquid argon (LAr) time projection detector.
  %
- The use of LAr as target is particularly beneficial for final-state particle identification, track angle, and kinetic energy measurements with sub-millimeter spatial resolution in all three dimensions.
+ The use of LAr as target is beneficial for final-state particle identification, track angle, and kinetic energy measurements with sub-millimeter spatial resolution in all three dimensions.
  %
  FLArE is suitable to identify high-energy neutrinos ($E_\nu \gsim 100$ GeV)  from all three generations
  while  fully containing the events as required for kinematic reconstruction.
@@ -329,15 +308,17 @@ The combination of FASER$\nu$2  with the nearby FASER2 detector, equipped with a
  for muon charge and momentum measurements.
  %
  With an expected fiducial (active) mass of 10 tons (30 tons), FLArE will
- detect muon neutrinos with energies  $E_\mu\lsim 1.5~\rm{TeV}$ and
- scattering angles up to 0.4 mrad.
+ detect final-state electrons with energies $E_{e}\lsim 1~\rm{TeV}$ and
+ scattering angles up to 0.5 mrad, while detecting final-state muons
+ is restricted to $E_{e}\lsim 2~\rm{GeV}$  and $\theta_\mu \lsim 0.4$.
  %
  Reconstruction of the total energy of the hadronic final state will also
  possible. 
  %
  In terms of performance, the targets
- are $\delta E_\mu \sim$30\% of muon energy resolution and
- $\delta \theta_\mu \sim 5$ mrad of muon angular  resolution.
+ are $\delta E_\mu \sim$5\% of electron energy resolution,
+ $\delta \theta_e \sim 15$ mrad of electron angular  resolution,
+ and $\delta E_h \sim 30$\% for the hadronic energy.
 
 \subsection{Differential event rate calculation}
 \label{sec:pseudo-data_generation}
@@ -347,7 +328,7 @@ described in Table~\ref{tab:FPF_experiments}, we generate
 projections for the expected precision of DIS structure function
 measurements as follows.
 %
-The goal is to quantify the number of reconstructed charged-current neutrino interaction
+The goal is to evaluate the number of reconstructed charged-current neutrino interaction
 events taking place in the fiducial volume of the detector in bins of Bjorken-$x$,
 momentum transfer $Q^2$, and neutrino energy $E_\nu$, that is,
 \be
@@ -369,8 +350,8 @@ in order to estimate the systematic uncertainties associated to these event yiel
 The choice of the binning is in principle arbitrary, and here we define them
 to ensure that Gaussian statistics hold for all the bins of the measurement.
 
-In this calculation we assume the neutrino fluxes provided by the calculation
-of~\cite{Kling:2021gos} and neglect the associated uncertainties.
+In this calculation, we assume the central values of the neutrino fluxes provided by the calculation
+of~\cite{Kling:2021gos}.
 %
 The bin-by-bin integrated event yields in Eq.~(\ref{eq:event_yields}) are
 obtained by convoluting the incoming neutrino fluxes, for a given geometric acceptance
@@ -391,14 +372,13 @@ with $n_T$ is the nuclear density of the target detector material and $L_T$ its 
 The incoming neutrino fluxes, which include the geometric acceptance of the considered detector,
 are encoded in $dN_{\nu}(E_\nu)/dE_{\nu}$.
 %
-We consider the scattering of muon neutrinos, characterised by the highest rates, and in some cases
-we present results also for electron neutrinos.
+We consider only the scattering of muon neutrinos, characterised by the highest rates.
 %
-We have verified that the differential event yield calculation
+We verify that the differential event yield calculation
 implemented in Eq.~(\ref{eq:event_yields}), when extrapolated to a single bin
 covering the full detector acceptance,
 is consistent with the fiducial interaction rates presented in~\cite{Feng:2022inv}.
-%
+
 The triple integral in  Eq.~(\ref{eq:event_yields}) is evaluated numerically by means
 of Monte Carlo sampling, by generating sampling $N_{\rm mc}$ points in the $\lp x,Q^2,E_{\nu}\rp$ space
 with the constraint that $0 < y = Q^2/2m_N E_{\nu }x <1 $
@@ -408,62 +388,26 @@ and then  integrating over the bin range:
     \label{MCintegration}
 \end{equation}
 and where $N_{\rm mc}$ is chosen to be large enough such that residual Monte Carlo integration
-uncertainties are negligible.
+uncertainties are negligible for all the bins considered.
 
-Table~\ref{tab:integrated_rates} summarises the predicted integrated event yields for the five detectors considered
-  in the present analysis, separated into electron neutrinos and antineutrinos
+Table~\ref{tab:integrated_rates} summarises the predicted integrated event yields for the five detectors
+considered, separated into electron neutrinos and antineutrinos
   and muon neutrinos and antineutrinos.
   %
   These event yields are computed from Eq.~(\ref{eq:event_yields}) with the only
-  restriction that the momentum transfer and the final-state invariant mass should be restricted
+  requirement that the momentum transfer and the final-state invariant mass are restricted
   to the DIS region,
   \be
   \label{eq:DISconditions}
-Q^2 \ge 2~{\rm GeV}^2\quad{\rm and}\quad  W^2 \ge 12.5~{\rm GeV}^2 \, .
+Q^2 \ge 2~{\rm GeV}^2\quad{\rm and}\quad  W^2 \ge 4~{\rm GeV}^2 \, .
 \ee
   %
-  As discussed above, for FASER$\nu$ and SND@LHC we assume the integrated luminosity to
-  be that of Run III while for the FPF experiments we assume the full HL-LHC
-  luminosity (3 ab$^{-1}$).
-  %
    The numbers in parenthesis indicate the event rates corresponding to charm
-  production for those experiments with heavy flavour tagging capabilities.
+  production, for those experiments with heavy flavour tagging capabilities.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%-----------------------------------------------------------------
-\begin{table}[t]
-  \centering
-  \small
-  \renewcommand{\arraystretch}{1.60}
-\begin{tabularx}{\textwidth}{X|c|c|c|c|c|c}
-\toprule
-Detector & $\quad$ $N_{\nu_e}$ $\quad$ &$\quad$ $N_{\bar{\nu}_e}$$\quad$   &   $N_{\nu_e} + N_{\bar{\nu}_e}$ &
-$\quad$$N_{\nu_\mu}$ $\quad$ & $\quad$ $N_{\bar{\nu}_\mu}$ $\quad$  &   $N_{\nu_\mu} + N_{\bar{\nu}_\mu}$ \\
-\midrule
-FASER$\nu$  &    &    &   &   &    &    \\
-SND@LHC  &    &    &   &   &    &    \\
-\midrule
-FASER$\nu$2  &    &    &   &   &    &    \\
-AdvSND~(far)  &    &    &   &   &    &    \\
-FLArE &    &    &   &   &    &    \\
-  \bottomrule
-\end{tabularx}
-\vspace{0.2cm}
-\caption{\small The predicted integrated event yields for the five detectors considered
-  in the present analysis, separated into electron neutrinos and antineutrinos
-  and muon neutrinos and antineutrinos.
-  %
-  These event yields are computed from Eq.~(\ref{eq:event_yields}) with the only
-  restriction that the momentum transfer and the final-state invariant mass be restricted
-  to the DIS region, $Q^2 \ge 2$ GeV$^2$ and $W^2 \ge 12.5$ GeV$^2$.
-  %
-  The numbers in parenthesis indicate the event rates corresponding to charm
-  production.
-  \label{tab:integrated_rates}
-}
-\end{table}
-%-----------------------------------------------------------------
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----------------------------------------------------
+\input{tables/integrated_yields.tex}
+%----------------------------------------------------
 
 Eq.~(\ref{eq:event_yields}) can be generalised to charm-production events, with
 the only difference being that now the neutrino scattering cross-section is restricted
@@ -474,7 +418,7 @@ Assuming that charm quarks can be directly tagged by the detector one has
 \label{eq:event_yields_charm}
   N_{\rm ev,c}^{(i)} = n_T L_T\int_{Q^{2(i)}_{\rm min}}^{Q^{2(i)}_{\rm max}}\int_{x^{(i)}_{\rm min}}^{x^{(i)}_{\rm max}}\int_{E_{\rm min}^{(i)}}^{E_{\rm max}^{(i)}} \frac{dN_{\nu}(E_\nu)}{dE_{\nu}}\left(\frac{d^2\sigma^{\nu N \to \ell + c+X}(x,Q^2,E_{\nu})}{dxdQ^2}\right) dQ^2 dx dE_{\nu} \, 
   \ee
-  with the charm production cross-sections being discussed in~\cite{Faura:2020oom}
+  with the charm production cross-sections discussed in~\cite{Faura:2020oom}
   and references therein.
   %
   Detectors without charm-tagging capabilities can still be sensitive to charm production via
@@ -494,43 +438,103 @@ Assuming that charm quarks can be directly tagged by the detector one has
 
  Fig.~\ref{fig:fasernu2_muon} displays the
  event yields per bin,  Eq.~(\ref{eq:event_yields}),
-  for muon neutrinos detected at FASER$\nu$2.
+  for muon neutrinos detected at FASER$\nu$2 restricted
+  to the DIS region defined by Eq.~(\ref{eq:DISconditions}).
   %
-  We present results binned in $x$ and $Q^2$ and integrated over the neutrino energies.
+  We present results binned in $x$ and $Q^2$ and integrated over all available neutrino energies.
   %
   The red dot indicates the weighted center of each bin.
   %
-  Adding up all bin entries results into $N_{\rm ev}(\nu_\mu)\sim 3\times 10^5 $ reconstructed muon
-  neutrinos as indicated in Table~\ref{tab:integrated_rates}.
+  Adding up all bin entries results into the $N_{\nu_\mu}$ value
+  for reconstructed muon
+  neutrinos listed in
+  Table~\ref{tab:integrated_rates}.
   %
-  Kinematic cuts are such that the DIS conditions in Eq.~(\ref{eq:DISconditions}) are satisfied.
+  Only bins with at least 30 events are retained, to ensure the validity of Gaussian
+  statistics.
   %
-  Only bins with at least 30 events are retained.
-  %
-  One can observe the large event rates for most of the region in $\lp x,Q^2\rp$ covered,
-  which result into very competitive statistical uncertainties.
-  %
-  From Fig.~\ref{fig:fasernu2_muon} we see that the kinematic coverage of FASER$\nu$2 is
-  $x_{\rm min}\sim 10^{-3}$ at small-$x$ and $Q^2_{\rm max}\sim 10^4$ at large-$Q^2$, which represent an extension
-  of around one order of magnitude in both directions as compared to available
-  DIS neutrino data.
-
+  One observes large event rates for most of the region in $\lp x,Q^2\rp$ covered,
+  leading to typical statistical uncertainties at the 1\% level or smaller.
+  
 %-----------------------------------------------------------------------
-\begin{figure}[!ht]
+\begin{figure}[t]
     \centering
-\includegraphics[width=0.9\textwidth]{plots/Nevent_FASERv2_14.pdf}
-\caption{\small The event yields per bin $ N_{\rm ev}^{(i)}$,  Eq.~(\ref{eq:event_yields}),
-  for muon neutrinos at FASER$\nu$2.
+\includegraphics[width=0.8\textwidth]{plots/Nevent_FASERv2_14.pdf}
+\caption{\small The event yields per bin $N_{\rm ev}^{(i)}$,  Eq.~(\ref{eq:event_yields}),
+  for muon neutrinos at the FASER$\nu$2 detector, restricted
+  to the DIS region defined by Eq.~(\ref{eq:DISconditions}).
   %
-  We present results binned in $x$ and $Q^2$ and integrating over the neutrino energies.
+  We present results binned in $x$ and $Q^2$ integrated over neutrino energies.
   %
-  The red dot indicates the weighted center of each bin.
+  The red dots indicate the weighted bin center.
   %
-  Adding up all bin entries results into $N_{\rm ev}(\nu_\mu)\sim 3\times 10^5 $ reconstructed muon
-  neutrinos. }
+  Adding up all the bins in this plot results into the $N_{\nu_\mu}$ value listed in
+Table~\ref{tab:integrated_rates}.}
     \label{fig:fasernu2_muon}
 \end{figure}
 %-----------------------------------------------------------------------
+
+Fig.~\ref{fig:fasernu2_muon} indicates
+how the kinematic coverage of FASER$\nu$2 reaches
+$x_{\rm min}\sim 3\times 10^{-3}$ at small-$x$ and $Q^2_{\rm max}\sim 2\times 10^3$
+at large-$Q^2$, representing an extension
+of around one order of magnitude in both directions as compared to available
+DIS neutrino data on nuclear targets.
+%
+Fig.~\ref{fig:Kin_nNNPDF30_EIC_FPF} compares
+the kinematic coverage of FASER$\nu$2 with that of electron-ion collisions
+at the upcoming EIC~\cite{Khalek:2021ulf,AbdulKhalek:2021gbh}
+and to other available hard-scattering datasets involving
+nuclear targets or projectiles.
+%
+Specifically, we display the coverage of fixed-target neutral- and charged-current nuclear DIS,
+fixed-target Drell-Yan production, and $W$, $Z$, $D$-meson, photon, and dijet
+production in proton-lead collisions at the LHC entering the  nNNPDF3.0
+determination~\cite{AbdulKhalek:2022fyi}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{plots/Kin_nNNPDF30_EIC_FPF.pdf}
+    \caption{The kinematic coverage of FASER$\nu$2 in the $(x,Q^2)$ plane,
+      same as  Fig.~\ref{fig:fasernu2_muon},
+      compared to that of electron-ion collisions
+      at the EIC for the highest center-of-mass energies $\sqrt{s}$ planned,
+      as well as to the coverage of other available hard-scattering datasets involving
+      nuclear targets or projectiles.
+      %
+      Specifically, we display the coverage of fixed-target neutral- and charged-current nuclear DIS,
+      fixed-target Drell-Yan production, and $W$, $Z$, $D$-meson, photon, and dijet
+      production in proton-lead collisions at the LHC.
+      }
+    \label{fig:Kin_nNNPDF30_EIC_FPF}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Statistical and systematic uncertainties}
+\label{subsec:uncertainties}
+
+The event yields displayed in Fig.~\ref{fig:fasernu2_muon} determine the associated
+statistical uncertainty in each bin
+\be
+\label{eq:statistical_uncertainties}
+\delta_{\rm stat}  N_{\rm ev}^{(i)} = \sqrt{N_{\rm ev}^{(i)}} \, ,
+\ee
+such that the fractional statistical uncertainty per bin is $1/\sqrt{N_{\rm ev}^{(i)}}$.
+%
+Since here we discard bins with less than 30 events, this statistical uncertainty
+ranges between $\sim 1\%$ and $\sim 18\%$ for muon neutrinos in FASER$\nu$2 depending on the values of
+$x$ and $Q^2$ associated to this bin.
+%
+These statistical uncertainties are displayed in the left panel
+of Fig.~\ref{fig:error_plot_FASERv2_14}, which corresponds
+to the same event yields as in
+Fig.~\ref{fig:fasernu2_muon}
+now as a function of $x$ after having integrated the event yields in the range $Q^2 \in [10,100]$ GeV$^2$.
+%
+The error bar in the $y$-direction indicates the statistical uncertainties, while
+that in the $x$ direction corresponds to the width of the $x$-bins. {\color{red}[Suggestion (TM): let's refer to horizontal and vertical directions, since $x$ and $y$ are variables as well, not only directions]}
 
 Fig.~\ref{fig:percentage_error_elepton}
 displays the estimated systematic uncertainties for the  measurements
@@ -580,26 +584,6 @@ considered in this work.
 \end{figure}
 %-----------------------------------------------------------------------
 
-The event yields displayed in Fig.~\ref{fig:fasernu2_muon} determine the associated
-statistical uncertainty in each bin
-\be
-\label{eq:statistical_uncertainties}
-\delta_{\rm stat}  N_{\rm ev}^{(i)} = \sqrt{N_{\rm ev}^{(i)}} \, ,
-\ee
-such that the fractional statistical uncertainty per bin is $1/\sqrt{N_{\rm ev}^{(i)}}$.
-%
-Since here we discard bins with less than 30 events, this statistical uncertainty
-ranges between $\sim 1\%$ and $\sim 18\%$ for muon neutrinos in FASER$\nu$2 depending on the values of
-$x$ and $Q^2$ associated to this bin.
-%
-These statistical uncertainties are displayed in the left panel
-of Fig.~\ref{fig:error_plot_FASERv2_14}, which corresponds
-to the same event yields as in
-Fig.~\ref{fig:fasernu2_muon}
-now as a function of $x$ after having integrated the event yields in the range $Q^2 \in [10,100]$ GeV$^2$.
-%
-The error bar in the $y$-direction indicates the statistical uncertainties, while
-that in the $x$ direction corresponds to the width of the $x$-bins. {\color{red}[Suggestion (TM): let's refer to horizontal and vertical directions, since $x$ and $y$ are variables as well, not only directions]}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
@@ -618,47 +602,7 @@ that in the $x$ direction corresponds to the width of the $x$-bins. {\color{red}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Finally, we would like to compare the kinematic reach
-of the LHC neutrino measurements with respect to that of other experiments.
-%
-Fig.~\ref{fig:Kin_nNNPDF30_EIC_FPF} displays
-the kinematic coverage of the FASER$\nu$2 experiment in the $(x,Q^2)$ plane,
-same as  Fig.~\ref{fig:error_plot_FASERv2_14} now removing bins
-containing less than 30 reconstructed events.
-%
-It is compared to that of electron-ion collisions
-at the EIC for the highest center-of-mass energies $\sqrt{s}$ planned,
-as well as to the kinematic coverage of other available hard-scattering datasets involving
-nuclear targets or projectiles.
-%
-Specifically, we display the coverage of fixed-target neutral- and charged-current nuclear DIS,
-fixed-target Drell-Yan production, and $W$, $Z$, $D$-meson, photon, and dijet
-production in proton-lead collisions at the LHC.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[h]
-    \centering
-    \includegraphics[width = 0.8\textwidth]{plots/Kin_nNNPDF30_EIC_FPF.pdf}
-    \caption{The kinematic coverage of the FASER$\nu$2 experiment in the $(x,Q^2)$ plane,
-      same as  Fig.~\ref{fig:error_plot_FASERv2_14} now removing bins
-      containing less than 30 reconstructed events.
-      %
-      It is compared to that of electron-ion collisions
-      at the EIC for the highest center-of-mass energies $\sqrt{s}$ planned,
-      as well as to the kinematic coverage of other available hard-scattering datasets involving
-      nuclear targets or projectiles.
-      %
-      Specifically, we display the coverage of fixed-target neutral- and charged-current nuclear DIS,
-      fixed-target Drell-Yan production, and $W$, $Z$, $D$-meson, photon, and dijet
-      production in proton-lead collisions at the LHC.
-      }
-    \label{fig:Kin_nNNPDF30_EIC_FPF}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\subsection{Systematic uncertainties}
-\label{sec:systematic_uncertainties}
 
 In addition to the statistical uncertainties given by Eq.~(\ref{eq:statistical_uncertainties}),
 one needs to estimate the systematic uncertainties associated to the reconstruction
