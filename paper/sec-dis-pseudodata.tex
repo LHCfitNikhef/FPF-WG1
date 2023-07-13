@@ -184,7 +184,7 @@ a diagonal CKM matrix and no heavy quark mass effects.
  A measurement of  $\lp E_\ell,\theta_\ell, E_h \rp$ then fixed the DIS kinematics as:
  \bea
  E_\nu &=& E_h + E_\ell \, , \nonumber \\
- Q^2 &=& 4 ( E_h + E_\ell) E_\ell \sin^2 \lp \theta_\ell/2\rp \, ,\\
+ Q^2 &=& 4 ( E_h + E_\ell) E_\ell \sin^2 \lp \theta_\ell/2\rp \, ,  \label{eq:dis_kinematic_mapping}\\
  x&=& \frac{4 ( E_h + E_\ell) E_\ell \sin^2 \lp \theta_\ell/2\rp}{2m_N E_h} \, .\nonumber
  \eea
  These relations also indicate how systematic uncertainties affecting the measurement
@@ -558,52 +558,35 @@ Except for the bins with the smallest values of $x$, statistical uncertainties i
 are at the percent level for FASER$\nu$2.
 
 In addition to the statistical uncertainties given by Eq.~(\ref{eq:statistical_uncertainties}),
-one needs to also estimate the systematic uncertainties associated to the reconstruction
+one needs to also estimate the systematic uncertainties associated to the
+finite precision in the reconstruction
 of the final state leptonic and hadronic variables listed in Table~\ref{tab:FPF_experiments}.
 %
-Event which would be classified in a given bin in the case
-of a perfect detector may end up being classified into a different bin in the presence of systematic
+For instance, an event which would be classified into a given bin in $(x,Q^2,E_\nu)$ in the case
+of a perfect detector may end up being
+mis-classified into a different bin in the presence of systematic
 shifts associated to the lepton energy $E_\ell$, lepton scattering angle $\theta_\ell$, and
-hadronic energy $E_h$.
-%
-Hence, for each source of experimental systematic uncertainty we would like to estimate
-its impact at the level of event yields and eventually stablish also the associated
-correlation matrix.
+hadronic energy $E_h$, as indicated by  Eq.~(\ref{eq:dis_kinematic_mapping}).
 
-By means of tree-level DIS kinematics, one can relate the variables describing the neutrino-nucleon
-hard-scattering, $(x,Q^2,E_{\nu})$,
-with those describing the leptonic and hadronic final state, namely $\lp E_{\ell},\theta_\ell, E_{h} \rp$,
-and that correspond to experimentally measured quantities.
+For each possible source of experimental systematic uncertainty, we therefore need to
+quantify its impact at the event yield level.
 %
-The mapping between the two sets of variables is 
-\bea
-E_{\nu} &=& E_\ell + E_h \, ,\nonumber \\
-Q^2 &=& 4E_\ell E_{\nu}\sin^2\lp {\theta_\ell/2}\rp  =  4E_\ell \lp E_\ell + E_h  \rp\sin^2\lp {\theta_\ell/2}\rp \, , \\
-x &=& \frac{Q^2}{2m_N(E_{\nu} - E_\ell)} = \frac{4E_\ell \lp E_\ell + E_h  \rp\sin^2\lp {\theta_\ell/2}\rp}{2m_NE_{h}} \, , \nonumber
-\eea
-highlighting how the measurement of $E_{\ell}$, $\theta_\ell$, and $E_{h}$ uniquely specify the hard-scattering
-kinematics $(x,Q^2,E_{\nu})$ of the event.
-%
-Therefore, systematic shifts in the measurement of these final-state variables will modify
-the assignment of each event to a given bin of $x$, $Q^2$, and $E_\mu$, introducing a systematic
-error in the event yields and hence in the measurement of the double-differential
-neutrino scattering cross-section.
-
 In order to determine these bin-by-bin systematic uncertainties,
 we extend the calculation delineated in Eq.~(\ref{sec:pseudo-data_generation}) as follows.
 %
 Let us consider for illustrative purposes the FASER${\nu}$2 case.
 %
-From Table~\ref{tab:FPF_experiments}, one reads that the corresponding acceptances
-and performance parameters for $E_{\ell}$, $\theta_\ell$, and $E_{h}$   are given by
+From Table~\ref{tab:FPF_experiments}, one reads that the detector
+acceptance and reconstruction performance is specified by:
 \bea
-E_\ell \ge 100~{\rm GeV} \, , \quad \delta E_\ell \sim 30\% \, ,\nonumber \\
-E_h \ge 100~{\rm GeV} \, , \quad \delta E_h \sim 30\% \, ,\\
- \theta_\ell \le \tan^{-1}(0.5) \, , \quad \delta\theta_\ell \sim 1~{\rm mrad} \, . \nonumber 
-\label{fasernu2systematic_errors}
+E_\ell \ge 100~{\rm GeV} \, , \quad \theta_\ell \le \tan^{-1}(0.5)\, , \qquad \nonumber\\
+\delta E_\ell \sim 30\% \, 
+ \quad \delta E_h \sim 30\% \, ,
+ \ \, , \quad \delta\theta_\ell \sim 1~{\rm mrad} \, . 
+\label{eq:fasernu2systematic_errors}
 \eea
-In order to translate the systematic uncertainties $\delta E_\ell$, $\delta E_h $,
-and $\delta\theta_\ell$ into systematic errors associated to the binned event yields, 
+To translate the uncertainties in $\delta E_\ell$, $\delta E_h $,
+and $\delta\theta_\ell$ into systematic errors associated to the event yields, 
 \be
 \label{eq:event_yields_systematic_error}
 \delta_{\rm sys}^{(E_\ell)} N_{\rm ev}^{(i)} \, ,\quad
@@ -620,7 +603,7 @@ the binned event yields for this reference $\mathcal{D}_0$ sample.
 
 We then produce a second Monte Carlo sample $\mathcal{D}_1$ starting from the events
 of $\mathcal{D}_0$ which are then smeared with Gaussian distributions whose variances
-are given by Eq.~(\ref{fasernu2systematic_errors}).
+are given by Eq.~(\ref{eq:fasernu2systematic_errors}).
 %
 The bin assignment of the events in the smeared sample $\mathcal{D}_1$ will
 in general be different from those of the baseline sample.
@@ -636,18 +619,16 @@ distribution provides the sought-for estimate of the systematic uncertainties.
 Furthermore, 
 since the systematic errors are treated as uncorrelated among them,
 by producing samples where only one source of error is varied at a time
-we can determine the values of Eq.~(\ref{eq:event_yields_systematic_error}) in each bin.
+we can determine the systematic errors Eq.~(\ref{eq:event_yields_systematic_error}) in each bin.
 
-Fig.~\ref{fig:percentage_error_elepton}
-displays the estimated systematic uncertainties for the  measurements
+Fig.~\ref{fig:percentage_uncertainties_overview}
+displays the systematic uncertainties associated
+to $E_\ell$, $\theta_\ell$, and $E_h$.
+in the  measurements
 of the double-differential
 neutrino scattering cross-section at FASER$\nu$2.
 %
-We consider the leading sources of systematic errors,
-associated respectively to the charged lepton energy $E_\ell$ and scattering angle $\theta_\ell$
-and to the hadronic energy $E_h$.
-%
-The size of each source of systematic error is plotted as a function
+The magnitude of each systematic error is plotted as a function
 of the average momentum fraction per bin $\la x\ra$
 in three different bins of $Q^2$.
 %
@@ -660,8 +641,7 @@ The uncertainties associated to the charged lepton energy $E_\ell$ and scatterin
 between a few percent up to 20\% in the nominal baseline scenario,
 and in the case of the latter they are the smallest in the large-$x$ region.
 %
-Similar overview plots have been produced for the other LHC neutrino experiments
-considered in this work.
+The same procedure is adopted for all the experiments listed in Table~\ref{tab:FPF_experiments}.
 
 %-----------------------------------------------------------------------
 \begin{figure}[!ht]
@@ -671,8 +651,8 @@ considered in this work.
     of the double-differential
     neutrino scattering cross-section at FASER$\nu$2.
     %
-    We consider the leading sources of systematic errors,
-    associated respectively to the charged lepton energy $E_\ell$ and scattering angle $\theta_\ell$
+    We consider the systematic errors
+    associated to the charged lepton energy $E_\ell$ and scattering angle $\theta_\ell$
     and to the hadronic energy $E_h$.
     %
     The size of each source of systematic error is plotted as a function
