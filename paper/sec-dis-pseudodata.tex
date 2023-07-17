@@ -193,22 +193,19 @@ a diagonal CKM matrix and no heavy quark mass effects.
  binned event rates.
 
  Table~\ref{tab:FPF_experiments} summarises,
-for each of the far-forward LHC neutrino experiments considered
-  in this work,  their neutrino pseudo-rapidity coverage, target material, whether
+ for each of the far-forward LHC neutrino experiments considered,
+ their pseudo-rapidity coverage, target material, whether
   they can identify the sign of the outgoing charged lepton,
   the acceptance for the charged lepton and hadronic final state,
   and the expected reconstruction performance.
   %
   We consider separately acceptance and performance for electron and muon
-  neutrinos, while tau neutrinos have lower production rates and are neglected in this study.
+  neutrinos.
   %
   For these projections we assume that FASER$\nu$ and SND@LHC acquire data
-  for the full Run III period, while FASER$\nu$2, AdvSND, and FLArE take data
-  for the complete HL-LHC period.
-  %
-  An estimate of the expected 
-  systematic uncertainties is not available for FASER$\nu$ and SND@LHC, experiments
-  which are nevertheless limited by statistics.
+  for Run III ($\mathcal{L}=150$ fb$^{-1}$), while FASER$\nu$2,
+  AdvSND, and FLArE take data
+  for the complete HL-LHC period  ($\mathcal{L}=3$ ab$^{-1}$).
   %
   In the following we provide more details about the information collected in
   Table~\ref{tab:FPF_experiments}.
@@ -219,12 +216,13 @@ for each of the far-forward LHC neutrino experiments considered
 
 \paragraph{FASER$\nu$.}
 %
-The ForwArd Search ExpeRiment (FASER) detector and its companion FASER$\nu$~\cite{FASER:2019aik,FASER:2019dxq,FASER:2023zcr,FASER:2022hcn}
+The ForwArd Search ExpeRiment (FASER) detector
+and its companion FASER$\nu$~\cite{FASER:2019aik,FASER:2019dxq,FASER:2023zcr,FASER:2022hcn}
 are located at the TI12 tunnel of the CERN accelerator complex.
 %
 Both detectors are aligned
 with the collision axis line-of-sight (LOS)
-and have been acquiring data since the begin of Run III.
+and have been acquiring data since the begin of Run III in 2022.
 %
 Neutrino scattering takes place in the FASER$\nu$
 detector, composed by interleaved emulsion and tungsten plates and
@@ -238,6 +236,10 @@ Neutrino detection and identification can be carried out either using the emulsi
 films of FASER$\nu$2, which have the key benefit of excellent position and angular resolution,
 or instead using the electronic detector components of FASER, which enable the tagging
 of the outgoing downstream energetic muons.
+%
+FASER$\nu$ is sensitive to neutrinos with pseudorapidity $\eta_\nu \ge 8.5$
+and can also identify charm-tagged events.
+
 
 \paragraph{SND@LHC.}
 %
@@ -266,8 +268,11 @@ The electromagnetic
 A proposed 20-ton neutrino experiment located on the LOS
 of the LHC neutrino beam to be installed in the FPF cavern.
 %
-It is based on an emulsion-based detector optimised to identify heavy flavor particles, including
+It is based on the same technology as FASER$\nu$, and hence
+relies on a emulsion-based detector optimised to identify heavy flavor particles, including
 tau leptons and charm and beauty particles, arising from neutrino interactions.
+%
+It would be sensitive to neutrinos with pseudorapidity $\eta_\nu \ge 8.5$.
 %
 The FASER$\nu$2 detector is composed of 3300 emulsion layers interleaved with 2-mm-thick tungsten plates,
 for a total volume of  tungsten of $40~\rm{cm} \times 40~\rm{cm} \times 6.6~{\rm m}$.
@@ -276,12 +281,12 @@ The combination of FASER$\nu$2  with the nearby FASER2 detector, equipped with a
 
  \paragraph{AdvSND.}
  %
- This experiment consists on  two detectors, a far-detector to be installed
- at the FPF with a coverage in neutrino pseudorapidity $\eta_\nu$ of $7.2 \le \eta_\nu \le 8.4$
+ This proposed experiment consists actually on  two detectors, a far-detector to be installed
+ at the FPF with a coverage in neutrino pseudorapidity of $7.2 \le \eta_\nu \le 8.4$
  (hence off-LOS) and a near detector installed somewhere else in LHC
  complex and covering the range $4 \le \eta_\nu \le 5$.
  %
- In the following we focus on the AdvSND far-detector.
+ In the following we focus on the AdvSND-far detector.
  %
  It would be
  composed (from upstream to downstream) by a target region
@@ -308,13 +313,16 @@ The combination of FASER$\nu$2  with the nearby FASER2 detector, equipped with a
  The detector will be equipped with a magnetized hadron/muon calorimeter downstream of the liquid argon volume
  for muon charge and momentum measurements.
  %
-  For the FLArE detector, we assume that muons would be measured in the FASER2 spectrometer
+ While muon neutrinos with energy $E_\nu \gsim 2$ GeV would not be fully
+ contained in the  FLArE detector,
+for the projections presented in this work
+ we assume that outgoing muons would be measured in the FASER2 spectrometer
   situated downstream in the FPF cavern.
  %
  With an expected fiducial (active) mass of 10 tons (30 tons), FLArE will
- detect final-state electrons with energies $E_{e}\lsim 1~\rm{TeV}$ and
- scattering angles up to 0.5 mrad, while detecting final-state muons
- is restricted to $E_{e}\lsim 2~\rm{GeV}$  and $\theta_\mu \lsim 0.4$.
+ detect final-state electrons with energies $E_{e}\lsim 2~\rm{TeV}$ and
+ scattering angles up to 0.5 mrad,  final-state muons
+ with $\theta_\mu \lsim 0.025$ will be recorded by FASER$\nu$2.
  %
  Reconstruction of the total energy of the hadronic final state will also
  possible. 
@@ -323,6 +331,10 @@ The combination of FASER$\nu$2  with the nearby FASER2 detector, equipped with a
  are $\delta E_\mu \sim$5\% of electron energy resolution,
  $\delta \theta_e \sim 15$ mrad of electron angular  resolution,
  and $\delta E_h \sim 30$\% for the hadronic energy.
+ %
+ Since muon neutrinos would be measured by FASER$\nu$2, the
+ performance parameters for $E_\mu$ and $\theta_\mu$ are  taken
+ to be the same as those of FASER$\nu$2.
 
 \subsection{Differential event rate calculation}
 \label{sec:pseudo-data_generation}
@@ -337,12 +349,12 @@ events taking place in the fiducial volume of the detector in bins of Bjorken-$x
 momentum transfer $Q^2$, and neutrino energy $E_\nu$, that is,
 \be
 \label{eq:event_yields}
-N_{\rm ev}^{(i)}\lp \nu_e ; E_{{\rm min}}^{(i)} \le E_\nu \le E_{{\rm max}}^{(i)} ,\,
+N_{\nu_e,{\rm ev}}^{(i)}\lp \nu_e ; E_{{\rm min}}^{(i)} \le E_\nu \le E_{{\rm max}}^{(i)} ,\,
 x_{{\rm min}}^{(i)} \le x \le x_{{\rm max}}^{(i)} ;\, Q_{{\rm min}}^{2(i)} \le Q^2 \le Q_{{\rm max}}^{2(i)}\rp
-\, ,\quad i=1,\ldots, N_{\rm bins} \, ,
+\, ,\quad i=1,\ldots, N_{\rm bin} \, ,
 \ee
 for electron neutrinos and for each of the bins composing the measurement, and with similar
-expressions applying for muon and tau neutrinos and antineutrinos.
+expressions applying for muon neutrinos and antineutrinos.
 %
 These event yields determine the statistical
 precision associated to a measurement of the double-differential cross-sections
@@ -351,80 +363,99 @@ Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}) and~(\ref{eq:antineutrino_DIS_xsec_FL}).
 Subsequently, we account for the expected reconstruction performance of the detector
 in order to estimate the systematic uncertainties associated to these event yields.
 %
-The choice of the binning is in principle arbitrary, and here we define them
-to ensure that Gaussian statistics hold for all the bins of the measurement.
+When choosing the binning of the measurement, the main criteria are
+simplicity and ensuring that Gaussian statistics holds in all bins.
 
-In this calculation, we assume the central values of the neutrino fluxes provided by the calculation
-of~\cite{Kling:2021gos}.
+In our calculation we assume the central values of the neutrino
+fluxes provided by~\cite{Kling:2021gos}.
 %
 The bin-by-bin integrated event yields in Eq.~(\ref{eq:event_yields}) are
 obtained by convoluting the incoming neutrino fluxes, for a given geometric acceptance
 of the target detector, with the corresponding neutrino differential cross-sections
 Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}) and~(\ref{eq:antineutrino_DIS_xsec_FL}).
 %
-As we further discuss in Sect.~\ref{sec:settings}, theoretical predictions
-for the latter are computed with {\sc\small YADISM} interfaced to {\sc\small PineAPPL}
-to produce fast precomputed interpolation grids.
-%
 Differential event yields are therefore evaluated using
 \begin{equation}
-  \label{eq:event_yields}
-   N_{\rm ev}^{(i)} = n_T L_T\int_{Q^{2(i)}_{\rm min}}^{Q^{2(i)}_{\rm max}}\int_{x^{(i)}_{\rm min}}^{x^{(i)}_{\rm max}}\int_{E_{\rm min}^{(i)}}^{E_{\rm max}^{(i)}} \frac{dN_{\nu}(E_\nu)}{dE_{\nu}}\left(\frac{d^2\sigma(x,Q^2,E_{\nu})}{dxdQ^2}\right) {\cal A}(x,Q^2,E_{\nu}) dQ^2 dx dE_{\nu} \, ,\quad i=1,\ldots, N_{\rm bins} \, ,
+  \label{eq:event_yields_calculation}
+   N_{\rm ev}^{(i)} = n_T L_T\int_{Q^{2(i)}_{\rm min}}^{Q^{2(i)}_{\rm max}}\int_{x^{(i)}_{\rm min}}^{x^{(i)}_{\rm max}}\int_{E_{\rm min}^{(i)}}^{E_{\rm max}^{(i)}} \frac{dN_{\nu}(E_\nu)}{dE_{\nu}}\left(\frac{d^2\sigma(x,Q^2,E_{\nu})}{dxdQ^2}\right) {\cal A}(x,Q^2,E_{\nu}) dQ^2 dx dE_{\nu} \, ,
 \end{equation}
-with $n_T$ is the nuclear density of the target detector material, $L_T$ its length and ${\cal A}(x,Q^2,E_{\nu})$ is an acceptance factor which takes the form of a step function and accounts for the experimental thresholds from Table\ref{tab:FPF_experiments}.
+with $n_T$ is the nuclear density of the target detector material, $L_T$ its
+length and ${\cal A}(x,Q^2,E_{\nu})$ is an acceptance factor which takes the form of a
+step function and accounts for the experimental acceptance thresholds
+in $E_\ell$, $\theta_\ell$, and $E_h$
+listed in Table~\ref{tab:FPF_experiments}.
 %
-The incoming neutrino fluxes, which include the geometric acceptance of the considered detector,
+The incoming neutrino fluxes, which account for the geometry
+and $\eta_\nu$ coverage of the considered detector,
 are encoded in $dN_{\nu}(E_\nu)/dE_{\nu}$.
 %
-We consider only the scattering of muon neutrinos, characterised by the highest rates.
-%
-We verify that the differential event yield calculation
-implemented in Eq.~(\ref{eq:event_yields}), when extrapolated to a single bin
+We have verified that the differential event yield calculation
+implemented in Eq.~(\ref{eq:event_yields_calculation}), when extrapolated to a single bin
 covering the full detector acceptance,
 is consistent with the fiducial interaction rates presented in~\cite{Feng:2022inv}.
 
-The triple integral in  Eq.~(\ref{eq:event_yields}) is evaluated numerically by means
-of Monte Carlo sampling, by generating sampling $N_{\rm mc}$ points in the $\lp x,Q^2,E_{\nu}\rp$ space
-with the constraint that $0 < y = Q^2/2m_N E_{\nu }x <1 $
+The triple integral in  Eq.~(\ref{eq:event_yields_calculation}) is evaluated numerically by means
+of Monte Carlo sampling, by generating  $N_{\rm mc}$
+sampling points in the $\lp x,Q^2,E_{\nu}\rp$ space
+with the constraint that
+\be 
+0 < y \lp = Q^2/2m_N E_{\nu }x\rp <1 \, ,
+\ee
 and then  integrating over the bin range:
-\begin{equation}
-    N_{\rm ev}^{(i)} \approx n_T L_T \frac{(Q^{2(i)}_{\rm max}-Q^{2(i)}_{\rm min})(x^{(i)}_{\rm max}-x^{(i)}_{\rm min})(E_{\rm max}^{(i)}-E_{\rm min}^{(i)})}{N_{\rm mc}}\times \sum_{j=1}^{N_{\rm mc}} \frac{dN_{\nu}(E^{(j)}_\nu)}{dE_{\nu}}\left(\frac{d^2\sigma(x^{(j)},Q^{2(j)},E^{(j)}_{\nu})}{dxdQ^2}\right) {\cal A}(x^{(j)},Q^{2(j)},E_{\nu}^{(j)}) \, ,
+\bea
+   && N_{\rm ev}^{(i)} \approx n_T L_T \frac{(Q^{2(i)}_{\rm max}-Q^{2(i)}_{\rm min})(x^{(i)}_{\rm max}-x^{(i)}_{\rm min})(E_{\rm max}^{(i)}-E_{\rm min}^{(i)})}{N_{\rm mc}}\times \nonumber \\&& \sum_{j=1}^{N_{\rm mc}}\lc  \frac{dN_{\nu}(E^{(j)}_\nu)}{dE_{\nu}}\left(\frac{d^2\sigma(x^{(j)},Q^{2(j)},E^{(j)}_{\nu})}{dxdQ^2}\right) {\cal A}(x^{(j)},Q^{2(j)},E_{\nu}^{(j)})\rc \, ,
     \label{MCintegration}
-\end{equation}
+\eea
 and where $N_{\rm mc}$ is chosen to be large enough such that residual Monte Carlo integration
 uncertainties are negligible for all the bins considered.
 
 Table~\ref{tab:integrated_rates} summarises the predicted integrated event yields for the five detectors
 considered, separated into electron neutrinos and antineutrinos
-  and muon neutrinos and antineutrinos.
+and muon neutrinos and antineutrinos.
+%
+As mentioned above, for FLArE we assume that muon neutrinos interacting
+in its fiducial volume will be measured
+by the FASER$\nu$2 spectrometer.
   %
-  These event yields are computed from Eq.~(\ref{eq:event_yields}) with the only
-  requirement that the momentum transfer and the final-state invariant mass are restricted
-  to the DIS region,
-  \be
-  \label{eq:DISconditions}
+These event yields are computed from Eq.~(\ref{eq:event_yields_calculation}) with the only
+requirement that the momentum transfer and the final-state invariant mass are restricted
+to the DIS region,
+\be
+\label{eq:DISconditions}
 Q^2 \ge 2~{\rm GeV}^2\quad{\rm and}\quad  W^2 \ge 4~{\rm GeV}^2 \, .
 \ee
-  %
-   The numbers in parenthesis indicate the event rates corresponding to charm
-  production, for those experiments with heavy flavour tagging capabilities.
+%
+The numbers in parenthesis indicate the event rates corresponding to charm
+production, for those experiments with heavy flavour tagging capabilities.
+%
+We note that, as opposed to the number of interacting neutrinos
+computed in~\cite{Feng:2022inv}, we now account for the 
+detector acceptance listed in  Table~\ref{tab:FPF_experiments}. 
 
 %----------------------------------------------------
 \input{tables/integrated_yields.tex}
 %----------------------------------------------------
 
-Eq.~(\ref{eq:event_yields}) can be generalised to charm-production events, with
+Eq.~(\ref{eq:event_yields_calculation}) can be generalised to charm-production events, with
 the only difference being that now the neutrino scattering cross-section is restricted
 to those processes leading to final-state charm quarks.
 %
 Assuming that charm quarks can be directly tagged by the detector one has
 \be
 \label{eq:event_yields_charm}
-  N_{\rm ev,c}^{(i)} = n_T L_T\int_{Q^{2(i)}_{\rm min}}^{Q^{2(i)}_{\rm max}}\int_{x^{(i)}_{\rm min}}^{x^{(i)}_{\rm max}}\int_{E_{\rm min}^{(i)}}^{E_{\rm max}^{(i)}} \frac{dN_{\nu}(E_\nu)}{dE_{\nu}}\left(\frac{d^2\sigma^{\nu N \to \ell + c+X}(x,Q^2,E_{\nu})}{dxdQ^2}\right) dQ^2 dx dE_{\nu} \, 
+  N_{\rm ev,c}^{(i)} = n_T L_T\int_{Q^{2(i)}_{\rm min}}^{Q^{2(i)}_{\rm max}}\int_{x^{(i)}_{\rm min}}^{x^{(i)}_{\rm max}}\int_{E_{\rm min}^{(i)}}^{E_{\rm max}^{(i)}} \frac{dN_{\nu}(E_\nu)}{dE_{\nu}}\left(\frac{d^2\sigma^{\nu N \to \ell + c+X}(x,Q^2,E_{\nu})}{dxdQ^2}\right) {\cal A}(x,Q^2,E_{\nu}) dQ^2 dx dE_{\nu} \, ,
   \ee
-  with the charm production cross-sections discussed in~\cite{Faura:2020oom}
+  with charm production cross-sections discussed in~\cite{Faura:2020oom}
   and references therein.
   %
+   Here we neglect efficiency and acceptance effects associated to $D$-meson
+ tagging, which can only be properly estimated by means
+ of a full detector simulation.
+ %
+ The acceptance correction ${\cal A}(x,Q^2,E_{\nu})$ in Eq.~(\ref{eq:event_yields_charm})
+ applies only to the charged leptons and hence is the same as in
+ the inclusive case.
+  
   Detectors without charm-tagging capabilities can still be sensitive to charm production via
   the semileptonic decays of the $D$-mesons, resulting in the characteristic
   dimuon topology, where
@@ -436,9 +467,6 @@ Assuming that charm quarks can be directly tagged by the detector one has
  %
  Given that $\mathcal{B}\sim 0.1$, being able to tag directly charm quarks increases the event yields
  of charm production events by a factor of 10 as compared to reconstructing the dimuon final state.
- %
- Here we neglect finite acceptance effects, which can only be properly estimated by means
- of a full detector simulation.
 
  Fig.~\ref{fig:fasernu2_muon} displays the
  event yields per bin,  Eq.~(\ref{eq:event_yields}),
@@ -463,15 +491,18 @@ Assuming that charm quarks can be directly tagged by the detector one has
 %-----------------------------------------------------------------------
 \begin{figure}[t]
     \centering
-	\includegraphics[width=0.495\textwidth]{plots/FPF-FASERv.pdf}
-	\includegraphics[width=0.495\textwidth]{plots/FPF-FASERv2.pdf}
-	\includegraphics[width=0.495\textwidth]{plots/FPF-FLArE100.pdf}
-	\includegraphics[width=0.495\textwidth]{plots/FPF-SND.pdf}
-	\caption{\small The event yields per bin $N_{\rm ev}^{(i)}$, for muon neutrinos at the FASER$\nu$(2)
-	and AdvSND detectors, and electron neutrinos the FLArE detector, restricted to the DIS region defined 
-	by Eq.~(\ref{eq:DISconditions}).
+    \includegraphics[width=0.495\textwidth]{plots/FPF-FASERv.pdf}
+    \includegraphics[width=0.495\textwidth]{plots/FPF-SND.pdf}
+    \includegraphics[width=0.495\textwidth]{plots/FPF-FASERv2.pdf}
+    \includegraphics[width=0.495\textwidth]{plots/FPF-FLArE100.pdf}
+    \caption{\small The event yields per bin, $N_{\rm ev}^{(i)}$, for muon neutrinos at the
+      FASER$\nu$, SND@LHC (upper panels), FASER$\nu$2, and FLArE (bottom panels) experiments.
+      %
+      Selected events are restricted to the DIS region Eq.~(\ref{eq:DISconditions}).
+      %
+      Only bins with $\ge 30$ events are retained.
 	%
-	Adding up all the bins in this plot results into the $N_{\nu_\mu}$ value listed in
+	Adding up the bins in each of the panels results into the numbers listed in
 	Table~\ref{tab:integrated_rates}.}
     \label{fig:fasernu2_muon}
 \end{figure}
