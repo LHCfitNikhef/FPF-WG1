@@ -479,14 +479,16 @@ Assuming that charm quarks can be directly tagged by the detector one has
  Adding up the bins in each of the panels results into the numbers listed in
  Table~\ref{tab:integrated_rates}.
  %
- The clear improvement in going frm FASER$\nu$, SND@LHC
- to the FPF experiments related not only to the number
- of events but also to the kinematic coverage,
+ The clear improvement in going from the current FASER$\nu$ and SND@LHC
+ experiments to the FPF ones is visible both in terms
+ of the number
+ of events per bin as well as for the kinematic coverage.
  %
- For the FPF experiments,m 
- One observes large event rates for most of the region in $\lp x,Q^2\rp$ covered,
+ The FPF experiments benefit from large
+ event rates for most of the region in $\lp x,Q^2\rp$ covered,
  leading to typical statistical uncertainties at the 1\% level or smaller,
- while for FASER$\nu$, SND@LHC statistical uncertainties are much larger.
+ while for FASER$\nu$, SND@LHC statistical uncertainties are much larger due
+ to the reduced event rates.
   
 %-----------------------------------------------------------------------
 \begin{figure}[t]
@@ -509,14 +511,14 @@ Assuming that charm quarks can be directly tagged by the detector one has
 %-----------------------------------------------------------------------
 
 Fig.~\ref{fig:fasernu2_muon} indicates
-how the kinematic coverage of FASER$\nu$2 reaches
-$x_{\rm min}\sim 3\times 10^{-3}$ at small-$x$ and $Q^2_{\rm max}\sim 2\times 10^3$
+how the kinematic coverage of the FPF far-forward experiments reaches
+$x_{\rm min}\sim \times 10^{-3}$ at small-$x$ and $Q^2_{\rm max}\sim 2\times 10^3$
 at large-$Q^2$, representing an extension
 of around one order of magnitude in both directions as compared to available
 DIS neutrino data on nuclear targets.
 %
 Fig.~\ref{fig:Kin_nNNPDF30_EIC_FPF} compares
-the kinematic coverage of FASER$\nu$2 with that of electron-ion collisions
+the kinematic coverage of FASER$\nu$2, FLArE, and AdvSND with that of electron-ion collisions
 at the upcoming EIC~\cite{Khalek:2021ulf,AbdulKhalek:2021gbh}
 and to other available hard-scattering datasets involving
 nuclear targets or projectiles.
@@ -525,6 +527,11 @@ Specifically, we display the coverage of fixed-target neutral- and charged-curre
 fixed-target Drell-Yan production, and $W$, $Z$, $D$-meson, photon, and dijet
 production in proton-lead collisions at the LHC entering the  nNNPDF3.0
 determination~\cite{AbdulKhalek:2022fyi}.
+%
+The LHC neutrino experiments cover the region $x\gsim 10^{-3}$ relevant
+for precision electroweak measurements at the LHC, such as the $W$-boson
+mass, and for new physics measurements sensitive to the large-$x$ quarks
+and antiquarks in the proton.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
@@ -550,9 +557,8 @@ determination~\cite{AbdulKhalek:2022fyi}.
 \subsection{Statistical and systematic uncertainties}
 \label{subsec:uncertainties}
 
-The event yields displayed in Fig.~\ref{fig:fasernu2_muon} for FASER$\nu$2, and the corresponding
-calculations for the other experiments listed in Table~\ref{tab:FPF_experiments},
-determine the associated statistical uncertainty in each bin
+The event yields displayed in Fig.~\ref{fig:fasernu2_muon} 
+determine the associated statistical uncertainty in each bin by means of
 \be
 \label{eq:statistical_uncertainties}
 \delta^{\rm (stat)}  N_{\rm ev}^{(i)} = \sqrt{N_{\rm ev}^{(i)}} \, ,
@@ -560,8 +566,7 @@ determine the associated statistical uncertainty in each bin
 such that the fractional statistical uncertainty per bin is $\delta^{\rm (stat)}_i=1/\sqrt{N_{\rm ev}^{(i)}}$.
 %
 Since we discard bins with less than 30 events, the fractional statistical uncertainty
-ranges between $\lsim 1\%$ and $\sim 18\%$ for muon neutrinos in
-the case of FASER$\nu$2 depending on the values of
+ranges between $\lsim 1\%$ and $\sim 18\%$, depending on the values of
 $x$ and $Q^2$ associated to this bin.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -584,14 +589,15 @@ $x$ and $Q^2$ associated to this bin.
 These statistical uncertainties are displayed in the left panel
 of Fig.~\ref{fig:error_plot_FASERv2_14}, which corresponds
 to the same event yields as in
-Fig.~\ref{fig:fasernu2_muon}
-now as a function of $x$ after having integrated the event yields in the range $Q^2 \in [10,100]$ GeV$^2$.
+Fig.~\ref{fig:fasernu2_muon} for FASER$\nu$2
+now as a function of $x$ after having integrated the event
+yields in the range $Q^2 \in [10,100]$ GeV$^2$.
 %
 The error bar in the vertical direction indicates the statistical uncertainties, while
 that in the horizontal direction corresponds to the width of the $x$-bins.
 %
 Except for the bins with the smallest values of $x$, statistical uncertainties indeed
-are at the percent level for FASER$\nu$2.
+are at the percent level or smaller for FASER$\nu$2.
 
 In addition to the statistical uncertainties given by Eq.~(\ref{eq:statistical_uncertainties}),
 one needs to also estimate the systematic uncertainties associated to the
@@ -604,21 +610,21 @@ mis-classified into a different bin in the presence of systematic
 shifts associated to the lepton energy $E_\ell$, lepton scattering angle $\theta_\ell$, and
 hadronic energy $E_h$, as indicated by  Eq.~(\ref{eq:dis_kinematic_mapping}).
 
-For each possible source of experimental systematic uncertainty, we therefore need to
+For each source of experimental systematic uncertainty we need to
 quantify its impact at the event yield level.
 %
-In order to determine these bin-by-bin systematic uncertainties,
+In order to determine these bin-by-bin systematic errors,
 we extend the calculation delineated in Eq.~(\ref{sec:pseudo-data_generation}) as follows.
 %
-Let us consider for illustrative purposes the FASER${\nu}$2 case.
+Let us consider for illustrative purposes the FASER${\nu}$2 detector.
 %
-From Table~\ref{tab:FPF_experiments}, one reads that the detector
-acceptance and reconstruction performance is specified by:
+From Table~\ref{tab:FPF_experiments} we know that its
+acceptance and reconstruction performance are specified by:
 \bea
-E_\ell \ge 100~{\rm GeV} \, , \quad \theta_\ell \le \tan^{-1}(0.5)\, , \qquad \nonumber\\
+E_\ell \ge 100~{\rm GeV} \, , \quad \theta_\ell \le \tan^{-1}(0.025)\, , \qquad\\
 \delta E_\ell \sim 30\% \, 
  \quad \delta E_h \sim 30\% \, ,
- \ \, , \quad \delta\theta_\ell \sim 1~{\rm mrad} \, . 
+ \quad \delta\theta_\ell \sim 0.06~{\rm mrad} \, . 
 \label{eq:fasernu2systematic_errors}
 \eea
 To translate the uncertainties in $\delta E_\ell$, $\delta E_h $,
@@ -634,7 +640,7 @@ we generate first a Monte Carlo set of events, denoted by $\mathcal{D}_0$,
 composed by $N_{\rm mc} = 10^7$ samples and determine the assignment of each event
 to a point in the $\lp x,Q^2,E_{\nu}\rp$ space.
 %
-By integrating over this sample by means of Eq.~(\ref{MCintegration}) we determine
+By integrating over this sample by means of Eq.~(\ref{MCintegration}), we determine
 the binned event yields for this reference $\mathcal{D}_0$ sample.
 
 We then produce a second Monte Carlo sample $\mathcal{D}_1$ starting from the events
@@ -649,12 +655,23 @@ $\mathcal{D}_k$ (with $k=1,\ldots,M$) smeared
 samples each one leading to a different binned event yields
 $ N_{\rm ev}^{(i)(k)}$.
 %
-We take the uncertainty to be the absolute difference between the mean number of events in the bin for the smeared samples samples, ${\overline{N}}^{(i)}~$ and$~ N_{\rm ev}^{(i)}$ as calculated from Eq. \ref{MCintegration}, {\it{i.e.}}  $\delta N^{(i)} = |{\overline{N}}^{(i)} -N_{\rm ev}^{(i)}|$ .
-%
-Furthermore, 
-since the systematic errors are treated as uncorrelated among them,
+We take the uncertainty associated
+to a given systematic source, say $\delta E_\ell$,
+to be the absolute difference between the mean number of events in this
+bin evaluated for the smeared samples samples and the
+central prediction for the number of events
+$ N_{\rm ev}^{(i)}$ as calculated from Eq.~(\ref{MCintegration}):
+\be
+\delta_{\rm sys}^{(E_\ell)} N^{(i)} = \Big| \la {N}^{(i)}\ra_{E_\ell-{\rm smeared}} -N_{\rm ev}^{(i)}\Big| \, .
+\ee
+Systematic errors are treated as uncorrelated among them and hence
 by producing samples where only one source of error is varied at a time
-we can determine the systematic errors Eq.~(\ref{eq:event_yields_systematic_error}) in each bin.
+we can determine the systematic errors, Eq.~(\ref{eq:event_yields_systematic_error}), in each bin.
+%
+This approach has the benefit that rescaling individual sources of systematic
+uncertainties, say to assess the impact of improved detector performance,
+are straightforward. 
+
 
 Fig.~\ref{fig:percentage_uncertainties_overview}
 displays the systematic uncertainties associated
