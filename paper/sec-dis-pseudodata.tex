@@ -670,13 +670,12 @@ we can determine the systematic errors, Eq.~(\ref{eq:event_yields_systematic_err
 %
 This approach has the benefit that rescaling individual sources of systematic
 uncertainties, say to assess the impact of improved detector performance,
-are straightforward. 
-
+is straightforward. 
 
 Fig.~\ref{fig:percentage_uncertainties_overview}
 displays the systematic uncertainties associated
-to $E_\ell$, $\theta_\ell$, and $E_h$.
-in the  measurements
+to $E_\ell$, $\theta_\ell$, and $E_h$ variations
+for the  measurements
 of the double-differential
 neutrino scattering cross-section at FASER$\nu$2.
 %
@@ -693,10 +692,15 @@ The uncertainties associated to the charged lepton energy $E_\ell$ and scatterin
 between a few percent up to 20\% in the nominal baseline scenario,
 and in the case of the latter they are the smallest in the large-$x$ region.
 %
-The same procedure is adopted for all the experiments listed in Table~\ref{tab:FPF_experiments}.
+Fig.~\ref{fig:error_plot_FASERv2_14} (central and right panels) display
+ the integrated event yields for FASER$\nu$2 as a function of $x$ for only
+ systematic errors and for the sum in quadrature of statistical and systematic errors.
+ %
+ For most of the bins, for the baseline performance assumptions the total systematic
+ uncertainty is at the $10\%$ and dominates over the statistical uncertainties.
 
 %-----------------------------------------------------------------------
-\begin{figure}[!ht]
+\begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{plots/percentage_errors.pdf}
   \caption{\small Estimated systematic uncertainties for the  measurements
@@ -721,46 +725,51 @@ The same procedure is adopted for all the experiments listed in Table~\ref{tab:F
 The end result of the procedure is the estimate of statistical and systematic uncertainties
 for each bin of the measurement, from which a experimental covariance matrix can be constructed as
 \be
-   {\rm cov}_{ij} = \delta_{ij} \lp \delta_{\rm stat}  N_{\rm ev}^{(i)}\rp^2
-   + \lp \delta_{\rm sys}^{(E_\ell)} N_{\rm ev}^{(i)} \rp \lp \delta_{\rm sys}^{(E_\ell)} N_{\rm ev}^{(j)} \rp 
-   + \lp \delta_{\rm sys}^{(E_h)} N_{\rm ev}^{(i)} \rp \lp\delta_{\rm sys}^{(E_h)} N_{\rm ev}^{(j)}\rp 
-   + \lp \delta_{\rm sys}^{(\theta_\ell)} N_{\rm ev}^{(i)} \rp
-   \lp \delta_{\rm sys}^{(\theta_\ell)} N_{\rm ev}^{(j)} \rp
-   \, ,\qquad
- \nonumber
+\label{eq:covmat_definition}
+   {\rm cov}_{ij} = \delta_{ij} \lp \delta^{\rm (stat)}  N_{\rm ev}^{(i)}\rp^2
+   + \sum_{k=1}^{n_{\rm sys}}\lp \delta_{\rm sys}^{(k)} N_{\rm ev}^{(i)} \rp \lp \delta_{\rm sys}^{(k)} N_{\rm ev}^{(j)} \rp
+   \, ,\qquad i,j=1,\ldots,N_{\rm bin} \, ,
  \ee
- for $i,j=1,\ldots,N_{\rm bin}$, and the same for the associated correlation
+  and the same for the associated correlation
  matrix of the measurement
  \be
  \rho_{ij} =  \frac{{\rm cov}_{ij}}{\sqrt{ {\rm cov}_{ii} }\sqrt{ {\rm cov}_{jj} } } \, . 
  \ee
  The relative covariance matrix, $ {\rm cov}_{ij}/( N_{\rm ev}^{(i)}N_{\rm ev}^{(j)})$, is
  independent of the considered observable and would also apply
- for the double-differential cross-sections Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}) and~(\ref{eq:antineutrino_DIS_xsec_FL}) which are related to the event yields by a constant factor.
- 
- One should emphasize that in a real experiment the actual covariance matrix will be
- composed by a much larger number of uncertainty sources, with typical
+ for the double-differential cross-sections Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}) and~(\ref{eq:antineutrino_DIS_xsec_FL}) which are related to the event yields by a constant prefactor.
+ %
+
+ Eq.~(\ref{eq:covmat_definition}) assumes that each source of systematic
+ uncertainty is 100\% correlated across all the bins of the measurement.
+ %
+ In the real experiment, the actual covariance matrix will be
+ composed by a large number of uncertainty sources, with typical
   HERA and LHC precision measurements characterised by up to hundreds
  of different sources of systematic error.
  %
  In particular, the assumption that a single source of systematic error, say $\delta E_\ell$,
- is fully correlated among all the bins in $(x,Q^2)$ is likely not to be realistic.
+ is fully correlated among all the bins in $(x,Q^2)$ is unlikely to be accurate.
  %
- For this reason, here we present impact results both for the nominal correlation model,
- for the case where systematic and statistical uncertainties are added in quadrature,
- and intermediate scenarios.
-  
- Fig.~\ref{fig:error_plot_FASERv2_14} (central and right panels) display
- the integrated event yields for FASER$\nu$2 as a function of $x$ for only
- systematic errors and for the sum in quadrature of statistical and systematic errors.
- %
- For most of the bins, for the baseline performance assumptions the total systematic
- uncertainty is at the $10\%$ and dominates over the statistical uncertainties.
+ For this reason, here we neglect bin-by-bin correlations
+ and add in quadrature statistical and systematic errors
+ \be
+\label{eq:covmat_definition_v2}
+ {\rm cov}_{ij} = \delta_{ij} \lp \delta^{\rm (stat)}  N_{\rm ev}^{(i)}\rp^2
++ \delta_{ij}\sum_{k=1}^{n_{\rm sys}} \lp f_{\rm red}^{(k)}\rp^2\lp \delta_{\rm sys}^{(k)} N_{\rm ev}^{(i)} \rp^2
+\, ,\qquad i,j=1,\ldots,N_{\rm bin} \, .
+\ee
+In Eq.~(\ref{eq:covmat_definition_v2}) we have introduced a parameter $f_{\rm red}^{(k)}\le 1$
+that gauges the impact of a possible reduction of the $k$-th systematic error
+as compared to the default experiment performance.
+%
+In Sect.~\ref{sec:protonPDFs} we present results for different scenarios
+for the systematic uncertainty reduction $f_{\rm red}^{(k)}$.   
  
- \subsection{Pseudo-data generation and impact on PDFs}
+ \subsection{Pseudo-data generation and inclusion on PDF fits}
 
  In order to generate pseudo-data for double-differential
- neutrino scattering cross-sections at the LHC, we follow the procedure
+ LHC neutrino scattering cross-sections, we follow the procedure
  used for the HL-LHC PDF projections of~\cite{AbdulKhalek:2018rok} which was
  also adopted in~\cite{Ethier:2021ydt} and~\cite{Greljo:2021kvv} for SMEFT impact projections
  of vector-boson scattering and high-mass Drell-Yan data at the HL-LHC, respectively.
