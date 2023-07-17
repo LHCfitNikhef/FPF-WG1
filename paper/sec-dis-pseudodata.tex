@@ -1,9 +1,9 @@
-\section{DIS projections for LHC far-forward experiments}
+\section{Deep-inelastic scattering with LHC neutrinos}
 \label{sec:dis_pseudodata}
 
 Here we describe the procedure adopted in order 
 to generate projections for the kinematic coverage
-and experimental uncertainties associated to  measurements
+and uncertainties associated to  measurements
 of neutrino-nucleus scattering at the LHC far-forward experiments.
 %
 First, we summarise the theoretical description of differential
@@ -13,16 +13,17 @@ their PDF sensitivity.
 Second, we present an  overview of the operative and proposed
 LHC far-forward neutrino detectors that
 will be considered in the present study and indicate their
-main acceptance and performance parameters.
+acceptance and performance parameters.
 %
-By convoluting the expected muon neutrino fluxes
+By convoluting the expected electron and muon neutrino fluxes
 with the acceptance and scattering rates of each
 of these detectors,
-we evaluate the foreseen event yields in bins of $x$, $Q^2$,
-and $E_\nu$ and therefore the associated statistical uncertainties.
+we evaluate the event yields in bins of $x$, $Q^2$,
+and $E_\nu$ and the associated statistical and systematic uncertainties.
 %
-We also estimate how the systematic uncertainties in the measurement
-of final-state variables affects the experimental covariance matrix. 
+Finally, we discuss the procedure adopted to generate pseudo-data
+for LHC neutrino DIS and to their impact
+ into proton and nuclear PDF determinations.
 
 \subsection{Neutrino DIS revisited}
 
@@ -163,13 +164,12 @@ a diagonal CKM matrix and no heavy quark mass effects.
  the detector fiducial volume, on the one hand,
  and the scattering rates within the same fiducial volume, on the other hand.
  %
- In this section, we summarise the main features of each of the existing and future
- far-forward detectors considered in this study, in particular concerning
- their acceptance, performance, and detection method.
+ Here we summarise the main features of each of the existing and future
+ far-forward detectors considered, in particular concerning
+ their acceptance and performance.
  %
- We focus on  muon
- neutrino scattering, which benefits from the highest rates and is less
- affected by uncertainties affecting $D$-meson production.
+ We focus on  muon neutrino scattering, which benefits from the highest rates and is less
+ affected by theoretical uncertainties in the production mechanism.
  
  The kinematics of a charged-current neutrino DIS event $(x,Q^2, E_\nu)$,
  or alternatively $(x,Q^2, y)$, are uniquely specified by the measurement of three independent
@@ -181,7 +181,7 @@ a diagonal CKM matrix and no heavy quark mass effects.
  Most neutrino detectors can only access $E_h$, given that $W^2$ requires
  fully reconstructing this final state.
  %
- A measurement of  $\lp E_\ell,\theta_\ell, E_h \rp$ then fixed the DIS kinematics as:
+ A measurement of  $\lp E_\ell,\theta_\ell, E_h \rp$ then fixes the DIS kinematics as:
  \bea
  E_\nu &=& E_h + E_\ell \, , \nonumber \\
  Q^2 &=& 4 ( E_h + E_\ell) E_\ell \sin^2 \lp \theta_\ell/2\rp \, ,  \label{eq:dis_kinematic_mapping}\\
@@ -189,10 +189,10 @@ a diagonal CKM matrix and no heavy quark mass effects.
  \eea
  These relations also indicate how systematic uncertainties affecting the measurement
  of $\lp E_\ell,\theta_\ell, E_h \rp$ translate into uncertainties in the
- reconstructed values of  $(x,Q^2, E_\nu)$, which in turn modify the expected
- event rates in a given bin.
+ reconstructed values of  $(x,Q^2, E_\nu)$ modifying the expected
+ binned event rates.
 
- Table~\ref{tab:FPF_experiments} indicates,
+ Table~\ref{tab:FPF_experiments} summarises,
 for each of the far-forward LHC neutrino experiments considered
   in this work,  their neutrino pseudo-rapidity coverage, target material, whether
   they can identify the sign of the outgoing charged lepton,
@@ -616,7 +616,7 @@ $\mathcal{D}_k$ (with $k=1,\ldots,M$) smeared
 samples each one leading to a different binned event yields
 $ N_{\rm ev}^{(i)(k)}$.
 %
-We take the uncertainty to be the absolute difference betweeen the mean number of events in the bin for the smeared samples samples, ${\overline{N}}^{(i)}~$ and$~ N_{\rm ev}^{(i)}$ as calculated from Eq. \ref{MCintegration}, {\it{i.e.}}  $\delta N^{(i)} = |{\overline{N}}^{(i)} -N_{\rm ev}^{(i)}|$ .
+We take the uncertainty to be the absolute difference between the mean number of events in the bin for the smeared samples samples, ${\overline{N}}^{(i)}~$ and$~ N_{\rm ev}^{(i)}$ as calculated from Eq. \ref{MCintegration}, {\it{i.e.}}  $\delta N^{(i)} = |{\overline{N}}^{(i)} -N_{\rm ev}^{(i)}|$ .
 %
 Furthermore, 
 since the systematic errors are treated as uncorrelated among them,
