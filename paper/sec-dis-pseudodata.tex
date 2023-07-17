@@ -770,191 +770,96 @@ for the systematic uncertainty reduction $f_{\rm red}^{(k)}$.
 
  In order to generate pseudo-data for double-differential
  LHC neutrino scattering cross-sections, we follow the procedure
- used for the HL-LHC PDF projections of~\cite{AbdulKhalek:2018rok} which was
+ used for the HL-LHC projections of~\cite{AbdulKhalek:2018rok} which was
  also adopted in~\cite{Ethier:2021ydt} and~\cite{Greljo:2021kvv} for SMEFT impact projections
  of vector-boson scattering and high-mass Drell-Yan data at the HL-LHC, respectively.
  %
- The starting point are the predictions for the differential neutrino scattering
- cross-section
+ The starting point are predictions for inclusive and charm-tagged
+ differential neutrino scattering cross-section, denoted generically by
  \be
  \label{eq:theory_dis_projections}
  \mathcal{O}_i^{{\rm (th)}} \equiv \frac{d^2\sigma^{\nu N}(x_i,Q^2_i,y_i)}{dxdy} \, ,\quad
  i=1,\ldots,N_{\rm bin} \, ,
  \ee
- with $(x_i,Q^2_i,y_i)$ being the corresponding bin centers.
+ with $(x_i,Q^2_i,y_i)$ labeling the corresponding bin centers.
  %
- The observables $\mathcal{O}_i $ are evaluated using {\sc\small YADISM} and {\sc\small PineAPPL}
- as described in Sect.~\ref{sec:settings}.
- %
- An important point here is the choice of PDF set entering the evaluation of
- the observable in Eq.~(\ref{eq:theory_dis_projections}): it should be consistent
- with that of the fitting framework used to assess their impact on the (n)PDFs.
- %
- For instance, when using the {\sc\small xFitter} profiling of PDF4LHC21, one needs
+ The observables $\mathcal{O}_i $ in Eq.~(\ref{eq:theory_dis_projections})
+are evaluated with the
+{\sc\small YADISM}~\cite{yadism,Candido:2023utz} program
+interfaced to {\sc\small PineAPPL}~\cite{Carrazza:2020gss, christopher_schwan_2023_7995675}
+to return a fast interpolation grid admitting a generic PDF input,
+and with DGLAP evolution effects provided by {\sc\small EKO}~\cite{Candido:2022tld}.
+%
+PDF evolution and DIS structure functions account for NLO QCD corrections
+and target mass effects.
+%
+No higher-twists corrections are included.
+%
+Charm structure functions are evaluated in the FONLL general-mass variable-flavour-number
+scheme~\cite{Forte:2010ta,Ball:2011mu,Faura:2020oom} at $\mathcal{O}\lp \alpha_s\rp$
+accuracy.
+%
+For the proton PDF fits we assume a free isoscalar target $N$, while
+for the nuclear PDF one we allow for deviations from isoscalarity.
+
+The PDF set and other theory settings, such as the perturbative
+order and heavy quark scheme, adopted for the evaluation of
+Eq.~(\ref{eq:theory_dis_projections}) should be the same as those
+used in the fitting framework assessing their impact.
+%
+For instance, when using the {\sc\small xFitter} profiling of PDF4LHC21, one needs
  to generate LHC neutrino pseudo-data also using PDF4LHC21 as input.
  %
- In order words, the generated pseudo-data should be fully consistent with the prior PDF
- set used as baseline, else one is introducing artificially inconsistencies which
- compromise the validity of the projection studies.
+This ensures that the generated pseudo-data is consistent with the prior PDF
+ set used as baseline and avoids introducing artificial inconsistencies 
+ compromising the validity of the projection studies.
  
- The central values for the LHC neutrino scattering pseudo-data, denoted
+ The central values for the pseudo-data, denoted
  by $\mathcal{O}_i^{{\rm (exp)}} $, are obtained
- by fluctuating this reference theory prediction by the statistical and systematic
- uncertainties, that is
- \begin{equation}
-  \label{eq:pseudo_data}
-  \mathcal{O}_i^{{\rm (exp)}}
-  =   \mathcal{O}_i^{{\rm (th)}}\left( 1+ r_{i} \delta_{i}^{\rm stat}
-  + \sum_{k=E_\ell, E_h,\theta_\ell}
-    r'_{k} \,\delta_{i,k}^{{\rm sys}}\right) \, , \qquad i=1,\ldots,N_{\rm bin} \, ,
- \end{equation}
- with $r_{i}$ and $r'_{k}$ being univariate Gaussian random numbers,
- and $\delta_i^{\rm stat}$ ($\delta_{i,k}^{\rm sys}$) indicate the relative statistical (systematic)
- uncertainties associated to the $i$-th bin (and $k$-th source of systematic uncertainty).
- %
- Note that a given systematic variation is assumed to be fully correlated among all the bins
- in the measurement.
-
- Alternatively, we can add all uncertainties in quadrature and account for a possible
- improvement in the systematic errors with respect to the current estimates,
- \be
- \delta_{i}^{\rm tot}
- = \left( \left( \delta_i^{\rm stat}\right)^2 + \sum_{k=1}^{n_{\rm sys}}
-\left( \delta_{i,k}^{\rm sys} \right)^2\right)^{1/2} \, ,
- \ee
- and the pseudo-data is evaluated by means of
+ by fluctuating the reference theory prediction Eq.~(\ref{eq:theory_dis_projections})
+ by the corresponding statistical and systematic
+ uncertainties,
  \begin{equation}
   \label{eq:pseudo_data_v2}
   \mathcal{O}_i^{{\rm (exp)}}
   = \mathcal{O}_i^{{\rm (th)}}
     \left( 1+ r_i \delta_i^{\rm tot}
     \right) \,
-    , \qquad i=1,\ldots,N_{\rm bin} \, .
+    , \qquad i=1,\ldots,N_{\rm bin} \, ,
  \end{equation}
- While the actual correlation model will lie somewhere between no correlation and full correlation,
- these two approaches to generate the pseudo-data bracket the projected impact
- on the PDFs and its dependence on the experimental correlation model.
- 
-In this section, we describe the analysis settings adopted to quantify
-the impact of LHC neutrino measurements on the proton and nuclear PDFs.
-%
-First of all, we discuss the calculation of inclusive and charm structure functions
-and their interpolation in terms of fast grids. 
-%
-Second, we review the Hessian profiling framework and how it is applied
-in this work to proton and nuclear PDFs.
-%
-Third, we indicate the implementation of the LHC neutrino pseudo-data in the
-NNPDF framework and the settings of the subsequent global PDF analysis.
-
-The procedure described in Sect.~\ref{sec:dis_pseudodata} returns
-$N_{\rm bin}$ bins of LHC neutrino pseudo-data $\mathcal{O}_i^{{\rm (exp)}}$, Eq.~(\ref{eq:pseudo_data}), covering the $(x,Q^2,E_\nu)$ kinematic region accessible by the experiment,
-together with the associated statistical and systematic uncertainties.
-%
-The calculation of this pseudo-data relies on the corresponding set of
-theoretical predictions for the same observables $\mathcal{O}_i^{{\rm (th)}}$,
-Eq.~(\ref{eq:theory_dis_projections}).
-%
-Here we evaluate inclusive and charm DIS structure functions with the
-{\sc\small YADISM}~\cite{yadism,Candido:2023utz} program
-interfaced to {\sc\small PineAPPL}~\cite{Carrazza:2020gss, christopher_schwan_2023_7995675}
-to return a fast interpolation grid admitting a generic PDF input.
-%
-DGLAP evolution effects between the scale $Q_0$ at which PDFs are evaluated
-and the data scale $Q$ are provided by {\sc\small EKO}~\cite{Candido:2022tld}.
-
-The resulting {\sc\small PineAPPL} grids provide a fast evaluation
-of Eq.~(\ref{eq:theory_dis_projections}) for an arbitrary choice of the
-input PDFs at the initial scale $Q_0$, with the latter accessed via their
-{\sc\small LHAPDF} interface~\cite{Buckley:2014ana}.
-%
-Whenever pseudo-data is generated, it is crucial to adopt common inputs with
-the subsequent PDF analysis.
-%
-For instance, if one aims to include the LHC neutrino data into the NNPDF4.0
-NNLO determination, $\mathcal{O}_i^{{\rm (th)}}$ must be evaluated also at NNLO
-and also using
-NNPDF4.0 as input for consistency, else artificial tensions between theory
-and data would be introduced during the fit biasing the results.
-
-By means of this theoretical pipeline, predictions for
-DIS inclusive structure functions on an isoscalar target $N$ are computed
-using
-\be
-\label{eq:neutrino_DIS_xsec}
-\frac{d^2\sigma^{\nu N}(x,Q^2,y)}{dxdy} =  \frac{G_F^2s/4\pi}{\lp 1+Q^2/m_W^2\rp^2}\lc Y_+F^{\nu N}_2(x,Q^2) - y^2F^{\nu N}_L(x,Q^2) +Y_- xF^{\nu N}_3(x,Q^2)\rc  \, ,
+ where the total experimental uncertainty is the sum in quadrature of
+ statistical and systematic errors, accounting for a possible reduction
+ factor in the latter,
+  \be
+ \delta_{i}^{\rm tot}
+ = \left( \left( \delta_i^{\rm stat}\right)^2 + \sum_{k=1}^{n_{\rm sys}}
+ \left( f_{\rm red}^{(k)} \delta_{i,k}^{\rm sys} \right)^2\right)^{1/2} \, ,
+ \qquad i=1,\ldots,N_{\rm bin} \, ,
+ \ee
+ and with $r_{i}$ being univariate Gaussian random numbers.
+ %
+ The pseudo-data generated by means of Eq.~(\ref{eq:pseudo_data_v2}),
+ together with the corresponding covariance matrix
+  \be
+\label{eq:covmat_definition_v2}
+ {\rm cov}_{ij} = \delta_{ij} \lp \delta^{\rm (stat)} \mathcal{O}_i^{\rm (th)} \rp^2
+ + \delta_{ij}\sum_{k=1}^{n_{\rm sys}}
+ \lp f_{\rm red}^{(k)}\rp^2\lp \delta_{\rm sys}^{(k)} \mathcal{O}_i^{\rm (th)} \rp^2
+\, ,\qquad i,j=1,\ldots,N_{\rm bin} \, ,
 \ee
-with an analogous formula for antineutrino scattering with the sign of $xF_3$ flipped.
-%
-A {\sc\small PineAPPL} interpolation grid for
-Eq.~(\ref{eq:neutrino_DIS_xsec}) is evaluated at the $(x,Q^2,E_\nu)$ bins
-for which pseudo-data is generated using DGLAP evolution and coefficient
-functions at $\mathcal{O}\lp \alpha_s^2\rp$ and accounting for target mass effects.
-%
-No higher-twists corrections to the structure functions are included, since we cut
-data with $W^2 \ge 12.5$ GeV in order to suppress them.
-%
-Deviations from isoscalarity and nuclear modifications with respect
-to a free isoscalar target are accounted for at the input PDF level,
-leaving the grid entering the evaluation of Eq.~(\ref{eq:neutrino_DIS_xsec}) unchanged.
-%
-No heavy quark mass effects are considered for at the level of these inclusive structure functions.
+define then the inputs of the subsequent proton and nuclear PDF determination.
 
-Concerning charm structure functions, for experiments with charm tagging
-capabilities theoretical predictions are evaluated for
-\be
-\label{eq:neutrino_DIS_xsec}
-\frac{d^2\sigma^{\nu N}_c(x,Q^2,y)}{dxdy} =  \frac{G_F^2s/4\pi}{\lp 1+Q^2/m_W^2\rp^2}\lc Y_+F_{2,c}^{\nu N}(x,Q^2) - y^2F^{\nu N}_{L,c}(x,Q^2) +Y_- xF^{\nu N}_{3,c}(x,Q^2)\rc  \, ,
-\ee
-with the DIS charm structure functions evaluated in the FONLL general-mass variable-flavour-number
-scheme~\cite{Forte:2010ta,Ball:2011mu,Faura:2020oom} in order to account for charm mass effects.
-%
-Eq.~(\ref{eq:neutrino_DIS_xsec}) is computed with $\mathcal{O}\lp \alpha_s^2\rp$ massless
-coefficient functions and $\mathcal{O}\lp \alpha_s\rp$ massive ones, given
-that the $\mathcal{O}\lp \alpha_s^2\rp$ massive calculation~\cite{Gao:2017kkx} is not publicly available.
-%
-Nevertheless, the $\mathcal{O}\lp \alpha_s\rp$ massive coefficient functions
-encapsulate the dominant charm mass dependence of the double differential
-cross-section.
-%
-We assume 100\% efficiency in charm tagging and do not impose acceptance cuts on the charm
-quark or $D$-meson kinematics (the only acceptance requirements are applied to the final-state
-charged lepton, as indicated in  Table~\ref{tab:FPF_experiments}).
-
-We note that experiments without charm-tagging capabilities can still identify charm production
-events by means of the dimuon final state,
-\be
-\nu + N \to \mu^+ + c~(\to D) + X \to \mu^+ + \mu^- +X \, ,
-\ee
-by profiting from the semileptonic decays of the $D$-meson leading
-to the characteristic signature of two opposite-sign muons.
-%
-In this case, the  differential charm production cross-section Eq.~(\ref{eq:neutrino_DIS_xsec})
-must be accompanied by the corresponding branching ratio
-\be
-\frac{d^2\sigma^{\nu N}_c(x,Q^2,y)}{dxdy}\mathcal{B}\lp c \to D \to \mu + X\rp \, ,
-\ee
-which given that $\mathcal{B}\sim 10\%$ suppresses the reconstructed charm
-production event yields by around an order of magnitude.
-%
-For experiments reconstructing the dimuon final state,
-we also apply the muon acceptance criteria to both muons.
-
-
-In this work we consider two complementary approaches in order to assess the
+We consider two complementary approaches to assess the
 impact of LHC neutrino data on the proton and nuclear PDFs.
 %
-On the one hand, the Hessian profiling of a prior proton or
-nuclear PDF set, which here are taken to be PDF4LHC21~\cite{PDF4LHCWorkingGroup:2022cjn} and
+First, the Hessian profiling\cite{Paukkunen:2014zia, Schmidt:2018hvu, AbdulKhalek:2018rok, HERAFitterdevelopersTeam:2015cre} of prior proton and
+nuclear PDF sets, taken to be PDF4LHC21~\cite{PDF4LHCWorkingGroup:2022cjn} and
 EPPS21~\cite{Eskola:2021nhw} respectively.
 %
-On the other hand, the inclusion of the LHC neutrino structure functions
-on the NNPDF global analysis framework~\cite{NNPDF:2021uiq,NNPDF:2021njg}.
+Second, the direct inclusion 
+in the NNPDF global analysis framework~\cite{NNPDF:2021uiq,NNPDF:2021njg}.
 %
-Here we summarise the details of the Hessian profiling procedure and
-outline how it is applied in our work.
-
-The profiling method applied to Hessian PDF fits is described in~\cite{Paukkunen:2014zia, Schmidt:2018hvu, AbdulKhalek:2018rok, HERAFitterdevelopersTeam:2015cre} and is based
+The profiling method applied to Hessian PDF fits is based
 on minimizing a goodness-of-fit error function defined as
 \begin{equation}
 \chi^2 = 
@@ -966,24 +871,17 @@ on minimizing a goodness-of-fit error function defined as
             - \Gamma_i^{\beta,\textrm{th}}
               b_\beta^{(\textrm{th})}
      \right)^2
-     }{ \left(\delta_i^{\rm stat}\right)^2 }
+     }{ \left(\delta^{{\rm (stat)}}\mathcal{O}_i^{\rm (th)}\rp^2 }
 + \sum_\alpha \lp b_\alpha^{(\textrm{pd})}\rp^2
-+ \sum_\beta  \lp b_\beta^{\textrm{(th)}}\rp ^2 \, .
++ \sum_\beta  \lp b_\beta^{\textrm{(th)}}\rp ^2 \, ,
 \label{eq:profilingchi2}
 \end{equation}
-The pseudodata 
-$\mathcal{O}_i^{\rm (exp)}$ 
-is obtained from the central theoretical prediction 
-$\mathcal{O}_i^{(\textrm{th})}$
-for each bin $i$ out of $N_{\textrm{bin}}$ by fluctuating
-it within its uncertainties, following either
-Eq.~(\ref{eq:pseudo_data}), when accounting for the correlations
-between systematic uncertainties, or Eq.~(\ref{eq:pseudo_data_v2}),
-in the case in which errors are added in quadrature.
-
-The correlated uncertainties for the pseudodata and for the theoretical prediction 
-are contained in the nuisance parameter vectors $b^{(\textrm{pd})}$ and $b^{(\textrm{th})}$, respectively, and the total uncorrelated uncertainties are denoted by $\delta_{{\rm stat},i}$.
+with the pseudodata 
+$\mathcal{O}_i^{\rm (exp)}$ defined in  Eq.~(\ref{eq:pseudo_data_v2}).
 %
+The correlated uncertainties for the pseudodata and for the theoretical prediction 
+are contained in the nuisance parameter vectors $b^{(\textrm{pd})}$ and $b^{(\textrm{th})}$, respectively, and the total uncorrelated uncertainty is $\delta^{{\rm (stat)}}\mathcal{O}_i^{\rm (th)}$.
+
 The effect of the nuisance parameters
 on the observables $\mathcal{O}_i^{\rm (exp)}$ and $\mathcal{O}_i^{\rm (th)}$
 is described by the matrices $\Gamma_i^{\textrm{pd}}$ and $\Gamma_i^{\textrm{th}}$.
@@ -1004,14 +902,39 @@ where $f_0$ is the original central PDF and the up and down variation eigenvecto
 The reduction in the uncertainties of the profiled PDFs indicate the impact
 of the projected data with respect to the assumed prior PDF set.
 
-
-The profiling studies carried out in this work are performed using v2.2.1 of the \textsc{xFitter} open-source QCD analysis framework~\cite{Alekhin:2014irh, Bertone:2017tig, xFitter:2022zjb, xFitter:web}.
+The profiling studies carried out in this work are performed using version 2.2.1
+of the 
+{\sc\small xFitter} open-source QCD analysis framework~\cite{Alekhin:2014irh, Bertone:2017tig, xFitter:2022zjb, xFitter:web}.
 %
 To this end, a new interface between  {\sc\small PineAPPL} and {\sc\small xFitter} has been developed and is available in {\sc\small xFitter}.
 %
 All the experimental and theoretical data files used in the analysis, including
 the  {\sc\small PineAPPL}  grids, are available
 from the {\sc\small xFitter} repository.
+%
+A tolerance factor $T = \sqrt{\Delta \chi^2}=3$ is adopted for the proton
+PDF profiling, corresponding approximately to the average tolerance
+used in the CT18~\cite{Hou:2019efy} and MSHT20~\cite{Bailey:2020ooq} determinations,
+the two Hessian sets entering the PDF4LHC21 combination.
+%
+The same choice was adopted in the HL-LHC projections of~\cite{AbdulKhalek:2018rok},
+and a common value is used for the Hessian profiling of EPPS21.
+
+Concerning the inclusion of the LHC far-forward neutrino pseudo-data
+in the NNPDF proton analysis framework, we follow the procedure
+outlined in~\cite{NNPDF:2021uiq}.
+%
+Fast interpolation tables (FK-tables)~\cite{Ball:2010de} combining {\sc\small EKO}
+DGLAP evolution with {\sc\small YADISM} DIS coefficient functions
+are computed using {\sc\small PineAPPL}, see also~\cite{Barontini:2023vmr}.
+%
+Predictions for the observables Eq.~(\ref{eq:theory_dis_projections}) are evaluated
+with NNPDF4.0 NNLO for various choices of input datasets, and included
+directly in the same alongside all other DIS datasets.
+%
+We verify that in all cases $\chi^2/n_{\rm dat}\sim 1$ after the fit,
+as expected given the built-in consistency between the prior PDF fit
+and the generated pseudo-data.
 
 
 
