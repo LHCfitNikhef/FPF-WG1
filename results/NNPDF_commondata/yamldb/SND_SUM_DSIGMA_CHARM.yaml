@@ -1,0 +1,6 @@
+conversion_factor: 1.0
+operands:
+   - - SNDNU_SUM_DSIGMA_CHARM
+   - - SNDNB_SUM_DSIGMA_CHARM
+operation: 'ADD'
+target_dataset: SND_SUM_DSIGMA_CHARM
