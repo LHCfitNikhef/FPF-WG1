@@ -874,14 +874,14 @@ on minimizing a goodness-of-fit error function defined as
      \right)^2
      }{ \left(\delta^{{\rm (stat)}}\mathcal{O}_i^{\rm (th)}\rp^2 }
 + \sum_\alpha \lp b_\alpha^{(\textrm{pd})}\rp^2
-+ \sum_\beta  \lp b_\beta^{\textrm{(th)}}\rp ^2 \, ,
++ T^2 \sum_\beta  \lp b_\beta^{\textrm{(th)}}\rp ^2 \, ,
 \label{eq:profilingchi2}
 \end{equation}
 with the pseudodata 
 $\mathcal{O}_i^{\rm (exp)}$ defined in  Eq.~(\ref{eq:pseudo_data_v2}).
 %
 The correlated uncertainties for the pseudodata and for the theoretical prediction 
-are contained in the nuisance parameter vectors $b^{(\textrm{pd})}$ and $b^{(\textrm{th})}$, respectively, and the total uncorrelated uncertainty is $\delta^{{\rm (stat)}}\mathcal{O}_i^{\rm (th)}$.
+are contained in the nuisance parameter vectors $b^{(\textrm{pd})}$ and $b^{(\textrm{th})}$, respectively, with $T$ the tolerance factor, and the total uncorrelated uncertainty is $\delta^{{\rm (stat)}}\mathcal{O}_i^{\rm (th)}$.
 
 The effect of the nuisance parameters
 on the observables $\mathcal{O}_i^{\rm (exp)}$ and $\mathcal{O}_i^{\rm (th)}$
@@ -912,14 +912,16 @@ To this end, a new interface between  {\sc\small PineAPPL} and {\sc\small xFitte
 All the experimental and theoretical data files used in the analysis, including
 the  {\sc\small PineAPPL}  grids, are available
 from the {\sc\small xFitter} repository.
+%%
+%A tolerance factor $T = \sqrt{\Delta \chi^2}=3$ is adopted for the proton
+%PDF profiling, corresponding approximately to the average tolerance
+%used in the CT18~\cite{Hou:2019efy} and MSHT20~\cite{Bailey:2020ooq} determinations,
+%the two Hessian sets entering the PDF4LHC21 combination.
+%The same choice was adopted in the HL-LHC projections of~\cite{AbdulKhalek:2018rok},
+%and a common value is used for the Hessian profiling of EPPS21.
+%%
+For the proton PDF profiling, a tolerance of $T^2 = 10$ is adopted, as in Ref.~\cite{PDF4LHCWorkingGroup:2022cjn}. For the Hessian profiling of EPPS21, a value of $T^2 = 33$ is used, following Ref.~\cite{Eskola:2021nhw}. Notably, the PDF uncertainties in the earlier (latter) case are given at 68\% (90\%) confidence level.
 %
-A tolerance factor $T = \sqrt{\Delta \chi^2}=3$ is adopted for the proton
-PDF profiling, corresponding approximately to the average tolerance
-used in the CT18~\cite{Hou:2019efy} and MSHT20~\cite{Bailey:2020ooq} determinations,
-the two Hessian sets entering the PDF4LHC21 combination.
-%
-The same choice was adopted in the HL-LHC projections of~\cite{AbdulKhalek:2018rok},
-and a common value is used for the Hessian profiling of EPPS21.
 
 Concerning the inclusion of the LHC far-forward neutrino pseudo-data
 in the NNPDF proton analysis framework, we follow the procedure
