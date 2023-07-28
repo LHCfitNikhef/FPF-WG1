@@ -1,0 +1,45 @@
+* FASER$\nu$2 charm $\bar{\nu}_{\mu}$ CC DIS pseudodata
+&Data
+   Name = 'FASER$\nu$2 charm $\bar{\nu}_{\mu}$'
+   IndexDataset = 140
+   Reaction = 'CC nup'
+
+   NData = 15
+   NColumn = 5
+   ColumnType = 'Flag',2*'Bin','Sigma',1*'Error'
+   ColumnName = 'binFlag','x','Q2','Sigma','stat'
+   TheoryType = 'expression'
+   TermType   = 'reaction'
+   TermName   = 'P'
+   TermSource = 'PineAPPL'
+   TermInfo   = 'GridName=datafiles/lhc/fpf/neutrinoDIS/pseudodata/grids/grids-FASERv2_charm_nub-a1/nub_A_1-FASERv2_charm-XSFPFCC_charm.pineappl.lz4'
+   TheorExpr  = 'P'
+
+   Percent = 1*True
+&End
+&PlotDesc
+   PlotN = 4
+   PlotDefColumn = 'Q2'
+   PlotVarColumn = 'x'
+   PlotDefValue = 3., 5., 11., 110., 1100.
+   PlotOptions(1)  = 'Experiment:FASER#nu2 charm #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 4 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(2)  = 'Experiment:FASER#nu2 charm #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 10 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(3)  = 'Experiment:FASER#nu2 charm #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 100 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(4)  = 'Experiment:FASER#nu2 charm #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 1000 @Ymin:0.01@Xlog@Ylog'
+&End
+*binFlag                  x                      Q2                   Sigma                    stat
+  1              0.01930938                25.26181      0.0944247144328233        8.86653763244744
+  1              0.02641567                29.40498      0.0603777835773046        6.42487489365496
+  1              0.03586796                33.55916      0.0380996638409875         5.3776319107539
+  1              0.04931142                37.69239      0.0229244268919707        5.79438533770971
+  1              0.06801841                43.13022      0.0115374171955328        4.94209962498846
+  1              0.09243267                49.00177     0.00621295306481204        4.72506664946056
+  1              0.09386659                170.5893     0.00521667272192771        7.44645776173926
+  1               0.1242078                55.01665     0.00337658939549521        6.36023687424379
+  1               0.1261498                192.2236     0.00318701968871002        7.89908646709666
+  1               0.1752803                62.65406     0.00157932706541124        7.04063898511097
+  1               0.1778476                223.9339     0.00107503280835754        6.45563321496189
+  1               0.2380261                70.41271    0.000653810430695021        7.62635988495686
+  1               0.2417597                257.9181    0.000425881762843395        5.17043340177082
+  1                0.314375                286.7141    0.000174172664862433        6.70580215152983
+  1               0.6234231                364.8688    7.74651346532805e-06        9.96372462883267
