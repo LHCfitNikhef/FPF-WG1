@@ -871,7 +871,7 @@ bool writeDatFinal(string PDF,
         double xs = xsec[ixs];
         xsvstat.push_back(xs*(1.0 + errstat));  //Stat only, same for 1 & 2 opts
         //Option (1): only a single random number, quadratic sums
-        bool useQuadSum = false;
+        bool useQuadSum = true;
         if (useQuadSum) {
             xsv.push_back(         xs*(1.0 +     errstatsyst));
             xsvuncfred.push_back(  xs*(1.0 +   errstatsystfred));

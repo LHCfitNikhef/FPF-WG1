@@ -79,6 +79,7 @@ for pdf in ${pdfs[@]}; do
         unctype="statOnly"
         git add ${profilingpath}/${pdf}/${unctype}/collectPlots.tex                
         git add ${profilingpath}/${pdf}/${unctype}/run.sh
+        git add ${profilingpath}/${pdf}/${unctype}/clean.sh
         for xFrunFile in ${xFrunFiles[@]}; do
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${xFrunFile}        
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
@@ -94,6 +95,7 @@ for pdf in ${pdfs[@]}; do
         unctype="syst"
         git add ${profilingpath}/${pdf}/${unctype}/collectPlots.tex                
         git add ${profilingpath}/${pdf}/${unctype}/run.sh
+        git add ${profilingpath}/${pdf}/${unctype}/clean.sh
         for xFrunFile in ${xFrunFiles[@]}; do
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${xFrunFile}        
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
@@ -109,6 +111,7 @@ for pdf in ${pdfs[@]}; do
         unctype="systVar05"
         git add ${profilingpath}/${pdf}/${unctype}/collectPlots.tex                
         git add ${profilingpath}/${pdf}/${unctype}/run.sh
+        git add ${profilingpath}/${pdf}/${unctype}/clean.sh
         for xFrunFile in ${xFrunFiles[@]}; do
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${xFrunFile}        
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
@@ -124,6 +127,7 @@ for pdf in ${pdfs[@]}; do
         unctype="systVar05El"
         git add ${profilingpath}/${pdf}/${unctype}/collectPlots.tex                
         git add ${profilingpath}/${pdf}/${unctype}/run.sh
+        git add ${profilingpath}/${pdf}/${unctype}/clean.sh
         for xFrunFile in ${xFrunFiles[@]}; do
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${xFrunFile}        
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf

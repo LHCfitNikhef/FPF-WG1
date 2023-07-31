@@ -5,12 +5,12 @@ DETECTOR="FASER#nu"
 DETSIMPLE="FASERv"
 UNCLVL="statOnly"
 
-DATATXT="Current data"
+DATATXT="Current data (CD)"
 PDF="PDF4LHC21"  #N.B. filenames only! Change also in parameters.yaml
 
 PLOTOPTS="--splitplots-pdf --therr --bands --q2all --relative-errors --xrange 1e-3:0.6"
 mv plots/plots.pdf plots/plots_OLD.pdf
-xfitter-draw ${PLOTOPTS} output:"${DATATXT}" profile:output:"${DATATXT}+${DETECTOR}"
+xfitter-draw ${PLOTOPTS} output:"${DATATXT}" profile:../FASERv2/output:"CD+FASER#nu2" profile:output:"CD+${DETECTOR}"
 mv plots/plots.pdf plots/${PDF}_vs_profiled.pdf
 
 cp plots/q2_10000_pdf_uv_ratio.pdf  ${UNCLVL}_${DETSIMPLE}_q2_10000_pdf_uv_ratio.pdf 

@@ -1,8 +1,9 @@
 #!/bin/bash
-declare -a dirs=("statOnly" "syst" "systVar05" "systVar05El" "uncor")
+declare -a dirs=("statOnly" "syst" "systVar05" "systVar05El")
 
 for dir in ${dirs[@]}; do
+    rm ${dir}/collectPlots.pdf
     cd ${dir}
-    sh clean.sh
+    ./clean.sh
     cd ..
 done
