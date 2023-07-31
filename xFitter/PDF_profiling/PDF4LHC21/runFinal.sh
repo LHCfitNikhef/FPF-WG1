@@ -1,5 +1,5 @@
 #!/bin/bash
-declare -a dirs=("statOnly" "syst" "systVar05" "systVar05El" "uncor")
+declare -a dirs=("statOnly" "syst" "systVar05" "systVar05El")
 
 for dir in ${dirs[@]}; do
     cd ${dir}
@@ -8,7 +8,6 @@ for dir in ${dirs[@]}; do
 done
 
 for dir in ${dirs[@]}; do
-    cd ${dir}
-    pdflatex collectPlots.tex
+    cd ${dir} && pdflatex collectPlots.tex
     cd ..
 done

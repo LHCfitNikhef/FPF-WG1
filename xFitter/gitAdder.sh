@@ -10,6 +10,10 @@ datapath=xFitter/datafiles/lhc/fpf/neutrinoDIS/pseudodata
 #Navigate to git main directory
 cd ..
 
+#Add general scripts
+git add xFitter/parser.cxx
+git add xFitter/gitAdder.sh
+
 for detector in ${detectors[@]}; do
     for datatype in ${datatypes[@]}; do
         for part in ${parts[@]}; do
@@ -17,6 +21,8 @@ for detector in ${detectors[@]}; do
             #Add correlation tables
             git add ${datapath}/${detector}_${datatype}_${part}.corr
             git add ${datapath}/${detector}_${datatype}_${part}_onlyEl.corr
+            git add ${datapath}/${detector}_${datatype}_${part}_systVar05.corr
+            git add ${datapath}/${detector}_${datatype}_${part}_systVar05_onlyEl.corr
 
             #Add datatables for preliminary runs
             git add ${datapath}/prel/${detector}_${datatype}_${part}-thexp.dat
