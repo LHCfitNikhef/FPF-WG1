@@ -5,7 +5,8 @@ PROGRAM parse2commondata
 
    CHARACTER(LEN=220) :: filename1,filename2,outname
    REAL(KIND=dp),ALLOCATABLE :: dat(:,:)
-   REAL(KIND=dp),DIMENSION(:),ALLOCATABLE :: fluctuated_central_vals
+   REAL(KIND=dp),DIMENSION(:),ALLOCATABLE :: fluctuated_central_vals,&
+      &central_vals
    REAL(KIND=dp),DIMENSION(:),ALLOCATABLE :: fluctuated_central_vals_os
    INTEGER(KIND=4) :: nlines,narg,i,j,nsys_err
    INTEGER(KIND=4),DIMENSION(7) :: k
@@ -77,6 +78,7 @@ PROGRAM parse2commondata
    ALLOCATE(centr(nlines-2,5))
    ALLOCATE(fluctuated_central_vals(nlines-2))
    ALLOCATE(fluctuated_central_vals_os(nlines-2))
+   ALLOCATE(central_vals(nlines-2))
    ALLOCATE(syserr(nlines-2))
    ALLOCATE(staterr(nlines-2))
    ALLOCATE(err(nlines-2))
@@ -141,6 +143,7 @@ PROGRAM parse2commondata
       fluctuated_central_vals(i) = fluctuate(dat(i,10),err(i))
       fluctuated_central_vals_os(i) = fluctuate(dat(i,10),staterr(i))
    END DO
+   central_vals=dat(:,10)
    dat(:,14)=syserr(:)/dat(:,10)*100
    dat(:,10)=fluctuated_central_vals(:)
    dat(:,12)=staterr(:)
@@ -150,11 +153,17 @@ PROGRAM parse2commondata
       WRITE(60,"(I3,X,A,7ES16.8)") j,TRIM(procstr),(dat(j,k(i)),i=1,UBOUND(k,1))
    END DO
    CLOSE(60)
+   dat(:,10)=central_vals(:)
+   dat(:,14)=staterr(:)/dat(:,10)*100
+   dat(:,10)=fluctuated_central_vals(:)
+   dat(:,12)=0.0_dp
+   dat(:,13)=staterr(:)
    dat(:,10)=fluctuated_central_vals_os(:)
    OPEN(70,FILE=outname(1:LEN_TRIM(outname)-4)//"_OS.dat")
    WRITE(70,"(A,I3,I3)") TRIM(pname)//"_OS",nsys_err,UBOUND(dat,1)
    DO j=1,UBOUND(dat,1)
-      WRITE(70,"(I3,X,A,7ES16.8)") j,TRIM(procstr),(dat(j,k(i)),i=1,UBOUND(k,1)-2),0.0_dp,0.0_dp
+      !WRITE(70,"(I3,X,A,7ES16.8)") j,TRIM(procstr),(dat(j,k(i)),i=1,UBOUND(k,1)-2),0.0_dp,0.0_dp
+      WRITE(70,"(I3,X,A,7ES16.8)") j,TRIM(procstr),(dat(j,k(i)),i=1,UBOUND(k,1))
    END DO
    CLOSE(70)
 
