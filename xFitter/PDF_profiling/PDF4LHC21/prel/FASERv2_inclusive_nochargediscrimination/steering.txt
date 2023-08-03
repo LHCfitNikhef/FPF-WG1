@@ -9,7 +9,7 @@
 
      InputFileNames = 
     ! FPF pseudodata
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/prel/FASERv2_inclusive_nochargediscrimination-thexp.dat',
+     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/prel/FASERv2_inclusive_nochargediscrimination-thexp.dat',
 &End
 
 &InCorr
@@ -17,7 +17,7 @@
     NCorrFiles = 0
  
   ! Correlation files:
-  !  CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/FASERv2_inclusive_nochargediscrimination.cov'
+  !  CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_inclusive_nochargediscrimination.cov'
 &End
 
 &ReduceSyst

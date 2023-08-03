@@ -1,0 +1,42 @@
+* FLArE10 charm $\bar{\nu}_{\mu}$ CC DIS pseudodata
+&Data
+   Name = 'FLArE10 charm $\bar{\nu}_{\mu}$'
+   IndexDataset = 158
+   Reaction = 'CC nup'
+
+   NData = 12
+   NColumn = 8
+   ColumnType = 'Flag',2*'Bin','Sigma',4*'Error'
+   ColumnName = 'binFlag','x','Q2','Sigma','stat','uncor const','uncor const','uncor const'
+   TheoryType = 'expression'
+   TermType   = 'reaction'
+   TermName   = 'P'
+   TermSource = 'PineAPPL'
+   TermInfo   = 'GridName=datafiles/lhc/fpf/neutrinoDIS/pseudodata/grids/grids-FLArE10_charm_nub-a1/nub_A_1-FLArE10_charm-XSFPFCC_charm.pineappl.lz4'
+   TheorExpr  = 'P'
+
+   Percent = 4*True
+&End
+&PlotDesc
+   PlotN = 4
+   PlotDefColumn = 'Q2'
+   PlotVarColumn = 'x'
+   PlotDefValue = 3., 5., 11., 110., 1100.
+   PlotOptions(1)  = 'Experiment:FLArE10 charm #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 4 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(2)  = 'Experiment:FLArE10 charm #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 10 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(3)  = 'Experiment:FLArE10 charm #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 100 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(4)  = 'Experiment:FLArE10 charm #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 1000 @Ymin:0.01@Xlog@Ylog'
+&End
+*binFlag                  x                      Q2                   Sigma                    stat             uncor const             uncor const             uncor const
+  1              0.01929643                 25.4395              0.09821819        9.49856094986331                 37.6093                 19.8385                 2.28227
+  1              0.02638021                28.86188              0.08074614        7.04249801240813                  55.223                 7.73797                 3.96254
+  1              0.03582899                32.15909              0.05426082        6.03280402059796                 59.2461                 13.8992                 9.34931
+  1              0.04925489                35.55838              0.02067055        6.56238224453173                 43.9423                 17.9535                 5.41901
+  1              0.06808144                38.57216              0.01718903        5.63385217083009                 57.2438                 11.2805                 3.76794
+  1              0.09252815                40.95358              0.01184261        5.18490559950965                 63.8325                 25.8342                 11.6315
+  1              0.09349647                179.2607              0.01163734        9.69538222922003                 54.5024                 23.1784                  6.7335
+  1               0.1244679                42.83532             0.003995368        6.93216854593474                  43.357                 10.6499                 12.1763
+  1               0.1758642                 44.3676             0.002313866        7.33246162390649                 46.0062                  3.1444                 5.40018
+  1               0.1771942                225.8235             0.002211594        9.64206756648711                 23.1322                 1.83112                  1.3943
+  1               0.2393102                45.73821              0.00159073        7.28868115878125                  58.027                 30.6524                 10.1534
+  1               0.2407637                250.9511             0.001508329        8.54572223131032                 34.7228                 26.6726                 12.5414

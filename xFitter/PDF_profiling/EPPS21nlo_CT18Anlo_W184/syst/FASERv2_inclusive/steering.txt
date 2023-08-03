@@ -18,8 +18,8 @@
     NCorrFiles = 2
  
   ! Correlation files:
-    CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/FASERv2_inclusive_nu.cov'
-    CorrFileNames(2) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/FASERv2_inclusive_nub.cov'
+    CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_inclusive_nu.corr'
+    CorrFileNames(2) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_inclusive_nub.corr'
 &End
 
 &ReduceSyst
@@ -325,7 +325,7 @@
   ! NPARVAR = 3                        ! Number of parametrisation uncertainties in the LHAPDFVARSET set
   ! LHAPDFPROFILE = False              ! run only on the set specified by ILHAPDFSET
   ! LHASCALEPROFILE = True             ! Add QCD scale variations as nuisance parameters
-   SCALE68 = True                    ! Scale PDF uncertainties by a factor 1/1.645
+  ! SCALE68 = False                    ! Scale PDF uncertainties by a factor 1/1.645
   ! WriteAlphaSToMemberPDF = false
   ! NREMOVEPRIORS = 0                  ! Remove prior from the last n PDF nuisance parameters
   ! DataToTheo = True                  ! reset data to predictions corresponding to member 0, for sensitivity studies

@@ -9,12 +9,13 @@ PSEUDODATA="charm"
 
 ### OPTS w/ scaling 95% cl -> 68%, needed for EPPS PDFs (like CT)
 #PLOTOPTS="--splitplots-eps  --therr --bands --q2all --relative-errors --scale68 --xrange 1e-6:0.99"
-PLOTOPTS="--therr --bands --q2all --relative-errors --scale68"
+#scale68 no longer required, using scaling in profiling (parameters.yaml)
+PLOTOPTS="--therr --bands --q2all --relative-errors"
 
 ln -s ../../../../datafiles
 
 # Run xFitter:
-xfitter
+xfitter > log.txt
 
 # Visualize results:
 mv plots/plots.pdf plots/plots_OLD.pdf

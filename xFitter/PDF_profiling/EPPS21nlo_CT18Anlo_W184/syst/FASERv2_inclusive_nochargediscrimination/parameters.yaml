@@ -11,55 +11,17 @@ Evolutions:
     set: "EPPS21nlo_CT18Anlo_W184"
     member: 0
 
-Q0 : 1.65 #1.378404875209 # Initial scale =sqrt(1.9)
+Q0 : 1.65 #1.378404875209 # Initial scale =sqrt(Q^2_0)
 
 ? !include constants.yaml
 
 alphas : 0.118
 
 byReaction:
-  # RT DIS scheme settings:
-  RT_DISNC:
-    ? !include reactions/RT_DISNC.yaml
-  # FONLL scheme settings:
-  FONLL_DISNC:
-    ? !include reactions/FONLL_DISNC.yaml
-  FONLL_DISCC:
-    ? !include reactions/FONLL_DISCC.yaml
-  # FF ABM scheme settings:
-  FFABM_DISNC:
-    ? !include reactions/FFABM_DISNC.yaml
-  FFABM_DISCC:
-    ? !include reactions/FFABM_DISCC.yaml
-  # AFB settings:
-  AFB:
-    ? !include reactions/AFB.yaml
-  # APPLgrid settings:
-  APPLgrid:
-    ? !include reactions/APPLgrid.yaml
-  # (optional) Fractal module settings:
-  Fractal_DISNC:
-    ? !include reactions/Fractal_DISNC.yaml
   PineAPPL:
     muF: 1.0
     muR: 1.0
     norm: 0
-  
-# Specify HF scheme used for DIS NC processes:
-hf_scheme_DISNC :
-  defaultValue : 'RT_DISNC'        # global specification
-#  defaultValue : 'BaseDISNC'       # global specification
-#  defaultValue : 'FONLL_DISNC'     # global specification
-#  defaultValue : 'FFABM_DISNC'
-#  'HERA1+2 NCep 920' : 'BaseDISNC' # datafile specific (based on name)
-#  1 : BaseDISNC
-#  'HERA1+2 NCep 920' : 'Fractal_DISNC'  # Fractal model. Add parameters file if you want to try it (see above)
-
-# Specify HF scheme used for DIS CC processes:
-hf_scheme_DISCC :
-  defaultValue : 'BaseDISCC'       # global specification
-#  defaultValue : 'FONLL_DISCC'     # global specification
-#  defaultValue : 'FFABM_DISCC'     # global specification
 
 #
 # Profiler allows to add variations of parameters and PDF eigenvectors as additional nuisance parameters
@@ -75,3 +37,5 @@ Profiler:
   WriteTheo: "On"            # Can be "Off", "On" or "Asymmetric" (to store asymmetric variations)
   getChi2: "On"              # determine and report chi2 for each variation
   enableExternalProfiler: "On" # enable creation of additional files, needed for xfitter draw
+  threads: 4                 # use multiprocess for calculations
+  scalePdfs: 5.74456         # rescale (divide) all PDF eigenvectors by the given factor

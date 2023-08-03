@@ -329,7 +329,7 @@
   ! NPARVAR = 3                        ! Number of parametrisation uncertainties in the LHAPDFVARSET set
   ! LHAPDFPROFILE = False              ! run only on the set specified by ILHAPDFSET
   ! LHASCALEPROFILE = True             ! Add QCD scale variations as nuisance parameters
-   SCALE68 = True                    ! Scale PDF uncertainties by a factor 1/1.645
+  ! SCALE68 = False                    ! Scale PDF uncertainties by a factor 1/1.645
   ! WriteAlphaSToMemberPDF = false
   ! NREMOVEPRIORS = 0                  ! Remove prior from the last n PDF nuisance parameters
   ! DataToTheo = True                  ! reset data to predictions corresponding to member 0, for sensitivity studies
