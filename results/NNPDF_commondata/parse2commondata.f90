@@ -31,7 +31,7 @@ PROGRAM parse2commondata
       CALL exit(1)
    END IF
    IF (narg .lt. 6) THEN 
-      WRITE(0,"(A,/,A)")  "Please give four arguments",&
+      WRITE(0,"(A,/,A)")  "Please give six arguments",&
   & "Input filenames and output filename followed by process, type and experiment"
       CALL exit(1)
    END IF
@@ -214,10 +214,13 @@ FUNCTION fluctuate(loc,sc) RESULT(fluc)
    REAL,PARAMETER :: pi=3.14159265
    REAL(KIND=dp) :: loc,sc,fluc,x,r1,r2,u1,u2
 
-   CALL random_number(r1)
-   CALL random_number(r2)
-   u1=1-r1
-   u2=1-r2
-   x = DSQRT(-2*DLOG(u1))*DCOS(2*pi*u2)
-   fluc=loc+sc*x
+   fluc=-1.0_dp
+   DO WHILE(fluc.LT.0.0_dp)
+      CALL random_number(r1)
+      CALL random_number(r2)
+      u1=1-r1
+      u2=1-r2
+      x = DSQRT(-2*DLOG(u1))*DCOS(2*pi*u2)
+      fluc=loc+sc*x
+   END DO
 END FUNCTION fluctuate
