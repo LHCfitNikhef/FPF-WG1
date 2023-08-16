@@ -697,7 +697,7 @@ bool writeDatPrel(string expname,
     //With reduction factor
     vector<vector<double>> corrfred = correlations(N,stat,syst,fred);
     if (!writeCorr(expname,nuID,origin,
-                   "_systVar05",
+                   "_fred05",
                    xav,Q2av,corrfred)) return false;
 
     //Correlations with only lepton energy in syst unc, no reduction factor
@@ -707,11 +707,11 @@ bool writeDatPrel(string expname,
     if (!writeCorr(expname,nuID,origin,
                    "_onlyEl",
                    xav,Q2av,corrEl)) return false;
-    //With reduction factor
-    vector<vector<double>> corrElfred = correlations(N,stat,systEl,fred);
-    if (!writeCorr(expname,nuID,origin,
-                   "_systVar05_onlyEl",
-                   xav,Q2av,corrElfred)) return false;    
+    ////With reduction factor
+    //vector<vector<double>> corrElfred = correlations(N,stat,systEl,fred);
+    //if (!writeCorr(expname,nuID,origin,
+    //               "_fred05_onlyEl",
+    //               xav,Q2av,corrElfred)) return false;    
     
     //Write datatable for preliminary xFitter run
     return xFtableWriter(mdir,"prel/",expname,nuID,origin,iexp,
@@ -897,20 +897,20 @@ bool writeDatFinal(string PDF,
                        systnames,systunc)) return false;  //systnames, systmatrix                       
                        
     //Use all syst unc but decrease them in pseudodata variation by factor fred
-    sdir = PDF+"/systVar05/";
+    sdir = PDF+"/fred05/";
     if (!xFtableWriter(mdir,sdir,
                        expname,nuID,origin,iexp,
                        binF,xav,Q2av,xsvuncfred,          //3 bins, x-sec
                        stat,dvtmp,                        //stat, uncor
                        systnames,systunc)) return false;  //systnames, systmatrix
 
-    //Include only lepton energy uncertainty in syst
-    sdir = PDF+"/systVar05El/";
-    if (!xFtableWriter(mdir,sdir,
-                       expname,nuID,origin,iexp,
-                       binF,xav,Q2av,xsvuncElfred,            //3 bins, x-sec
-                       stat,dvtmp,                            //stat, uncor
-                       systnamesEl,systuncEl)) return false;  //systnames, systmatrix
+    ////Include only lepton energy uncertainty in syst
+    //sdir = PDF+"/fred05El/";
+    //if (!xFtableWriter(mdir,sdir,
+    //                   expname,nuID,origin,iexp,
+    //                   binF,xav,Q2av,xsvuncElfred,            //3 bins, x-sec
+    //                   stat,dvtmp,                            //stat, uncor
+    //                   systnamesEl,systuncEl)) return false;  //systnames, systmatrix
                        
     //Stat unc only, no syst; neither as unc or in pseudodata variation
     if (!xFtableWriter(mdir,PDF+"/statOnly/",
@@ -962,7 +962,7 @@ int main() {
     //False: write final tables to be used as pseudodata in fits.
     bool prel = false;
     
-    //Reduction factor for systematic uncertainties, e.g. 0.5 for systVar05
+    //Reduction factor for systematic uncertainties, e.g. 0.5 for fred05
     //Tables will be produced without this i.e. at fred=1.0, and with the fred
     //set here.
     double fred = 0.5;

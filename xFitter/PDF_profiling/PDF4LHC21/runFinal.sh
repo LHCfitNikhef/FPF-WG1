@@ -1,5 +1,5 @@
 #!/bin/bash
-declare -a dirs=("statOnly" "syst" "systVar05" "systVar05El")
+declare -a dirs=("statOnly" "syst" "fred05")
 
 for dir in ${dirs[@]}; do
     cd ${dir}

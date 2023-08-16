@@ -2,7 +2,7 @@
 declare -a detectors=("FASERv" "FASERv2")
 declare -a datatypes=("charm" "inclusive")
 declare -a parts=("nu" "nub" "nochargediscrimination")
-declare -a unctypes=("statOnly" "syst" "systVar05" "systVar05El")
+declare -a unctypes=("statOnly" "syst" "fred05")
 declare -a pdfs=("PDF4LHC21" "EPPS21nlo_CT18Anlo_W184")
 
 datapath=xFitter/datafiles/lhc/fpf/neutrinoDIS/pseudodata
@@ -21,8 +21,7 @@ for detector in ${detectors[@]}; do
             #Add correlation tables
             git add ${datapath}/${detector}_${datatype}_${part}.corr
             git add ${datapath}/${detector}_${datatype}_${part}_onlyEl.corr
-            git add ${datapath}/${detector}_${datatype}_${part}_systVar05.corr
-            git add ${datapath}/${detector}_${datatype}_${part}_systVar05_onlyEl.corr
+            git add ${datapath}/${detector}_${datatype}_${part}_fred05.corr
 
             #Add datatables for preliminary runs
             git add ${datapath}/prel/${detector}_${datatype}_${part}-thexp.dat
@@ -47,13 +46,11 @@ for pdf in ${pdfs[@]}; do
     if [[ ${pdf}=="PDF4LHC21" ]]; then
         declare -a statOnlyDirs=("FASERv" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
         declare -a systDirs=("FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination" )
-        declare -a systVar05Dirs=("FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
-        declare -a systVar05ElDirs=("FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
+        declare -a fred05Dirs=("FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
     else
         declare -a statOnlyDirs=("FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
         declare -a systDirs=()
-        declare -a systVar05Dirs=("FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
-        declare -a systVar05ElDirs=("FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
+        declare -a fred05Dirs=("FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
     fi
 
     git add ${profilingpath}/${pdf}/cleanFinal.sh
@@ -107,24 +104,8 @@ for pdf in ${pdfs[@]}; do
     done
 
     #With statistical and systematic uncertainties (0.5 improvement factor)
-    for subDir in ${systVar05Dirs[@]}; do
-        unctype="systVar05"
-        git add ${profilingpath}/${pdf}/${unctype}/collectPlots.tex                
-        git add ${profilingpath}/${pdf}/${unctype}/run.sh
-        git add ${profilingpath}/${pdf}/${unctype}/clean.sh
-        for xFrunFile in ${xFrunFiles[@]}; do
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${xFrunFile}        
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_g_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_Sea_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
-        done
-    done
-
-    #With statistical and systematic uncertainties (0.5 improvement factor, E_lepton only)
-    for subDir in ${systVar05ElDirs[@]}; do
-        unctype="systVar05El"
+    for subDir in ${fred05Dirs[@]}; do
+        unctype="fred05"
         git add ${profilingpath}/${pdf}/${unctype}/collectPlots.tex                
         git add ${profilingpath}/${pdf}/${unctype}/run.sh
         git add ${profilingpath}/${pdf}/${unctype}/clean.sh
