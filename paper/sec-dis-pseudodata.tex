@@ -612,7 +612,7 @@ to that provided by the EIC measurements.
 \label{subsec:uncertainties}
 
 The event yields displayed in Fig.~\ref{fig:fasernu2_muon} determine the associated statistical uncertainty 
-in each bin by means of the following equation:
+in each bin,
 \be
 \label{eq:statistical_uncertainties}
 \delta^{\rm (stat)}  N_{\rm ev}^{(i)} = \sqrt{N_{\rm ev}^{(i)}} \, ,
@@ -621,9 +621,9 @@ such that the fractional statistical uncertainty per bin is $\delta^{\rm (stat)}
 %
 Since we discard bins with less than 30 events, the fractional statistical uncertainty
 ranges between $\lsim 1\%$ and $\sim 18\%$, depending on the values of
-$x$ and $Q^2$ associated to this bin.
+$x$ and $Q^2$ associated to each bin.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
     \centering
     \includegraphics[width = \textwidth]{plots/Event_Rate_FASERv2.pdf}
@@ -635,16 +635,17 @@ $x$ and $Q^2$ associated to this bin.
       statistical errors only (left), systematic errors only (middle), and the
       sum in quadrature of the two (right panel).
       %
-      The error bars in the horizontal direction indicate the width of the adopted $x$-bins.
+      The bars in the horizontal direction indicate the width of the adopted $x$-bins.
       }
     \label{fig:error_plot_FASERv2_14}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-These statistical uncertainties are displayed in the left panel
+The projected statistical uncertainties for muon-neutrino scattering
+in the case of FASER$\nu$2 are displayed in the left panel
 of Fig.~\ref{fig:error_plot_FASERv2_14}, which corresponds
 to the same event yields as in
-Fig.~\ref{fig:fasernu2_muon} for FASER$\nu$2
+Fig.~\ref{fig:fasernu2_muon} for 
 now as a function of $x$ after having integrated the event
 yields in the range $Q^2 \in [10,100]$ GeV$^2$.
 %
@@ -652,9 +653,9 @@ The error bar in the vertical direction indicates the statistical uncertainties,
 that in the horizontal direction corresponds to the width of the $x$-bins.
 %
 Except for the bins with the smallest values of $x$, statistical uncertainties indeed
-are at the percent level or smaller for FASER$\nu$2.
+are at the percent level or smaller for this experiment.
 
-In addition to the statistical uncertainties given by Eq.~(\ref{eq:statistical_uncertainties}),
+In addition to the statistical uncertainties evaluated from Eq.~(\ref{eq:statistical_uncertainties}),
 one needs to also estimate the systematic uncertainties associated to the
 finite precision in the reconstruction
 of the final state leptonic and hadronic variables listed in Table~\ref{tab:FPF_experiments}.
@@ -665,7 +666,7 @@ mis-classified into a different bin in the presence of systematic
 shifts associated to the lepton energy $E_\ell$, lepton scattering angle $\theta_\ell$, and
 hadronic energy $E_h$, as indicated by  Eq.~(\ref{eq:dis_kinematic_mapping}).
 
-For each source of experimental systematic uncertainty we need to
+For each independent source of experimental systematic uncertainty, we hence
 quantify its impact at the event yield level.
 %
 In order to determine these bin-by-bin systematic errors,
@@ -674,7 +675,7 @@ we extend the calculation delineated in Eq.~(\ref{sec:pseudo-data_generation}) a
 Let us consider for illustrative purposes the FASER${\nu}$2 detector.
 %
 From Table~\ref{tab:FPF_experiments} we know that its
-acceptance and reconstruction performance are specified by:
+acceptance parameters and reconstruction performance are specified by:
 \bea
 E_\ell \ge 100~{\rm GeV} \, , \quad \theta_\ell \le \tan^{-1}(0.025)\, , \qquad\\
 \delta E_\ell \sim 30\% \, 
@@ -682,7 +683,7 @@ E_\ell \ge 100~{\rm GeV} \, , \quad \theta_\ell \le \tan^{-1}(0.025)\, , \qquad\
  \quad \delta\theta_\ell \sim 0.06~{\rm mrad} \, . 
 \label{eq:fasernu2systematic_errors}
 \eea
-To translate the uncertainties in $\delta E_\ell$, $\delta E_h $,
+To translate these uncertainties in $\delta E_\ell$, $\delta E_h $,
 and $\delta\theta_\ell$ into systematic errors associated to the event yields, 
 \be
 \label{eq:event_yields_systematic_error}
@@ -713,46 +714,36 @@ $ N_{\rm ev}^{(i)(k)}$.
 We take the uncertainty associated
 to a given systematic source, say $\delta E_\ell$,
 to be the absolute difference between the mean number of events in this
-bin evaluated for the smeared samples samples and the
+bin evaluated for the smeared samples and the
 central prediction for the number of events
 $ N_{\rm ev}^{(i)}$ as calculated from Eq.~(\ref{MCintegration}):
 \be
 \delta_{\rm sys}^{(E_\ell)} N^{(i)} = \Big| \la {N}^{(i)}\ra_{E_\ell-{\rm smeared}} -N_{\rm ev}^{(i)}\Big| \, .
 \ee
-Systematic errors are treated as uncorrelated among them and hence
+Individual sources of systematic errors are treated as uncorrelated among them and hence
 by producing samples where only one source of error is varied at a time
-we can determine the systematic errors, Eq.~(\ref{eq:event_yields_systematic_error}), in each bin.
+we can determine the systematic errors, Eq.~(\ref{eq:event_yields_systematic_error}), in each bin
+for each of the considered experiments.
 %
 This approach has the benefit that rescaling individual sources of systematic
 uncertainties, say to assess the impact of improved detector performance,
-is straightforward. 
+becomes straightforward. 
 
 Fig.~\ref{fig:percentage_uncertainties_overview}
-displays the systematic uncertainties associated
-to $E_\ell$, $\theta_\ell$, and $E_h$ variations
-for the  measurements
-of the double-differential
-neutrino scattering cross-section at FASER$\nu$2.
+displays the projected systematic uncertainties associated
+to $E_\ell$, $\theta_\ell$, and $E_h$ 
+for the  measurements of the double-differential
+muon-neutrino scattering  at FASER$\nu$2.
 %
 The magnitude of each systematic error is plotted as a function
 of the average momentum fraction per bin $\la x\ra$
-in three different bins of $Q^2$.
+in two different bins of $Q^2$.
 %
 We indicate separately the results for neutrino and antineutrino projectiles as well as
 those associated to inclusive and to charm production measurements.
 %
-Systematic uncertainties associated to the hadronic final state energy $E_h$ appear to be the largest.
-%
-The uncertainties associated to the charged lepton energy $E_\ell$ and scattering angle $\theta_\ell$ range
-between a few percent up to 20\% in the nominal baseline scenario,
-and in the case of the latter they are the smallest in the large-$x$ region.
-%
-Fig.~\ref{fig:error_plot_FASERv2_14} (central and right panels) display
- the integrated event yields for FASER$\nu$2 as a function of $x$ for only
- systematic errors and for the sum in quadrature of statistical and systematic errors.
- %
- For most of the bins, for the baseline performance assumptions the total systematic
- uncertainty is at the $10\%$ and dominates over the statistical uncertainties.
+For completeness, we also display in the bottom-right panel the corresponding
+statistical uncertainties in the same bins.
 
 %-----------------------------------------------------------------------
 \begin{figure}[t]
@@ -760,7 +751,7 @@ Fig.~\ref{fig:error_plot_FASERv2_14} (central and right panels) display
   \includegraphics[width=\textwidth]{plots/percentage_errors.pdf}
   \caption{\small Estimated systematic uncertainties for the  measurements
     of the double-differential
-    neutrino scattering cross-section at FASER$\nu$2.
+    muon-neutrino scattering cross-section at FASER$\nu$2.
     %
     We consider the systematic errors
     associated to the charged lepton energy $E_\ell$ and scattering angle $\theta_\ell$
@@ -768,16 +759,44 @@ Fig.~\ref{fig:error_plot_FASERv2_14} (central and right panels) display
     %
     The size of each source of systematic error is plotted as a function
     of the average momentum fraction per bin $\la x\ra$
-    in three different bins of $Q^2$.
+    in two different bins of $Q^2$.
     %
     We indicate separately the results for neutrino and antineutrino projectiles as well as
     those associated to inclusive and to charm production measurements.
+    %
+    For completeness, we display in the bottom-right panel the corresponding
+    statistical uncertainties in the same bins.
   }
   \label{fig:percentage_uncertainties_overview}
 \end{figure}
 %-----------------------------------------------------------------------
 
-The end result of the procedure is the estimate of statistical and systematic uncertainties
+In general, systematic uncertainties associated to the hadronic final state energy $E_h$ appear to be the largest,
+reaching up to $\sim 40\%$.
+%
+We recall that measurement of $E_h$ in addition to the leptonic variables is required to
+fix the incoming neutrino energy $E_\nu$, which is different in each event unlike
+the case of neutral-current scattering.
+%
+The uncertainties associated to the charged-lepton energy $E_\ell$ and scattering angle $\theta_\ell$ range
+between a few percent up to 20\% in the  baseline scenario listed in Table~\ref{tab:FPF_experiments}.
+%
+For the $\delta \theta_\ell$ variations, they are smallest in the large-$x$ region
+for $x\gsim 0.1$, where they are at the few-percent level typically.
+%
+Statistical uncertainties are subdominant in most of the bins and are below the 10\% level,
+specially at large-$x$ which is the kinematic region benefitting from the largest event rates.
+
+Fig.~\ref{fig:error_plot_FASERv2_14} also displays
+ the integrated event yields for FASER$\nu$2 as a function of $x$ for only
+ systematic errors and for the sum in quadrature of statistical and systematic errors
+ (central and right panels respectively).
+ %
+ For most of the bins, for the baseline performance assumptions the total systematic
+ uncertainty dominates over the statistical uncertainties, with the possible exception
+ of the small-$x$ region where statistical and systematic errors are comparable.
+
+The end result of the procedure is an estimate of statistical and systematic uncertainties
 for each bin of the measurement, from which a experimental covariance matrix can be constructed as
 \be
 \label{eq:covmat_definition}
@@ -794,8 +813,8 @@ for each bin of the measurement, from which a experimental covariance matrix can
  The relative covariance matrix, $ {\rm cov}_{ij}/( N_{\rm ev}^{(i)}N_{\rm ev}^{(j)})$, is
  independent of the considered observable and would also apply
  for the double-differential cross-sections Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}) and~(\ref{eq:antineutrino_DIS_xsec_FL}) which are related to the event yields by a constant prefactor.
- %
-
+ 
+ The experimental covariance matrix constructed as per
  Eq.~(\ref{eq:covmat_definition}) assumes that each source of systematic
  uncertainty is 100\% correlated across all the bins of the measurement.
  %
@@ -807,20 +826,30 @@ for each bin of the measurement, from which a experimental covariance matrix can
  In particular, the assumption that a single source of systematic error, say $\delta E_\ell$,
  is fully correlated among all the bins in $(x,Q^2)$ is unlikely to be accurate.
  %
- For this reason, here we neglect bin-by-bin correlations
+ For this reason, following the HL-LHC projection strategy of~\cite{AbdulKhalek:2018rok}
+ here we neglect bin-by-bin correlations
  and add in quadrature statistical and systematic errors
  \be
 \label{eq:covmat_definition_v2}
  {\rm cov}_{ij} = \delta_{ij} \lp \delta^{\rm (stat)}  N_{\rm ev}^{(i)}\rp^2
-+ \delta_{ij}\sum_{k=1}^{n_{\rm sys}} \lp f_{\rm red}^{(k)}\rp^2\lp \delta_{\rm sys}^{(k)} N_{\rm ev}^{(i)} \rp^2
++ \lp f_{\rm corr}\rp^2\sum_{k=1}^{n_{\rm sys}} \lp f_{\rm red}^{(k)}\rp^2\lp \delta_{\rm sys}^{(k)} N_{\rm ev}^{(i)} \rp^2
 \, ,\qquad i,j=1,\ldots,N_{\rm bin} \, .
 \ee
 In Eq.~(\ref{eq:covmat_definition_v2}) we have introduced a parameter $f_{\rm red}^{(k)}\le 1$
 that gauges the impact of a possible reduction of the $k$-th systematic error
 as compared to the default experiment performance.
 %
+Furthermore, Here $f_{\rm corr}$ represents an effective correction factor that accounts for the fact that data with correlated
+systematics may be more constraining than the same data where each source of error is simply
+added in quadrature as we do here.
+%
+A value of $f_{\rm corr}=0.5$, obtained from the inspection of available measurements
+ for which the full information
+ on correlated systematics is available, was estimated in ~\cite{AbdulKhalek:2018rok}
+ and we adopt the same choice here.
+%
 In Sect.~\ref{sec:protonPDFs} we present results for different scenarios
-for the systematic uncertainty reduction $f_{\rm red}^{(k)}$.   
+for the systematic uncertainty reduction $f_{\rm red}^{(k)}$ with respect to the baseline settings.   
  
  \subsection{Pseudo-data generation and inclusion on PDF fits}
 
@@ -856,7 +885,8 @@ scheme~\cite{Forte:2010ta,Ball:2011mu,Faura:2020oom} at $\mathcal{O}\lp \alpha_s
 accuracy.
 %
 For the proton PDF fits we assume a free isoscalar target $N$, while
-for the nuclear PDF one we allow for deviations from isoscalarity.
+for the nuclear PDF one we allow for deviations from isoscalarity relevant
+for a tungsten nucleus.
 
 The PDF set and other theory settings, such as the perturbative
 order and heavy quark scheme, adopted for the evaluation of
@@ -873,7 +903,7 @@ This ensures that the generated pseudo-data is consistent with the prior PDF
  The central values for the pseudo-data, denoted
  by $\mathcal{O}_i^{{\rm (exp)}} $, are obtained
  by fluctuating the reference theory prediction Eq.~(\ref{eq:theory_dis_projections})
- by the corresponding statistical and systematic
+ by the corresponding fractional statistical and systematic
  uncertainties,
  \begin{equation}
   \label{eq:pseudo_data_v2}
@@ -889,11 +919,18 @@ This ensures that the generated pseudo-data is consistent with the prior PDF
   \be
  \delta_{i}^{\rm tot}
  = \left( \left( \delta_i^{\rm stat}\right)^2 + \sum_{k=1}^{n_{\rm sys}}
- \left( f_{\rm red}^{(k)} \delta_{i,k}^{\rm sys} \right)^2\right)^{1/2} \, ,
+ \left( f_{\rm corr} \times f_{\rm red}^{(k)} \times \delta_{i,k}^{\rm sys} \right)^2\right)^{1/2} \, ,
  \qquad i=1,\ldots,N_{\rm bin} \, ,
  \ee
  and with $r_{i}$ being univariate Gaussian random numbers. 
-Similar to the factor $f_{\rm corr}$ in Ref.~\cite{AbdulKhalek:2018rok}, we take the factor $f_{\rm red}$ to be 0.5.
+ %
+ As mentioned above, $f_{\rm red}^{(k)}$ is a reduction factor that accounts possible
+ improvements in the experimental performance as compared to the baseline
+ settings summarised in Sect.~\ref{tab:FPF_experiments}.
+ %
+ Here we consider two scenarios for the systematic errors: conservative  $f_{\rm red}^{(k)}=1$, so
+ no improvement as compared to current projected performance, and  $f_{\rm red}^{(k)}=0.5$, a factor
+ two improvement for all relevant sources.
  %
  The pseudo-data generated by means of Eq.~(\ref{eq:pseudo_data_v2}),
  together with the corresponding correlations, computed according to Eq.s~\eqref{eq:corrmat_definition}--\eqref{eq:covmat_definition_v2},
