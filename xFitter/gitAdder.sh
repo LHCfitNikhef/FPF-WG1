@@ -2,7 +2,7 @@
 declare -a detectors=("FASERv" "FASERv2")
 declare -a datatypes=("charm" "inclusive")
 declare -a parts=("nu" "nub" "nochargediscrimination")
-declare -a unctypes=("statOnly" "syst" "fred05")
+declare -a unctypes=("statOnly" "syst" "fred05" "fcorr05" "fred05fcorr05")
 declare -a pdfs=("PDF4LHC21" "EPPS21nlo_CT18Anlo_W184")
 
 datapath=xFitter/datafiles/lhc/fpf/neutrinoDIS/pseudodata
@@ -20,7 +20,6 @@ for detector in ${detectors[@]}; do
 
             #Add correlation tables
             git add ${datapath}/${detector}_${datatype}_${part}.corr
-            git add ${datapath}/${detector}_${datatype}_${part}_onlyEl.corr
             git add ${datapath}/${detector}_${datatype}_${part}_fred05.corr
 
             #Add datatables for preliminary runs
