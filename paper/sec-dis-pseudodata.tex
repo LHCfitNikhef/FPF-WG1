@@ -420,7 +420,7 @@ and neutrino pseudo-rapidity $\eta_\nu$ coverage of the considered detector,
 are encoded in $dN_{\nu}(E_\nu)/dE_{\nu}$.
 %
 We have verified that the differential event yield calculation
-implemented in Eq.~(\ref{eq:event_yields_calculation}) {\color{blue} [MF: There is a discrepancy beyond this. Our integrated cross sections come out a bit smaller. The total cross sections are very sensitive to kinematic cuts. TR and I have talked about this before and I will message] }, when extrapolated to a single bin
+implemented in Eq.~(\ref{eq:event_yields_calculation}), when extrapolated to a single bin
 covering the full detector acceptance,
 is consistent with the fiducial interaction rates presented in~\cite{Feng:2022inv} once DIS cuts are imposed and detector acceptances are accounted for.
 
@@ -553,15 +553,16 @@ events expected instead for AdvSND-far and FLArE-10.
     \includegraphics[width=0.495\textwidth]{plots/FPF-FASERv2.pdf}
     \includegraphics[width=0.495\textwidth]{plots/FPF-AdvSND.pdf}
     \includegraphics[width=0.495\textwidth]{plots/FPF-FLArE100.pdf}
-    \caption{\small The event yields per bin $N_{\rm ev}^{(i)}$,  Eq.~(\ref{eq:event_yields}), for muon neutrino
-      scattering at the
-      FASER$\nu$, FASER$\nu$2, AdvSND, and FLArE-100  experiments.
-            %
-      Selected events are restricted to the DIS region Eq.~(\ref{eq:DISconditions})
-      and only bins with $\ge 30$ events are retained.
-	%
-	Adding up the bins in each of the panels results into the numbers listed in
-	Table~\ref{tab:integrated_rates}.}
+    \caption{
+    	\small The event yields per bin $N_{\rm ev}^{(i)}$,  Eq.~(\ref{eq:event_yields}), for 
+    	muon neutrino scattering at the FASER$\nu$, FASER$\nu$2, AdvSND, and FLArE-100  experiments.
+        %
+   		Selected events are restricted to the DIS region Eq.~(\ref{eq:DISconditions})
+   		and only bins with $\ge 100$ events are retained except for FASER$\nu$ in which
+   		bins with $\ge 10$ events are kept.
+		%
+		Adding up the bins in each of the panels results into the numbers listed in
+		Table~\ref{tab:integrated_rates}.}
     \label{fig:fasernu2_muon}
 \end{figure}
 %-----------------------------------------------------------------------
@@ -592,17 +593,17 @@ to that provided by the EIC measurements.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
     \centering
-    \includegraphics[width = 0.85\textwidth]{plots/KIN_DIS_FPF.pdf}
-    \caption{The kinematic coverage in the $(x,Q^2)$ plane of muon-neutrino scattering
-      at the FASER$\nu$, FASER$\nu$2, FLArE-100, and AdvSND experiments, see also Fig.~\ref{fig:fasernu2_muon},
-      compared to that of electron-ion collisions at the EIC for the highest center-of-mass 
-      energies $\sqrt{s}$ planned as well as to the coverage of existing nuclear neutral- and
-      charged-current DIS measurements.
-      %
-      Bins with less than 30 events have been excluded.{\color{blue}[ MF: Currently, not 30 -  10 for Run3 expt's and 100 for HL-LHC expts]}
-      %
-      \textcolor{red}{(To be replaced once AdvSND and new fluxes are available.)}
-      }
+    \includegraphics[width = 0.75\textwidth]{plots/KIN_DIS_FPF.pdf}
+    \caption{
+    	The kinematic coverage in the $(x,Q^2)$ plane of muon-neutrino scattering
+	    at the FASER$\nu$, FASER$\nu$2, FLArE-100, and AdvSND experiments, see also Fig.~\ref{fig:fasernu2_muon},
+	    compared to that of electron-ion collisions at the EIC for the highest center-of-mass 
+	    energies $\sqrt{s}$ planned as well as to the coverage of existing nuclear neutral- and
+	    charged-current DIS measurements.
+      	%
+      	Bins with less than 100 events have been excluded fo all the pseudodata except for FASER$\nu$ where we retain
+      	bins with $\ge 10$ events.
+  	}
     \label{fig:Kin_nNNPDF30_EIC_FPF}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
