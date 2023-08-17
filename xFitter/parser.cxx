@@ -462,12 +462,14 @@ vector< vector<double> > readPrelXsec(string prelname) {
  *        systs  Matrix of systematic unc., each entry is a vector corresponding
  *               to a single source of systematic uncertainty
  *        fred   Reduction factor for systematic uncertainties
+ *        fcorr  ^a similar factor, def. separately for consistency w/ paper
  * Returns the correlation matrix
  */
 vector<vector<double>> correlations(vector<double> N,
                                     vector<double> stat,
                                     vector<vector<double>> systs,
-                                    double fred)
+                                    double fred,
+                                    double fcorr)
 {
     //Init
     vector<double> tmp;
@@ -475,6 +477,7 @@ vector<vector<double>> correlations(vector<double> N,
     vector< vector<double> > cov;
     for (auto itmp : tmp) cov.push_back(tmp);
     double fred2 = fred*fred;
+    double fcorr2 = fcorr*fcorr;
     
     //Check if stat unc contribution can be added
     bool addStat = stat.size()==N.size();
@@ -488,7 +491,7 @@ vector<vector<double>> correlations(vector<double> N,
             if (addStat && i==j) cov[i][j]+=stat[i]*stat[j];
             //Fully correlated sst unc
             for (vector<double> syst : systs) {                
-                if (syst.size()==N.size()) cov[i][j] += fred2*syst[i]*syst[j];
+                if (syst.size()==N.size()) cov[i][j] += fred2*fcorr2*syst[i]*syst[j];
                 else cout << "WARNING correlations: syst size mismatch" << endl;
             }
             //Only relative cov. needed, so #evts and %-conversion would cancel
@@ -514,7 +517,7 @@ vector<vector<double>> correlations(vector<double> N,
  *        nuID     Consider neutrinos ("nu") antineutrinos ("nub") or 
  *                 both ("nochargediscrimination")
  *        origin   Write tables from "_inclusive" or "_charm" production data
- *        nameAdd  Add identifier tag to filename, e.g. "onlyEl"
+ *        nameAdd  Add identifier tag to filename
  * Returns true if table wrote successfully, false in case of errors
  */
 bool writeCorr(string expname, 
@@ -587,6 +590,7 @@ bool writeCorr(string expname,
  *        iexp     xFitter datatable index, all datasets used in a single fit
  *                 require unique indices for identification
  *        fred     Corr. tables produced with and without this reduction factor
+ *        fcorr    ^a similar factor, def. separately for consistency w/ paper
  * Returns exit status of xFtableWriter: false if bin mismatch found & tables 
  *                                      not written, else true.
  */
@@ -596,8 +600,16 @@ bool writeDatPrel(string expname,
                   int iexp, 
                   bool useStat, 
                   bool useSyst,
-                  double fred)
+                  double fred,
+                  double fcorr)
 {
+    //Init
+    string infile;
+    stringstream sstream;
+    vector<double> binF,xlo,xhi,xav,Q2lo,Q2hi,Q2av,sigma,N,stat;
+    vector<double> binFp,binFm,xlom,xhim,xavm,Q2lom,Q2him,Q2avm,sigmam,Nm,statm;
+
+    //Construct strings for filepath handling
     string expID = expname + origin + "_" + nuID;
     string suffix = ".txt";
     string mdir = "datafiles/lhc/fpf/neutrinoDIS/pseudodata/";
@@ -641,11 +653,6 @@ bool writeDatPrel(string expname,
         system(("ln -s " + thpath4ln + " " + mdir + "grids").c_str());
     }
     
-    //Init
-    string infile;
-    vector<double> binF,xlo,xhi,xav,Q2lo,Q2hi,Q2av,sigma,N,stat;
-    vector<double> binFp,binFm,xlom,xhim,xavm,Q2lom,Q2him,Q2avm,sigmam,Nm,statm;
-
     //Include unc.s already in prel tables if available, handy to read all input
     //info from prel table in the next stage, no need to revisit binned_events
     vector<string> systnames;
@@ -680,7 +687,6 @@ bool writeDatPrel(string expname,
     //}
     
     //Construct generic syst unc names
-    stringstream sstream;
     for (int i=0; i!=syst.size(); ++i) {
          sstream.clear();  sstream.str("");
          //When using full correlation matrix or systematic correlations, 
@@ -690,29 +696,37 @@ bool writeDatPrel(string expname,
      }
 
     //Correlations with all syst unc, no reduction factor
-    vector<vector<double>> corr = correlations(N,stat,syst,1.0);
+    vector<vector<double>> corr = correlations(N,stat,syst,1.0,1.0);
     if (!writeCorr(expname,nuID,origin,"",xav,Q2av,corr)) {
         return false;
     }
-    //With reduction factor
-    vector<vector<double>> corrfred = correlations(N,stat,syst,fred);
+    
+    //Values of fred and fcorr for filenames
+    sstream.str("");  sstream.clear();
+    sstream << fred;
+    string fredstr = replace(sstream.str(),".","");
+    sstream.str("");  sstream.clear();
+    sstream << fcorr;
+    string fcorrstr = replace(sstream.str(),".","");
+
+    //Corr w/ all syst. unc., w/ reduction factor
+    vector<vector<double>> corrfred = correlations(N,stat,syst,fred,1.0);
     if (!writeCorr(expname,nuID,origin,
-                   "_fred05",
+                   "_fred"+fredstr,
                    xav,Q2av,corrfred)) return false;
 
-    //Correlations with only lepton energy in syst unc, no reduction factor
-    vector< vector<double> > systEl;
-    systEl.push_back(syst[1]);  //El is 2nd syst unc in binned_events files
-    vector<vector<double>> corrEl = correlations(N,stat,systEl,1.0);
+    //Corr w/ all syst. unc., w/ correlation factor
+    vector<vector<double>> corrfcorr = correlations(N,stat,syst,1.0,fcorr);
     if (!writeCorr(expname,nuID,origin,
-                   "_onlyEl",
-                   xav,Q2av,corrEl)) return false;
-    ////With reduction factor
-    //vector<vector<double>> corrElfred = correlations(N,stat,systEl,fred);
-    //if (!writeCorr(expname,nuID,origin,
-    //               "_fred05_onlyEl",
-    //               xav,Q2av,corrElfred)) return false;    
-    
+                   "_fcorr"+fcorrstr,
+                   xav,Q2av,corrfcorr)) return false;
+
+    //Corr w/ all syst. unc., w/ reduction and correlation factors
+    vector<vector<double>> corrfredfcorr = correlations(N,stat,syst,fred,fcorr);
+    if (!writeCorr(expname,nuID,origin,
+                   "_fred"+fredstr+"fcorr"+fcorrstr,
+                   xav,Q2av,corrfredfcorr)) return false;
+
     //Write datatable for preliminary xFitter run
     return xFtableWriter(mdir,"prel/",expname,nuID,origin,iexp,
                          binF,xav,Q2av,sigma,stat,uncor,systnames,syst);
@@ -724,7 +738,8 @@ bool writeDatFinal(string PDF,
                    string nuID, 
                    string origin,
                    int iexp,
-                   double fred)
+                   double fred,
+                   double fcorr)
 {
     string mdir = "datafiles/lhc/fpf/neutrinoDIS/pseudodata/";
     
@@ -736,9 +751,9 @@ bool writeDatFinal(string PDF,
     string expID = expname + origin + "_" + nuID;
     string infile;
     vector<double> dvtmp;
-    vector<string> svtmp, systnames, systnamesEl;
-    vector< vector<double> > systtmp, systunc, systuncEl;
-    double fred2 = fred*fred;
+    vector<string> svtmp, systnames;
+    vector< vector<double> > systtmp, systunc, systuncfred;
+    double fcorr2 = fcorr*fcorr;
 
     //Read xsec values from previous xFitter run
     vector< vector<double> > prelXS;  //To contain xbins, Q2bins, th orig
@@ -785,12 +800,12 @@ bool writeDatFinal(string PDF,
     int isyst = colMap["Sigma"] + 1 + (int)useStat + (int)useUncor;
     for (int i=isyst; i<cols.size(); ++i) {
         systnames.push_back(cols[i]);
-        systunc.push_back(Mdat[i]);
-        //Assume lepton E is 2nd listed unc in binned events
-        if (i==isyst+1) {
-            systnamesEl.push_back(cols[i]);
-            systuncEl.push_back(Mdat[i]);
-        }
+        vector<double> Mdati = Mdat[i];
+        //Full syst. unc. contributions
+        systunc.push_back(Mdati);
+        //Reduced syst. unc. contributions
+        for (int j=0; j!=Mdati.size(); ++j) Mdati[j] *= fred;
+        systuncfred.push_back(Mdati);
     }
     bool useSyst = systnames.size() > 0;
 
@@ -821,7 +836,7 @@ bool writeDatFinal(string PDF,
     //are used for the theory computation in the fit. To estimate 
     //how much better the correlated data would constrain the PDFs, 
     //a reduction factor fred (e.g. 0.5) is applied to the correlated case
-    vector<double> xsv, xsvstat, xsvuncfred, xsvuncElfred;
+    vector<double> xsv, xsvstat, xsvuncfred, xsvuncfcorr, xsvuncfredfcorr;
     for (int ixs=0; ixs!=xsec.size(); ++ixs) {                    
 
         //Generate N = (#syst.unc.s + #stat.unc.) random numbers
@@ -841,31 +856,30 @@ bool writeDatFinal(string PDF,
         
         //For obtaining quadratic sums of all stat and syst uncs
         double stat2 = (useStat ? pow(stat[ixs],2) : 0.);
-        double syst2=0;
+        double syst2=0, systfred2=0;
         for (int i=0; i!=systunc.size(); ++i) syst2 += pow(systunc[i][ixs],2);
-        //For possibility to consider E_lepton as only syst unc src:
-        double systEl2=0;
-        if (systuncEl.size()!=0) systEl2 = pow(systuncEl[0][ixs],2);
+        for (int i=0; i!=systunc.size(); ++i) systfred2 += pow(systuncfred[i][ixs],2);
 
         //Option 1:
         //[Random gaussian]*[total uncertainty from quad. sum of stat & syst]:
         //Factors of 0.01 due to Div by 100 since unc.s given in %
         double errstat         = 0.01*rndm[0]*sqrt(stat2);
         double errstatsyst     = 0.01*rndm[0]*sqrt(stat2 + syst2);
-        double errstatsystfred   = 0.01*rndm[0]*sqrt(stat2 + syst2*fred2);
-        double errstatsystElfred = 0.01*rndm[0]*sqrt(stat2 + systEl2*fred2);
+        double errstatsystfcorr     = 0.01*rndm[0]*sqrt(stat2 + syst2*fcorr2);
+        double errstatsystfred      = 0.01*rndm[0]*sqrt(stat2 + systfred2);
+        double errstatsystfredfcorr = 0.01*rndm[0]*sqrt(stat2 + systfred2*fcorr2);
         
         //Option 2: fetch sums of various combinations of stat & syst uncs
-        double errsyst = 0.0;
-        double errsystfred = 0.0;
+        double errsyst=0, errsystfred=0, errsystfcorr=0, errsystfredfcorr=0;
         for (int i=0; i!=systunc.size(); ++i) {
             //Alternatively, individual factors for separate uncs, no quad sum:
             //Factors of 0.01 due to Div by 100 since unc.s given in %
             //Already account for rndm to assign them individually per source
-            errsyst     += 0.01*systunc[i][ixs]*rndm[i+1];
-            errsystfred += 0.01*systunc[i][ixs]*rndm[i+1]*fred;
+            errsyst          += 0.01*rndm[i+1]*systunc[    i][ixs];
+            errsystfcorr     += 0.01*rndm[i+1]*systunc[    i][ixs]*fcorr;
+            errsystfred      += 0.01*rndm[i+1]*systuncfred[i][ixs];
+            errsystfredfcorr += 0.01*rndm[i+1]*systuncfred[i][ixs]*fcorr;
         }
-        double errsystfredEl = 0.01*sqrt(systEl2)*rndm[useStat ? 2 : 1]*fred;
         
         //Vary x-sec to obtain pseuodata 
         double xs = xsec[ixs];
@@ -873,13 +887,15 @@ bool writeDatFinal(string PDF,
         //Option (1): only a single random number, quadratic sums
         bool useQuadSum = true;
         if (useQuadSum) {
-            xsv.push_back(         xs*(1.0 +     errstatsyst));
-            xsvuncfred.push_back(  xs*(1.0 +   errstatsystfred));
-            xsvuncElfred.push_back(xs*(1.0 + errstatsystElfred));
+            xsv.push_back(            xs*(1.0 +     errstatsyst       ));
+            xsvuncfred.push_back(     xs*(1.0 +   errstatsystfred     ));
+            xsvuncfcorr.push_back(    xs*(1.0 +   errstatsystfcorr    ));
+            xsvuncfredfcorr.push_back(xs*(1.0 +   errstatsystfredfcorr));
         } else {  //Opt. 2: separate random numbers for all sources, no quad sum
-            xsv.push_back(         xs*(1.0 + errstat + errsyst      ));
-            xsvuncfred.push_back(  xs*(1.0 + errstat + errsystfred  ));
-            xsvuncElfred.push_back(xs*(1.0 + errstat + errsystfredEl));
+            xsv.push_back(            xs*(1.0 + errstat + errsyst         ));
+            xsvuncfred.push_back(     xs*(1.0 + errstat + errsystfred     ));
+            xsvuncfcorr.push_back(    xs*(1.0 + errstat + errsystfcorr    ));
+            xsvuncfredfcorr.push_back(xs*(1.0 + errstat + errsystfredfcorr));
         }
         
     }
@@ -887,6 +903,14 @@ bool writeDatFinal(string PDF,
     /* Write tables for final runs */
 
     string sdir=""; //Init subdirectory name (of the form "PDF/uncLevel")
+
+    //Values of fred and fcorr for filenames
+    stringstream sstream;
+    sstream << fred;
+    string fredstr = replace(sstream.str(),".","");
+    sstream.str("");  sstream.clear();
+    sstream << fcorr;
+    string fcorrstr = replace(sstream.str(),".","");    
     
     //Including all syst unc
     sdir = PDF+"/syst/";
@@ -897,21 +921,30 @@ bool writeDatFinal(string PDF,
                        systnames,systunc)) return false;  //systnames, systmatrix                       
                        
     //Use all syst unc but decrease them in pseudodata variation by factor fred
-    sdir = PDF+"/fred05/";
+    sdir = PDF+"/fred"+fredstr+"/";
     if (!xFtableWriter(mdir,sdir,
                        expname,nuID,origin,iexp,
                        binF,xav,Q2av,xsvuncfred,          //3 bins, x-sec
                        stat,dvtmp,                        //stat, uncor
-                       systnames,systunc)) return false;  //systnames, systmatrix
+                       systnames,systuncfred)) return false;  //systnames, systmatrix
 
-    ////Include only lepton energy uncertainty in syst
-    //sdir = PDF+"/fred05El/";
-    //if (!xFtableWriter(mdir,sdir,
-    //                   expname,nuID,origin,iexp,
-    //                   binF,xav,Q2av,xsvuncElfred,            //3 bins, x-sec
-    //                   stat,dvtmp,                            //stat, uncor
-    //                   systnamesEl,systuncEl)) return false;  //systnames, systmatrix
+    //Use all syst unc but decrease them in pseudodata variation by factor fred
+    sdir = PDF+"/fcorr"+fcorrstr+"/";
+    if (!xFtableWriter(mdir,sdir,
+                       expname,nuID,origin,iexp,
+                       binF,xav,Q2av,xsvuncfcorr,         //3 bins, x-sec
+                       stat,dvtmp,                        //stat, uncor
+                       systnames,systunc)) return false;  //systnames, systmatrix
                        
+                       
+    //Use all syst unc but decrease them in pseudodata variation by factor fred
+    sdir = PDF+"/fred"+fredstr+"fcorr"+fcorrstr+"/";
+    if (!xFtableWriter(mdir,sdir,
+                       expname,nuID,origin,iexp,
+                       binF,xav,Q2av,xsvuncfredfcorr,     //3 bins, x-sec
+                       stat,dvtmp,                        //stat, uncor
+                       systnames,systuncfred)) return false;  //systnames, systmatrix
+                                              
     //Stat unc only, no syst; neither as unc or in pseudodata variation
     if (!xFtableWriter(mdir,PDF+"/statOnly/",
                        expname,nuID,origin,iexp, 
@@ -919,12 +952,12 @@ bool writeDatFinal(string PDF,
                        stat,dvtmp,                    //stat, uncor
                        svtmp,systtmp)) return false;  //systnames, systmatrix
 
-    //Syst unc considered fully uncorrelated
-    if (!xFtableWriter(mdir,PDF+"/uncor/",
-                       expname,nuID,origin,iexp, 
-                       binF,xav,Q2av,xsv,             //3 bins, x-sec
-                       stat,uncor,                    //stat, uncor
-                       svtmp,systtmp)) return false;  //systnames, systmatrix
+    ////Syst unc considered fully uncorrelated
+    //if (!xFtableWriter(mdir,PDF+"/uncor/",
+    //                   expname,nuID,origin,iexp, 
+    //                   binF,xav,Q2av,xsv,             //3 bins, x-sec
+    //                   stat,uncor,                    //stat, uncor
+    //                   svtmp,systtmp)) return false;  //systnames, systmatrix
 
     ////No variation in pseudodata, for checking chi2=0 case
     //if (!xFtableWriter(mdir,PDF+"/noVar/",
@@ -933,45 +966,43 @@ bool writeDatFinal(string PDF,
     //                   stat,uncor,                    //stat, uncor
     //                   svtmp,systtmp)) return false;  //systnames, systmatrix
     
-    ////Stat unc only, as uncor
-    //if (!xFtableWriter(mdir,PDF+"/statAsUncor/",
-    //                   expname,nuID,origin,iexp, 
-    //                   binF,xav,Q2av,xsvstat,         //3 bins, x-sec
-    //                   dvtmp,stat,                    //stat, uncor; flip intended
-    //                   svtmp,systtmp)) return false;  //systnames, systmatrix
-
-    ////Stat unc as uncor, syst[0] as stat
-    //if (!xFtableWriter(mdir,PDF+"/systAsStat/",
-    //                   expname,nuID,origin,iexp, 
-    //                   binF,xav,Q2av,xsvstat,         //3 bins, x-sec
-    //                   systunc[0],stat,               //stat, uncor; flip intended
-    //                   svtmp,systtmp)) return false;  //systnames, systmatrix
-
     return true;
 } // END writeDatFinal
 
-int main() {
+int main(int argc, char* argv[]) {
     
-    //BEGIN user input
+    //Check if user input arg: write tables either for preliminary or final runs
+    if (argc<2) {
+        cout << "Please call the program as either:\n"
+             << "  ./parsetEXE 0    #Produce preliminary run tables\n OR\n"
+             << "  ./parsetEXE 1    #Produce final run tables" << endl;
+        return -1;
+    }
+    stringstream sstream;
+    int mode=0;
+    sstream << argv[1];
+    sstream >> mode;
+    bool prel = (mode == 0);
+    if (prel) cout << "Producing tables for preliminary runs" << endl;
+    else cout << "Producing tables for final runs" << endl;
+    
+    //BEGIN user specifications
     vector<string> PDFs = {"PDF4LHC21","EPPS21nlo_CT18Anlo_W184"};
     vector<string> expnames = {"FASERv2","FASERv"}; //,"SND","FLArE10","FLArE100"};
     vector<string> nuIDs = {"nu","nub","nochargediscrimination"};
     vector<string> origins = {"_inclusive","_charm"};
-
-    //True:  write tables for preliminary xFitter run
-    //False: write final tables to be used as pseudodata in fits.
-    bool prel = false;
     
     //Reduction factor for systematic uncertainties, e.g. 0.5 for fred05
     //Tables will be produced without this i.e. at fred=1.0, and with the fred
     //set here.
-    double fred = 0.5;
+    double fred  = 0.5;
+    double fcorr = 0.5;
 
     //Flags for including uncertainties:
     //Turn off manually if binned_events don't contain these or not to be used
     bool useStat = true;  //Do binned_events tables contain stat unc?
     bool useSyst = true;  //              -||-              syst unc?
-    //END user input
+    //END user specifications
 
     //Write tables
     int iexp=137;
@@ -979,10 +1010,10 @@ int main() {
         for (string nuID : nuIDs) {
             for (string origin : origins) {
                 if (prel) {
-                    if (!writeDatPrel(expname,nuID,origin,iexp,useStat,useSyst,fred)) return -1;
+                    if (!writeDatPrel(expname,nuID,origin,iexp,useStat,useSyst,fred,fcorr)) return -1;
                 } else {
                     for (string PDF : PDFs) {
-                        if (!writeDatFinal(PDF,expname,nuID,origin,iexp,fred)) {
+                        if (!writeDatFinal(PDF,expname,nuID,origin,iexp,fred,fcorr)) {
                             return -1;
                         }
                     }
