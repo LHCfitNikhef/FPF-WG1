@@ -266,7 +266,7 @@ since the  beginning of Run III.
 SND@LHC is installed off the LOS axis in order to cover the neutrino
 pseudo-rapidity range of $7.2 \le \eta_\nu \le 8.4$.
 %
-With a total fiducial volume of 830 kg {\color{blue}[ MF: and length of 35 cm]}, it is composed by tungsten plates,
+With a total fiducial volume of 830 kg and length of 35 cm, it is composed by tungsten plates,
 where neutrino scattering takes place, interleaved with nuclear emulsions and electronic tracker
 components.
 %
@@ -309,9 +309,11 @@ of final-state kinematics is assumed.
  %
  It would be
  composed (from upstream to downstream) by a target region
- for  vertex reconstruction and electromagnetic energy measurement, followed  by a hadronic calorimeter, a  muon identification system, and finally  a magnet enabling muon charge and momentum measurements.
+ for  vertex reconstruction and electromagnetic energy measurement, followed  by a hadronic calorimeter, a  muon 
+ identification system, and finally  a magnet enabling muon charge and momentum measurements.
  %
- The target region of the detector, where the neutrino interactions take place, is made of thin sensitive layers interleaved with tungsten plates, for a total mass of 5 tons {\color{blue} [MF: and fiducial length of 50 cm]}.
+ The target region of the detector, where the neutrino interactions take place, is made of thin sensitive layers 
+ interleaved with tungsten plates, for a total mass of 5 tons and fiducial length of 50 cm.
  %
  This detector configuration will be able to track muons with energy $E_\nu \gsim 20$ GeV
  within an acceptance of 100 mrad and provide information on the charge
@@ -344,7 +346,7 @@ we assume that outgoing high-energy
 muons would be measured in the FASER2 spectrometer
   situated downstream in the FPF cavern.
  
- With an expected fiducial (active) mass of 10 tons (30 tons) {\color{blue} [MF: and length 3 m]}, FLArE will
+ With an expected fiducial (active) mass of 10 tons (30 tons) and length 3 m, FLArE will
  detect final-state electrons with energies $E_{e}\lsim 2~\rm{TeV}$ and
  scattering angles up to 0.5 mrad,  while final-state muons
  with $\theta_\mu \lsim 0.025$ will be recorded by FASER$\nu$2
@@ -619,7 +621,8 @@ in each bin,
 \ee
 such that the fractional statistical uncertainty per bin is $\delta^{\rm (stat)}_i=1/\sqrt{N_{\rm ev}^{(i)}}$.
 %
-Since we discard bins with less than 30 events{\color{blue} [MF: not 30. Currently 10 for Run3, 100 for HL-LHC]}, the fractional statistical uncertainty
+Since we discard bins with less than 100 events for HL-LHC experiments (FASER$\nu$2, FLArE100, AdvSND) and
+10 events for Run III experiments (FASER$\nu$, SND), the fractional statistical uncertainty
 ranges between $\lsim 1\%$ and $\sim 18\%$, depending on the values of
 $x$ and $Q^2$ associated to each bin.
 
@@ -696,9 +699,8 @@ we generate first a Monte Carlo set of events, denoted by $\mathcal{D}_0$,
 composed by $N_{\rm mc} \approx 10^7$ samples and determine the assignment of each event
 to a point in the $\lp x,Q^2,E_{\nu}\rp$ space.
 %
-By comparing $\mathcal{D}_0$ with the total number of events as calculated by Eq.~(\ref{MCintegration}), we can normalize the distribution to produce the expected yield.{\color{blue} [MF:changed some wording here ]}
-%By integrating over this sample by means of Eq.~(\ref{MCintegration}), we determine
-%the binned event yields for this reference $\mathcal{D}_0$ sample.
+By comparing $\mathcal{D}_0$ with the total number of events as calculated by Eq.~(\ref{MCintegration}), 
+we can normalize the distribution to produce the expected yield.
 
 We then produce a second Monte Carlo sample $\mathcal{D}_1$ starting from the events
 of $\mathcal{D}_0$ which are then smeared with Gaussian distributions whose variances
@@ -722,7 +724,6 @@ $ N_{\rm ev}^{(i)}$ as calculated from Eq.~(\ref{MCintegration}):
 \be
 \delta_{\rm sys}^{(E_\ell)} N^{(i)} =\la \Big|  {N}^{(i)}_{E_\ell-{\rm smeared}} -N_{\rm ev}^{(i)}\Big|\ra \, .
 \ee
-{\color{blue} [MF:Changed some wording here and the equation slighlty to what we do]}
 
 Individual sources of systematic errors are treated as uncorrelated among them and hence
 by producing samples where only one source of error is varied at a time
@@ -776,7 +777,7 @@ statistical uncertainties in the same bins.
 %-----------------------------------------------------------------------
 
 In general, systematic uncertainties associated to the hadronic final state energy $E_h$ appear to be the largest,
-reaching up to $\sim 40\%$.{\color{blue} [MF: Sometimes uncertainties can be huge more than 100\%. We ignore these bins. Fig 2.4 will also be updated soon probably, and here we will see some larger uncerainties due to the updated cross sections.]}
+reaching up to $\sim 90\%$ for some experiments.
 %
 We recall that measurement of $E_h$ in addition to the leptonic variables is required to
 fix the incoming neutrino energy $E_\nu$, which is different in each event unlike
