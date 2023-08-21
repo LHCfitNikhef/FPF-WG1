@@ -329,8 +329,8 @@ bool xFtableWriter(string mdir,
     for (int ix=0; ix!=x.size(); ++ix) {
         out << "  ";
         int bt = binF[ix];  //N.B. don't modify binF[ix], consistency* required!
-        //if (!prel && stat[ix] > uncCut) bt=0;
-        //for (int isu=0; isu!=syst.size(); ++isu) if (!prel && syst[isu][ix]>uncCut) bt=0;
+        if (!prel && stat[ix] > uncCut) bt=0;
+        for (int isu=0; isu!=syst.size(); ++isu) if (!prel && syst[isu][ix]>uncCut) bt=0;
         if (xsec[ixsec] < 0) bt=0;  //Don't include bin if x-sec negative
         out << bt;
         out << setfill(' ') << setw(24) << setprecision(15) << x[ix];
@@ -583,7 +583,8 @@ bool writeCorr(string expname,
 } // END writeCorr
     
 /* Write xFitter tables for preliminary run
- * Param  expname  Experiment name string e.g. "FASERv2","FASERv"...
+ * Param  gitbr    Git branch to fetch grids from, if not present
+ *        expname  Experiment name string e.g. "FASERv2","FASERv"...
  *        nuID     Consider neutrinos ("nu") antineutrinos ("nub") or 
  *                 both ("nochargediscrimination")
  *        origin   Write tables from "_inclusive" or "_charm" production data
@@ -594,7 +595,8 @@ bool writeCorr(string expname,
  * Returns exit status of xFtableWriter: false if bin mismatch found & tables 
  *                                      not written, else true.
  */
-bool writeDatPrel(string expname, 
+bool writeDatPrel(string gitbr,
+                  string expname, 
                   string nuID, 
                   string origin,
                   int iexp, 
@@ -628,7 +630,7 @@ bool writeDatPrel(string expname,
     grids.push_back("nu_A_1-" +expname+origin+"-XSFPFCC"+chorigin+".pineappl.lz4");
     grids.push_back("nub_A_1-"+expname+origin+"-XSFPFCC"+chorigin+".pineappl.lz4");
     dirCheck(thpath+gridsub);
-    string gitln = "https://github.com/juanrojochacon/FPF-WG1/raw/main/";
+    string gitln = "https://github.com/juanrojochacon/FPF-WG1/raw/"+gitbr+"/";
     bool dloadth = false;
     for (string grid : grids) {
         if (system(("ls "+thpath+gridsub+"/"+grid).c_str())==512) {
@@ -987,6 +989,7 @@ int main(int argc, char* argv[]) {
     else cout << "Producing tables for final runs" << endl;
     
     //BEGIN user specifications
+    string gitbr = "PDF4LHC21";  //Branch in git for fetching grids
     vector<string> PDFs = {"PDF4LHC21","EPPS21nlo_CT18Anlo_W184"};
     vector<string> expnames = {"FASERv2","FASERv","AdvSND","FLArE10","FLArE100"};
     vector<string> nuIDs = {"nu","nub","nochargediscrimination"};
@@ -1010,8 +1013,9 @@ int main(int argc, char* argv[]) {
         for (string nuID : nuIDs) {
             for (string origin : origins) {
                 if (expname=="FASERv" && origin=="_charm") continue; //Grids N/A
+                if (expname=="AdvSND" && origin=="_charm" && nuID=="nub") continue; //Pseudodata N/A
                 if (prel) {
-                    if (!writeDatPrel(expname,nuID,origin,iexp,useStat,useSyst,fred,fcorr)) return -1;
+                    if (!writeDatPrel(gitbr,expname,nuID,origin,iexp,useStat,useSyst,fred,fcorr)) return -1;
                 } else {
                     for (string PDF : PDFs) {
                         if (!writeDatFinal(PDF,expname,nuID,origin,iexp,fred,fcorr)) {

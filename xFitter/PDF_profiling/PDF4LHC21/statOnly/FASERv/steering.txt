@@ -3,7 +3,7 @@
 
 &InFiles
   ! Number of intput files
-    NInputFiles = 4
+    NInputFiles = 2
  
   ! Input files:
 
@@ -11,8 +11,6 @@
     ! FPF pseudodata
      'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/statOnly/FASERv_inclusive_nu-thexp.dat',
      'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/statOnly/FASERv_inclusive_nub-thexp.dat',
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/statOnly/FASERv_charm_nu-thexp.dat',
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/statOnly/FASERv_charm_nub-thexp.dat'
 &End
 
 &InCorr
@@ -22,8 +20,6 @@
   ! Correlation files:
   !  CorrFileNames(1) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/FASERv_inclusive_nu.cov'
   !  CorrFileNames(2) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/FASERv_inclusive_nub.cov'
-  !  CorrFileNames(3) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/FASERv_charm_nu.cov'
-  !  CorrFileNames(4) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/PDF4LHC21/FASERv_charm_nub.cov'
 &End
 
 &ReduceSyst

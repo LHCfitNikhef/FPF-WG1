@@ -1,0 +1,41 @@
+* FASER$\nu$ inclusive $\bar{\nu}_{\mu}$ CC DIS pseudodata
+&Data
+   Name = 'FASER$\nu$ inclusive $\bar{\nu}_{\mu}$'
+   IndexDataset = 144
+   Reaction = 'CC nup'
+
+   NData = 11
+   NColumn = 8
+   ColumnType = 'Flag',2*'Bin','Sigma',4*'Error'
+   ColumnName = 'binFlag','x','Q2','Sigma','stat','uncor const','uncor const','uncor const'
+   TheoryType = 'expression'
+   TermType   = 'reaction'
+   TermName   = 'P'
+   TermSource = 'PineAPPL'
+   TermInfo   = 'GridName=datafiles/lhc/fpf/neutrinoDIS/pseudodata/grids/grids-FASERv_inclusive_nub-a1/nub_A_1-FASERv_inclusive-XSFPFCC.pineappl.lz4'
+   TheorExpr  = 'P'
+
+   Percent = 4*True
+&End
+&PlotDesc
+   PlotN = 4
+   PlotDefColumn = 'Q2'
+   PlotVarColumn = 'x'
+   PlotDefValue = 3., 5., 11., 110., 1100.
+   PlotOptions(1)  = 'Experiment:FASER#nu inclusive #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 4 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(2)  = 'Experiment:FASER#nu inclusive #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 10 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(3)  = 'Experiment:FASER#nu inclusive #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 100 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(4)  = 'Experiment:FASER#nu inclusive #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 1000 @Ymin:0.01@Xlog@Ylog'
+&End
+*binFlag                  x                      Q2                   Sigma                    stat             uncor const             uncor const             uncor const
+  1              0.03612675                32.90249       0.111456164610343        26.8365718401152              0.02119335                0.390188                1.788005
+  1              0.04945883                35.13974      0.0844846920078828        23.5715186606534               0.0129134               0.0757045                 2.98622
+  1              0.06751423                39.56447      0.0661890691085918        22.3387763208585               0.0271539                0.712865                 3.94834
+  1              0.09254843                 45.5231       0.051006026370625        22.3469050925683               0.0381498                 2.54668                4.629395
+  1               0.1269145                51.96812      0.0232266710131178        23.0359593348128                0.042266                 4.77792                  5.6223
+  1               0.1741739                59.61387      0.0140853014570228        25.1548505975213              0.04640325                 7.13975                   6.759
+  1               0.1763218                220.9139     0.00772196326610792        28.0551862774961               0.0302789                  6.3147                 2.18055
+  1               0.2381481                68.46379      0.0101630735228291        29.9004756285091                0.036582                 9.08345                  8.0862
+  1               0.2417367                240.5777     0.00837851548806776        26.0479056948653               0.0310394                  7.4818                 2.71031
+  1               0.3298547                258.3952      0.0042270096000473        26.0370909199378               0.0534225                 7.27675                 3.87384
+  1               0.4448551                277.3949    0.000790245452036114        30.4614443868116              0.03612985                0.640075                 4.69387

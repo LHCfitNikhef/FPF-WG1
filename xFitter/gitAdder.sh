@@ -43,13 +43,17 @@ declare -a xFprelFiles=("constants.yaml" "parameters.yaml" "steering.txt" "run.s
 for pdf in ${pdfs[@]}; do
 
     if [[ ${pdf}=="PDF4LHC21" ]]; then
-        declare -a statOnlyDirs=("FASERv" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
-        declare -a systDirs=("FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination" )
-        declare -a fred05Dirs=("FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
+        declare -a statOnlyDirs=("FASERv" "AdvSND" "FLArE100" "FLArE10" "FPF" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
+        declare -a systDirs=("FPF" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination" )
+        declare -a fred05Dirs=("FPF" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
+        declare -a fcorr05Dirs=("FPF" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
+        declare -a fred05fcorr05Dirs=("AdvSND" "FLArE100" "FLArE10" "FPF" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
     else
-        declare -a statOnlyDirs=("FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
-        declare -a systDirs=()
+        declare -a statOnlyDirs=("AdvSND" "FLArE100" "FLArE10" "FPF" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
+        declare -a systDirs=("FPF" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
         declare -a fred05Dirs=("FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
+        declare -a fcorr05Dirs=("FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
+        declare -a fred05fcorr05Dirs=("AdvSND" "FLArE100" "FLArE10" "FPF" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
     fi
 
     git add ${profilingpath}/${pdf}/cleanFinal.sh
@@ -105,6 +109,38 @@ for pdf in ${pdfs[@]}; do
     #With statistical and systematic uncertainties (0.5 improvement factor)
     for subDir in ${fred05Dirs[@]}; do
         unctype="fred05"
+        git add ${profilingpath}/${pdf}/${unctype}/collectPlots.tex                
+        git add ${profilingpath}/${pdf}/${unctype}/run.sh
+        git add ${profilingpath}/${pdf}/${unctype}/clean.sh
+        for xFrunFile in ${xFrunFiles[@]}; do
+            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${xFrunFile}        
+            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
+            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_g_ratio.pdf
+            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_Sea_ratio.pdf
+            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
+            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
+        done
+    done
+
+    #With statistical and systematic uncertainties (0.5 correlation factor)
+    for subDir in ${fcorr05Dirs[@]}; do
+        unctype="fcorr05"
+        git add ${profilingpath}/${pdf}/${unctype}/collectPlots.tex                
+        git add ${profilingpath}/${pdf}/${unctype}/run.sh
+        git add ${profilingpath}/${pdf}/${unctype}/clean.sh
+        for xFrunFile in ${xFrunFiles[@]}; do
+            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${xFrunFile}        
+            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
+            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_g_ratio.pdf
+            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_Sea_ratio.pdf
+            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
+            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
+        done
+    done
+
+    #With statistical and systematic uncertainties (0.5 improvement & correlation factors)
+    for subDir in ${fred50fcorr05Dirs[@]}; do
+        unctype="fred05fcorr05"
         git add ${profilingpath}/${pdf}/${unctype}/collectPlots.tex                
         git add ${profilingpath}/${pdf}/${unctype}/run.sh
         git add ${profilingpath}/${pdf}/${unctype}/clean.sh

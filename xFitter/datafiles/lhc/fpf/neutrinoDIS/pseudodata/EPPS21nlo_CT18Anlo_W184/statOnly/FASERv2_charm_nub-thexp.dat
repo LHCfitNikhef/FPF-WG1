@@ -1,0 +1,56 @@
+* FASER$\nu$2 charm $\bar{\nu}_{\mu}$ CC DIS pseudodata
+&Data
+   Name = 'FASER$\nu$2 charm $\bar{\nu}_{\mu}$'
+   IndexDataset = 140
+   Reaction = 'CC nup'
+
+   NData = 26
+   NColumn = 5
+   ColumnType = 'Flag',2*'Bin','Sigma',1*'Error'
+   ColumnName = 'binFlag','x','Q2','Sigma','stat'
+   TheoryType = 'expression'
+   TermType   = 'reaction'
+   TermName   = 'P'
+   TermSource = 'PineAPPL'
+   TermInfo   = 'GridName=datafiles/lhc/fpf/neutrinoDIS/pseudodata/grids/grids-FASERv2_charm_nub-a1/nub_A_1-FASERv2_charm-XSFPFCC_charm.pineappl.lz4'
+   TheorExpr  = 'P'
+
+   Percent = 1*True
+&End
+&PlotDesc
+   PlotN = 4
+   PlotDefColumn = 'Q2'
+   PlotVarColumn = 'x'
+   PlotDefValue = 3., 5., 11., 110., 1100.
+   PlotOptions(1)  = 'Experiment:FASER#nu2 charm #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 4 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(2)  = 'Experiment:FASER#nu2 charm #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 10 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(3)  = 'Experiment:FASER#nu2 charm #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 100 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(4)  = 'Experiment:FASER#nu2 charm #bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 1000 @Ymin:0.01@Xlog@Ylog'
+&End
+*binFlag                  x                      Q2                   Sigma                    stat
+  1             0.007384477                6.583809       0.135566520529494          9.466264018388
+  1             0.007448337                18.18424       0.174992266135001        9.86179108483933
+  1              0.01009093                6.690378       0.106878052003879        8.24914718269174
+  1              0.01019669                20.73814       0.139312888324973        7.21891335694732
+  1              0.01383823                6.770906      0.0720281410058401         7.4964904728561
+  1              0.01396199                24.26331      0.0960129032270645        5.56836683659374
+  1              0.01894794                6.871934      0.0511300865144329        7.09220214888695
+  1              0.01912659                 27.9014      0.0711288115683242         4.4693383883378
+  1              0.02581723                7.362855      0.0431752170368914        7.57972055291914
+  1              0.02625389                31.59091      0.0514070919298807        3.75185280591884
+  1              0.03523171                8.296967       0.023773943334294        9.64978214978448
+  1              0.03603931                35.26657      0.0346698068241624        3.32034003581251
+  1              0.04933452                38.61565      0.0208358768755964        3.08905503020125
+  1               0.0500664                 151.468      0.0213577273096675        7.80698658816431
+  1              0.06729034                43.57782      0.0132085665958505        3.09454901690397
+  1              0.06833304                168.4193      0.0122300128574299        5.86125595274494
+  1              0.09206443                49.45351     0.00775931782978835        3.29168713166391
+  1              0.09324682                189.6843     0.00686617435165004        4.79398232203678
+  1               0.1262252                55.44017     0.00377760629248158        3.69058006210349
+  1               0.1277418                214.8837     0.00324195870963016        4.21949162485519
+  1               0.1732662                61.97094     0.00164730040949866        4.50558420604315
+  1               0.1752363                242.4296     0.00137828853001118        4.06424580774887
+  1               0.2364352                 69.4095    0.000646732902188509        6.37625247751182
+  1                0.239602                272.6704     0.00046589725622964        4.55707989761051
+  1                0.324684                294.8834     0.00013528043156874        5.94092533925153
+  1               0.4329117                311.9929    2.21459418673561e-05        9.27588031577362
