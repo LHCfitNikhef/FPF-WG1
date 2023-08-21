@@ -139,7 +139,7 @@ for pdf in ${pdfs[@]}; do
     done
 
     #With statistical and systematic uncertainties (0.5 improvement & correlation factors)
-    for subDir in ${fred50fcorr05Dirs[@]}; do
+    for subDir in ${fred05fcorr05Dirs[@]}; do
         unctype="fred05fcorr05"
         git add ${profilingpath}/${pdf}/${unctype}/collectPlots.tex                
         git add ${profilingpath}/${pdf}/${unctype}/run.sh
