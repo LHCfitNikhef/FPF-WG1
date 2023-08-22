@@ -55,13 +55,13 @@ entering the pseudo-data generation, is not displayed.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/systVar05_FASERv2_q2_10000_pdf_uv_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/systVar05_FASERv2_q2_10000_pdf_dv_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/systVar05_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/systVar05_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/systVar05_FASERv2_q2_10000_pdf_s_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/fred05fcorr05_FASERv2_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/fred05fcorr05_FASERv2_q2_10000_pdf_dv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/fred05fcorr05_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/fred05fcorr05_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/fred05fcorr05_FASERv2_q2_10000_pdf_s_ratio.pdf}
 \caption{
-The fractional uncertainties   (68\% confidence level) at $Q^2 = 10^4 \, \textrm{GeV}^2$ 
+The fractional uncertainties (68\% confidence level) at $Q^2 = 10^4 \, \textrm{GeV}^2$ 
 for the up and down valence quarks, gluon, total quark singlet, and total strangeness PDFs
 in PDF4LHC21 compared to the results of its profiling with the FASER$\nu$2
 DIS projections.
@@ -136,7 +136,8 @@ of a profiling without allowing for the possibility of outgoing lepton charge se
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/nochargediscrimination/statOnly_FASERv2_q2_10000_pdf_s_ratio.pdf}
 \caption{
 Assessing the impact that being unable to identify
-the charge of the outgoing lepton would have on the FASER$\nu$2 reach on the proton PDFs.
+the charge of the outgoing lepton would have on the FASER$\nu$2 reach on the proton PDFs, assuming only statistical 
+uncertainties in both cases.
 }
 \label{fig:profiling_nochargediscrimination}
 \end{figure}
@@ -144,22 +145,72 @@ the charge of the outgoing lepton would have on the FASER$\nu$2 reach on the pro
 
 
 %
-Fig.~\ref{fig:profiling_experiment_comparison} shows a comparison of the impact 
+Fig.~\ref{fig:profiling_FASERv2_vs_FASERv} shows a comparison of the impact 
 that FASER$\nu$2 and FASER$\nu$ pseudodata have in PDF profiling, illustrating 
 the improvement in precision obtainable with FASER$\nu$2.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/experiment_comparison/statOnly_FASERv_q2_10000_pdf_uv_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/experiment_comparison/statOnly_FASERv_q2_10000_pdf_dv_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/experiment_comparison/statOnly_FASERv_q2_10000_pdf_g_ratio.pdf}\\
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/experiment_comparison/statOnly_FASERv_q2_10000_pdf_Sea_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/experiment_comparison/statOnly_FASERv_q2_10000_pdf_s_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FASERv/statOnly_FASERv_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FASERv/statOnly_FASERv_q2_10000_pdf_dv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FASERv/statOnly_FASERv_q2_10000_pdf_g_ratio.pdf}\\
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FASERv/statOnly_FASERv_q2_10000_pdf_Sea_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FASERv/statOnly_FASERv_q2_10000_pdf_s_ratio.pdf}
 \caption{
 A comparison of the effect of FASER$\nu$ and FASER$\nu2$ pseudodata in profiling, 
 assuming only statistical uncertainties in the case of both experiments.
 }
-\label{fig:profiling_experiment_comparison}
+\label{fig:profiling_FASERv2_vs_FASERv}
+\end{figure}
+
+Besides FASER$u$2, further FPF detectors may also be used for constraining the PDFs. 
+Fig.~\ref{fig:profiling_FASERv2_vs_AdvSND} illustrates the effect of using the AdvSND pseudodata alone, 
+shown together with the previous result of using only FASER$\nu$2 pseudodata. 
+Fig.~\ref{fig:profiling_FASERv2_vs_FLArE10} shows a similar comparison, 
+but using FLArE pseudodata instead of AdvSND. 
+Most importantly however, all these datasets can be included to obtain a complete FPF result, 
+shown in Fig.~\ref{fig:profiling_FPF}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_AdvSND/statOnly_AdvSND_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_AdvSND/statOnly_AdvSND_q2_10000_pdf_dv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_AdvSND/statOnly_AdvSND_q2_10000_pdf_g_ratio.pdf}\\
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_AdvSND/statOnly_AdvSND_q2_10000_pdf_Sea_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_AdvSND/statOnly_AdvSND_q2_10000_pdf_s_ratio.pdf}
+\caption{
+A comparison of the effect of FASER$\nu2$ and AdvSND pseudodata in profiling, 
+assuming only statistical uncertainties in the case of both experiments.
+}
+\label{fig:profiling_FASERv2_vs_AdvSND}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FLArE10/statOnly_FLArE10_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FLArE10/statOnly_FLArE10_q2_10000_pdf_dv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FLArE10/statOnly_FLArE10_q2_10000_pdf_g_ratio.pdf}\\
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FLArE10/statOnly_FLArE10_q2_10000_pdf_Sea_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FLArE10/statOnly_FLArE10_q2_10000_pdf_s_ratio.pdf}
+\caption{
+A comparison of the effect of FASER$\nu2$ and FLArE pseudodata in profiling, 
+assuming only statistical uncertainties in the case of both experiments.
+}
+\label{fig:profiling_FASERv2_vs_FLArE10}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_dv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_g_ratio.pdf}\\
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_Sea_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_s_ratio.pdf}
+\caption{
+A comparison of the effect of combined  AdvSND, FASER$\nu2$ and FLArE pseudodata in profiling. 
+The results obtained assuming only statistical (statistical+systematic) uncertainties are shown in blue (red).
+}
+\label{fig:profiling_FPF}
 \end{figure}
 
 

@@ -34,52 +34,33 @@ Given that the measured event rates depend on both the proton PDFs and the nucle
 when profiling EPPS21 we also account for the Hessian sets associated to the CT18 proton
 PDF dependence.
 
-Fig.~\ref{fig:profiling_baseline_nuclear} displays the baseline result of the profiling using the EPPS21 global determination of nuclear PDFs,
+Fig.~\ref{fig:profiling_syst_nuclear} displays the baseline result of the profiling using the EPPS21 global determination of nuclear PDFs,
 specifically of the set with $A=184$ (tungsten target).
 %
 Also in this case we consider first the impact of the baseline LHC neutrino dataset, consisting
-on the FASER$\nu$2 experiment
-with statistical errors only, inclusive and charm structure functions,  and charge flavour
-separation.
+on the FASER$\nu$2 experiment inclusive and charm structure functions,  and charge flavour
+separation. 
+The bands indicate the 68\% CL uncertainties, 
+both for the case assuming statistical unertainties only, 
+as well as including an estimate for both statistical and systematic uncertainties.
+The result from using the full FPF set comprising of AdvSND, FASER$\nu$2 and FLArE pseudodata is shown in Fig.~\ref{fig:profiling_FPF_nuclear}.
 %
-The bands indicate the 68\% CL uncertainties.
 
-{\color{red}
-The effect of including correlated systematic uncertainties is shown in 
-Fig.~\ref{fig:profiling_syst_nuclear}
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_uv_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_dv_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
-\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/statOnly_FASERv2_q2_10000_pdf_s_ratio.pdf}
-\caption{The fractional uncertainties (90\% confidence level) at $Q^2 = 10^4 \, \textrm{GeV}^2$ of the EPPS21 global determination of nuclear PDFs,
-specifically of the set with $A=184$ (tungsten target), compared to the results of profiling with the FASER$\nu$2 DIS projections.
-%
-Also in this case we consider first the impact of the baseline LHC neutrino dataset, consisting
-on the FASER$\nu$2 experiment
-with statistical errors only, inclusive and charm structure functions,  and charge flavour
-separation.
-%
-}
-\label{fig:profiling_baseline_nuclear}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/systVar05_FASERv2_q2_10000_pdf_uv_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/systVar05_FASERv2_q2_10000_pdf_dv_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/systVar05_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
-\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/systVar05_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/systVar05_FASERv2_q2_10000_pdf_s_ratio.pdf}
-\caption{The results of Fig.~\ref{fig:profiling_baseline_nuclear} (red and blue), 
-compared to profiling with the statistical as well as correlated systematic uncertainties accounted for.
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/fred05fcorr05_FASERv2_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/fred05fcorr05_FASERv2_q2_10000_pdf_dv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/fred05fcorr05_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/fred05fcorr05_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive+charm_chargediscrimination/fred05fcorr05_FASERv2_q2_10000_pdf_s_ratio.pdf}
+\caption{The fractional uncertainties (68\% confidence level) at $Q^2 = 10^4 \, \textrm{GeV}^2$ of the EPPS21 global determination of nuclear PDFs (red),
+specifically of the set with $A=184$ (tungsten target), 
+compared to the results of profiling with the FASER$\nu$2 DIS projections.
+The impact of the baseline LHC neutrino dataset, 
+consisting of the FASER$\nu$2 experiment inclusive and charm structure functions and charge flavour separation,
+assuming statistical errors only (blue), 
+is compared to the case accounting for both statistical and systematic uncertainties (green).
 }
 \label{fig:profiling_syst_nuclear}
 \end{figure}
@@ -92,8 +73,7 @@ compared to profiling with the statistical as well as correlated systematic unce
 \includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
 \includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
 \includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_s_ratio.pdf}
-\caption{Comparing Fig.~\ref{fig:profiling_baseline_nuclear}, 
-to the results obtained without charm production structure functions.
+\caption{The effect of FASER$\nu$2 structure functions once charm-tagged measurements are removed, assuming only statistical uncertainties in both cases.
 }
 \label{fig:profiling_charm_nuclear}
 \end{figure}
@@ -106,12 +86,22 @@ to the results obtained without charm production structure functions.
 \includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/nochargediscrimination/statOnly_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
 \includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/nochargediscrimination/statOnly_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
 \includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/nochargediscrimination/statOnly_FASERv2_q2_10000_pdf_s_ratio.pdf}
-\caption{Comparing the results shown in Fig.~\ref{fig:profiling_baseline_nuclear} (red and blue), 
-to the results obtained without identifying the charge of the outgoing lepton (green).
+\caption{The effect of being unable to identify the charge of the outgoing lepton in the FASER$\nu$2 pseudodata, assuming only statistical uncertainties.
 }
 \label{fig:profiling_nochargediscrimination_nuclear}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-Plots EPPS21 tungsten target? To quantify size of nuclear modifications?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_dv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_g_ratio.pdf}\\
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_Sea_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_s_ratio.pdf}
+\caption{The impact of the full FPF pseudodataset in profiling using the EPPS21 global determination of nuclear PDFs (red), specifically for $A=184$. The 68\% CL uncertainty bands resulting from assuming only statistical (statistical and systematic) uncertainties are shown in blue (green).
+}
+\label{fig:profiling_FPF_nuclear}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
