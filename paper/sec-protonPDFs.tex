@@ -1,22 +1,25 @@
-\section{Constraints on proton structure}
+\section{Constraints on proton and nuclear structure}
 \label{sec:protonPDFs}
 
-By means of the strategy outlined in Sect.~\ref{sec:settings}, here we study the constraints that differential neutrino DIS
-cross-section measurements at the LHC have on the quark and gluon substructure of the proton.
+By means of the strategy outlined in Sect.~\ref{sec:dis_pseudodata}, here
+we quantify the impact on the proton PDFs
+of differential  DIS
+cross-section measurements exploiting the  LHC
+neutrino beam. 
 %
 We assume an isoscalar free-nucleon target and neglect non-isoscalarity effects and nuclear modifications,
 which are instead considered in Sect.~\ref{sec:nuclearPDFs}.
-
-We present results first for the Hessian profiling of the PDF4LHC21 combination,
-and second for the inclusion in the Monte Carlo fit NNPDF4.0.
 %
-We study the stability of the results with respect to the inclusion of systematic uncertainties
-and  charm-tagged events, as well to the availability of outgoing lepton-charge separation.
+We present results first for the Hessian profiling of the PDF4LHC21,
+and second for the Monte Carlo fit NNPDF4.0.
 %
-We compare the impact of four of the experiments considered in Sect.~\ref{sec:dis_pseudodata}:
-FASER$\nu$ and SND@LHC (LHC Run III) with FASER$\nu$2 and AdvSND (HL-LHC).
+We study the stability of the results with respect to the inclusion of systematic uncertainties,
+charm-tagged data, and lepton-charge separation.
+%
+We compare the impact of the different FPF experiments separately and also provide
+results for their combination.
 
-\subsection{Hessian profiling of PDF4LHC21}
+\subsection{Impact on PDF4LHC21}
 \label{sec:pdf4lhc21}
 
 For the Hessian profiling studies based on the procedure of Sect.~\ref{sec:profiling}, the prior PDF set is taken to
@@ -63,17 +66,16 @@ entering the pseudo-data generation, is not displayed.
 \caption{
 The fractional uncertainties (68\% confidence level) at $Q^2 = 10^4 \, \textrm{GeV}^2$ 
 for the up and down valence quarks, gluon, total quark singlet, and total strangeness PDFs
-in PDF4LHC21 compared to the results of its profiling with the FASER$\nu$2
-DIS projections.
+in the PDF4LHC21 baseline, compared to the results obtained once the FASER$\nu$2 pseudo-data is included.
 %
-In the latter case, we consider both only statistical errors and statistical and systematic
-errors added in quadrature.
+The FASER$\nu$2 impact projections are provided both without and with systematic
+uncertainties accounted for.
 %
-The FASER$\nu$2 dataset used here accounts for both  inclusive and charm-tagged structure functions
-as well as for outgoing lepton charge-separation.
+We include both  both  inclusive and charm-tagged structure functions
+and assume outgoing lepton charge-separation.
 %
 }
-\label{fig:profiling_syst}
+\label{fig:FASERnu2_baseline}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -115,17 +117,19 @@ by virtue of the contribution of the charm production structure functions.
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive-only_vs_inclusive+charm/statOnly_FASERv2_q2_10000_pdf_s_ratio.pdf}
-\caption{Assessing the impact of FASER$\nu$2 structure functions
-once charm-tagged measurements are removed, assuming only statistical 
-uncertainties in both cases.
+\caption{Same as Fig.~\ref{fig:FASERnu2_baseline} (statistical uncertainties only),
+  now showing results in the scenario where charm-tagged structure function measurements
+  are excluded from the analysis.
 }
-\label{fig:profiling_charm}
+\label{fig:FASERnu2_nocharm}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %
 Fig.~\ref{fig:profiling_nochargediscrimination} compares the baseline LHC neutrino dataset with the results
 of a profiling without allowing for the possibility of outgoing lepton charge separation.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
@@ -134,34 +138,15 @@ of a profiling without allowing for the possibility of outgoing lepton charge se
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/nochargediscrimination/statOnly_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/nochargediscrimination/statOnly_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/nochargediscrimination/statOnly_FASERv2_q2_10000_pdf_s_ratio.pdf}
-\caption{
-Assessing the impact that being unable to identify
-the charge of the outgoing lepton would have on the FASER$\nu$2 reach on the proton PDFs, assuming only statistical 
-uncertainties in both cases.
-}
-\label{fig:profiling_nochargediscrimination}
+\caption{Same as Fig.~\ref{fig:FASERnu2_baseline} (statistical uncertainties only),
+  now showing results in the scenario where the charge of the final-state charged lepton
+  cannot be identified.
+ }
+\label{fig:FASERnu2_nochargeID}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%
-Fig.~\ref{fig:profiling_FASERv2_vs_FASERv} shows a comparison of the impact 
-that FASER$\nu$2 and FASER$\nu$ pseudodata have in PDF profiling, illustrating 
-the improvement in precision obtainable with FASER$\nu$2.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FASERv/statOnly_FASERv_q2_10000_pdf_uv_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FASERv/statOnly_FASERv_q2_10000_pdf_dv_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FASERv/statOnly_FASERv_q2_10000_pdf_g_ratio.pdf}\\
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FASERv/statOnly_FASERv_q2_10000_pdf_Sea_ratio.pdf}
-\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FASERv/statOnly_FASERv_q2_10000_pdf_s_ratio.pdf}
-\caption{
-A comparison of the effect of FASER$\nu$ and FASER$\nu2$ pseudodata in profiling, 
-assuming only statistical uncertainties in the case of both experiments.
-}
-\label{fig:profiling_FASERv2_vs_FASERv}
-\end{figure}
 
 Besides FASER$u$2, further FPF detectors may also be used for constraining the PDFs. 
 Fig.~\ref{fig:profiling_FASERv2_vs_AdvSND} illustrates the effect of using the AdvSND pseudodata alone, 
@@ -171,6 +156,7 @@ but using FLArE pseudodata instead of AdvSND.
 Most importantly however, all these datasets can be included to obtain a complete FPF result, 
 shown in Fig.~\ref{fig:profiling_FPF}.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_AdvSND/statOnly_AdvSND_q2_10000_pdf_uv_ratio.pdf}
@@ -179,12 +165,14 @@ shown in Fig.~\ref{fig:profiling_FPF}.
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_AdvSND/statOnly_AdvSND_q2_10000_pdf_Sea_ratio.pdf}
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_AdvSND/statOnly_AdvSND_q2_10000_pdf_s_ratio.pdf}
 \caption{
-A comparison of the effect of FASER$\nu2$ and AdvSND pseudodata in profiling, 
-assuming only statistical uncertainties in the case of both experiments.
+  Same as  Fig.~\ref{fig:FASERnu2_baseline} (statistical uncertainties only), comparing
+  the projected PDF impact of FASER$\nu$2 with that of AdvSND.
 }
-\label{fig:profiling_FASERv2_vs_AdvSND}
+\label{fig:FASERnu2_advsnd}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FLArE10/statOnly_FLArE10_q2_10000_pdf_uv_ratio.pdf}
@@ -193,12 +181,15 @@ assuming only statistical uncertainties in the case of both experiments.
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FLArE10/statOnly_FLArE10_q2_10000_pdf_Sea_ratio.pdf}
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_vs_FLArE10/statOnly_FLArE10_q2_10000_pdf_s_ratio.pdf}
 \caption{
-A comparison of the effect of FASER$\nu2$ and FLArE pseudodata in profiling, 
-assuming only statistical uncertainties in the case of both experiments.
+  Same as Fig.~\ref{fig:FASERnu2_advsnd},
+  comparing
+  the projected PDF impact of FASER$\nu$2 with that of FLArE10. 
 }
-\label{fig:profiling_FASERv2_vs_FLArE10}
+\label{fig:FASERnu2_FLAre10}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_uv_ratio.pdf}
@@ -207,11 +198,15 @@ assuming only statistical uncertainties in the case of both experiments.
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_Sea_ratio.pdf}
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_s_ratio.pdf}
 \caption{
-A comparison of the effect of combined  AdvSND, FASER$\nu2$ and FLArE pseudodata in profiling. 
-The results obtained assuming only statistical (statistical+systematic) uncertainties are shown in blue (red).
+  Same as Fig.~\ref{fig:FASERnu2_baseline} now quantifying the
+  projected PDF impact of the three FPF experiments added simultaneously to
+  the analysis: FASER$\nu$2, AdvSND, and FLArE10. 
 }
 \label{fig:profiling_FPF}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
 
 
 \subsection{Impact on NNPDF4.0}
@@ -238,5 +233,67 @@ as in Fig.~\ref{fig:profiling_syst} now for
 %
 }
 \label{fig:nnpdf40_fasernu2_baseline}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+
+\subsection{Impact on EPPS21}
+\label{sec:nuclearPDFs}
+
+The study presented in Sect.~\ref{sec:protonPDFs} treated, from the point of view
+of PDF constraints, the neutrino scattering target
+as composed by isoscalar free-nucleons, and hence neglecting nuclear modifications
+and non-isoscalar effects.
+%
+We now revisit this analysis but accounting for the fact that the target materials in the FPF
+experiments actually
+composed by heavy nuclei, specifically by tungsten (the exception is FLArE with liquid argon, which
+is however not considered here).
+%
+Nuclear modifications associated to a tungsten target are not necessarily small as compared
+to a free isoscalar nucleon, and hence will affect the event rate predictions for
+the FPF experiments.
+%
+Turning the argument around, measurements of differential neutrino cross-sections
+on heavy nuclear targets provide direct constraints on these nuclear modifications
+without replying on assumptions on the $A$ dependence.
+
+For this exercise, the prior nuclear PDF set is taken to be EPPS21, a global determination
+that accounts for the constraints of existing datasets involving nuclei as target or projectiles.
+%
+In particular, EPPS21 already includes information from neutrino DIS on nuclear targets
+from the CHORUS and NuTeV experiments.
+%
+The application of Hessian profiling to EPPS21 follows the same strategy as that
+for PDF4LHC21, with the caveat that its Hessian error sets also include the contribution
+from the uncertainties  associated to their reference proton PDF set, in this case CT18.
+%
+Given that the measured event rates depend on both the proton PDFs and the nuclear modifications,
+when profiling EPPS21 we also account for the Hessian sets associated to the CT18 proton
+PDF dependence.
+
+Fig.~\ref{fig:profiling_syst_nuclear} displays the baseline result of the profiling using the EPPS21 global determination of nuclear PDFs,
+specifically of the set with $A=184$ (tungsten target).
+%
+Also in this case we consider first the impact of the baseline LHC neutrino dataset, consisting
+on the FASER$\nu$2 experiment inclusive and charm structure functions,  and charge flavour
+separation. 
+The bands indicate the 68\% CL uncertainties, 
+both for the case assuming statistical unertainties only, 
+as well as including an estimate for both statistical and systematic uncertainties.
+The result from using the full FPF set comprising of AdvSND, FASER$\nu$2 and FLArE pseudodata is shown in Fig.~\ref{fig:profiling_FPF_nuclear}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_dv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_g_ratio.pdf}\\
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_Sea_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_s_ratio.pdf}
+\caption{The impact of the full FPF pseudodataset in profiling using the EPPS21 global determination of nuclear PDFs (red), specifically for $A=184$. The 68\% CL uncertainty bands resulting from assuming only statistical (statistical and systematic) uncertainties are shown in blue (green).
+}
+\label{fig:profiling_FPF_nuclear}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
