@@ -37,27 +37,6 @@ We profile PDF4LHC21 with pseudodata from various LHC neutrino experiments,
 and study the stability of the results with respect to variations in the data
 and methodology inputs.
 
-Fig.~\ref{fig:FASERnu2_baseline} shows the
-fractional uncertainties (at the 68\% confidence level) at $Q^2 = 10^4 \, \textrm{GeV}^2$ 
-for the up and down valence quarks, gluon, total quark singlet, and total strangeness PDFs
-in the PDF4LHC21 baseline, compared to the results obtained once the FASER$\nu$2 pseudo-data is added
-by means of Hessian profiling.
-%
-The FASER$\nu$2 pseudo-data accounts for  both  inclusive and charm-tagged structure functions
-and assumes outgoing lepton- charge identification.
-%
-We display results for the profiling in which the experimental covariance matrix
-considers only statistical uncertainties, as well as for the scenario where
-statistical and systematic errors are added in quadrature following
-the procedure spelled out in Sect.~\ref{subsec:uncertainties}.
-%
-Note that in addition of a reduction of PDF uncertainties, the Hessian profiling
-also results in general in a shift in the PDF central values.
-%
-This shift is however arbitrary since it 
-depends on the fluctuations
-entering the pseudo-data generation, and is hence ignored in the following.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
@@ -82,23 +61,52 @@ and assume outgoing lepton charge-separation.
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Inspection of Fig.~\ref{fig:FASERnu2_baseline} reveals that measurement of DIS structure
-functions at FASER$\nu$2 impose stringent constraints on the quark PDFs, while leaving
+Fig.~\ref{fig:FASERnu2_baseline} shows the
+fractional uncertainties (at the 68\% confidence level) at $Q^2 = 10^4 \, \textrm{GeV}^2$ 
+for the up and down valence quarks, gluon, total quark singlet, and total strangeness PDFs
+in the PDF4LHC21 baseline, compared to the results obtained once the FASER$\nu$2 pseudo-data is added
+by means of Hessian profiling.
+%
+The FASER$\nu$2 pseudo-data accounts for  both  inclusive and charm-tagged structure functions
+and assumes outgoing lepton- charge identification.
+%
+We display results for the profiling in which the experimental covariance matrix
+considers only statistical uncertainties, as well as for the scenario where
+statistical and systematic errors are added in quadrature following
+the procedure spelled out in Sect.~\ref{subsec:uncertainties}.
+%
+We restrict the comparisons to the region $10^{-3}\lsim x \lsim 0.7$ covered
+by the LHC neutrino experiments as shown in Fig.~\ref{fig:Kin_nNNPDF30_EIC_FPF}.
+%
+Note that in addition of a reduction of PDF uncertainties, the Hessian profiling
+also results in general in a shift in the PDF central values.
+%
+This shift is however arbitrary since it 
+depends on the fluctuations
+entering the pseudo-data generation, and is hence ignored in the following.
+
+Inspection of Fig.~\ref{fig:FASERnu2_baseline} reveals that measurements of DIS structure
+functions at FASER$\nu$2 improve PDF uncertainties on the quark PDFs, while leaving
 the gluon PDF essentially unaffected.
 %
 As expected for a neutrino scattering experiment, its impact is most marked for
-those PDF combinations sensitive to quark flavour separation such as $u_V$, $d_V$, and
-$s^+$.
+those PDF combinations sensitive to quark flavour separation such as
+the up and down valence PDF as well as the total strangeness.
 %
-The reduction of PDF uncertainties is particularly significant for the total strangeness PDF,
-as  consequence of the inclusion of charm-tagged structure functions in the fit as we demonstrate below.
+Indeed, the reduction of PDF uncertainties is particularly significant for the latter,
+a consequence of the inclusion of charm-tagged structure functions in the fit.
 %
-Crucially, one finds that for the assumptions on the systematic uncertainties
+Given that all PDF determinations entering PDF4LHC21 already include existing neutrino
+DIS measurements, the fact that FASER$\nu$2 pseudo-data still manages to reduce PDF
+uncertainties highlights the new information provided by the LHC neutrino experiments.
+
+The  analysis of Fig.~\ref{fig:FASERnu2_baseline} also indicates that 
+ for the assumptions on the systematic uncertainties
 discussed in Sect~\ref{sec:dis_pseudodata}, the PDF sensitivity is only marginally degraded
 as compared to the case in which systematic errors are neglected.
-%
-This result is consistent with Fig.~\ref{fig:percentage_uncertainties_overview}, showing
-how in most bins systematic and statistical errors are of similar magnitude.
+
+%%
+%% Here
 
 In the following, we consider the results obtained using only statistical uncertainties as the baseline, 
 and examine stability of these results with respect to the chosen experiment and integrated luminosity, the modelling of systematic
