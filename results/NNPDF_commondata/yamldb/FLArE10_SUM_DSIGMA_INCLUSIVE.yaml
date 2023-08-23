@@ -1,0 +1,6 @@
+conversion_factor: 1.0
+operands:
+   - - FLArE10NU_SUM_DSIGMA_INCLUSIVE
+   - - FLArE10NB_SUM_DSIGMA_INCLUSIVE
+operation: 'ADD'
+target_dataset: FLArE10_SUM_DSIGMA_INCLUSIVE

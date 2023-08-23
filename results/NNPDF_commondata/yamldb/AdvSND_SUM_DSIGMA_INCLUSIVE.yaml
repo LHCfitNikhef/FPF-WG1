@@ -1,0 +1,6 @@
+conversion_factor: 1.0
+operands:
+   - - AdvSNDNU_SUM_DSIGMA_INCLUSIVE
+   - - AdvSNDNB_SUM_DSIGMA_INCLUSIVE
+operation: 'ADD'
+target_dataset: AdvSND_SUM_DSIGMA_INCLUSIVE
