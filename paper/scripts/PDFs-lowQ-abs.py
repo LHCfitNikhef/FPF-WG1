@@ -17,12 +17,12 @@ print("\n *********************************************************")
 print("      Impact of FPF data                               ")
 print(" ***********************************************************\n")
 
-q = 100 # GeV
-stringQ=r'$Q=100~{\rm GeV}$'
-filelabel='FPFall-q100gev'
+q = 1.65 # GeV
+stringQ=r'$Q=1.65~{\rm GeV}$'
+filelabel='FPFall-q1p65gev-abs'
 nx = 1000
 xmin = 1e-3
-xmax= 0.95
+xmax= 1.0
 # Reduce verbosity of LHAPDF
 lhapdf.setVerbosity(0)
 # max number of replicas
@@ -30,7 +30,7 @@ nrepmax=1000
 # number of flavours to be plotted
 nfl=6
 # Set x grid
-X = np.logspace(log(xmin),log(xmax),nx)
+X = np.linspace(xmin,xmax,nx)
 # number of pdf sets
 nset=2
 
@@ -159,25 +159,25 @@ gs = gridspec.GridSpec(nrows,ncols)
 rescolors = py.rcParams['axes.prop_cycle'].by_key()['color']
 
 # pdflabels
-labelpdf=[r"$\delta(xu_V)/xu_V$",\
-          r"$\delta(xd_V)/xd_V$",\
-          r"$\delta(xg)/xg$",\
-          r"$\delta(x\Sigma)/x\Sigma $",\
-          r"$\delta(xs^+)/xs^+$",\
-          r"$\delta(xc^+)/xc^+$"]
+labelpdf=[r"$xu_V(x,Q^2)$",\
+          r"$xd_V(x,Q^2)$",\
+          r"$xg(x,Q^2)$",\
+          r"$x\Sigma(x,Q^2)$",\
+          r"$xs^+(x,Q^2)$",\
+          r"$xc^+(x,Q^2)$"]
 
 icount=0
 for ifl in range(nfl):
 
     ax = py.subplot(gs[icount])
 
-    norm = p1_mid[ifl]
+    norm = 1.0
     
     p1=ax.plot(X,p1_mid[ifl]/norm,ls="dotted",color=rescolors[0])
     ax.fill_between(X,p1_high[ifl]/norm,p1_low[ifl]/norm,color=rescolors[0],alpha=0.2)
     p2=ax.fill(np.NaN,np.NaN,color=rescolors[0],alpha=0.2)
 
-    norm = p2_mid[ifl]
+    norm = 1.0
 
     p3=ax.plot(X,p2_mid[ifl]/norm,ls="dashed",color=rescolors[1])
     ax.fill_between(X,p2_high[ifl]/norm,p2_low[ifl]/norm,color=rescolors[1],alpha=0.2)
@@ -189,22 +189,22 @@ for ifl in range(nfl):
 
 
     #ax.set_xscale('linear')
-    ax.set_xscale('log')    
-    ax.set_xlim(0.001,0.8)
+    #ax.set_xscale('log')    
+    ax.set_xlim(0.001,0.83)
     ax.set_yscale('linear')
     ax.set_ylim(0.8,1.25)
     if(ifl==0):
-        ax.set_ylim(0.931,1.07)
+        ax.set_ylim(0,0.70)
     if(ifl==1):
-        ax.set_ylim(0.901,1.10)
+        ax.set_ylim(0,0.33)
     if(ifl==2):
-        ax.set_ylim(0.95,1.08)
+        ax.set_ylim(0,3.2)
     if(ifl==3):
-        ax.set_ylim(0.971,1.03)
+        ax.set_ylim(0,2)
     if(ifl==4):
-        ax.set_ylim(0.91,1.09)
+        ax.set_ylim(0,0.12)
     if(ifl==5):
-        ax.set_ylim(0.82,1.15)
+        ax.set_ylim(0,0.027)
      
     ax.tick_params(which='both',direction='in',labelsize=14,right=True)
     ax.tick_params(which='major',length=8)
@@ -213,15 +213,15 @@ for ifl in range(nfl):
     if(ifl>2):
         ax.set_xlabel(r'$x$',fontsize=18)
     
-    if(ifl==2):
-        ax.text(0.24,0.12,stringQ,fontsize=19,transform=ax.transAxes)
+    if(ifl==1):
+        ax.text(0.50,0.80,stringQ,fontsize=19,transform=ax.transAxes)
 
     # Add the legend
     if(ifl==2):
         ax.legend([(p1[0],p2[0]),(p3[0],p4[0])],\
                   [r"${\rm NNPDF4.0}$",\
                    r"${\rm NNPDF4.0}+{\rm FPF~(stat\,only)}$"], \
-                  frameon=True,loc=2,prop={'size':15})
+                  frameon=True,loc=1,prop={'size':15})
         
     icount = icount + 1
 
