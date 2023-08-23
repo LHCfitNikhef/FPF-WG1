@@ -337,62 +337,148 @@ our current knowledge about the quark and gluon structure of the proton.
 \subsection{Proton PDFs: impact on NNPDF4.0}
 \label{sec:nnpdf40}
 
-Selection of the {\sc\small xFitter} results for the NNPDF case.
+As discussed in Sect.~\ref{subsec:pdf_impact_assessment}, the PDF sensitivity
+studies of the FPF neutrino data based on the {\sc\small xFitter} profiling
+of PDF4LHC21 are complemented by those based on their direct inclusion
+in the NNPDF4.0 global analysis.
+%
+Here we present results for the impact of the combined FPF neutrino
+measurements on NNPDF4.0, namely the analogous study of that shown
+in Fig.~\ref{fig:FPF_combined} for PDF4LHC21.
+%
+While we have produced results also the variations studied in
+Sect.~\ref{sec:pdf4lhc21} with the NNPDF fitting methodology, the qualitative
+findings are compatible with those obtained with {\sc\small xFitter} and
+hence it is not necessary to duplicate them here.
 
-Fig.~\ref{fig:nnpdf40_fasernu2_baseline} presents the same comparison
-as in Fig.~\ref{fig:profiling_syst} now for
- the fits
- based on the NNPDF4.0 global analysis.
- %
- The impact on the PDFs found by direct inclusion of the FPF structure
- functions on the NNPDF4.0 fit is qualitatively consistent with
- that found from the Hessian profiling of PDF4LHC21.
-
+Fig.~\ref{fig:NNPDF40_baseline} displays the
+same results as Fig.~\ref{fig:FPF_combined} now in the case of the
+fits obtained with the NNPDF4.0 fitting methodology.
+%
+The baseline NNPDF4.0 NNLO analysis is compared
+with the results of the fits which include the combined FPF dataset,
+in both the statistics-only scenario and for the case
+where systematic uncertainties are also accounted for.
+%
+As in the PDF4LHC21 analysis, the bands indicate the one-sigma PDF uncertainties.
+%
+Note that we also show results for the charm PDF (bottom right panel), which
+in the NNPDF4.0 fit is also determined directly from the data entering
+the fit~\cite{Ball:2016neh}.
+%
+In this way we can determine the possible constraints that neutrino
+DIS measurements at the LHC may impose on the intrinsic charm
+content of the proton~\cite{Ball:2022qks}.
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.99\textwidth]{plots/NNPDF40-FPFall-q100gev.pdf}
 \caption{
-The fractional uncertainties (68\% confidence level) at $Q^2 = 10^4 \, \textrm{GeV}^2$ 
-for the up and down valence quarks, gluon, total quark singlet, and total strangeness PDFs
-in the PDF4LHC21 baseline, compared to the results obtained once the FASER$\nu$2 pseudo-data is included.
-%
-The FASER$\nu$2 impact projections are provided both without and with systematic
-uncertainties accounted for.
-%
-We include  both  inclusive and charm-tagged structure functions
-and assume outgoing lepton charge-separation.
+  Same as Fig.~\ref{fig:FPF_combined} for the results obtained
+  using the NNPDF4.0 fitting methodology.
+  %
+  The baseline NNPDF4.0 NNLO analysis is compared
+  with the results of the fits which include the combined FPF dataset
+  in both the statistics-only scenario and for the case
+  where systematic uncertainties are also accounted for.
+  %
+  As in the PDF4LHC21 case, the bands indicate the one-sigma PDF uncertainties.
+  %
+  We now also show results for the charm PDF (bottom right panel), which
+  in the NNPDF4.0 fit is also determined directly from the data entering the fit.
 %
 }
 \label{fig:NNPDF40_baseline}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+From  Fig.~\ref{fig:NNPDF40_baseline} one finds that
+the impact on the PDFs found by direct inclusion of the FPF structure
+functions on the NNPDF4.0 fit is qualitatively consistent with
+that found from the Hessian profiling of PDF4LHC21.
+
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.99\textwidth]{plots/NNPDF40-FPFall-q1p65gev-abs.pdf}
 \caption{
-The fractional uncertainties (68\% confidence level) at $Q^2 = 10^4 \, \textrm{GeV}^2$ 
-for the up and down valence quarks, gluon, total quark singlet, and total strangeness PDFs
-in the PDF4LHC21 baseline, compared to the results obtained once the FASER$\nu$2 pseudo-data is included.
-%
-The FASER$\nu$2 impact projections are provided both without and with systematic
-uncertainties accounted for.
-%
-We include  both  inclusive and charm-tagged structure functions
-and assume outgoing lepton charge-separation.
+  Same as Fig.~\ref{fig:NNPDF40_baseline} now for the absolute PDFs
+  at the initial parametrisation scale, $Q=1.65$ GeV, focusing
+  on the large-$x$ region.
 %
 }
 \label{fig:NNPDF40_lowQ_abs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-Add also statistical estimators, and plots of PDF uncertainty only.
+The statistical estimators for the NNPDF4.0 NNLO
+baseline fit, compared to those in the variations including
+the combined FPF dataset shown in Figs.~\ref{fig:NNPDF40_baseline}
+and~\ref{fig:NNPDF40_lowQ_abs}, are reported in Table~\ref{tab:chi2_nnpdf40_baseline}.
 %
-Maybe also reduction of PDF luminosities, as relevant for phenomenology.
+From top to bottom we indicate total $\chi^2$, average
+over replicas of the training and validation figures of merit
+$\la E_{\rm tr}\ra_{\rm rep}$ and $\la E_{\rm val}\ra_{\rm rep}$,
+average $\chi^2$ over replicas $\la \chi^2\ra_{\rm rep}$,
+$\chi^2$ for datasets grouped by process.
+%
+Note that the last row displays the $\chi^2$ obtained for the combined FPF dataset.
+
+%-----------------------------------------------------------------------
+\begin{table}[!t]
+  \centering
+  \footnotesize
+  \renewcommand{\arraystretch}{1.30}
+  \begin{tabularx}{\textwidth}{X|l|l|l|l}
+  \toprule
+  & \multirow{3}{*}{Dataset}
+  & \multicolumn{3}{c}{\bf NNPDF4.0 NNLO} \\
+  &
+  & Baseline
+  & \multicolumn{2}{c}{with combined FPF data}  \\
+  &
+  &
+  & Statistical-only  & Statistical + systematics  \\
+  \midrule
+  $\chi^2$ &  \multirow{4}{*}{Global}      &  &    &  \\
+  $\la E_{\rm tr}\ra_{\rm rep}$
+  & &    &     &   \\
+  $\la E_{\rm val}\ra_{\rm rep}$
+  & &     &     & \\
+  $\la \chi^2\ra_{\rm rep}$
+  & &      &        &   \\
+  \midrule
+  \multirow{8}{*}{$\chi^2$}
+  & DIS neutral-current                     &      &       &      \\
+  & DIS charged-current                     &     &       &      \\
+  & Drell--Yan (inclusive and one-jet) &     &       &      \\
+  & Top-quark pair production               &     &       &      \\
+  & Single-top production                   &     &       &      \\
+  & Inclusive jet production                &     &       &      \\
+  & Dijet production                        &     &       &      \\
+  & Direct photon production                 &    &       &      \\
+  & FPF (total)                 &  -  &       &      \\
+  \bottomrule
+\end{tabularx}
+\vspace{0.2cm}
+\caption{\small Statistical estimators for the NNPDF4.0 NNLO
+  baseline fit, compared to those in the variations including
+  the combined FPF dataset shown in Figs.~\ref{fig:NNPDF40_baseline}
+  and~\ref{fig:NNPDF40_lowQ_abs}.
+  %
+  From top to bottom: total $\chi^2$, average
+  over replicas of the training and validation figures of merit
+  $\la E_{\rm tr}\ra_{\rm rep}$ and $\la E_{\rm val}\ra_{\rm rep}$,
+  average $\chi^2$ over replicas $\la \chi^2\ra_{\rm rep}$,
+  $\chi^2$ for datasets grouped by process.
+  %
+  The last row displays the $\chi^2$ obtained for the combined FPF dataset.
+  \label{tab:chi2_nnpdf40_baseline}
+}
+\end{table}
+%--------------------------------------------------------------------------
+
 
 
 Fig.~\ref{fig:nnpdf40_fpf_lumis} displays a comparison of the PDF luminosities at $\sqrt{s}=13$ TeV
@@ -405,14 +491,14 @@ Fig.~\ref{fig:nnpdf40_fpf_lumis} displays a comparison of the PDF luminosities a
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.45\textwidth]{plots/qqlumi_nnpdf40_allfpf.pdf}
-\includegraphics[width=0.45\textwidth]{plots/qqbarlumi_nnpdf40_allfpf.pdf}
-\includegraphics[width=0.45\textwidth]{plots/udbarlumi_nnpdf40_allfpf.pdf}
-\includegraphics[width=0.45\textwidth]{plots/dubarlumi_nnpdf40_allfpf.pdf}
-\caption{Comparison of the PDF luminosities at $\sqrt{s}=13$ TeV
+\includegraphics[width=0.49\textwidth]{plots/qqlumi_nnpdf40_allfpf.pdf}
+\includegraphics[width=0.49\textwidth]{plots/qqbarlumi_nnpdf40_allfpf.pdf}
+\includegraphics[width=0.49\textwidth]{plots/udbarlumi_nnpdf40_allfpf.pdf}
+\includegraphics[width=0.49\textwidth]{plots/dubarlumi_nnpdf40_allfpf.pdf}
+\caption{Comparison of the PDF luminosities at $\sqrt{s}=14$ TeV
   as a function of the final-state invariant mass $m_X$ between
   the baseline NNPDF4.0 NNLO determination and its variant which includes
-  the FPF pseudo-data from the FASER$\nu$2, FLArE100, and AdvSND experiments.
+  the full set of FPF pseudo-data.
   %
   Results are shown normalised to the central value of the NNPDF4.0 baseline.
 %
