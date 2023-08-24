@@ -556,54 +556,69 @@ PDFs for the HL-LHC that will be presented in Sect.~\ref{sec:pheno}.
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+The reduction of PDF uncertainties found in  Figs.~\ref{fig:NNPDF40_baseline}
+and~\ref{fig:NNPDF40_lowQ_abs} is also visible
+for the partonic luminosities.
+%
+The improvement for the $u\bar{d}$ and $d\bar{u}$ luminosities at $Q\sim 100$ GeV
+benefits theoretical predictions for $W$ and $Z$ production at the LHC.
+%
+It is also worth noting the PDF error reduction for the quark-quark luminosity at high invariant masses,
+which will feed into searches for new heavy particles at the TeV scale.
+
 \clearpage
 
 \subsection{Nuclear PDFs: impact on EPPS21}
 \label{sec:nuclearPDFs}
 
-The study presented in Sect.~\ref{sec:protonPDFs} treated, from the point of view
+The studies presented in Sects.~\ref{sec:pdf4lhc21} (for PDF4LHC21)
+and~\ref{sec:nnpdf40} (for NNPDF4.0) treated, from the point of view
 of PDF constraints, the neutrino scattering target
-as composed by isoscalar free-nucleons, and hence neglecting nuclear modifications
+as composed by isoscalar free-nucleons.
+%
+They hence neglected both nuclear modifications
 and non-isoscalar effects.
 %
-We now revisit this analysis but accounting for the fact that the target materials in the FPF
-experiments actually
-composed by heavy nuclei, specifically by tungsten (the exception is FLArE with liquid argon, which
-is however not considered here).
+We now revisit these analyses but accounting for the fact that the target materials
+in the FASER$\nu$2 and AdvSND experiments is tungsten, with $A=184$.
 %
-Nuclear modifications associated to a tungsten target are not necessarily small as compared
-to a free isoscalar nucleon, and hence will affect the event rate predictions for
+In this exercise we do not include the FLArE structure function data,
+corresponding to a different target material (liquid argon, with $A=40$), although
+in an actual nuclear PDF fit all FPF datasets would be included simultaneously.
+%
+Nuclear modifications associated to a tungsten target, when compared
+to a free isoscalar nucleon, are not necessarily small, and  will affect the event rate predictions for
 the FPF experiments.
 %
-Turning the argument around, measurements of differential neutrino cross-sections
+This fact also implies that  measurements of differential neutrino cross-sections
 on heavy nuclear targets provide direct constraints on these nuclear modifications
-without replying on assumptions on the $A$ dependence.
+without relying on assumptions on their $A$ dependence.
 
-For this exercise, the prior nuclear PDF set is taken to be EPPS21, a global determination
+We quantify the impact of the FPF structure function measurements
+on the nuclear PDFs of tungsten by applying the same Hessian profiling
+of Sects.~\ref{sec:pdf4lhc21} to EPPS1, a global determination of nuclear PDFs
 that accounts for the constraints of existing datasets involving nuclei as target or projectiles.
 %
-In particular, EPPS21 already includes information from neutrino DIS on nuclear targets
+We note that EPPS21 already includes information from neutrino DIS on nuclear targets
 from the CHORUS and NuTeV experiments.
 %
-The application of Hessian profiling to EPPS21 follows the same strategy as that
+EPPS21 is generally in good agreement with other recent nPDF fits such as nNNPDF3.0~\cite{AbdulKhalek:2022fyi}
+and nCTEQ15HQ~\cite{Duwentaster:2022kpv}.
+%
+The application of profiling to EPPS21 follows the same strategy as that
 for PDF4LHC21, with the caveat that its Hessian error sets also include the contribution
 from the uncertainties  associated to their reference proton PDF set, in this case CT18.
 %
 Given that the measured event rates depend on both the proton PDFs and the nuclear modifications,
 when profiling EPPS21 we also account for the Hessian sets associated to the CT18 proton
 PDF dependence.
-
-Fig.~\ref{fig:profiling_syst_nuclear} displays the baseline result of the profiling using the EPPS21 global determination of nuclear PDFs,
-specifically of the set with $A=184$ (tungsten target).
 %
-Also in this case we consider first the impact of the baseline LHC neutrino dataset, consisting
-on the FASER$\nu$2 experiment inclusive and charm structure functions,  and charge flavour
-separation. 
-The bands indicate the 68\% CL uncertainties, 
-both for the case assuming statistical uncertainties only, 
-as well as including an estimate for both statistical and systematic uncertainties.
-The result from using the full FPF set comprising of AdvSND, FASER$\nu$2 and FLArE pseudodata is shown in Fig.~\ref{fig:profiling_FPF_nuclear}.
+Also relevant for the subsequent discussion, EPPS21 adopts a tolerance
+factor of $T^2 = 20$ when defining their  68\%  confidence level uncertainties,
+to be contrasted with  $T^2 = 10$ used in PDF4LHC21.
 
+
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
@@ -612,8 +627,38 @@ The result from using the full FPF set comprising of AdvSND, FASER$\nu$2 and FLA
 \includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_g_ratio.pdf}\\
 \includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_Sea_ratio.pdf}
 \includegraphics[width=0.32\textwidth]{plots/nuclear_fasernu2/FPF/fred05fcorr05_FPF_q2_10000_pdf_s_ratio.pdf}
-\caption{The impact of the full FPF pseudodataset in profiling using the EPPS21 global determination of nuclear PDFs (red), specifically for $A=184$. The 68\% CL uncertainty bands resulting from assuming only statistical (statistical and systematic) uncertainties are shown in blue (green).
+\caption{Same as Fig.~\ref{fig:FPF_combined} now corresponding to the Hessian
+ profiling of EPPS21 for a tungsten nucleus.
 }
 \label{fig:profiling_FPF_nuclear}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Fig.~\ref{fig:profiling_FPF_nuclear} displays a similar comparison as that of
+ Fig.~\ref{fig:FPF_combined}, now corresponding to the Hessian
+ profiling of EPPS21 for a tungsten nucleus.
+ %
+ The FPF dataset is in this case composed by FASER$\nu$2 and AdvSND, given that FLArE
+ adopts a different target material.
+ %
+ Also in this case of nuclear PDFs one finds that the impact of FPF structure function measurements
+ is most important for the strange PDF, and to a lesser extent for the up and down
+ valence quark PDFs.
+ %
+ For the latter, the projected impact of FPF measurements appears to be somewhat milder
+ as in the case of PDF4LHC21, specially once systematic uncertainties are taken into account.
+
+ While the main qualitative features of the nPDF profiling are consistent with the free-proton
+ case, one reason explaining the observed differences is the choice of a larger tolerance factor $T$ in EPPS21
+ as compared to PDF4HC21, which effectively reduces the impact of new data.
+ %
+ Another reason is the more restrictive functional form adopted in EPPS21 as compared
+ to the PDF sets entering PDF4LHC21, a consequence of the smaller dataset available
+ for hard scattering on nuclear targets.
+ %
+ Given that these  functional forms are fixed when applying Hessian profiling,
+ assessing the impact on a nuclear PDFs by a direct refit, as was done for NNPDF4.0,
+ may provide a more  robust estimate of the impact of FPF structure function data
+ on nuclear PDFs.
+ %
+ Additional results for the Hessian profiling of EPPS21 are presented in App.~\ref{app:nPDF_impact_appendix}.
