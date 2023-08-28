@@ -37,7 +37,7 @@ nset=2
 nrep=np.zeros(nset, dtype='int')
 nrep_max = 1000
 
-pdfset=["230309-ern-002","230812-tr-fpf-001"]
+pdfset=["230309-ern-002","230824-tr-fpf-002"]
 
 for iset in range(nset):
 

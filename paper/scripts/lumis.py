@@ -27,12 +27,14 @@ epsrel=5e-3
 #------------------------------------------------------------------------------------
 #------------------------------------------------------------------------------------
 
-nset=2
-pdfset=["210713-n3fit-001","NNPDF_FASERV2"]
-pdfsetlab=[r"${\rm Current~Data~(NNPDF4.0)}$",\
-           r"${\rm Current~Data+FASER}\nu 2$"]
-error_option=["mc_68cl","mc_68cl"]
-filelabel="-fasernu2"
+nset=3
+pdfset=["230309-ern-002","230824-tr-fpf-002","230824-jcm-fpf-001_iterated"]
+
+pdfsetlab=[r"${\rm NNPDF4.0}$",\
+                   r"${\rm NNPDF4.0}+{\rm FPF~(stat\,only)}$",\
+                   r"${\rm NNPDF4.0}+{\rm FPF~(stat+sys)}$"]
+error_option=["mc_1sigma","mc_1sigma","mc_1sigma"]
+filelabel="-FPFall"
 
 #------------------------------------------------------------------------------------
 #------------------------------------------------------------------------------------
@@ -395,102 +397,40 @@ for ilumi in range(nlumi):
     norm = abs(lumi1_mid[ilumi]+eps) # avoid crossing zero
     # print(norm)
 
+    # Only interested in relative reduction of uncertainties
+
     ax = py.subplot(gs[ilumi])
-    p1=ax.plot(mx,norm/norm,lumi1_mid[ilumi],ls="solid",color=rescolors[0])
+    p1=ax.plot(mx,norm/norm,lumi1_mid[ilumi],ls="solid",color=rescolors[0],lw=2)
     ax.fill_between(mx,lumi1_high[ilumi]/norm,lumi1_low[ilumi]/norm,color=rescolors[0],alpha=0.2)
     p2=ax.fill(np.NaN,np.NaN,color=rescolors[0],alpha=0.2)
-    p3=ax.plot(mx,lumi2_mid[ilumi]/norm,ls="dashed",color=rescolors[1])
-    ax.fill_between(mx,lumi2_high[ilumi]/norm,lumi2_low[ilumi]/norm,color=rescolors[1],alpha=0.2)
-    p4=ax.fill(np.NaN,np.NaN,color=rescolors[1],alpha=0.2)
-    if(nset>=3):
-        p5=ax.plot(mx,lumi3_mid[ilumi]/norm,ls="dashdot",color=rescolors[2])
-        ax.fill_between(mx,lumi3_high[ilumi]/norm,lumi3_low[ilumi]/norm,color=rescolors[2],alpha=0.2)
-        p6=ax.fill(np.NaN,np.NaN,color=rescolors[2],alpha=0.2)
+
+    norm = abs(lumi3_mid[ilumi]+eps) # avoid crossing zero
+    p3=ax.plot(mx,lumi3_high[ilumi]/norm,ls="dashed",color=rescolors[1])
+    p4=ax.plot(mx,lumi3_low[ilumi]/norm,ls="dashed",color=rescolors[1])
+    
+
+    norm = abs(lumi2_mid[ilumi]+eps) # avoid crossing zero
+    p5=ax.plot(mx,lumi2_high[ilumi]/norm,ls="solid",color=rescolors[2])
+    p6=ax.plot(mx,lumi2_low[ilumi]/norm,ls="solid",color=rescolors[2])
+
     ax.set_xscale('log')
     ax.set_xlim(mxmin,mxmax)
     ax.set_ylim(yranges[ilumi][0],yranges[ilumi][1])
     ax.tick_params(which='both',direction='in',labelsize=12,right=True)
     ax.tick_params(which='major',length=7)
     ax.tick_params(which='minor',length=4)
-    if(nset==2):
-        ax.legend([(p1[0],p2[0]),(p3[0],p4[0])],[pdfsetlab[0],pdfsetlab[1]], frameon=True,loc=2,prop={'size':13})
-    elif( ( ilumi ==0 or ilumi ==3) and nset==3):
-        ax.legend([(p1[0],p2[0]),(p3[0],p4[0]),(p5[0],p6[0])],\
-                  [pdfsetlab[0],pdfsetlab[1],pdfsetlab[2]], frameon=True,loc="best",prop={'size':13})
-    elif( ( ilumi ==0 or ilumi ==3) and nset==4):
-        ax.legend([(p1[0],p2[0]),(p3[0],p4[0]),(p5[0],p6[0]),(p7[0],p8[0])],\
-                  [pdfsetlab[0],pdfsetlab[1],pdfsetlab[2],pdfsetlab[3]], frameon=True,loc="best",prop={'size':13})
+    if (ilumi==0):
+        ax.legend([(p1[0],p2[0]),(p5[0]),(p3[0])],\
+                  [pdfsetlab[0],pdfsetlab[1],pdfsetlab[2]], frameon=True,loc=2,prop={'size':12})
     ax.set_xlabel(r'$m_X~({\rm GeV})$',fontsize=17)
     ax.set_ylabel(ylabel[ilumi],fontsize=19)
     if(ilumi==0):
         string=r'$\sqrt{s}=14'+'~{\\rm TeV}$'
         ax.text(0.10,0.08,string,fontsize=18,transform=ax.transAxes)
-
 
 py.tight_layout(pad=1, w_pad=1, h_pad=1.0)
 py.savefig('lumi'+filelabel+'.pdf')
 print('output plot: lumi'+filelabel+'.pdf')
-
-
-
-#---------------------------------------------------------------------
-# Plot lumis
-#---------------------------------------------------------------------
-print("\n ****** Plotting relative luminosities ******* \n")
-
-ncols,nrows=3,1
-py.figure(figsize=(ncols*5,nrows*3.5))
-gs = gridspec.GridSpec(nrows,ncols)
-rescolors = py.rcParams['axes.prop_cycle'].by_key()['color']
-
-# lumilabels
-ylabel=[r"$\mathcal{L}_{gg}/\mathcal{L}_{gg}^{(\rm ref)}$",\
-        r"$\mathcal{L}_{q\bar{q}}/\mathcal{L}_{q\bar{q}}^{(\rm ref)}$",\
-        r"$\mathcal{L}_{qq}/\mathcal{L}_{qq}^{(\rm ref)}$"]
-
-# y axis ranges
-yranges=[[0.90,1.15],[0.955,1.051],[0.90,1.15]]
-
-for ilumi in range(nlumi):
-
-    norm = abs(lumi1_mid[ilumi]+eps) # avoid crossing zero
-    # print(norm)
-
-    ax = py.subplot(gs[ilumi])
-    p1=ax.plot(mx,norm/norm,lumi1_mid[ilumi],ls="solid",color=rescolors[0])
-    ax.fill_between(mx,(norm+lumi1_error[ilumi])/norm,(norm-lumi1_error[ilumi])/norm,color=rescolors[0],alpha=0.2)
-    p2=ax.fill(np.NaN,np.NaN,color=rescolors[0],alpha=0.2)
-    p3=ax.plot(mx,norm/norm,ls="dashed",color=rescolors[1])
-    ax.fill_between(mx,(norm+lumi2_error[ilumi])/norm,(norm-lumi2_error[ilumi])/norm,color=rescolors[1],alpha=0.2)
-    p4=ax.fill(np.NaN,np.NaN,color=rescolors[1],alpha=0.2)
-    if(nset>=3):
-        p5=ax.plot(mx,lumi3_mid[ilumi]/norm,ls="dashdot",color=rescolors[2])
-        ax.fill_between(mx,lumi3_high[ilumi]/norm,lumi3_low[ilumi]/norm,color=rescolors[2],alpha=0.2)
-        p6=ax.fill(np.NaN,np.NaN,color=rescolors[2],alpha=0.2)
-    ax.set_xscale('log')
-    ax.set_xlim(mxmin,mxmax)
-    ax.set_ylim(yranges[ilumi][0],yranges[ilumi][1])
-    ax.tick_params(which='both',direction='in',labelsize=12,right=True)
-    ax.tick_params(which='major',length=7)
-    ax.tick_params(which='minor',length=4)
-    if(nset==2):
-        ax.legend([(p1[0],p2[0]),(p3[0],p4[0])],[pdfsetlab[0],pdfsetlab[1]], frameon=True,loc=2,prop={'size':13})
-    elif( ( ilumi ==0 or ilumi ==3) and nset==3):
-        ax.legend([(p1[0],p2[0]),(p3[0],p4[0]),(p5[0],p6[0])],\
-                  [pdfsetlab[0],pdfsetlab[1],pdfsetlab[2]], frameon=True,loc="best",prop={'size':13})
-    elif( ( ilumi ==0 or ilumi ==3) and nset==4):
-        ax.legend([(p1[0],p2[0]),(p3[0],p4[0]),(p5[0],p6[0]),(p7[0],p8[0])],\
-                  [pdfsetlab[0],pdfsetlab[1],pdfsetlab[2],pdfsetlab[3]], frameon=True,loc="best",prop={'size':13})
-    ax.set_xlabel(r'$m_X~({\rm GeV})$',fontsize=17)
-    ax.set_ylabel(ylabel[ilumi],fontsize=19)
-    if(ilumi==0):
-        string=r'$\sqrt{s}=14'+'~{\\rm TeV}$'
-        ax.text(0.10,0.08,string,fontsize=18,transform=ax.transAxes)
-
-
-py.tight_layout(pad=1, w_pad=1, h_pad=1.0)
-py.savefig('lumiErr'+filelabel+'.pdf')
-print('output plot: lumiErr'+filelabel+'.pdf')
 
 
 

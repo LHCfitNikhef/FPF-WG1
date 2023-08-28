@@ -32,12 +32,12 @@ nfl=6
 # Set x grid
 X = np.logspace(log(xmin),log(xmax),nx)
 # number of pdf sets
-nset=2
+nset=3
 
 nrep=np.zeros(nset, dtype='int')
 nrep_max = 1000
 
-pdfset=["230309-ern-002","230812-tr-fpf-001"]
+pdfset=["230309-ern-002","230824-tr-fpf-002","230824-jcm-fpf-001_iterated"]
 
 for iset in range(nset):
 
@@ -76,6 +76,8 @@ for iset in range(nset):
                         fit1[i-1][ifl][k] = p.xfxQ(2,x,q) - p.xfxQ(-2,x,q)
                     if(iset==1):
                         fit2[i-1][ifl][k] = p.xfxQ(2,x,q) - p.xfxQ(-2,x,q)
+                    if(iset==2):
+                        fit3[i-1][ifl][k] = p.xfxQ(2,x,q) - p.xfxQ(-2,x,q)
 
                 elif(ifl==1):
                     # dV
@@ -83,13 +85,17 @@ for iset in range(nset):
                         fit1[i-1][ifl][k] = p.xfxQ(1,x,q) - p.xfxQ(-1,x,q)
                     if(iset==1):
                         fit2[i-1][ifl][k] = p.xfxQ(1,x,q) - p.xfxQ(-1,x,q)
+                    if(iset==2):
+                        fit3[i-1][ifl][k] = p.xfxQ(1,x,q) - p.xfxQ(-1,x,q)
 
                 elif(ifl==2):
                     # gluon
                     if(iset==0):
                         fit1[i-1][ifl][k] = p.xfxQ(0,x,q)
                     if(iset==1):
-                        fit2[i-1][ifl][k] = p.xfxQ(0,x,q) 
+                        fit2[i-1][ifl][k] = p.xfxQ(0,x,q)
+                    if(iset==2):
+                        fit3[i-1][ifl][k] = p.xfxQ(0,x,q) 
 
                 elif(ifl==3):
                     # singlet
@@ -101,20 +107,28 @@ for iset in range(nset):
                         fit2[i-1][ifl][k] = p.xfxQ(2,x,q) + p.xfxQ(-2,x,q) +\
                             p.xfxQ(1,x,q) + p.xfxQ(-1,x,q) +\
                             p.xfxQ(3,x,q) + p.xfxQ(-3,x,q)
+                    if(iset==2):
+                        fit3[i-1][ifl][k] = p.xfxQ(2,x,q) + p.xfxQ(-2,x,q) +\
+                            p.xfxQ(1,x,q) + p.xfxQ(-1,x,q) +\
+                            p.xfxQ(3,x,q) + p.xfxQ(-3,x,q)
 
                 elif(ifl==4):
                     # s^+
                     if(iset==0):
                         fit1[i-1][ifl][k] = p.xfxQ(3,x,q) + p.xfxQ(-3,x,q) 
                     if(iset==1):
-                        fit2[i-1][ifl][k] = p.xfxQ(3,x,q) + p.xfxQ(-3,x,q) 
+                        fit2[i-1][ifl][k] = p.xfxQ(3,x,q) + p.xfxQ(-3,x,q)
+                    if(iset==2):
+                        fit3[i-1][ifl][k] = p.xfxQ(3,x,q) + p.xfxQ(-3,x,q)
 
                 elif(ifl==5):
                     # c^+
                     if(iset==0):
                         fit1[i-1][ifl][k] = p.xfxQ(4,x,q) + p.xfxQ(-4,x,q) 
                     if(iset==1):
-                        fit2[i-1][ifl][k] = p.xfxQ(4,x,q) + p.xfxQ(-4,x,q) 
+                        fit2[i-1][ifl][k] = p.xfxQ(4,x,q) + p.xfxQ(-4,x,q)
+                    if(iset==2):
+                        fit3[i-1][ifl][k] = p.xfxQ(4,x,q) + p.xfxQ(-4,x,q) 
                                  
                 # end run over sets 
 print("PDF arrays succesfully filled")
@@ -147,6 +161,11 @@ p2_high = np.mean(fit2,axis=0) + np.std(fit2,axis=0)
 p2_low =  np.mean(fit2,axis=0) - np.std(fit2,axis=0)
 p2_mid = np.mean(fit2,axis=0)
 p2_error = np.std(fit2,axis=0)
+
+p3_high = np.mean(fit3,axis=0) + np.std(fit3,axis=0)
+p3_low =  np.mean(fit3,axis=0) - np.std(fit3,axis=0)
+p3_mid = np.mean(fit3,axis=0)
+p3_error = np.std(fit3,axis=0)
         
 #---------------------------------------------------------------------
 # Plot absolute SFs
@@ -173,20 +192,22 @@ for ifl in range(nfl):
 
     norm = p1_mid[ifl]
     
-    p1=ax.plot(X,p1_mid[ifl]/norm,ls="dotted",color=rescolors[0])
+    p1=ax.plot(X,p1_mid[ifl]/norm,ls="dotted",color=rescolors[0],lw=2)
     ax.fill_between(X,p1_high[ifl]/norm,p1_low[ifl]/norm,color=rescolors[0],alpha=0.2)
-    p2=ax.fill(np.NaN,np.NaN,color=rescolors[0],alpha=0.2)
+    p2=ax.fill(np.NaN,np.NaN,color=rescolors[0],alpha=0.1)
+
+    norm = p3_mid[ifl]
+
+    p3=ax.plot(X,p3_high[ifl]/norm,ls="dashed",color=rescolors[1])
+    p4=ax.plot(X,p3_low[ifl]/norm,ls="dashed",color=rescolors[1])
+   
 
     norm = p2_mid[ifl]
 
-    p3=ax.plot(X,p2_mid[ifl]/norm,ls="dashed",color=rescolors[1])
-    ax.fill_between(X,p2_high[ifl]/norm,p2_low[ifl]/norm,color=rescolors[1],alpha=0.2)
-    p4=ax.fill(np.NaN,np.NaN,color=rescolors[1],alpha=0.2)
+    p5=ax.plot(X,p2_high[ifl]/norm,ls="solid",color=rescolors[2])
+    p6=ax.plot(X,p2_low[ifl]/norm,ls="solid",color=rescolors[2])
 
-#    p5=ax.plot(X,p3_mid[ifl],ls="solid")
-#    ax.fill_between(X,p3_high[ifl],p3_low[ifl],color=rescolors[2],alpha=0.2)
-#    p6=ax.fill(np.NaN,np.NaN,color=rescolors[2],alpha=0.2)
-
+   
 
     #ax.set_xscale('linear')
     ax.set_xscale('log')    
@@ -218,10 +239,11 @@ for ifl in range(nfl):
 
     # Add the legend
     if(ifl==2):
-        ax.legend([(p1[0],p2[0]),(p3[0],p4[0])],\
+        ax.legend([(p1[0],p2[0]),(p5[0]),(p3[0])],\
                   [r"${\rm NNPDF4.0}$",\
-                   r"${\rm NNPDF4.0}+{\rm FPF~(stat\,only)}$"], \
-                  frameon=True,loc=2,prop={'size':15})
+                   r"${\rm NNPDF4.0}+{\rm FPF~(stat\,only)}$",\
+                   r"${\rm NNPDF4.0}+{\rm FPF~(stat+sys)}$"], \
+                  frameon=True,loc=2,prop={'size':14})
         
     icount = icount + 1
 
