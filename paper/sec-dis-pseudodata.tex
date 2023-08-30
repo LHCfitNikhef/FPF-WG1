@@ -249,7 +249,7 @@ identification thanks to two 1 m-long dipole magnets with $B=0.57$ T
 and another 1.5 m-long magnet in front of the spectrometer. 
 %
 Neutrino detection and identification can be carried out either using the emulsion
-films of FASER$\nu$2, which have the key benefit of excellent position and angular resolution,
+films, which have the key benefit of excellent position and angular resolution,
 or instead using the electronic detector components of FASER, which enable the tagging
 of the outgoing downstream energetic muons.
 %
@@ -324,7 +324,7 @@ of final-state kinematics is assumed.
  in the hadronic calorimeter.
  %
  No information on the expected performance of the AdvSND-far detector
- is available and hence to estimate of the systematic errors
+ is available and hence no estimate of the systematic errors
  is carried out.
 
  \paragraph{FLArE.}
@@ -332,10 +332,9 @@ of final-state kinematics is assumed.
  Building upon recent progress in liquid noble gas neutrino detectors over the last decade (ICARUS, MicroBooNE, SBND, ProtoDUNE, DUNE), this experiment
  would rely on a modularized liquid argon (LAr) time projection detector.
  %
- The use of LAr as target is beneficial for final-state particle identification, track angle, and kinetic energy measurements with sub-millimeter spatial resolution in all dimensions.
+ The use of LAr as a target is beneficial for final-state particle identification, track angle, and kinetic energy measurements with sub-millimeter spatial resolution in all dimensions.
  %
- FLArE is suitable to identify high-energy neutrinos ($E_\nu \gsim 100$ GeV)  from all three generations
- while containing the events as required for kinematic reconstruction.
+% FLArE is suitable to identify high-energy neutrinos ($E_\nu \gsim 100$ GeV)  from all three generations while containing the events as required for kinematic reconstruction.
  %
  The detector will be equipped with a magnetized hadron/muon calorimeter downstream of the liquid argon volume
  for muon charge and momentum measurements.
@@ -347,7 +346,7 @@ we assume that outgoing high-energy
 muons would be measured in the FASER2 spectrometer
   situated downstream in the FPF cavern.
  
- With an expected fiducial (active) mass of 10 tons (30 tons) and length 3 m, FLArE will
+ With an expected fiducial (active) mass of 10 tons (30 tons) and length 7 m, FLArE will
  detect final-state electrons with energies $E_{e}\lsim 2~\rm{TeV}$ and
  scattering angles up to 0.5 mrad,  while final-state muons
  with $\theta_\mu \lsim 0.025$ will be recorded by FASER$\nu$2
@@ -395,8 +394,7 @@ Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}) and~(\ref{eq:antineutrino_DIS_xsec_FL}).
 Subsequently, we account for the expected reconstruction performance of the detector
 in order to estimate the systematic uncertainties associated to these event yields.
 %
-When choosing the binning of the measurement, the main criteria are
-simplicity and ensuring that Gaussian statistics holds in all bins.{\color{blue} [MF: What does this mean exactly? Binning has not been chosen based on any criteria]}
+When choosing the binning of the measurement, we simply choose log-spaced bins in $x$ and $Q^2$.
 
 In our calculation we assume the central values of the neutrino
 fluxes provided by~\cite{Kling:2021gos} and used
@@ -412,7 +410,7 @@ Differential event yields are evaluated using
   \label{eq:event_yields_calculation}
    N_{\rm ev}^{(i)} = n_T L_T\int_{Q^{2(i)}_{\rm min}}^{Q^{2(i)}_{\rm max}}\int_{x^{(i)}_{\rm min}}^{x^{(i)}_{\rm max}}\int_{E_{\rm min}^{(i)}}^{E_{\rm max}^{(i)}} \frac{dN_{\nu}(E_\nu)}{dE_{\nu}}\left(\frac{d^2\sigma(x,Q^2,E_{\nu})}{dxdQ^2}\right) {\cal A}(x,Q^2,E_{\nu}) dQ^2 dx dE_{\nu} \, ,
 \end{equation}
-with $n_T$ is the nuclear density of the target detector material, $L_T$ its
+with $n_T$ is the nucleon density of the target detector material, $L_T$ its
 length and ${\cal A}(x,Q^2,E_{\nu})$ is an acceptance factor which takes the form of a
 step function and accounts for the experimental acceptance thresholds
 in $E_\ell$, $\theta_\ell$, and $E_h$
