@@ -88,6 +88,9 @@ for pdf in ${pdfs[@]}; do
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
         done
+        if [[ ${pdf}=="PDF4LHC21" ]]; then
+            git add -A ${profilingpath}/${pdf}/${unctype}/${subDir}/${pdf}-FPF-stat-only
+        fi
     done
     
     #With statistical and systematic uncertainties
@@ -152,6 +155,9 @@ for pdf in ${pdfs[@]}; do
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
         done
+        if [[ ${pdf}=="PDF4LHC21" ]]; then
+            git add -A ${profilingpath}/${pdf}/${unctype}/${subDir}/${pdf}-FPF    
+        fi
     done
     
 done
