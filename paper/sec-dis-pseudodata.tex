@@ -64,6 +64,7 @@ Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}) and~(\ref{eq:antineutrino_DIS_xsec_FL}) ar
 the hadronic 
 invariant mass $W$  is above the resonance production threshold,
 \be
+\label{eq:W2_invmass}
 W^2 = \lp m_N^2 + Q^2 \frac{(1-x)}{x} \rp \gsim \lp 2\,{\rm GeV} \rp^2\, ,
 \ee
 and in addition here we  restrict ourselves to the DIS region with perturbative momentum
@@ -362,8 +363,8 @@ muons would be measured in the FASER2 spectrometer
  $\delta \theta_e \sim 15$ mrad of electron angular  resolution,
  and $\delta E_h \sim 30$\% for the hadronic energy.
  %
- Since muon neutrinos would be measured by FASER$\nu$2, the
- performance parameters for $E_\mu$ and $\theta_\mu$ are  taken
+ Since the muon energy from a charged-current interaction would be measured by FASER2, the
+ performance parameters for $E_\mu$ are  taken
  to be the same as those of FASER$\nu$2 as indicated
  in Table~\ref{tab:FPF_experiments}.
 
@@ -401,18 +402,18 @@ fluxes provided by~\cite{Kling:2021gos} and used
 for the FPF simulations in~\cite{Feng:2022inv}.
 %
 The bin-by-bin integrated event yields in Eq.~(\ref{eq:event_yields}) are
-obtained by convoluting the incoming neutrino fluxes, for a given geometric acceptance
+obtained by convoluting the incoming neutrino fluxes, for a given acceptance
 of the target detector, with the corresponding neutrino differential cross-sections
 Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}) and~(\ref{eq:antineutrino_DIS_xsec_FL}).
 %
-Differential event yields are evaluated using
+Binned event yields are evaluated using
 \begin{equation}
   \label{eq:event_yields_calculation}
    N_{\rm ev}^{(i)} = n_T L_T\int_{Q^{2(i)}_{\rm min}}^{Q^{2(i)}_{\rm max}}\int_{x^{(i)}_{\rm min}}^{x^{(i)}_{\rm max}}\int_{E_{\rm min}^{(i)}}^{E_{\rm max}^{(i)}} \frac{dN_{\nu}(E_\nu)}{dE_{\nu}}\left(\frac{d^2\sigma(x,Q^2,E_{\nu})}{dxdQ^2}\right) {\cal A}(x,Q^2,E_{\nu}) dQ^2 dx dE_{\nu} \, ,
 \end{equation}
 with $n_T$ is the nucleon density of the target detector material, $L_T$ its
 length and ${\cal A}(x,Q^2,E_{\nu})$ is an acceptance factor which takes the form of a
-step function and accounts for the experimental acceptance thresholds
+step function and accounts for the experimental acceptances
 in $E_\ell$, $\theta_\ell$, and $E_h$
 listed in Table~\ref{tab:FPF_experiments}.
 %
@@ -433,11 +434,6 @@ with the constraint that
 \be 
 0 < y \lp = Q^2/2m_N E_{\nu }x\rp <1 \, ,
 \ee
-and then  integrating over the bin range:
-\bea
-   && N_{\rm ev}^{(i)} \approx n_T L_T \frac{(Q^{2(i)}_{\rm max}-Q^{2(i)}_{\rm min})(x^{(i)}_{\rm max}-x^{(i)}_{\rm min})(E_{\rm max}^{(i)}-E_{\rm min}^{(i)})}{N_{\rm mc}}\times \nonumber \\&& \sum_{j=1}^{N_{\rm mc}}\lc  \frac{dN_{\nu}(E^{(j)}_\nu)}{dE_{\nu}}\left(\frac{d^2\sigma(x^{(j)},Q^{2(j)},E^{(j)}_{\nu})}{dxdQ^2}\right) {\cal A}(x^{(j)},Q^{2(j)},E_{\nu}^{(j)})\rc \, ,
-    \label{MCintegration}
-\eea
 and where $N_{\rm mc}$ is chosen to be large enough such that residual Monte Carlo integration
 uncertainties are negligible for all the bins considered.
 
@@ -492,7 +488,7 @@ Q^2 \ge 2~{\rm GeV}^2\quad{\rm and}\quad  W^2 \ge 4~{\rm GeV}^2 \, .
 \ee
 %
 The numbers in parenthesis indicate the event rates corresponding to charm
-production, for those experiments with heavy flavour tagging capabilities.
+production, assuming heavy flavour tagging capabilities.
 %
 In the case of the FLArE detector, we display results for two proposed options with fiducual masses of 10 and 100 tons respectively.
 %
@@ -507,32 +503,32 @@ detector acceptance listed in  Table~\ref{tab:FPF_experiments}.
 Several observations can be derived from Table~\ref{tab:integrated_rates}.
 %
 First, one appreciates the large increase in statistics from
-the Run III experiments to the FPF ones, with for example a factor
-250 increase in the muon neutrino yield between FASER$\nu$ and
+the Run III experiments to the FPF ones, with for example a factor of
+$\sim$ 250 increase in the muon neutrino yield between FASER$\nu$ and
 FASER$\nu$2.
 %
-Second, muon neutrino scattering dominate over the electron ones by a factor
+Second, the muon neutrino scattering yield dominates over electron neutrino scattering by a factor
 between 2 and 3, though this ratio is affected by the large theory uncertainties
 affecting forward electron neutrino production.
 %
 Third, charm production  represents around 15\% of the inclusive
 yields, with both FASER$\nu$2 and FLArE-100 resulting in around
-60k recorded charm-production events.
+40k recorded charm-production events.
 %
 Note that this result assumes charm ID is possible, and if only dimuon events can be recorded
 the yields would be reduced by a factor of 10.
 %
 Fourth, FASER$\nu$2 and FLArE-100 lead to the largest absolute
-yields of the FPF experiments, with around 500k and 600k (non-tau) neutrino DIS events respectively, with 56k and 131k
+yields of the FPF experiments, with around 260k and 340k (non-tau) neutrino DIS events respectively, with 28k and 57k
 events expected instead for AdvSND-far and FLArE-10.
 
  Fig.~\ref{fig:fasernu2_muon} displays the differential
  event yields per bin,  Eq.~(\ref{eq:event_yields}),
  for muon neutrinos detected at the
- FASER$\nu$ (Run III) and the AdvSND, FASER$\nu$2, and FLArE  (FPF) experiments,
+ FASER$\nu$ (Run III) and the AdvSND, FASER$\nu$2, and FLArE-100  (FPF) experiments,
  restricted
  to the DIS region defined by Eq.~(\ref{eq:DISconditions})
- and where only bins with $\ge 30$ events are retained.
+ and where only bins with $\ge 100$ events are retained, except for FASER$\nu$ in which bins with $\ge 10$ events are shown.
  %
  Adding up the bins in each of the panels results into the inclusive yields listed in
  Table~\ref{tab:integrated_rates}.
@@ -623,7 +619,7 @@ such that the fractional statistical uncertainty per bin is $\delta^{\rm (stat)}
 %
 Since we discard bins with less than 100 events for HL-LHC experiments (FASER$\nu$2, FLArE100, AdvSND) and
 10 events for Run III experiments (FASER$\nu$, SND), the fractional statistical uncertainty
-ranges between $\lsim 1\%$ and $\sim 18\%$, depending on the values of
+ranges between $\lsim 1\%$ and $\sim 30\%$, depending on the values of
 $x$ and $Q^2$ associated to each bin.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -673,20 +669,21 @@ For each independent source of experimental systematic uncertainty, we hence
 quantify its impact at the event yield level.
 %
 In order to determine these bin-by-bin systematic errors,
-we extend the calculation delineated in Eq.~(\ref{sec:pseudo-data_generation}) as follows.
+we extend the calculation delineated in Sec.~(\ref{sec:pseudo-data_generation}) as follows.
+%{\color{blue} [MF: I don't think this faser example is necessary]}
+%Let us consider for illustrative purposes the FASER${\nu}$2 detector.
 %
-Let us consider for illustrative purposes the FASER${\nu}$2 detector.
-%
-From Table~\ref{tab:FPF_experiments} we know that its
-acceptance parameters and reconstruction performance are specified by:
-\bea
-E_\ell \ge 100~{\rm GeV} \, , \quad \theta_\ell \le \tan^{-1}(0.025)\, , \qquad\\
-\delta E_\ell \sim 30\% \, 
- \quad \delta E_h \sim 30\% \, ,
- \quad \delta\theta_\ell \sim 0.06~{\rm mrad} \, . 
-\label{eq:fasernu2systematic_errors}
-\eea
-To translate these uncertainties in $\delta E_\ell$, $\delta E_h $,
+%From Table~\ref{tab:FPF_experiments} we know that its
+%acceptance parameters and reconstruction performance are specified by:
+%\bea
+%E_\ell \ge 100~{\rm GeV} \, , \quad \theta_\ell \le \tan^{-1}(0.025)\, , \qquad\\
+%\delta E_\ell \sim 30\% \, 
+ %\quad \delta E_h \sim 30\% \, ,
+ %\quad \delta\theta_\ell \sim 0.06~{\rm mrad} \, . 
+%\label{eq:fasernu2systematic_errors}
+%\eea
+%To translate these uncertainties in $\delta E_\ell$, $\delta E_h $,
+To translate uncertainties in $\delta E_\ell$, $\delta E_h $
 and $\delta\theta_\ell$ into systematic errors associated to the event yields, 
 \be
 \label{eq:event_yields_systematic_error}
@@ -695,34 +692,22 @@ and $\delta\theta_\ell$ into systematic errors associated to the event yields,
 \, ,\quad
 \delta_{\rm sys}^{(\theta_\ell)} N_{\rm ev}^{(i)} \, ,\qquad i=1,\ldots,N_{\rm bin} \, ,
 \ee
-we generate first a Monte Carlo set of events, denoted by $\mathcal{D}_0$,
+we first generate a Monte Carlo set of events, denoted by $\mathcal{D}_0$,
 composed by $N_{\rm mc} \approx 10^7$ samples and determine the assignment of each event
 to a point in the $\lp x,Q^2,E_{\nu}\rp$ space.
 %
-By comparing $\mathcal{D}_0$ with the total number of events as calculated by Eq.~(\ref{MCintegration}), 
-we can normalize the distribution to produce the expected yield.
+By comparing $\mathcal{D}_0$ with the number of events as calculated by Eq.~(\ref{eq:event_yields_calculation}), 
+we can normalize the sampled distribution with a factor $\hat{n}$ to reproduce the expected yield.
 
-We then produce a second Monte Carlo sample $\mathcal{D}_1$ starting from the events
-of $\mathcal{D}_0$ which are then smeared with Gaussian distributions whose variances
-are given by Eq.~(\ref{eq:fasernu2systematic_errors}).
-%
-The bin assignment of the events in the smeared sample $\mathcal{D}_1$ will
-in general be different from those of the baseline sample.
-%
-The procedure is repeated $M$ times, leading to
-$\mathcal{D}_k$ (with $k=1,\ldots,M$) smeared
-samples each one leading to a different binned event yields
-$ N_{\rm ev}^{(i)(k)}$.
+We then take each event in $\mathcal{D}_0$ and smear it with Gaussian distributions whose variances are given by Table~\ref{tab:FPF_experiments} to produce new samples $\mathcal{D}_k$. The smeared samples are subjected to the same DIS cuts from Eq.~(\ref{eq:DISconditions}) and acceptances from Table~\ref{tab:FPF_experiments}. The bin assignment of the events in the smeared samples $\mathcal{D}_k$ will in general be different from those of the baseline sample.
+
 %
 We take the uncertainty associated
 to a given systematic source, say $\delta E_\ell$,
-%to be the absolute difference between the mean number of events in this
-%bin evaluated for the smeared samples and the
-%central prediction for the number of events
-to be the mean of the absolute difference between the number of events in this bin for the smeared samples and the central prediction for the number of events
-$ N_{\rm ev}^{(i)}$ as calculated from Eq.~(\ref{MCintegration}):
+to be the mean of the absolute difference between the number of events in this bin for the smeared samples, normalized by $\hat{n}$, and the central prediction for the number of events
+$ N_{\rm ev}^{(i)}$ as calculated from Eq.~(\ref{eq:event_yields_calculation}):
 \be
-\delta_{\rm sys}^{(E_\ell)} N^{(i)} =\la \Big|  {N}^{(i)}_{E_\ell-{\rm smeared}} -N_{\rm ev}^{(i)}\Big|\ra \, .
+\delta_{\rm sys}^{(E_\ell)} N_{\rm ev}^{(i)} =\la \Big|  \hat{n}\times{N}^{(i)}_{E_\ell-{\rm smeared}} -N_{\rm ev}^{(i)}\Big|\ra \, .
 \ee
 
 Individual sources of systematic errors are treated as uncorrelated among them and hence
