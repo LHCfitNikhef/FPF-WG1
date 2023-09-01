@@ -419,13 +419,7 @@ listed in Table~\ref{tab:FPF_experiments}.
 %
 The incoming neutrino fluxes, which account for the geometry
 and neutrino pseudo-rapidity $\eta_\nu$ coverage of the considered detector,
-are encoded in $dN_{\nu}(E_\nu)/dE_{\nu}$.
-%
-%We have verified that the differential event yield calculation
-%implemented in Eq.~(\ref{eq:event_yields_calculation}), when extrapolated to a single bin
-%covering the full detector acceptance,
-%is consistent with the fiducial interaction rates presented in~\cite{Feng:2022inv} once DIS cuts are imposed and detector acceptances are accounted for.
-%
+are encoded in $dN_{\nu}(E_\nu)/dE_{\nu}$~\cite{Kling:2021gos}. The neutrino flux takes into account both the prompt component associated with neutrinos from charmed hadron decay as well as a displaced component from light hadron decays. The prompt component was simulated at NLO using \textsc{POWHEG}~\cite{Nason:2004r,Frixione:2007vwx,Alioli:2010xd} and \textsc{Pythia}~\cite{Sjostrand:2014zea, Bierlich:2022pfr} for the parton shower and hadronization, and the displaced component was simulated with \textsc{Epos-Lhc}~\cite{Pierog:2013ria}. In addition to the updated charmed hadron production, the neutrino flux from Ref.~\cite{Kling:2021gos} was also updated for $\sqrt{s} = 13.6~{\rm TeV}$.
 
 The triple integral in  Eq.~(\ref{eq:event_yields_calculation}) is evaluated numerically by means
 of Monte Carlo sampling, by generating  $N_{\rm mc}$
@@ -697,14 +691,14 @@ composed by $N_{\rm mc} \approx 10^7$ samples and determine the assignment of ea
 to a point in the $\lp x,Q^2,E_{\nu}\rp$ space.
 %
 By comparing $\mathcal{D}_0$ with the number of events as calculated by Eq.~(\ref{eq:event_yields_calculation}), 
-we can normalize the sampled distribution with a factor $\hat{n}$ to reproduce the expected yield.
+we can normalize the sampled $\mathcal{D}_0$ distribution with a factor $\hat{n}$ to reproduce the expected yield.
 
-We then take each event in $\mathcal{D}_0$ and smear it with Gaussian distributions whose variances are given by Table~\ref{tab:FPF_experiments} to produce new samples $\mathcal{D}_k$. The smeared samples are subjected to the same DIS cuts from Eq.~(\ref{eq:DISconditions}) and acceptances from Table~\ref{tab:FPF_experiments}. The bin assignment of the events in the smeared samples $\mathcal{D}_k$ will in general be different from those of the baseline sample.
+We then take each event in $\mathcal{D}_0$ and smear it with Gaussian distributions whose variances are given by Table~\ref{tab:FPF_experiments} to produce a set of new samples $\{\mathcal{D}_k\}$. The smeared events are subjected to the same DIS cuts from Eq.~(\ref{eq:DISconditions}) and acceptances from Table~\ref{tab:FPF_experiments}. The bin assignment of the events in the smeared samples $\mathcal{D}_k$ will in general be different from those of the baseline sample $\mathcal{D}_0$.
 
 %
 We take the uncertainty associated
 to a given systematic source, say $\delta E_\ell$,
-to be the mean of the absolute difference between the number of events in this bin for the smeared samples, normalized by $\hat{n}$, and the central prediction for the number of events
+to be the mean of the absolute difference between the number of events in this bin for the smeared samples $\{\mathcal{D}_k\}$ normalized by $\hat{n}$, and the central prediction for the number of events
 $ N_{\rm ev}^{(i)}$ as calculated from Eq.~(\ref{eq:event_yields_calculation}):
 \be
 \delta_{\rm sys}^{(E_\ell)} N_{\rm ev}^{(i)} =\la \Big|  \hat{n}\times{N}^{(i)}_{E_\ell-{\rm smeared}} -N_{\rm ev}^{(i)}\Big|\ra \, .
@@ -761,21 +755,12 @@ statistical uncertainties in the same bins.
 \end{figure}
 %-----------------------------------------------------------------------
 
-In general, systematic uncertainties associated to the hadronic final state energy $E_h$ appear to be the largest,
-reaching up to $\sim 90\%$ for some experiments.
+For the experiments which use a Tungsten target, the systematic uncertainties associated to the final state energies $E_\ell$, $E_h$ are comparable and are typically $\sim 10\%$ and range from $1\%$ to  ${\cal O}(1)$ across bins. The uncertainties associated with $\theta_\ell$ are typically at or well below $1\%$ for these experiments, which can be attributed to the high spatial resolution. 
 %
-We recall that measurement of $E_h$ in addition to the leptonic variables is required to
-fix the incoming neutrino energy $E_\nu$, which is different in each event unlike
-the case of neutral-current scattering.
+On the other hand, for the FLArE-10(0) experiment, uncertainties associated with the scattering angle $\theta_\ell$ dominate at $\sim 40\%$ ranging from a few percent to ${\cal O}(1)$. Whereas the uncertainties associated with final state energy resconstruction are $\sim 10\%$ and range from $\lesssim 1\%$ to $\sim 80\%$.
 %
-The uncertainties associated to the charged-lepton energy $E_\ell$ and scattering angle $\theta_\ell$ range
-between a few percent up to 20\% in the  baseline scenario listed in Table~\ref{tab:FPF_experiments}.
-%
-For the $\delta \theta_\ell$ variations, they are smallest in the large-$x$ region
-for $x\gsim 0.1$, where they are at the few-percent level typically.
-%
-Statistical uncertainties are subdominant in most of the bins and are below the 10\% level,
-specially at large-$x$ which is the kinematic region benefitting from the largest event rates.
+For all experiments, statistical uncertainties are subdominant in most of the bins and are below the 10\% level,
+especially at large-$x$ which is the kinematic region benefitting from the largest event rates.
 
 Fig.~\ref{fig:error_plot_FASERv2_14} also displays
  the integrated event yields for FASER$\nu$2 as a function of $x$ for only
@@ -787,7 +772,7 @@ Fig.~\ref{fig:error_plot_FASERv2_14} also displays
  of the small-$x$ region where statistical and systematic errors are comparable.
 
 The end result of the procedure is an estimate of statistical and systematic uncertainties
-for each bin of the measurement, from which a experimental covariance matrix can be constructed as
+for each bin of the measurement, from which an experimental covariance matrix can be constructed as
 \be
 \label{eq:covmat_definition}
    {\rm cov}_{ij} = \delta_{ij} \lp \delta^{\rm (stat)}  N_{\rm ev}^{(i)}\rp^2
