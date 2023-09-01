@@ -1,16 +1,15 @@
 \section{Deep-inelastic scattering with LHC neutrinos}
 \label{sec:dis_pseudodata}
 
-Here we describe the procedure adopted in order 
+We begin by describing the procedure adopted in order 
 to generate projections for the kinematic coverage
 and uncertainties associated to  measurements
 of neutrino-nucleus scattering at the LHC far-forward experiments.
 %
 First, we summarise the theoretical description of differential
-neutrino scattering in terms of DIS structure functions and highlight
-their PDF sensitivity.
+neutrino scattering in terms of DIS structure functions.
 %
-Second, we present an  overview of the operative and proposed
+Then, we present an  overview of the operative and proposed
 LHC far-forward neutrino detectors that
 will be considered in the present study and indicate their
 acceptance and performance parameters.
@@ -22,8 +21,8 @@ we evaluate the event yields in bins of $x$, $Q^2$,
 and $E_\nu$ and the associated statistical and systematic uncertainties.
 %
 Finally, we discuss the procedure adopted to generate pseudo-data
-for LHC neutrino deep-inelastic scattering structure functions
-and to quantify their impact
+for LHC neutrino structure functions
+and quantify their impact
  into proton and nuclear PDF determinations.
 
  \subsection{Neutrino DIS revisited}
@@ -31,7 +30,7 @@ and to quantify their impact
 
 The double-differential cross-section for neutrino-nucleus charged-current scattering,
 see~\cite{Candido:2023utz} and references therein,
-is expressed in terms of three
+can be expressed in terms of three
 independent structure functions $F_2^{\nu A}$, $xF_3^{\nu A}$
 and $F_L^{\nu A}$:
 \be
@@ -43,22 +42,22 @@ where $Y_\pm = 1 \pm (1-y)^2$ and with a counterpart expression for anti-neutrin
 \label{eq:antineutrino_DIS_xsec_FL}
 \frac{d^2\sigma^{\bar{\nu} A}(x,Q^2,y)}{dxdy} =  \frac{G_F^2s/4\pi}{\lp 1+Q^2/m_W^2\rp^2}\lc Y_+F^{\bar{\nu} A}_2(x,Q^2) - y^2F^{\bar{\nu} A}_L(x,Q^2) -Y_- xF^{\bar{\nu} A}_3(x,Q^2)\rc  \, ,
 \ee
-where $s=2m_N E_\nu$ being the neutrino-nucleon center of mass energy squared, $m_N$ is the nucleon mass,
-$E_\nu$ is the incoming neutrino energy,
+with $s=2m_N E_\nu$ being the neutrino-nucleon center of mass energy squared, $m_N$ the nucleon mass,
+$E_\nu$ the incoming neutrino energy,
 and the inelasticity is $y=Q^2/(2x m_n E_{\nu})$.
 %
-In the case of tau-neutrino scattering, tau lepton mass effects
-cannot be neglected and Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}) and~(\ref{eq:antineutrino_DIS_xsec_FL}) receive additional contributions
+In the case of tau-neutrino scattering, tau-lepton mass effects
+may be relevant and Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}) and~(\ref{eq:antineutrino_DIS_xsec_FL}) receive additional contributions
 from the $F_4$ and $F_5$ structure functions.
 %
-We neglect these effects since we focus on electron and muon neutrino scattering here.
+We neglect these effects, since here we focus on electron and muon neutrino scattering.
 
-Structure functions depend only on $x$ and $Q^2$, while the differential
+Structure functions depend on both $x$ and $Q^2$, while the differential
 cross-section depends also on the neutrino energy $E_\nu$, or alternatively
 on the inelasticity $y$.
 %
-Further, structure functions $F^{\nu A}_i(x,Q^2)$ and $F^{\bar{\nu} A}_i(x,Q^2)$ depend on the nuclear target $A$ entering
-for the neutrino scattering through the nuclear modifications of the free-nucleon PDFs.
+Further, structure functions $F^{\nu A}_i(x,Q^2)$ and $F^{\bar{\nu} A}_i(x,Q^2)$ depend on the nuclear target $A$ entering neutrino scattering through the
+nuclear modifications of the free-nucleon PDFs.
 %
 Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}) and~(\ref{eq:antineutrino_DIS_xsec_FL}) are valid provided
 the hadronic 
@@ -80,20 +79,20 @@ of process-independent PDFs $f^{(A)}_j\lp x,Q^2\rp$.
 %
 A similar expression holds for charm production~\cite{Faura:2020oom}, which requires
 accounting also for charm mass effects~\cite{Gao:2017kkx}.
- %
-We discuss below the theoretical
-settings adopted here~\cite{Candido:2022tld,yadism,Candido:2023utz,Carrazza:2020gss} to
-evaluate predictions for
-neutrino differential cross-sections and DIS structure functions,
-Eqns.~(\ref{eq:neutrino_DIS_xsec_FL}),~(\ref{eq:antineutrino_DIS_xsec_FL}), and~(\ref{eq:sfs_pqcd}),
-in the kinematics covered by LHC neutrinos.
+%
+Here the theory pipeline adopted
+to evaluate neutrino structure functions using Eq.~(\ref{eq:sfs_pqcd}) is provided by 
+{\sc\small EKO}~\cite{Candido:2022tld}
+and {\sc\small YADISM}~\cite{yadism,Candido:2023utz}
+interfaced to {\sc\small PineAPPL}~\cite{Carrazza:2020gss}
+for the generation of fast interpolation grids. 
 
 Different neutrino structure functions provide complementary sensitivity
  to the partonic flavour decompositions of nucleons.
  %
- To illustrate this sensitivity, consider a leading order  calculation
+ To illustrate this feature, consider a leading order  calculation
  for a proton target with $n_f=4$ active quark flavours,
-a diagonal CKM matrix and no heavy quark mass effects.
+a diagonal CKM matrix, and no heavy quark mass effects.
  %
  The resulting $F_2^{\nu p}$ and $xF_3^{\nu p}$ structure functions read
  \bea
@@ -140,15 +139,13 @@ a diagonal CKM matrix and no heavy quark mass effects.
  in~\cite{Ball:2020xqw,Ball:2018twp} based on
  the theory covariance matrix approach~\cite{NNPDF:2019vjt,NNPDF:2019ubu}.
 
- It is illustrative to compare the PDF dependence of neutrino structure functions
+ It is also illustrative to compare the PDF dependence of neutrino structure functions
  at LO with that of their counterparts for neutral-current
  scattering with a charged lepton projectile.
  %
  Within the same assumptions, for energies below
  the $Z$-boson mass, $Q^2 \ll m_Z^2$, the corresponding
- partonic decomposition is
- the 
- \bea
+decomposition is \bea
  F_2^{\ell p}(x,Q^2) &=& x\lp \frac{4}{9}\lc f_{u^+} + f_{c^+}\rc
  + \frac{1}{9}\lc f_{d^+} + f_{s^+}\rc\rp(x,Q^2) \, , \nonumber  \\
  F_2^{\ell n}(x,Q^2) &=& x\lp \frac{4}{9}\lc f_{d^+} + f_{c^+}\rc
@@ -156,7 +153,7 @@ a diagonal CKM matrix and no heavy quark mass effects.
  F_2^{\ell N}(x,Q^2) &=& x\lp \frac{5}{18}\lc f_{u^+} + f_{d^+}\rc
  + \frac{1}{9} f_{s^+} + \frac{4}{9} f_{c^+} \rp(x,Q^2) \, , \nonumber  
  \eea
- with $xF_3$ being negligible in this region below the $Z$-pole.
+ with $xF_3$ being negligible in this region.
  %
  Eq.~(\ref{eq:NC_chargedlepton}) showcases the complementarity between
  neutrino and charged-lepton DIS in terms of sensitivity
@@ -164,11 +161,11 @@ a diagonal CKM matrix and no heavy quark mass effects.
  %
  This implies that the best sensitivity on the quark
   flavour separation in the nucleon
- would be provided by combining neutrino DIS at
+ would be provided by combining neutrino DIS from the
  LHC far-forward experiments with measurements on charged-lepton
  DIS at the EIC.
 
- \subsection{LHC far-forward neutrino detectors}
+ \subsection{LHC far-forward neutrino experiments}
  \label{sec:neutrinoDetectors}
 
  The calculation of differential neutrino scattering event rates
@@ -179,10 +176,11 @@ a diagonal CKM matrix and no heavy quark mass effects.
  %
  Here we summarise the main features of each of the existing and future
  far-forward detectors considered, in particular concerning
- their acceptance and (expected) performance.
+ their acceptance and expected performance.
  %
- We focus on  muon neutrino scattering, which benefits from the highest rates and is less
- affected by theoretical uncertainties in the production mechanism.
+ We focus on  muon-neutrino scattering, which benefits from the highest rates and is less
+ affected by theoretical uncertainties in the production mechanism, but
+ provide also predictions for electron-neutrino scattering.
  
  The kinematics of a charged-current neutrino DIS event $(x,Q^2, E_\nu)$,
  or alternatively $(x,Q^2, y)$, are uniquely specified by the measurement of three independent
@@ -191,8 +189,8 @@ a diagonal CKM matrix and no heavy quark mass effects.
  with $E_\ell$ and $\theta_\ell$ being the energy and polar angle of the outgoing
  charged lepton and $E_h$ the total energy of the hadronic final state.
  %
- Most neutrino detectors can only access $E_h$, given that $W^2$ requires
- fully reconstructing this final state.
+ Most neutrino detectors can only access $E_h$, given that measuring the invariant mass $W^2$ requires
+ fully reconstructing the final state.
  %
  A measurement of the three kinematic variables $\lp E_\ell,\theta_\ell, E_h \rp$ then fixes the DIS kinematics as:
  \bea
@@ -200,11 +198,13 @@ a diagonal CKM matrix and no heavy quark mass effects.
  Q^2 &=& 4 ( E_h + E_\ell) E_\ell \sin^2 \lp \theta_\ell/2\rp \, ,  \label{eq:dis_kinematic_mapping}\\
  x&=& \frac{4 ( E_h + E_\ell) E_\ell \sin^2 \lp \theta_\ell/2\rp}{2m_N E_h} \, .\nonumber
  \eea
- These relations also indicate how systematic uncertainties affecting the measurement
+ These relations also reflect how systematic uncertainties affecting the measurement
  of $\lp E_\ell,\theta_\ell, E_h \rp$ translate into uncertainties in the
  reconstructed values of  $(x,Q^2, E_\nu)$ modifying the expected
  binned event rates.
 
+ \paragraph{Detector overview.}
+ %
  Table~\ref{tab:FPF_experiments} summarises,
  for each of the far-forward LHC neutrino experiments considered in this
  work,
@@ -213,10 +213,10 @@ a diagonal CKM matrix and no heavy quark mass effects.
   the acceptance for the charged lepton and hadronic final state,
   and the expected reconstruction performance.
   %
-  We consider separately acceptance and performance for electron and muon
-  neutrinos.
+  We consider separately acceptance and performance for electron-neutrinos and
+  muon-neutrinos.
   %
-  For these projections we assume that FASER$\nu$ and SND@LHC acquire data
+  In these projections we assume that FASER$\nu$ and SND@LHC acquire data
   for Run III ($\mathcal{L}=150$ fb$^{-1}$), while FASER$\nu$2,
   AdvSND, and FLArE take data
   for the complete HL-LHC period  ($\mathcal{L}=3$ ab$^{-1}$).
@@ -224,7 +224,7 @@ a diagonal CKM matrix and no heavy quark mass effects.
    In the case of FLArE, we consider projections for both
   for 10 ton and 100 fiducial volume detectors.
   %
-  In the following we provide more details about the information collected in
+  In the following, we provide details about the information collected in
   Table~\ref{tab:FPF_experiments}.
 
 %---------------------------------------------------
@@ -245,7 +245,7 @@ Neutrino scattering takes place in the FASER$\nu$
 detector, composed by interleaved emulsion and tungsten plates and
 adding up to a mass of 1.1 tons with a fiducial volume of $20~\rm{cm} \times 25~\rm{cm} \times 80~{\rm cm}$.
 %
-The FASER apparatus is immersed in a magnetic field  providing charged lepton
+The FASER apparatus is immersed in a magnetic field,  providing charged-lepton
 identification thanks to two 1 m-long dipole magnets with $B=0.57$ T
 and another 1.5 m-long magnet in front of the spectrometer. 
 %
@@ -282,7 +282,7 @@ The electromagnetic
 
 \paragraph{FASER$\nu$2.}
 %
-A proposed 20-ton neutrino experiment located on the LOS
+This is proposed 20-ton neutrino experiment located on the LOS
 of the LHC neutrino beam to be installed in the FPF cavern.
 %
 It is based on the same technology as FASER$\nu$, and hence
@@ -298,16 +298,16 @@ The combination of FASER$\nu$2  with the nearby FASER2 detector, equipped with a
 %
 Given that FASER$\nu$2 is based on the same detector technology
 as its predecessor, the same performance in terms of reconstruction
-of final-state kinematics is assumed.
+of final-state kinematics can be assumed.
 
  \paragraph{AdvSND.}
  %
  This proposed experiment consists actually on  two detectors, a far-detector to be installed
  at the FPF with a coverage in neutrino pseudorapidity of $7.2 \le \eta_\nu \le 8.4$
- (hence off-LOS, same as SND@LHC) and a near detector installed somewhere else in LHC
+ (hence off-LOS, same as SND@LHC) and a near detector installed somewhere else in the LHC
  complex and covering the range $4 \le \eta_\nu \le 5$.
  %
- In the following we focus on the AdvSND-far detector.
+Here we focus on the former.
  %
  It would be
  composed (from upstream to downstream) by a target region
@@ -330,43 +330,41 @@ of final-state kinematics is assumed.
 
  \paragraph{FLArE.}
  %
- Building upon recent progress in liquid noble gas neutrino detectors over the last decade (ICARUS, MicroBooNE, SBND, ProtoDUNE, DUNE), this experiment
+ Building upon recent progress in liquid noble gas neutrino detectors over the last decade (ICARUS, MicroBooNE, SBND, DUNE), this experiment
  would rely on a modularized liquid argon (LAr) time projection detector.
  %
  The use of LAr as a target is beneficial for final-state particle identification, track angle, and kinetic energy measurements with sub-millimeter spatial resolution in all dimensions.
- %
-% FLArE is suitable to identify high-energy neutrinos ($E_\nu \gsim 100$ GeV)  from all three generations while containing the events as required for kinematic reconstruction.
  %
  The detector will be equipped with a magnetized hadron/muon calorimeter downstream of the liquid argon volume
  for muon charge and momentum measurements.
  %
  While muon neutrinos with energy $E_\nu \gsim 2$ GeV would not be fully
  contained in the  FLArE detector,
-for the projections presented in this work
+for our projections
 we assume that outgoing high-energy
 muons would be measured in the FASER2 spectrometer
   situated downstream in the FPF cavern.
  
- With an expected fiducial (active) mass of 10 tons (30 tons) and length 7 m, FLArE will
+ With an expected fiducial (active) mass of 10 tons (30 tons) and a length of 7 m, FLArE will
  detect final-state electrons with energies $E_{e}\lsim 2~\rm{TeV}$ and
  scattering angles up to 0.5 mrad,  while final-state muons
  with $\theta_\mu \lsim 0.025$ will be recorded by FASER$\nu$2
  downstream in the FPF cavern.
  %
- We consider projections both for 10 ton (FLArE-10) and 100 ton (FLArE-100) fiducial volume detectors.
+ Here we present  projections for this baseline design of the experiment, FLArE10,
+ as well as for a potential larger variant based on a fiducial mass of 100 ton, which
+ is known as FLArE100.
  %
  Reconstruction of the total energy of the hadronic final state will also
  possible. 
  %
  In terms of performance, the targets
- are $\delta E_\mu \sim$5\% of electron energy resolution,
+ are $\delta E_\mu \sim5\%$ of electron energy resolution,
  $\delta \theta_e \sim 15$ mrad of electron angular  resolution,
  and $\delta E_h \sim 30$\% for the hadronic energy.
  %
- Since the muon energy from a charged-current interaction would be measured by FASER2, the
- performance parameters for $E_\mu$ are  taken
- to be the same as those of FASER$\nu$2 as indicated
- in Table~\ref{tab:FPF_experiments}.
+ Since the muon energy from a charged-current interaction would be measured by FASER$\nu$2, the
+ performance parameters for $E_\mu$ are taken to be the same.
 
 \subsection{Differential scattering event rates}
 \label{sec:pseudo-data_generation}
@@ -419,7 +417,14 @@ listed in Table~\ref{tab:FPF_experiments}.
 %
 The incoming neutrino fluxes, which account for the geometry
 and neutrino pseudo-rapidity $\eta_\nu$ coverage of the considered detector,
-are encoded in $dN_{\nu}(E_\nu)/dE_{\nu}$~\cite{Kling:2021gos}. The neutrino flux takes into account both the prompt component associated with neutrinos from charmed hadron decay as well as a displaced component from light hadron decays. The prompt component was simulated at NLO using \textsc{POWHEG}~\cite{Nason:2004r,Frixione:2007vwx,Alioli:2010xd} and \textsc{Pythia}~\cite{Sjostrand:2014zea, Bierlich:2022pfr} for the parton shower and hadronization, and the displaced component was simulated with \textsc{Epos-Lhc}~\cite{Pierog:2013ria}. In addition to the updated charmed hadron production, the neutrino flux from Ref.~\cite{Kling:2021gos} was also updated for $\sqrt{s} = 13.6~{\rm TeV}$.
+are encoded in $dN_{\nu}(E_\nu)/dE_{\nu}$~\cite{Kling:2021gos}.
+%
+The neutrino flux takes into account both the prompt component associated with neutrinos from charmed hadron decay as well as a displaced component from light hadron decays.
+%
+The prompt component was simulated at NLO using {\sc\small POWHEG}~\cite{Nason:2004r,Frixione:2007vwx,Alioli:2010xd} and {\sc\small Pythia8}~\cite{Sjostrand:2014zea, Bierlich:2022pfr} for the parton shower and hadronization, and the displaced component was simulated with {\sc\small EPOS-LHC}~\cite{Pierog:2013ria}.
+%
+In addition to the updated charmed hadron production,
+the neutrino flux from Ref.~\cite{Kling:2021gos} was also updated for $\sqrt{s} = 13.6~{\rm TeV}$.
 
 The triple integral in  Eq.~(\ref{eq:event_yields_calculation}) is evaluated numerically by means
 of Monte Carlo sampling, by generating  $N_{\rm mc}$
@@ -664,19 +669,7 @@ quantify its impact at the event yield level.
 %
 In order to determine these bin-by-bin systematic errors,
 we extend the calculation delineated in Sec.~(\ref{sec:pseudo-data_generation}) as follows.
-%{\color{blue} [MF: I don't think this faser example is necessary]}
-%Let us consider for illustrative purposes the FASER${\nu}$2 detector.
 %
-%From Table~\ref{tab:FPF_experiments} we know that its
-%acceptance parameters and reconstruction performance are specified by:
-%\bea
-%E_\ell \ge 100~{\rm GeV} \, , \quad \theta_\ell \le \tan^{-1}(0.025)\, , \qquad\\
-%\delta E_\ell \sim 30\% \, 
- %\quad \delta E_h \sim 30\% \, ,
- %\quad \delta\theta_\ell \sim 0.06~{\rm mrad} \, . 
-%\label{eq:fasernu2systematic_errors}
-%\eea
-%To translate these uncertainties in $\delta E_\ell$, $\delta E_h $,
 To translate uncertainties in $\delta E_\ell$, $\delta E_h $
 and $\delta\theta_\ell$ into systematic errors associated to the event yields, 
 \be
@@ -693,7 +686,11 @@ to a point in the $\lp x,Q^2,E_{\nu}\rp$ space.
 By comparing $\mathcal{D}_0$ with the number of events as calculated by Eq.~(\ref{eq:event_yields_calculation}), 
 we can normalize the sampled $\mathcal{D}_0$ distribution with a factor $\hat{n}$ to reproduce the expected yield.
 
-We then take each event in $\mathcal{D}_0$ and smear it with Gaussian distributions whose variances are given by Table~\ref{tab:FPF_experiments} to produce a set of new samples $\{\mathcal{D}_k\}$. The smeared events are subjected to the same DIS cuts from Eq.~(\ref{eq:DISconditions}) and acceptances from Table~\ref{tab:FPF_experiments}. The bin assignment of the events in the smeared samples $\mathcal{D}_k$ will in general be different from those of the baseline sample $\mathcal{D}_0$.
+We then take each event in $\mathcal{D}_0$ and smear it with Gaussian distributions whose variances are given by Table~\ref{tab:FPF_experiments} to produce a set of new samples $\{\mathcal{D}_k\}$.
+%
+The smeared events are subjected to the same DIS cuts from Eq.~(\ref{eq:DISconditions}) and acceptances from Table~\ref{tab:FPF_experiments}.
+%
+The bin assignment of the events in the smeared samples $\mathcal{D}_k$ will in general be different from those of the baseline sample $\mathcal{D}_0$.
 
 %
 We take the uncertainty associated
@@ -738,7 +735,7 @@ statistical uncertainties in the same bins.
     muon-neutrino scattering cross-section at FASER$\nu$2.
     %
     We consider the systematic errors
-    associated to the charged lepton energy $E_\ell$ and scattering angle $\theta_\ell$
+    associated to the charged-lepton energy $E_\ell$ and scattering angle $\theta_\ell$
     and to the hadronic energy $E_h$.
     %
     The size of each source of systematic error is plotted as a function
@@ -757,7 +754,7 @@ statistical uncertainties in the same bins.
 
 For the experiments which use a Tungsten target, the systematic uncertainties associated to the final state energies $E_\ell$, $E_h$ are comparable and are typically $\sim 10\%$ and range from $1\%$ to  ${\cal O}(1)$ across bins. The uncertainties associated with $\theta_\ell$ are typically at or well below $1\%$ for these experiments, which can be attributed to the high spatial resolution. 
 %
-On the other hand, for the FLArE-10(0) experiment, uncertainties associated with the scattering angle $\theta_\ell$ dominate at $\sim 40\%$ ranging from a few percent to ${\cal O}(1)$. Whereas the uncertainties associated with final state energy resconstruction are $\sim 10\%$ and range from $\lesssim 1\%$ to $\sim 80\%$.
+On the other hand, for the FLArE-10(0) experiment, uncertainties associated with the scattering angle $\theta_\ell$ dominate at $\sim 40\%$ ranging from a few percent to ${\cal O}(1)$. Whereas the uncertainties associated with final state energy reconstruction are $\sim 10\%$ and range from $\lesssim 1\%$ to $\sim 80\%$.
 %
 For all experiments, statistical uncertainties are subdominant in most of the bins and are below the 10\% level,
 especially at large-$x$ which is the kinematic region benefitting from the largest event rates.
