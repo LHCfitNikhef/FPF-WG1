@@ -685,21 +685,17 @@ First, we generate a Monte Carlo set of events, denoted by $\mathcal{D}_0$,
 composed by $N_{\rm mc} \approx 10^7$ samples and determine the assignment of each event
 to a point in the $\lp x,Q^2,E_{\nu}\rp$ space.
 %
-By comparing $\mathcal{D}_0$ with the number of events as calculated by Eq.~(\ref{eq:event_yields_calculation}), 
-we can normalize the sampled $\mathcal{D}_0$ distribution with a factor $\hat{f}$ to reproduce the expected yield.
-%
 We then take each event in $\mathcal{D}_0$ and smear it with Gaussian distributions whose variances are given by Table~\ref{tab:FPF_experiments} to produce a set of new samples $\{\mathcal{D}_k\}$.
 %
 The smeared events are subjected to the same DIS cuts from Eq.~(\ref{eq:DISconditions}) and acceptances from Table~\ref{tab:FPF_experiments}.
 %
 The bin assignment of the events in the smeared samples $\mathcal{D}_k$ will in general be different from those of the baseline sample $\mathcal{D}_0$.
 
-We define the uncertainty associated
-to a given systematic source, say $\delta E_\ell$,
-to be the mean of the absolute difference between the number of events in this bin for the smeared samples $\{\mathcal{D}_k\}$ normalized to $\hat{f}$  and the central prediction for the number of events
-$N_{\rm ev}^{(i)}$ as calculated from Eq.~(\ref{eq:event_yields_calculation}):
+We define the fractional uncertainty associated
+to a given systematic source, say $\delta E_\ell$, for bin $i$
+to be the mean of the absolute difference between the number of events in this bin for the smeared samples $\{\mathcal{D}_k\}$  and the number of events in this bin for ${\mathcal{D}_0}$:
 \be
-\delta_{\rm sys}^{(E_\ell)} N_{\rm ev}^{(i)} =\la \Big|  \hat{f} {N}^{(i)}_{E_\ell-{\rm smeared}} -N_{\rm ev}^{(i)}\Big|\ra \, .
+\delta_{\rm sys}^{(E_\ell)} =\la \left|  \frac{{N}^{(i)}_{E_\ell-{\rm smeared},k} -N_0^{(i)}}{N_0^{(i)}}\right|\ra \, .
 \ee
 Individual sources of systematic errors are treated as uncorrelated among them, and hence
 by producing samples where only one source of error is varied at a time
