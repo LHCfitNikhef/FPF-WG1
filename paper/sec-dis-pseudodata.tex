@@ -668,14 +668,10 @@ mis-classified into a different bin in the presence of systematic
 shifts associated to the lepton energy $E_\ell$, lepton scattering angle $\theta_\ell$, and
 hadronic energy $E_h$, as indicated by  Eq.~(\ref{eq:dis_kinematic_mapping}).
 
-For each independent source of experimental systematic uncertainty, we 
-quantify its impact at the event yield level.
-%
-In order to determine these systematic errors,
-we extend the calculation delineated in Sec.~(\ref{sec:pseudo-data_generation}) as follows.
-%
-To translate uncertainties in $\delta E_\ell$, $\delta E_h $
-and $\delta\theta_\ell$ into systematic errors associated to the event yields, 
+For each independent source of systematic uncertainty, which in this analysis
+consists of  $\delta E_\ell$, $\delta E_h $,
+and $\delta\theta_\ell$, we 
+quantify its impact at the event yield level
 \be
 \label{eq:event_yields_systematic_error}
 \delta_{\rm sys}^{(E_\ell)} N_{\rm ev}^{(i)} \, ,\quad
@@ -683,29 +679,29 @@ and $\delta\theta_\ell$ into systematic errors associated to the event yields,
 \, ,\quad
 \delta_{\rm sys}^{(\theta_\ell)} N_{\rm ev}^{(i)} \, ,\qquad i=1,\ldots,N_{\rm bin} \, ,
 \ee
-we first generate a Monte Carlo set of events, denoted by $\mathcal{D}_0$,
+by extending the calculation delineated in Sect.~(\ref{sec:pseudo-data_generation}).
+%
+First, we generate a Monte Carlo set of events, denoted by $\mathcal{D}_0$,
 composed by $N_{\rm mc} \approx 10^7$ samples and determine the assignment of each event
 to a point in the $\lp x,Q^2,E_{\nu}\rp$ space.
 %
 By comparing $\mathcal{D}_0$ with the number of events as calculated by Eq.~(\ref{eq:event_yields_calculation}), 
-we can normalize the sampled $\mathcal{D}_0$ distribution with a factor $\hat{n}$ to reproduce the expected yield.
-
+we can normalize the sampled $\mathcal{D}_0$ distribution with a factor $\hat{f}$ to reproduce the expected yield.
+%
 We then take each event in $\mathcal{D}_0$ and smear it with Gaussian distributions whose variances are given by Table~\ref{tab:FPF_experiments} to produce a set of new samples $\{\mathcal{D}_k\}$.
 %
 The smeared events are subjected to the same DIS cuts from Eq.~(\ref{eq:DISconditions}) and acceptances from Table~\ref{tab:FPF_experiments}.
 %
 The bin assignment of the events in the smeared samples $\mathcal{D}_k$ will in general be different from those of the baseline sample $\mathcal{D}_0$.
 
-%
-We take the uncertainty associated
+We define the uncertainty associated
 to a given systematic source, say $\delta E_\ell$,
-to be the mean of the absolute difference between the number of events in this bin for the smeared samples $\{\mathcal{D}_k\}$ normalized by $\hat{n}$, and the central prediction for the number of events
-$ N_{\rm ev}^{(i)}$ as calculated from Eq.~(\ref{eq:event_yields_calculation}):
+to be the mean of the absolute difference between the number of events in this bin for the smeared samples $\{\mathcal{D}_k\}$ normalized to $\hat{f}$  and the central prediction for the number of events
+$N_{\rm ev}^{(i)}$ as calculated from Eq.~(\ref{eq:event_yields_calculation}):
 \be
-\delta_{\rm sys}^{(E_\ell)} N_{\rm ev}^{(i)} =\la \Big|  \hat{n}\times{N}^{(i)}_{E_\ell-{\rm smeared}} -N_{\rm ev}^{(i)}\Big|\ra \, .
+\delta_{\rm sys}^{(E_\ell)} N_{\rm ev}^{(i)} =\la \Big|  \hat{f} {N}^{(i)}_{E_\ell-{\rm smeared}} -N_{\rm ev}^{(i)}\Big|\ra \, .
 \ee
-
-Individual sources of systematic errors are treated as uncorrelated among them and hence
+Individual sources of systematic errors are treated as uncorrelated among them, and hence
 by producing samples where only one source of error is varied at a time
 we can determine the systematic errors, Eq.~(\ref{eq:event_yields_systematic_error}), in each bin
 for each of the considered experiments.
@@ -756,9 +752,14 @@ statistical uncertainties in the same bins.
 \end{figure}
 %-----------------------------------------------------------------------
 
-For the experiments which use a Tungsten target, the systematic uncertainties associated to the final state energies $E_\ell$, $E_h$ are comparable and are typically $\sim 10\%$ and range from $1\%$ to  ${\cal O}(1)$ across bins. The uncertainties associated with $\theta_\ell$ are typically at or well below $1\%$ for these experiments, which can be attributed to the high spatial resolution. 
+In the case of FASER$\nu$2, the systematic uncertainties associated to the final state energies $E_\ell$ and $E_h$ are comparable and are typically at the $10\%$ level, ranging
+from $1\%$ to  ${\cal O}(1)$ across bins. The uncertainties associated with $\theta_\ell$ are typically at or well below $1\%$ for these experiments, which can be attributed to their good spatial
+resolution. 
 %
-On the other hand, for the FLArE10(0) experiment, uncertainties associated with the scattering angle $\theta_\ell$ dominate at $\sim 40\%$ ranging from a few percent to ${\cal O}(1)$. Whereas the uncertainties associated with final state energy reconstruction are $\sim 10\%$ and range from $\lesssim 1\%$ to $\sim 80\%$.
+On the other hand, for the FLArE10(100) experiment, uncertainties associated with the scattering angle $\theta_\ell$ dominate, being at the $ 40\%$ level and ranging from a few percent to ${\cal O}(1)$,
+whereas the uncertainties associated with final-state energy reconstruction
+are smaller, around the $10\%$ level, and range from $\lesssim 1\%$ to up to around $80\%$
+depending on the bin.
 %
 For all experiments, statistical uncertainties are subdominant in most of the bins and are below the 10\% level,
 especially at large-$x$ which is the kinematic region benefitting from the largest event rates.
@@ -770,9 +771,9 @@ Fig.~\ref{fig:error_plot_FASERv2_14} also displays
  %
  For most of the bins, for the baseline performance assumptions the total systematic
  uncertainty dominates over the statistical uncertainties, with the possible exception
- of the small-$x$ region where statistical and systematic errors are comparable.
+ of the small-$x$ region where statistical and systematic errors are of comparable size.
 
-The end result of the procedure is an estimate of statistical and systematic uncertainties
+The end result of the procedure is an estimate of the statistical and systematic uncertainties
 for each bin of the measurement, from which an experimental covariance matrix can be constructed as
 \be
 \label{eq:covmat_definition}
@@ -801,8 +802,8 @@ for each bin of the measurement, from which an experimental covariance matrix ca
  %
  In particular, the assumption that a single source of systematic error, say $\delta E_\ell$,
  is fully correlated among all the bins in $(x,Q^2)$ is unlikely to be accurate.
- %
- For this reason, following the HL-LHC projection strategy of~\cite{AbdulKhalek:2018rok}
+ 
+ For this reason, following the HL-LHC projection strategy of~\cite{AbdulKhalek:2018rok},
  here we neglect bin-by-bin correlations
  and add in quadrature statistical and systematic errors,
  \be
@@ -819,13 +820,15 @@ Furthermore, $f_{\rm corr}$ represents an effective correction factor that accou
 systematics may be more constraining than the same data where each source of error is simply
 added in quadrature as we do here.
 %
-A value of $f_{\rm corr}=0.5$, obtained from the inspection of available measurements
+A value of $f_{\rm corr} \sim 0.5$, obtained from the inspection of available measurements
  for which the full information
  on correlated systematics is available, was estimated in ~\cite{AbdulKhalek:2018rok}
  and we adopt the same choice here.
 %
-In Sect.~\ref{sec:protonPDFs} we present results for different scenarios
-for the systematic uncertainty reduction factor $f_{\rm red}$ with respect to the baseline settings.   
+ In Sect.~\ref{sec:protonPDFs} we present results for the conservative scenario with
+ $f_{\rm red}=1$, but it is
+ straightforward to revisit the projections for a more optimistic
+ detector performance with $f_{\rm red}< 1$.
  
  \subsection{Pseudo-data generation}
 
@@ -851,33 +854,33 @@ interfaced to {\sc\small PineAPPL}~\cite{Carrazza:2020gss, christopher_schwan_20
 to return a fast interpolation grid admitting a generic PDF input,
 and with DGLAP evolution effects provided by {\sc\small EKO}~\cite{Candido:2022tld}.
 %
-PDF evolution and DIS structure functions account for NLO QCD corrections
-and target mass effects.
+DIS structure functions are evaluated at NLO in the QCD expansion
+and account both for heavy quark and target mass effects.
 %
 No higher-twists corrections are included.
 %
-Charm structure functions are evaluated in the FONLL general-mass variable-flavour-number
+In particular,
+charm structure functions are evaluated in the FONLL general-mass variable-flavour-number
 scheme~\cite{Forte:2010ta,Ball:2011mu,Faura:2020oom} at $\mathcal{O}\lp \alpha_s\rp$
 accuracy.
 %
-For the proton PDF fits we assume a free isoscalar target $N$, while
+For the proton PDF fits, we assume a free isoscalar target $N$, while
 for the nuclear PDF one we allow for deviations from isoscalarity relevant
 for a tungsten nucleus.
 
-The PDF set and other theory settings, such as the perturbative
+For ensure consistency, the PDF set and other theory settings, such as the perturbative
 order and heavy quark scheme, adopted for the evaluation of
 Eq.~(\ref{eq:theory_dis_projections}) should be the same as those
 used in the fitting framework assessing their impact.
 %
 For instance, when using the {\sc\small xFitter} profiling of PDF4LHC21, one needs
- to generate LHC neutrino pseudo-data also using PDF4LHC21 as input.
+ to generate  neutrino structure functions also using PDF4LHC21 as input.
  %
-This ensures that the generated pseudo-data is consistent with the prior PDF
+This ensures that the generated pseudo-data is coherent with the prior PDF
  set used as baseline and avoids introducing artificial inconsistencies 
  compromising the validity of the projection studies.
  
- The central values for the pseudo-data, denoted
- by $\mathcal{O}_i^{{\rm (exp)}} $, are obtained
+ The central values for the pseudo-data, denoted by $\mathcal{O}_i^{{\rm (exp)}} $, are obtained
  by fluctuating the reference theory prediction Eq.~(\ref{eq:theory_dis_projections})
  by the corresponding fractional statistical and systematic
  uncertainties,
@@ -904,13 +907,9 @@ This ensures that the generated pseudo-data is consistent with the prior PDF
  improvements in the experimental performance as compared to the baseline
  settings summarised in Sect.~\ref{tab:FPF_experiments}.
  %
- Here we consider two scenarios for the systematic errors: ``conservative'',  with $f_{\rm red}=1$, where
- no improvement as compared to current projected performance takes place, and ``optimistic'', with  $f_{\rm red}=0.5$, a factor
- two improvement for all sources of systematics.
- %
  The pseudo-data generated by means of Eq.~(\ref{eq:pseudo_data_v2}),
  together with the corresponding covariance matrix computed according to Eq.~\eqref{eq:covmat_definition_v2},
- define then the inputs of the subsequent proton and nuclear PDF determination.
+ define then the inputs of the subsequent proton and nuclear PDF determinations.
 
  \subsection{PDF impact assessment}
  \label{subsec:pdf_impact_assessment}
@@ -972,11 +971,11 @@ The profiling studies carried out in this work are performed using version 2.2.1
 of the 
 {\sc\small xFitter} open-source QCD analysis framework~\cite{Alekhin:2014irh, Bertone:2017tig, xFitter:2022zjb, xFitter:web}.
 %
-To this end, a new interface between  {\sc\small PineAPPL} and {\sc\small xFitter} has been developed and is available in {\sc\small xFitter}.
+To this end, a new interface between  {\sc\small PineAPPL} and {\sc\small xFitter} has been developed and is made available in {\sc\small xFitter}.
 %
 All the experimental and theoretical data files used in the analysis, including
 the  {\sc\small PineAPPL}  grids, are available
-from the {\sc\small xFitter} repository.
+from the public {\sc\small xFitter} repository.
 %
 For the proton PDF profiling, a tolerance of $T^2 = 10$ is adopted,
 which  corresponds approximately to the average tolerance
@@ -995,17 +994,13 @@ Fast interpolation tables (FK-tables)~\cite{Ball:2010de} combining {\sc\small EK
 DGLAP evolution with {\sc\small YADISM} DIS coefficient functions
 are computed using {\sc\small PineAPPL}, see also~\cite{Barontini:2023vmr}.
 %
-Predictions for the observables Eq.~(\ref{eq:theory_dis_projections}) are evaluated
-with NNPDF4.0 NNLO for various choices of input datasets, and included
+Predictions for the fitted observables Eq.~(\ref{eq:theory_dis_projections}) are evaluated
+with NNPDF4.0 NNLO and included
 directly in the same alongside all other datasets in the global fit.
 %
 We verify that in all cases $\chi^2/n_{\rm dat}\sim 1$ after the fit,
 as expected given the built-in consistency between the prior PDF fit
 and the generated pseudo-data.
-%
-We assess the impact of the forward LHC neutrino data in the NNPDF fits both when added
-on top of the baseline dataset and when added to a dataset which excludes previous neutrino DIS
-cross-section measurements.
 
 
 

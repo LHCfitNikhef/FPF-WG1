@@ -1,29 +1,25 @@
 \section{Constraints on proton and nuclear structure}
 \label{sec:protonPDFs}
 
-By means of the strategy outlined in Sect.~\ref{sec:dis_pseudodata}, here
-we quantify the impact on the proton PDFs
-of differential  DIS
-cross-section measurements exploiting the  LHC
-neutrino beam. 
-%
-We assume an isoscalar free-nucleon target and neglect non-isoscalarity effects and nuclear modifications,
-which are instead considered in Sect.~\ref{sec:nuclearPDFs}.
+By following the strategy outlined in Sect.~\ref{sec:dis_pseudodata}, one can
+quantify the impact on the proton and nuclear PDFs of differential  DIS
+cross-section measurements exploiting the  LHC neutrino beam. 
 %
 We present results first for the Hessian profiling of the PDF4LHC21,
-and second for the Monte Carlo fit NNPDF4.0.
+then for the Monte Carlo fit NNPDF4.0, and finally for the nuclear PDFs of EPPS21, also
+by means of profiling.
 %
 We study the stability of the results with respect to the inclusion of systematic uncertainties,
 charm-tagged data, and lepton-charge separation.
 %
-We compare the impact of the different FPF experiments separately and also provide
+We also compare the impact of the different FPF experiments separately and provide
 results for their combination.
 
 \subsection{Proton PDFs: impact on PDF4LHC21}
 \label{sec:pdf4lhc21}
 
 We begin by presenting results for the Hessian profiling of
-the PDF4LHC21 NNLO set.
+the PDF4LHC21 set.
 %
 This proton PDF set is a Monte Carlo combination~\cite{Watt:2012tq,Carrazza:2015hva} of three global PDF sets, CT18~\cite{Hou:2019efy},
 MSHT20~\cite{Bailey:2020ooq}, and NNPDF3.1~\cite{NNPDF:2017mvq}.
@@ -34,8 +30,7 @@ Being based on the combination of three modern global PDF fits, PDF4LHC21 provid
 of  current uncertainties associated to our understanding of proton PDFs.
 %
 We profile PDF4LHC21 with pseudodata from various LHC neutrino experiments,
-and study the stability of the results with respect to variations in the data
-and methodology inputs.
+and study the stability of the results with respect to variations in the profiling inputs.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
@@ -46,28 +41,27 @@ and methodology inputs.
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/fred05fcorr05_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
 \includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/inclusive+charm_chargediscrimination/fred05fcorr05_FASERv2_q2_10000_pdf_s_ratio.pdf}
 \caption{
-The fractional uncertainties (68\% confidence level) at $Q^2 = 10^4 \, \textrm{GeV}^2$ 
+The fractional PDF uncertainties (at the 68\% confidence level) at $Q^2 = 10^4 \, \textrm{GeV}^2$ 
 for the up and down valence quarks, gluon, total quark singlet, and total strangeness PDFs
-in the PDF4LHC21 baseline, compared to the results obtained once the FASER$\nu$2 pseudo-data is included.
+in the PDF4LHC21 baseline, compared to the results obtained once the FASER$\nu$2 structure
+functions are included.
 %
-The FASER$\nu$2 impact projections are provided both without and with systematic
-uncertainties accounted for.
-%
-We include  both  inclusive and charm-tagged structure functions
-and assume outgoing lepton charge-separation.
+The FASER$\nu$2 impact projections are presented both without and with systematic
+uncertainties accounted for, and include charm-tagged structure functions
+as well as final-state lepton-charge separation.
 %
 }
 \label{fig:FASERnu2_baseline}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\paragraph{Statistic versus systematic uncertainties.}
+\paragraph{Constraints from FASER$\nu$2.}
 %
 Fig.~\ref{fig:FASERnu2_baseline} shows the
 fractional uncertainties (at the 68\% confidence level) at $Q^2 = 10^4 \, \textrm{GeV}^2$ 
 for the up and down valence quarks, gluon, total quark singlet, and total strangeness PDFs
-in the PDF4LHC21 baseline, compared to the results obtained once the FASER$\nu$2 pseudo-data is added
-by means of Hessian profiling.
+in the PDF4LHC21 baseline, compared to the results obtained once the FASER$\nu$2 structure functions are
+added by means of Hessian profiling.
 %
 The FASER$\nu$2 pseudo-data accounts for  both  inclusive and charm-tagged structure functions
 and assumes outgoing lepton- charge identification.
@@ -78,9 +72,9 @@ statistical and systematic errors are added in quadrature following
 the procedure spelled out in Sect.~\ref{subsec:uncertainties}.
 %
 We restrict the comparisons to the region $10^{-3}\lsim x \lsim 0.7$ covered
-by the LHC neutrino experiments as shown in Fig.~\ref{fig:Kin_nNNPDF30_EIC_FPF}.
+by the LHC neutrino experiments (see Fig.~\ref{fig:Kin_nNNPDF30_EIC_FPF}).
 %
-Note that in addition of a reduction of PDF uncertainties, the Hessian profiling
+In addition of a reduction of PDF uncertainties, the Hessian profiling
 also results in general in a shift in the PDF central values.
 %
 This shift is however arbitrary since it 
@@ -89,7 +83,7 @@ entering the pseudo-data generation, and is hence ignored in the following.
 
 Inspection of Fig.~\ref{fig:FASERnu2_baseline} reveals that measurements of DIS structure
 functions at FASER$\nu$2 improve PDF uncertainties on the quark PDFs, while leaving
-the gluon PDF essentially unaffected.
+the gluon essentially unaffected.
 %
 As expected for a neutrino scattering experiment, its impact is most marked for
 those PDF combinations sensitive to quark flavour separation such as
@@ -122,7 +116,7 @@ data brings in more information than just the trivial statistics scaling.
 
 \paragraph{Importance of charm-tagged measurements.}
 %
-The analysis of Fig.~\ref{fig:FASERnu2_baseline} shows that LHC neutrino data is particularly
+The analysis of Fig.~\ref{fig:FASERnu2_baseline} highlights that LHC neutrino data is particularly
 constraining for the poorly-known strange PDF, which is one of the quark flavour combinations
 for which proton PDF fits differ the most~\cite{Faura:2020oom}.
 %
@@ -138,11 +132,11 @@ visible for the strange PDF.
 Specially in the region $x\gsim 0.01$, the constraints on strangeness shown in
 Fig.~\ref{fig:FASERnu2_nocharm} are washed out in the absence of charm-tagged data.
 %
-We can hence establish that inclusive neutrino DIS measurements constrain mostly
-the up and down quark and antiquark PDFs (and thus also the total quark singlet), while the charm-tagged
+We thus establish that inclusive neutrino DIS measurements constrain mostly
+the up and down quark and antiquark PDFs (and thus also the quark singlet), while the charm-tagged
 structure functions are responsible for most of the constraints provided on the total strangeness.
 %
-The PDF reach of the LHC neutrino experiments would thus be  markedly limited for experiments without
+The PDF reach of the LHC neutrino experiments would thus be  markedly limited in experiments without
 charm-identification capabilities.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,7 +185,7 @@ the FASER$\nu$2 data with and without charged-lepton identification capabilities
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-One finds that the lack of charged-lepton identification actually does not degrade significantly the PDF
+This analysis finds that the lack of charged-lepton identification actually does not degrade significantly the PDF
 sensitivity of FASER$\nu$2.
 %
 Having access of the lepton charge information improves a bit the constraints for the down and (to a lesser
@@ -208,8 +202,8 @@ Given that this strangeness asymmetry is quite small, this also explains why the
 on strangeness, which is driven by the charm-tagged data, is the same irrespective of whether one identifies
 the outgoing lepton charge.
 %
-We conclude that LHC neutrino DIS data exhibits good PDF sensitivity even for an experiment which cannot tell
-apart incoming neutrinos from antineutrinos.
+We conclude that LHC neutrino DIS data exhibits good PDF sensitivity even for detectors which cannot
+separate incoming neutrinos from antineutrinos.
 
 \paragraph{FASER$\nu$2 compared to AdvSND and FLArE.}
 %
