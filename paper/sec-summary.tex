@@ -1,35 +1,54 @@
+\clearpage
 \section{Summary and outlook}
 \label{sec:summary}
 
-In this work, we have quantified the impact of ongoing and proposed
-experiments detecting the scattering of energetic neutrinos produced
-by LHC collisions in the forward direction.
+In this work we have, for the first time,
+quantified the impact that measurements of high-energy
+neutrino DIS structure functions at the LHC would have on the quark
+and gluon structure of the nucleon.
 %
-By means of estimating the expected deep-inelastic scattering
-event rates differential
-in $x$, $Q^2$, and $E_\nu$ for these various experiments, and
-evaluating the associated theoretical predictions for
-both inclusive and charm production processes, we have
-assessed the expected reduction of PDF uncertainties with respect
-to modern fits of proton and nuclear structure.
+Our analysis has required the generation of
+DIS pseudo-data fully differential in $x$, $Q^2$, and $E_\nu$
+for the various ongoing and proposed far-forward
+neutrino LHC experiments, including an initial estimate
+of their associated systematic uncertainties.
 %
-To this end, we have studied the robustness of the results
-with respect the modelling of systematic uncertainties, the role of lepton
-charge separation, and the impact of the selection and acceptance cuts.
+Consistent results are obtained from both the Hessian profiling
+of PDF4LHC21 and from the direct inclusion of LHC neutrino
+structure functions in the NNPDF4.0 global
+fit, revealing a reduction of PDF uncertainties in the
+light quark sector, in particular concerning strangeness, as well
+as for the large-$x$ charm PDF in the case of NNPDF4.0.
+%
+We have then assessed the  robustness of the results upon
+removing charm-tagged data and final-state lepton-charge
+identification, as well as upon the combination
+of all FPF experiments within a single analysis.
 
-We demonstrate that neutrino DIS measurements at the proposed FPF
-experiments would have a significant potential to improve our current
-knowledge of quark and antiquark flavour separation in protons
-and heavy nuclei, including strangeness,
-and that the FASER$\nu$ and SND@LHC
-experiments may provide the first-ever
-constraints on hadron structure from collider neutrinos.
+We have also demonstrated the rich interplay between
+far-forward and central measurements
+at the HL-LHC by providing predictions
+for a range of Higgs and gauge boson production processes,
+both for integrated cross-sections in the fiducial region and for
+single-differential distributions.
+%
+This HL-LHC phenomenological analysis suggests that a reduction
+of the  PDF uncertainty by up to a factor two
+may be within reach for some of these cross-sections,
+in the most optimistic scenario.
+%
+As was the case at the PDF level, also for 
+the HL-LHC projections results based on  PDF4LHC21 and NNPDF4.0
+are in qualitative agreement.
 %
 Together with this paper, we also
-release the pseudodata and the corresponding theory
-calculations produced in this work.
+release the corresponding {\sc\small LHAPDF} grids~\cite{Buckley:2014ana}
+for PDF4LHC21 and NNPDF4.0 including FPF data,
+as well as the LHC neutrino DIS structure function pseudo-data
+and the corresponding theory
+calculations for all scenarios considered in this work.
 %
-These should be of relevance for colleagues interested in the physics
+The latter should be of relevance for colleagues interested in the physics
 of forward
 neutrino scattering at the LHC, not only for hadronic structure studies
 but also for neutrino (effective)
@@ -43,6 +62,12 @@ to construct more accurate estimates of the systematic
 uncertainties and of their bin-by-bin correlations,
 which may eventually become the limiting factor
 for hadron structure analyses with LHC neutrinos.
+%
+In particular, improved experiment design novel reconstruction techniques i.e. based
+on deep learning or combination of information from different
+experiments may be key to further reduce systematic
+uncertainties as required to maximise the impact
+of neutrino DIS measurements at the LHC.
 %
 Second, scattering analyses with LHC neutrinos would benefit from
 the use of Monte Carlo event generators accounting
@@ -61,7 +86,7 @@ such as those related to charm tagging.
 Third, while in this work we have focused on the deep-inelastic
 region, ongoing and future LHC experiments also provide
 important information on the shallow-inelastic scattering (SIS)
-region at low values of $Q$~\cite{Candido:2023utz}, relevant for inclusive cross-sections
+region at low values of $Q$~\cite{Jeong:2023hwe,Candido:2023utz}, relevant for inclusive cross-sections
 entering atmospheric and oscillation neutrino experiments.
 %
 By means of a similar approach, it should be possible to quantify
@@ -70,6 +95,8 @@ of neutrino scattering in the poorly-understood SIS region.
 %
 Finally, in this work we have taken the incoming muon neutrino flux
 as a given and neglected any associated uncertainties.
+%
+small-x QCD, gluon PDF
 %
 However, ultimately one may need to constrain at the same time
 the incoming fluxes and the neutrino scattering cross-sections
@@ -89,13 +116,22 @@ scientific potential of such experiments.
 \subsection*{Acknowledgments}
 %
 We are grateful to many colleagues involved in the Forward
-Physics Facility initiative for many illuminating
-discussions and encouragement along the course of this project.
+Physics Facility initiative for illuminating
+discussions and encouragement along the course of this project,
+in particular Jamie Boyd, Jonathan Feng, and Albert de Roeck.
 %
-We thank specially Felix Kling for may useful discussions in the course
-of the project and for providing the neutrino fluxes.
+We thank specially Felix Kling for many useful discussions
+and for providing updated predictions for the neutrino fluxes.
 %
 We thank Akitaka Ariga and Tomoko Ariga for discussion
 concerning FASER$\nu$2, Milind Diwan,
-Wenjie Wu and Steven Linden concerning FLArE,
-and Antonia di Crescenzo concerning AdvSND. The work of M.F. was supported by NSF Grant PHY-2210283 and was also supported by NSF Graduate Research Fellowship Award No. DGE-1839285.
+Wenjie Wu, and Steven Linden concerning FLArE,
+and Antonia di Crescenzo for information concerning AdvSND.
+
+
+The work of M.~F. was supported by NSF Grant PHY-2210283 and was also supported by NSF Graduate Research Fellowship Award No. DGE-1839285.
+%
+The work of T.~G., G.~M., and J.~R. is partially supported by NWO, the Dutch Research Council.
+%
+The work of T.~R. and J.~R. is partially supported by an ASDI2020
+Fellowship from the Netherlands eScience Center.
