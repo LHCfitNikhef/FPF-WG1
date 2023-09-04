@@ -186,16 +186,6 @@
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \DeclareRobustCommand{\RG}[1]{{\color{magenta}\textbf{[RG: #1]}}\xspace}
 
-%%%%% raquel: color marks %%%%%
-%\usepackage{color} 
-\newcommand{\raq}[1]{{\bf\color{orange} #1}}  
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%% jaco: wider spacing in tables %%%%%
-\renewcommand{\arraystretch}{1.7}
-\def\lra#1{\overset{\text{\scriptsize$\leftrightarrow$}}{#1}}
-
-
 
 \begin{document}
 \newgeometry{top=1.5cm,bottom=1.5cm,left=1.5cm,right=1.5cm,bindingoffset=0mm}
@@ -211,7 +201,7 @@ Nikhef-2023-aaa\\
   \vspace{1.1cm}
   {\small
 Max Fieg$^{1}$, Tommaso Giani$^{2,3}$, Peter Krack$^{2,3}$, Toni M\"akel\"a$^{4}$, Juan M. Cruz-Martinez$^{5}$, \\[0.1cm]
-    Tanjona Rabemananjara$^{2,3}$, and Juan Rojo$^{2,3}$.
+    Tanjona Rabemananjara$^{2,3}$, and Juan Rojo$^{2,3}$
   }\\
   
 \vspace{0.7cm}
@@ -254,23 +244,23 @@ Including these DIS projections into global (n)PDF analyses, specifically PDF4LH
  and EPPS21,  reveals a significant reduction of PDF uncertainties, in particular
  for strangeness and the up and down valence PDFs.
  %
- We demonstrate that LHC neutrino data enables improved theoretical
- predictions for core processes at the HL-LHC, such as Higgs and weak gauge (di)boson production.
+ We show that LHC neutrino data enables improved theoretical
+ predictions for core processes at the HL-LHC, such as Higgs and weak gauge
+ boson production.
 %
- Our analysis highlights how exploiting the LHC neutrino beam effectively
-provides CERN with a new ``Neutrino-Ion Collider''.
+ Our analysis demonstrates that exploiting the LHC neutrino beam effectively
+ provides CERN with a ``Neutrino-Ion Collider''
+ without  requiring modifications in its accelerator infrastructure 
 
 
 \clearpage
 
 \tableofcontents
-
 \input{sec-introduction}
 \input{sec-dis-pseudodata}
 \input{sec-results}
 \input{sec-pheno}
 \input{sec-summary}
-
 \appendix
 \input{app-faser.tex}
 \input{app-nuclearPDFs.tex}
