@@ -3,7 +3,7 @@
 
 &InFiles
   ! Number of intput files
-    NInputFiles = 11
+    NInputFiles = 7
  
   ! Input files:
 
@@ -13,10 +13,6 @@
      'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/syst/FASERv2_inclusive_nub-thexp.dat',
      'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/syst/FASERv2_charm_nu-thexp.dat',
      'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/syst/FASERv2_charm_nub-thexp.dat'
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/syst/FLArE10_inclusive_nu-thexp.dat',
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/syst/FLArE10_inclusive_nub-thexp.dat',
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/syst/FLArE10_charm_nu-thexp.dat',
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/syst/FLArE10_charm_nub-thexp.dat'
      'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/syst/AdvSND_inclusive_nu-thexp.dat',
      'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/syst/AdvSND_inclusive_nub-thexp.dat',
      'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/syst/AdvSND_charm_nu-thexp.dat'
@@ -24,20 +20,16 @@
 
 &InCorr
   ! Number of correlation (statistical, systematical or full) files
-    NCorrFiles = 11
+    NCorrFiles = 7
  
   ! Correlation files:
     CorrFileNames(1)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_inclusive_nu.corr'
     CorrFileNames(2)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_inclusive_nub.corr'
     CorrFileNames(3)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_charm_nu.corr'
     CorrFileNames(4)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FASERv2_charm_nub.corr'
-    CorrFileNames(5)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FLArE10_inclusive_nu.corr'
-    CorrFileNames(6)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FLArE10_inclusive_nub.corr'
-    CorrFileNames(7)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FLArE10_charm_nu.corr'
-    CorrFileNames(8)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/FLArE10_charm_nub.corr'
-    CorrFileNames(9)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/AdvSND_inclusive_nu.corr'
-    CorrFileNames(10) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/AdvSND_inclusive_nub.corr'
-    CorrFileNames(11) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/AdvSND_charm_nu.corr'
+    CorrFileNames(5)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/AdvSND_inclusive_nu.corr'
+    CorrFileNames(6) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/AdvSND_inclusive_nub.corr'
+    CorrFileNames(7) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/AdvSND_charm_nu.corr'
 &End
 
 &ReduceSyst

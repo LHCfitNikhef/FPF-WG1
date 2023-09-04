@@ -3,7 +3,7 @@
 
 &InFiles
   ! Number of intput files
-    NInputFiles = 11
+    NInputFiles = 7
  
   ! Input files:
 
@@ -13,10 +13,6 @@
      'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/statOnly/FASERv2_inclusive_nub-thexp.dat',
      'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/statOnly/FASERv2_charm_nu-thexp.dat',
      'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/statOnly/FASERv2_charm_nub-thexp.dat'
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/statOnly/FLArE10_inclusive_nu-thexp.dat',
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/statOnly/FLArE10_inclusive_nub-thexp.dat',
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/statOnly/FLArE10_charm_nu-thexp.dat',
-     'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/statOnly/FLArE10_charm_nub-thexp.dat'
      'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/statOnly/AdvSND_inclusive_nu-thexp.dat',
      'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/statOnly/AdvSND_inclusive_nub-thexp.dat',
      'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/statOnly/AdvSND_charm_nu-thexp.dat',
@@ -31,13 +27,9 @@
   !  CorrFileNames(2)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/FASERv2_inclusive_nub.cov'
   !  CorrFileNames(3)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/FASERv2_charm_nu.cov'
   !  CorrFileNames(4)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/FASERv2_charm_nub.cov'
-  !  CorrFileNames(5)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/FLArE_inclusive_nu.cov'
-  !  CorrFileNames(6)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/FLArE_inclusive_nub.cov'
-  !  CorrFileNames(7)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/FLArE_charm_nu.cov'
-  !  CorrFileNames(8)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/FLArE_charm_nub.cov'
-  !  CorrFileNames(9)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/AdvSND_inclusive_nu.cov'
-  !  CorrFileNames(10) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/AdvSND_inclusive_nub.cov'
-  !  CorrFileNames(11) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/AdvSND_charm_nu.cov'
+  !  CorrFileNames(5)  = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/AdvSND_inclusive_nu.cov'
+  !  CorrFileNames(6) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/AdvSND_inclusive_nub.cov'
+  !  CorrFileNames(7) = 'datafiles/lhc/fpf/neutrinoDIS/pseudodata/EPPS21nlo_CT18Anlo_W184/AdvSND_charm_nu.cov'
 &End
 
 &ReduceSyst

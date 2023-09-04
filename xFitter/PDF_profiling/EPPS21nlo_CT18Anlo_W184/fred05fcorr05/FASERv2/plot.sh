@@ -8,7 +8,7 @@ PLOTOPTS="--splitplots-pdf --therr --bands --q2all --relative-errors --scale68 -
 
 # Visualize results:
 mv plots/plots.pdf plots/plots_OLD.pdf
-xfitter-draw ${PLOTOPTS} output:"Baseline (BL)" profile:output:"BL+${DETECTOR}"
+xfitter-draw ${PLOTOPTS} output:"Baseline (BL)" profile:../../statOnly/${DETSIMPLE}/output:"BL+${DETECTOR}, stat" profile:output:"BL+${DETECTOR}, stat+syst"
 mv plots/plots.pdf plots/${PDF}_vs_profiled.pdf
 
 cp plots/q2_10000_pdf_uv_ratio.pdf  ${UNCLVL}_${DETSIMPLE}_q2_10000_pdf_uv_ratio.pdf 
