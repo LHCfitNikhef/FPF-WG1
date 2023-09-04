@@ -3,9 +3,9 @@
 
 By following the strategy outlined in Sect.~\ref{sec:dis_pseudodata}, one can
 quantify the impact on the proton and nuclear PDFs of differential  DIS
-cross-section measurements exploiting the  LHC neutrino beam. 
+cross-section measurements obtained with the  LHC neutrino beam. 
 %
-We present results first for the Hessian profiling of the PDF4LHC21,
+Here we present results first for the Hessian profiling of the PDF4LHC21,
 then for the Monte Carlo fit NNPDF4.0, and finally for the nuclear PDFs of EPPS21, also
 by means of profiling.
 %
@@ -14,23 +14,6 @@ charm-tagged data, and lepton-charge separation.
 %
 We also compare the impact of the different FPF experiments separately and provide
 results for their combination.
-
-\subsection{Proton PDFs: impact on PDF4LHC21}
-\label{sec:pdf4lhc21}
-
-We begin by presenting results for the Hessian profiling of
-the PDF4LHC21 set.
-%
-This proton PDF set is a Monte Carlo combination~\cite{Watt:2012tq,Carrazza:2015hva} of three global PDF sets, CT18~\cite{Hou:2019efy},
-MSHT20~\cite{Bailey:2020ooq}, and NNPDF3.1~\cite{NNPDF:2017mvq}.
-%
-Its Hessian representations are obtained by means of the reduction methodologies developed in~\cite{Gao:2013bia,Carrazza:2015aoa}.
-%
-Being based on the combination of three modern global PDF fits, PDF4LHC21 provides a robust estimate
-of  current uncertainties associated to our understanding of proton PDFs.
-%
-We profile PDF4LHC21 with pseudodata from various LHC neutrino experiments,
-and study the stability of the results with respect to variations in the profiling inputs.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
@@ -55,6 +38,23 @@ as well as final-state lepton-charge separation.
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Proton PDFs: impact on PDF4LHC21}
+\label{sec:pdf4lhc21}
+
+We begin by presenting results for the Hessian profiling of
+the PDF4LHC21 set.
+%
+This proton PDF set is a Monte Carlo combination~\cite{Watt:2012tq,Carrazza:2015hva} of three global PDF sets, CT18~\cite{Hou:2019efy},
+MSHT20~\cite{Bailey:2020ooq}, and NNPDF3.1~\cite{NNPDF:2017mvq}.
+%
+Its Hessian representations are obtained by means of the reduction methodologies developed in~\cite{Gao:2013bia,Carrazza:2015aoa}.
+%
+Being based on the combination of three modern global PDF fits, PDF4LHC21 provides a conservative estimate
+of  current uncertainties associated to our understanding of proton PDFs.
+%
+We profile PDF4LHC21 with pseudodata from various LHC neutrino experiments,
+and study the stability of the results with respect to variations in the profiling inputs.
+
 \paragraph{Constraints from FASER$\nu$2.}
 %
 Fig.~\ref{fig:FASERnu2_baseline} shows the
@@ -72,17 +72,18 @@ statistical and systematic errors are added in quadrature following
 the procedure spelled out in Sect.~\ref{subsec:uncertainties}.
 %
 We restrict the comparisons to the region $10^{-3}\lsim x \lsim 0.7$ covered
-by the LHC neutrino experiments (see Fig.~\ref{fig:Kin_nNNPDF30_EIC_FPF}).
+by the LHC neutrino experiments (see also Fig.~\ref{fig:Kin_nNNPDF30_EIC_FPF}).
 %
 In addition of a reduction of PDF uncertainties, the Hessian profiling
 also results in general in a shift in the PDF central values.
 %
-This shift is however arbitrary since it 
+This shift is however arbitrary, since it 
 depends on the fluctuations
 entering the pseudo-data generation, and is hence ignored in the following.
 
 Inspection of Fig.~\ref{fig:FASERnu2_baseline} reveals that measurements of DIS structure
-functions at FASER$\nu$2 improve PDF uncertainties on the quark PDFs, while leaving
+functions at FASER$\nu$2 would reduce PDF uncertainties on the quark and antiquark
+PDFs, while leaving
 the gluon essentially unaffected.
 %
 As expected for a neutrino scattering experiment, its impact is most marked for
@@ -93,7 +94,7 @@ Indeed, the reduction of PDF uncertainties is particularly significant for the l
 a consequence of the inclusion of charm-tagged structure functions in the fit.
 %
 Given that all PDF determinations entering PDF4LHC21 already include existing neutrino
-DIS measurements, the fact that FASER$\nu$2 pseudo-data still manages to reduce PDF
+DIS measurements, the fact that FASER$\nu$2 pseudo-data still manages to improve
 uncertainties highlights the new information provided by the LHC neutrino experiments.
 
 By comparing the impact of the FASER$\nu$2 structure functions
@@ -103,41 +104,16 @@ one finds that the latter eventually become a limiting factor,
 but also that they not modify the qualitative findings of the statistics-only scenario.
 %
 Indeed, while systematic uncertainties somewhat degrade the PDF sensitivity,
-they don't eliminate it for none of the quark PDFs.
+they do not wash it out for none of the quark PDFs.
 %
 Furthermore, in the projections presented in this work,
 we assume the performance parameters of  Table~\ref{tab:FPF_experiments}, which
 however could be very well enhanced in the actual realisation of the experiments,
 using for instance detector improvements or different kinematic reconstruction techniques.
 %
-We also note that the availability of different experiments accessing the same neutrino
+We also note that the availability of complementary experiments accessing the same neutrino
 beam should allow their mutual cross-calibration, such that the combination of their
 data brings in more information than just the trivial statistics scaling.
-
-\paragraph{Importance of charm-tagged measurements.}
-%
-The analysis of Fig.~\ref{fig:FASERnu2_baseline} highlights that LHC neutrino data is particularly
-constraining for the poorly-known strange PDF, which is one of the quark flavour combinations
-for which proton PDF fits differ the most~\cite{Faura:2020oom}.
-%
-To further investigate this point, Fig.~\ref{fig:FASERnu2_nocharm} compares the impact of the FASER$\nu$2 data shown in
-Fig.~\ref{fig:FASERnu2_baseline}, for the case in which only statistical
-uncertainties are considered, with the results of the same profiling once the charm-tagged
-structure function data is excluded from the fit.
-%
-While differences are moderate for the up and down quark PDFs, the significant loss
-of information resulting from this exclusion of charm-tagged data is clearly
-visible for the strange PDF.
-%
-Specially in the region $x\gsim 0.01$, the constraints on strangeness shown in
-Fig.~\ref{fig:FASERnu2_nocharm} are washed out in the absence of charm-tagged data.
-%
-We thus establish that inclusive neutrino DIS measurements constrain mostly
-the up and down quark and antiquark PDFs (and thus also the quark singlet), while the charm-tagged
-structure functions are responsible for most of the constraints provided on the total strangeness.
-%
-The PDF reach of the LHC neutrino experiments would thus be  markedly limited in experiments without
-charm-identification capabilities.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
@@ -155,6 +131,31 @@ charm-identification capabilities.
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\paragraph{Relevance of charm-tagged measurements.}
+%
+The analysis of Fig.~\ref{fig:FASERnu2_baseline} highlights that LHC neutrino data is particularly
+constraining for the poorly-known strange PDF, which is one of the quark flavour combinations
+for which proton PDF fits differ the most~\cite{Faura:2020oom}.
+%
+To further investigate this point, Fig.~\ref{fig:FASERnu2_nocharm} compares the impact of the FASER$\nu$2 data shown in
+Fig.~\ref{fig:FASERnu2_baseline}, for the case in which only statistical
+uncertainties are considered, with the results of the same profiling once the charm-tagged
+structure function data is excluded from the fit.
+%
+While differences are moderate for the up and down quark PDFs, the significant loss
+of information resulting from this exclusion of charm-tagged data is clearly
+visible for the strange PDF.
+%
+Specially in the region $x\gsim 0.01$, the constraints on strangeness shown in
+Fig.~\ref{fig:FASERnu2_nocharm} are mostly washed out in the absence of charm-tagged data.
+%
+We thus establish that inclusive neutrino DIS measurements constrain predominantly
+the up and down quark and antiquark PDFs (and thus also the quark singlet), while the charm-tagged
+structure functions are responsible for most of the constraints provided on the total strangeness.
+%
+The PDF reach of the LHC neutrino experiments would thus be  markedly limited in experiments without
+charm-identification capabilities.
+
 \paragraph{Lepton-charge identification.}
 %
 Being able to identify the charge of the produced final-state lepton in charged-current
@@ -167,7 +168,7 @@ is possible, and therefore include separate structure function datasets for neut
 In order to ascertain to which extent the constraints provided by FASER$\nu$2 structure functions
 depend on the availability of such a magnet,
 Fig.~\ref{fig:FASERnu2_nochargeID} compares the reduction of the PDF uncertainties using
-the FASER$\nu$2 data with and without charged-lepton identification capabilities.
+the FASER$\nu$2 data with and without assuming charged-lepton identification capabilities.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
@@ -202,12 +203,12 @@ Given that this strangeness asymmetry is quite small, this also explains why the
 on strangeness, which is driven by the charm-tagged data, is the same irrespective of whether one identifies
 the outgoing lepton charge.
 %
-We conclude that LHC neutrino DIS data exhibits good PDF sensitivity even for detectors which cannot
+We conclude that LHC neutrino DIS data exhibits competitive PDF sensitivity even for detectors which cannot
 separate incoming neutrinos from antineutrinos.
 
 \paragraph{Experiment dependence.}
 %
-In addition to FASER$\nu$2, we have also produced PDF impact projections for
+Together with those for FASER$\nu$2, we have also produced PDF impact projections for
 other proposed FPF experiments, specifically for AdvSND and FLArE.
 %
 In the latter case, we consider both the 10 ton and 100 ton variants.
@@ -220,9 +221,6 @@ As summarised by Table~\ref{tab:integrated_rates}, each of these experiments
 has associated different expected numbers of DIS events, namely 260k, 28k, and 57k (340k)
 inclusive muon-neutrino events for FASER$\nu$2, AdvSND and FLArE10~(100) respectively,
 with 39k, 3.5k, and 7.7k (45k) in the charm-tagged case.
-%
-As shown below, experiments with the largest event rates are those exhibiting the
-best PDF sensitivity.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -246,12 +244,16 @@ best PDF sensitivity.
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+In agreement with expectations, 
+detectors with the largest event rates are those exhibiting the
+best PDF sensitivity.
+%
 From Fig.~\ref{fig:FASERnu2_FLAre10} one can see that the three
 FPF experiments studied lead to a reduction of the  uncertainties in the quark PDFs.
 %
 By comparing their relative impact, we find that the constraints
 achieved by FASER$\nu$2 are somewhat better than for the other two experiments,
-as could have been expected by the larger event yields obtained in the former.
+consistent with the larger event yields obtained in the former.
 %
 In the case of AdvSND, the  smaller sample of charm-tagged events is responsible for the reduction
 in the constraints on strangeness.
@@ -261,7 +263,8 @@ to FASER$\nu$2 is the milder impact for the $x\lsim 10^{-2}$ region,
 which can only be properly covered once the integrated statistics become large
 enough,  as indicated by the differential bin-by-bin yields displayed in Fig.~\ref{fig:fasernu2_muon}.
 
-We note here that Fig.~\ref{fig:FASERnu2_FLAre10} compares fits based on FPF pseudo-data
+We emphasize
+that Fig.~\ref{fig:FASERnu2_FLAre10} compares fits based on FPF pseudo-data
 with only statistical uncertainties, and that a more refined comparison between the PDF reach of
 the various FPF experiments requires accounting also for the systematic uncertainties, which ultimately become
 one of the limiting factors.
@@ -269,14 +272,16 @@ one of the limiting factors.
 Also, as mentioned above, cross-calibration between experiments should provide
 valuable input to enhance the PDF sensitivity.
 
-To conclude this discussion, applying the same procedure to FASER$\nu$ and SND@LHC structure
-functions leaves the baseline PDF4LHC21 results unaffected, as demonstrated in App.~\ref{app:fasernu_runIII_impact},
-showing that for the current generation of LHC neutrino detectors
-it will be difficult to provide competitive constraints on the proton structure.
+Applying the same procedure to FASER$\nu$ and SND@LHC structure
+functions leaves the baseline  results from PDF4LHC21 essentially
+unaffected, as demonstrated in App.~\ref{app:fasernu_runIII_impact},
+and showing that for the current generation of LHC neutrino detectors
+it will be difficult to provide competitive constraints on the proton structure due
+to the (relatively) low event rates.
 
 \paragraph{Combined impact of the FPF experiments.}
 %
-Finally, we have carried out a further PDF analysis including simultaneously the three FPF experiments
+We have also carried out a further PDF analysis including simultaneously the three FPF experiments
 considered so far: FASER$\nu$2, AdvSND, and FLArE100.
 %
 Fig.~\ref{fig:FPF_combined} displays the combined impact of the FPF experiments when added
@@ -314,9 +319,11 @@ Again, this exercise is somewhat simplistic since within the real experiments th
 individual measurements, which here is assumed by construction, provides useful information, and also
 because the FPF experiments will cross-calibrate each other and cover somewhat different kinematic regions.
 
-All in all, Fig.~\ref{fig:FPF_combined}, and in particular the statistics-only case, represents
+The projections displayed in
+Fig.~\ref{fig:FPF_combined}, and in particular the statistics-only case, represents
 a best-case scenario for the reduction of PDF uncertainties which can be expected from
-the analysis of neutrino DIS structure function data at the FPF, in the assumption that PDF4LHC21 accurately represents
+the analysis of neutrino DIS structure function data at the FPF,
+under the assumption that PDF4LHC21 accurately represents
 our current knowledge about the quark and gluon structure of the proton.
 
 \subsection{Proton PDFs: impact on NNPDF4.0}
@@ -331,12 +338,12 @@ Here we present results for the impact of the combined FPF neutrino
 measurements on NNPDF4.0, namely the analogous study of that shown
 in Fig.~\ref{fig:FPF_combined} in the case of PDF4LHC21.
 %
-We emphasize that we have produced results for the variations studied in
-Sect.~\ref{sec:pdf4lhc21} also with the NNPDF fitting methodology.
+We have also produced results for the different variations studied in
+Sect.~\ref{sec:pdf4lhc21} with the NNPDF fitting methodology.
 %
 Given that the qualitative obtained with the NNPDF fits
-are compatible with those obtained with {\sc\small xFitter}, it is not necessary to duplicate them here,
-and hence we only show results for the impact of the combined FPF pseudo-data.
+are compatible with those obtained with {\sc\small xFitter}, it is not necessary to duplicate them here
+and we only show results for the impact of the combined FPF pseudo-data.
 
 Fig.~\ref{fig:NNPDF40_baseline} displays the
 same results as Fig.~\ref{fig:FPF_combined} now in the case of the
@@ -373,7 +380,7 @@ content of the proton~\cite{Ball:2022qks}.
   As in the PDF4LHC21 case, the bands indicate the one-sigma PDF uncertainties.
   %
   We now also show results for the charm PDF (bottom right panel), which
-  in the NNPDF4.0 fit is also determined directly from the data entering the fit.
+  in the NNPDF4.0 fit is determined from the data entering the fit.
 %
 }
 \label{fig:NNPDF40_baseline}
@@ -492,18 +499,12 @@ baseline fit, compared to the variants including
 the combined FPF dataset shown in Figs.~\ref{fig:NNPDF40_baseline}
 and~\ref{fig:NNPDF40_lowQ_abs}, are reported in Table~\ref{tab:chi2_nnpdf40_baseline}.
 %
-From top to bottom we indicate the total $\chi^2$, average
-over replicas of the training and validation figures of merit
-$\la E_{\rm tr}\ra_{\rm rep}$ and $\la E_{\rm val}\ra_{\rm rep}$,
-average $\chi^2$ over replicas $\la \chi^2\ra_{\rm rep}$,
-$\chi^2$ for datasets grouped by process.
+The last row displays the $\chi^2$ obtained for the combined FPF dataset,
+for which one finds $\chi^2 \sim 1$ up to fluctuations, consistent
+with the fact that the FPF pseudo-data
+is produced by construction to be compatible with the NNPDF4.0 baseline.
 %
-Note that the last row displays the $\chi^2$ obtained for the combined FPF dataset.
-%
-For the latter, one finds that as expected $\chi^2 \sim 1$, given that the FPF pseudo-data
-is produced by construction to be fully compatible with the NNPDF4.0 baseline.
-%
-For the same reason, the description of all other experiments entering
+For the same reason, the description of the other experiments entering
 the NNPDF4.0 global fit is not distorted by the inclusion of the FPF data.
 %
 In particular, the $\chi^2$ of the available (non-FPF) DIS neutral-current and charged-current
@@ -515,16 +516,15 @@ because of the enhanced weight that DIS data carries in this fit variant.
 
 Fig.~\ref{fig:nnpdf40_fpf_lumis} displays a comparison of the PDF luminosities at $\sqrt{s}=14$ TeV
 as a function of the final-state invariant mass $m_X$ between
-the baseline NNPDF4.0 NNLO determination and its variant which includes
-the combined FPF pseudo-data from the FASER$\nu$2, FLArE100, and AdvSND experiments,
+the baseline NNPDF4.0 determination and its variants which includes
+the combined FPF pseudo-data from the FASER$\nu$2, FLArE, and AdvSND experiments,
 see Figs.~\ref{fig:NNPDF40_baseline} or the corresponding PDF comparison.
 %
+Results are shown normalised to the central value of the NNPDF4.0 baseline.
 %
-  Results are shown normalised to the central value of the NNPDF4.0 baseline.
-  %
-  Specifically, we show the gluon-gluon, quark-antiquark, and
-  quark-quark luminosities.
-  %
+Specifically, we show the gluon-gluon, quark-antiquark, 
+quark-quark, down-antiup, up-antistrange, and strange-antistrange  luminosities.
+%
 These luminosities are useful to interpret the phenomenological studies with the FPF-improved
 PDFs for the HL-LHC that will be presented in Sect.~\ref{sec:pheno}.
 
@@ -558,21 +558,26 @@ uncertainties in the FPF pseudo-data are considered.
 The improvement quark-antiquark luminosities at $Q\sim 100$ GeV
 benefits theoretical predictions for $W$ and $Z$ production at the LHC.
 %
-It is also worth noting the PDF error reduction for the quark-quark luminosity at high invariant masses,
-which will feed into searches for new heavy particles at the TeV scale driven by quark-initiated scattering.
+It is also worth noting the PDF error reduction for the quark-quark luminosity at
+high invariant masses,
+which will feed into searches for new heavy particles at the TeV scale
+driven by quark-initiated scattering.
+%
+Luminosities related to the strange PDF are those mostly
+improved, such as the $u\bar{s}$ channel which provides a significant
+contribution to inclusive $W^+$ production at the LHC.
 
 \subsection{Nuclear PDFs: impact on EPPS21}
 \label{sec:nuclearPDFs}
 
 The studies presented in Sects.~\ref{sec:pdf4lhc21} (for PDF4LHC21)
-and~\ref{sec:nnpdf40} (for NNPDF4.0) treated, from the point of view
+and~\ref{sec:nnpdf40} (for NNPDF4.0) treat, from the point of view
 of PDF constraints, the neutrino scattering target
 as composed by isoscalar free-nucleons.
 %
-They hence neglected both nuclear modifications
-and non-isoscalar effects.
+They hence neglect both nuclear modifications and non-isoscalar effects.
 %
-We now revisit these analyses but accounting for the fact that the target materials
+We now revisit these analyses but accounting for the fact that the target material
 in the FASER$\nu$2 and AdvSND experiments is tungsten, with $A=184$.
 %
 In this exercise we do not include the FLArE structure function data,
@@ -590,27 +595,26 @@ without relying on assumptions on their $A$ dependence.
 We quantify the impact of the FPF structure function measurements
 on the nuclear PDFs of tungsten by applying the same Hessian profiling
 of Sects.~\ref{sec:pdf4lhc21} to EPPS1, a global determination of nuclear PDFs
-that accounts for the constraints of existing datasets involving nuclei as target or projectiles.
+that accounts for the constraints of existing datasets involving nuclei as target or projectiles,
+and based on the CT18 set as proton boundary condition.
 %
 We note that EPPS21 already includes information from neutrino DIS on nuclear targets
 from the CHORUS and NuTeV experiments.
 %
 EPPS21 is generally in good agreement with other recent nPDF fits such as nNNPDF3.0~\cite{AbdulKhalek:2022fyi}
 and nCTEQ15HQ~\cite{Duwentaster:2022kpv}.
-%
+
 The application of profiling to EPPS21 follows the same strategy as that
 for PDF4LHC21, with the caveat that its Hessian error sets also include the contribution
 from the uncertainties  associated to their reference proton PDF set, in this case CT18.
 %
 Given that the measured event rates depend on both the proton PDFs and the nuclear modifications,
-when profiling EPPS21 we also account for the Hessian sets associated to the CT18 proton
+when profiling EPPS21 we also account for the Hessian sets associated to the proton
 PDF dependence.
 %
 Also relevant for the subsequent discussion, EPPS21 adopts a tolerance
 factor of $T^2 = 20$ when defining their  68\%  confidence level uncertainties,
 to be contrasted with  $T^2 = 10$ used in PDF4LHC21.
-
-
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
@@ -631,10 +635,9 @@ Fig.~\ref{fig:profiling_FPF_nuclear} displays a similar comparison as that of
  Fig.~\ref{fig:FPF_combined}, now corresponding to the Hessian
  profiling of EPPS21 for a tungsten nucleus.
  %
- The FPF dataset is in this case composed by FASER$\nu$2 and AdvSND, given that FLArE
- adopts a different target material.
+ The FPF dataset is in this case composed by FASER$\nu$2 and AdvSND.
  %
- Also in this case of nuclear PDFs one finds that the impact of FPF structure function measurements
+ One finds that the impact of FPF structure function measurements
  is most important for the strange PDF, and to a lesser extent for the up and down
  valence quark PDFs.
  %
@@ -643,15 +646,15 @@ Fig.~\ref{fig:profiling_FPF_nuclear} displays a similar comparison as that of
 
  While the main qualitative features of the nPDF profiling are consistent with the free-proton
  case, one reason explaining the observed differences is the choice of a larger tolerance factor $T$ in EPPS21
- as compared to PDF4HC21, which effectively reduces the impact of new data.
+ as compared to PDF4HC21, which effectively reduces the impact of new data in the fit.
  %
- Another reason is the more restrictive functional form adopted in EPPS21 as compared
+ Another potential reason is the more restrictive functional form adopted in EPPS21 as compared
  to the PDF sets entering PDF4LHC21, a consequence of the smaller dataset available
  for hard scattering on nuclear targets.
  %
  Given that these  functional forms are fixed when applying Hessian profiling,
  assessing the impact on a nuclear PDFs by a direct refit, as was done for NNPDF4.0,
  may provide a more  robust estimate of the impact of FPF structure function data
- on nuclear PDFs.
+ on nPDFs.
  %
- Additional results for the Hessian profiling of EPPS21 are presented in App.~\ref{app:nPDF_impact_appendix}.
+ Additional results for the profiling of EPPS21 are presented in App.~\ref{app:nPDF_impact_appendix}.

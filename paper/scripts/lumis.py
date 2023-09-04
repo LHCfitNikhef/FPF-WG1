@@ -16,13 +16,13 @@ import scipy.special as special
 #---------------------------------------------------------
 #---------------------------------------------------------
 # General plot settings
-nmx = 30
+nmx = 20
 mxmin = 9 # GeV
 mxmax = 7000 # GeV
 sqrts = 14000 # GeV, center of mass energy
 s = math.pow(sqrts,2.0)
 # Integration settings
-epsrel=5e-3
+epsrel=1e-3
 
 #------------------------------------------------------------------------------------
 #------------------------------------------------------------------------------------
@@ -408,8 +408,8 @@ ylabel=[r"$\mathcal{L}_{gg}/\mathcal{L}_{gg}^{(\rm ref)}$",\
         r"$\mathcal{L}_{s\bar{s}}/\mathcal{L}_{s\bar{s}}^{(\rm ref)}$"]
 
 # y axis ranges
-yranges=[[0.90,1.15],[0.95,1.06],[0.90,1.15],\
-         [0.90,1.15],[0.95,1.06],[0.90,1.15]]
+yranges=[[0.90,1.10],[0.95,1.06],[0.90,1.10],\
+         [0.90,1.10],[0.95,1.06],[0.90,1.12]]
 
 for ilumi in range(nlumi):
 
