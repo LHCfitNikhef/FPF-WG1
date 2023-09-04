@@ -90,6 +90,20 @@ def lumi_wrap(y):
         xpdf1 = p.xfxQ(3,x1,q)+p.xfxQ(-3,x1,q)
         xpdf2 = p.xfxQ(0,x2,q) 
         integrand = (1.0/x1)*(xpdf1/x1)*(xpdf2/x2)
+    elif(lumitype=="dubar"): # strange-antistrange
+        xpdf1 = p.xfxQ(1,x1,q)
+        xpdf2 = p.xfxQ(-2,x2,q) 
+        integrand = (1.0/x1)*(xpdf1/x1)*(xpdf2/x2)
+        xpdf1 = p.xfxQ(-2,x1,q)
+        xpdf2 = p.xfxQ(1,x2,q) 
+        integrand = integrand + (1.0/x1)*(xpdf1/x1)*(xpdf2/x2)
+    elif(lumitype=="usbar"): # strange-antistrange
+        xpdf1 = p.xfxQ(2,x1,q)
+        xpdf2 = p.xfxQ(-3,x2,q) 
+        integrand = (1.0/x1)*(xpdf1/x1)*(xpdf2/x2)
+        xpdf1 = p.xfxQ(-3,x1,q)
+        xpdf2 = p.xfxQ(2,x2,q) 
+        integrand = integrand + (1.0/x1)*(xpdf1/x1)*(xpdf2/x2)
     else:
         print("invalid type of lumi = ",lumitype)
         exit()
@@ -105,8 +119,8 @@ def lumi_wrap(y):
 # Reduce verbosity of LHAPDF
 lhapdf.setVerbosity(0)
 # number of lumi combinations
-nlumi=3
-lumichannel=["gg","qq","q2"]
+nlumi=6
+lumichannel=["gg","qq","q2","dubar","usbar","ss"]
 # Set mx grid (log spaced)
 mx = np.logspace(np.log10(mxmin),np.log10(mxmax),nmx)
 
@@ -379,18 +393,23 @@ for iset in range(nset):
 #---------------------------------------------------------------------
 print("\n ****** Plotting relative luminosities ******* \n")
 
-ncols,nrows=3,1
+ncols,nrows=2,3
 py.figure(figsize=(ncols*5,nrows*3.5))
 gs = gridspec.GridSpec(nrows,ncols)
 rescolors = py.rcParams['axes.prop_cycle'].by_key()['color']
 
 # lumilabels
+# lumichannel=["gg","qq","q2","dubar","usbar","ss"]
 ylabel=[r"$\mathcal{L}_{gg}/\mathcal{L}_{gg}^{(\rm ref)}$",\
         r"$\mathcal{L}_{q\bar{q}}/\mathcal{L}_{q\bar{q}}^{(\rm ref)}$",\
-        r"$\mathcal{L}_{qq}/\mathcal{L}_{qq}^{(\rm ref)}$"]
+        r"$\mathcal{L}_{qq}/\mathcal{L}_{qq}^{(\rm ref)}$",\
+        r"$\mathcal{L}_{d\bar{u}}/\mathcal{L}_{d\bar{u}}^{(\rm ref)}$",\
+        r"$\mathcal{L}_{u\bar{s}}/\mathcal{L}_{u\bar{s}}^{(\rm ref)}$",\
+        r"$\mathcal{L}_{s\bar{s}}/\mathcal{L}_{s\bar{s}}^{(\rm ref)}$"]
 
 # y axis ranges
-yranges=[[0.90,1.15],[0.95,1.06],[0.90,1.15]]
+yranges=[[0.90,1.15],[0.95,1.06],[0.90,1.15],\
+         [0.90,1.15],[0.95,1.06],[0.90,1.15]]
 
 for ilumi in range(nlumi):
 
@@ -422,11 +441,12 @@ for ilumi in range(nlumi):
     if (ilumi==0):
         ax.legend([(p1[0],p2[0]),(p5[0]),(p3[0])],\
                   [pdfsetlab[0],pdfsetlab[1],pdfsetlab[2]], frameon=True,loc=2,prop={'size':12})
-    ax.set_xlabel(r'$m_X~({\rm GeV})$',fontsize=17)
+    if (ilumi > 3):
+        ax.set_xlabel(r'$m_X~({\rm GeV})$',fontsize=17)
     ax.set_ylabel(ylabel[ilumi],fontsize=19)
-    if(ilumi==0):
+    if(ilumi==1):
         string=r'$\sqrt{s}=14'+'~{\\rm TeV}$'
-        ax.text(0.10,0.08,string,fontsize=18,transform=ax.transAxes)
+        ax.text(0.08,0.80,string,fontsize=18,transform=ax.transAxes)
 
 py.tight_layout(pad=1, w_pad=1, h_pad=1.0)
 py.savefig('lumi'+filelabel+'.pdf')
