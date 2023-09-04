@@ -74,7 +74,8 @@ transfers $Q^2 \gsim 2$ GeV$^2$, such that
  F^{\nu A}_i(x,Q^2) = \sum_{j=q,\bar{q},g}\int_x^1 \frac{dz}{z}\, C_{i,j}^{\nu N}(z,\alpha_s(Q^2))f^{(A)}_j\lp \frac{x}{z},Q^2\rp \, , \quad i = 2,3,L \, .
  \ee
 %
-in terms of a convolution of partonic scattering cross-sections  $C_{i,j}^{\nu N}(x,\alpha_s)$ and
+ expressed
+ in terms of a convolution of partonic scattering cross-sections  $C_{i,j}^{\nu N}(x,\alpha_s)$ and
 of process-independent PDFs $f^{(A)}_j\lp x,Q^2\rp$.
 %
 A similar expression holds for charm production~\cite{Faura:2020oom}, which requires
@@ -180,7 +181,7 @@ decomposition is \bea
  %
  We focus on  muon-neutrino scattering, which benefits from the highest rates and is less
  affected by theoretical uncertainties in the production mechanism, but
- provide also predictions for electron-neutrino scattering.
+ provide also predictions for the subdominant electron-neutrino structure functions.
  
  The kinematics of a charged-current neutrino DIS event $(x,Q^2, E_\nu)$,
  or alternatively $(x,Q^2, y)$, are uniquely specified by the measurement of three independent
@@ -697,7 +698,7 @@ to be the mean of the absolute difference between the number of events in this b
 \be
 \delta_{\rm sys}^{(E_\ell)} =\la \left|  \frac{{N}^{(i)}_{E_\ell-{\rm smeared},k} -N_0^{(i)}}{N_0^{(i)}}\right|\ra \, .
 \ee
-The systematic uncertainty in event yield caused by $\delta E_\ell$ is then $\delta_{\rm sys}^{(E_\ell)} N_{\rm ev}^{(i)}$.
+The absolute systematic uncertainty in event yield caused by $\delta E_\ell$ is then $\delta_{\rm sys}^{(E_\ell)} N_{\rm ev}^{(i)}$.
 %
 Individual sources of systematic errors are treated as uncorrelated among them, and hence
 by producing samples where only one source of error is varied at a time
@@ -852,7 +853,7 @@ interfaced to {\sc\small PineAPPL}~\cite{Carrazza:2020gss, christopher_schwan_20
 to return a fast interpolation grid admitting a generic PDF input,
 and with DGLAP evolution effects provided by {\sc\small EKO}~\cite{Candido:2022tld}.
 %
-DIS structure functions are evaluated at NNLO in the QCD expansion
+DIS structure functions are evaluated at NLO in the QCD expansion
 and account both for heavy quark and target mass effects.
 %
 No higher-twists corrections are included.
