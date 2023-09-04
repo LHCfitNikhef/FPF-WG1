@@ -1,39 +1,47 @@
-\section{Implications for HL-LHC processes}
+\section{Implications for Higgs and weak boson production}
 \label{sec:pheno}
 
-The reduction of PDF uncertainties enabled by the neutrino DIS measurements
-at the FPF presented in Sect.~\ref{sec:protonPDFs}
-makes possible more precise theoretical predictions for key processes at the
+The reduction of PDF uncertainties made possible by neutrino DIS measurements
+at the FPF, discussed in Sect.~\ref{sec:protonPDFs},
+enables more precise theoretical predictions for core processes at the
 HL-LHC.
 %
 Here we present an initial study of the phenomenological implications
-of PDFs enhanced with LHC neutrino data.
-%
-We adopt the same settings as in the LHC phenomenology analysis presented
-in the PDF4LHC21 combination paper~\cite{PDF4LHCWorkingGroup:2022cjn} and provide predictions
-both for inclusive fiducial cross-sections and for differential distributions.
+of the PDFs enhanced with LHC neutrino data
+for hard-scattering processes at proton colliders.
 %
 Specifically, we present results for 
-single and double gauge boson production, inclusive top quark pair production,
-and Higgs production in gluon
-fusion and in association with a vector boson.
+single and double gauge boson production,  Higgs production in
+vector-boson fusion, and Higgs production and in association with a vector boson.
 %
-We evaluate these cross-sections using NLO matrix elements
-which include  both in the
-QCD and electroweak corrections using
+We focus on processes sensitive to the quark-quark and quark-antiquark initial
+states, given that LHC neutrinos do not provide information on the gluon
+PDF and hence they cannot inform  gluon-initiated
+processes, such as top quark pair production or Higgs production in gluon fusion.
+
+We adopt the same calculational settings as in the LHC phenomenology analysis considered
+in the PDF4LHC21 combination study~\cite{PDF4LHCWorkingGroup:2022cjn} and provide predictions
+both for inclusive cross-sections, integrated in the fiducial
+region, and for differential distributions.
+%
+We evaluate these cross-sections using matrix elements
+which include NLO corrections both in the
+QCD and electroweak coupling using
 {\sc\small mg5\_amc@nlo}~\cite{Frederix:2018nkq}
 interfaced to {\sc\small PineAPPL}~\cite{Carrazza:2020gss}.
 %
 For all processes, realistic selection and acceptance cuts on the final state particles
-have been applied, and PDF uncertainty bands correspond to 90\% CL
-uncertainties.
+have been applied.
 %
 No further theory uncertainties are considered in this
-analysis.
+analysis, given that we don't aim to compare with experimental data.
 
 Fig.~\ref{fig:NNPDF40_pheno_integrated} displays
 fiducial cross-section for representative LHC processes at $\sqrt{s}=14$ TeV
-evaluated with NNPDF4.0 NNLO, compared with the fits including the FPF structure function projections.
+evaluated with NNPDF4.0 (top panels)
+and with PDF4LHC21 (bottom panels),
+compared with the results obtained from
+the fits including the FPF structure function projections.
 %
 For the latter, we display the variants based only on statistical uncertainties and that
 which includes also systematic errors.
@@ -46,10 +54,6 @@ From top to bottom, we show inclusive Drell-Yan production ($Z, W^+, W^-$), Higg
 in vector-boson fusion, Higgs associated
 production, and diboson production ($W^+W^-$, $W^+Z$, $W^-Z$).
 %
-We focus on processes dominated by quark-quark and quark-antiquark scattering, given
-that the FPF structure functions would not have any impact on gluon-initiated
-processes such as top quark pair production or Higgs production in gluon fusion.
-%
 The corresponding comparison at the level of differential distributions
 are shown in Fig.~\ref{fig:NNPDF40_pheno_differential}.
 %
@@ -59,7 +63,7 @@ assumed to be the same by construction.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_DY_14TEV_40_PHENO-integrated.pdf}
 \includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_WM_14TEV_40_PHENO-integrated.pdf}
@@ -70,20 +74,32 @@ assumed to be the same by construction.
 \includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_WPWM_14TEV_40_PHENO-integrated.pdf}
 \includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_WPZ_14TEV_40_PHENO-integrated.pdf}
 \includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_WMZ_14TEV_40_PHENO-integrated.pdf}
+\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_DY_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
+\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_WM_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
+\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_WP_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
+\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_HVBF_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
+\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_HWP_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
+\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_HWM_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
+\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_WPWM_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
+\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_WPZ_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
+\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_WMZ_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
 \caption{Fiducial cross-sections for representative LHC processes at $\sqrt{s}=14$ TeV
-evaluated with NNPDF4.0 NNLO, compared with the fits including the FPF structure function projections.
+  evaluated with NNPDF4.0 (upper panels) and PDF4LHC21 (bottom panels),
+  compared with the fits including the FPF structure function projections.
+  %
+  See~\cite{NNPDF:2021njg,PDF4LHCWorkingGroup:2022cjn} for the calculational settings
+  used to evaluate these cross-sections.
 %
-For the NNPDF4.0 baseline
-prediction, the dark (light) bands indicate the 68\% (95\%) CL uncertainties.
+For the baseline
+predictions, the dark (light) bands indicate the 68\% (95\%) CL uncertainties.
 %
-The fit labelled as ``\_FPF'' is the one  based on statistical uncertainties,
-while that labelled as ``\_FPF$^*$'' also includes systematic errors.
+The fits labelled as ``\_FPF'' are the ones considering statistical uncertainties,
+while those labelled as ``\_FPF$^*$'' also include systematic errors.
 %
-The central values are set to be the same as in the original NNPDF4.0 calculation in all cases.
+In the fits with FPF data, the central values are set to be the same as
+in the corresponding baseline.
 %
-See~\cite{NNPDF:2021njg,PDF4LHCWorkingGroup:2022cjn} for the calculational settings.
-%
-From top to bottom, we show inclusive Drell-Yan production ($Z, W^+, W^-$), Higgs production
+We provide predictions for inclusive Drell-Yan production ($Z, W^+, W^-$), Higgs production
 in vector-boson fusion, Higgs associated
 production, and diboson production ($W^+W^-$, $W^+Z$, $W^-Z$).
 %
@@ -106,10 +122,29 @@ production, and diboson production ($W^+W^-$, $W^+Z$, $W^-Z$).
 \includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_WPZ_14TEV_40_PHENO-global.pdf}
 \includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_WMZ_14TEV_40_PHENO-global.pdf}
 \caption{Same as Fig.~\ref{fig:NNPDF40_pheno_integrated}
-for the corresponding differential distributions.
+for the corresponding differential distributions in the case of NNPDF4.0
 %
 }
 \label{fig:NNPDF40_pheno_differential}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_DY_14TEV_40_PHENO-global-pdf4lhc21.pdf}
+	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_WM_14TEV_40_PHENO-global-pdf4lhc21.pdf}
+	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_WP_14TEV_40_PHENO-global-pdf4lhc21.pdf}
+	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_HVBF_14TEV_40_PHENO-global-pdf4lhc21.pdf}
+	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_HWP_14TEV_40_PHENO-global-pdf4lhc21.pdf}
+	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_HWM_14TEV_40_PHENO-global-pdf4lhc21.pdf}
+	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_WPWM_14TEV_40_PHENO-global-pdf4lhc21.pdf}
+	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_WPZ_14TEV_40_PHENO-global-pdf4lhc21.pdf}
+	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_WMZ_14TEV_40_PHENO-global-pdf4lhc21.pdf}
+	\caption{
+		Same as Fig.~\ref{fig:NNPDF40_pheno_differential} but with PDF4LHC21.
+	}
+	\label{fig:PDF4LHC21_pheno_differential}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -150,43 +185,7 @@ here as compared to the inclusive cross-sections, indicating that they affect mo
 the tails, rather than the bulk, of the distributions, and in particular the large-$x$
 behaviour of the PDFs.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_DY_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
-	\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_WM_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
-	\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_WP_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
-	\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_HVBF_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
-	\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_HWP_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
-	\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_HWM_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
-	\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_WPWM_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
-	\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_WPZ_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
-	\includegraphics[width=0.32\textwidth]{plots/LHCpheno/NNPDF_WMZ_14TEV_40_PHENO-integrated-pdf4lhc21.pdf}
-	\caption{
-		Same as Fig.~\ref{fig:NNPDF40_pheno_integrated} but with PDF4LHC21.
-		}
-	\label{fig:PDF4LHC21_pheno_integrated}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_DY_14TEV_40_PHENO-global-pdf4lhc21.pdf}
-	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_WM_14TEV_40_PHENO-global-pdf4lhc21.pdf}
-	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_WP_14TEV_40_PHENO-global-pdf4lhc21.pdf}
-	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_HVBF_14TEV_40_PHENO-global-pdf4lhc21.pdf}
-	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_HWP_14TEV_40_PHENO-global-pdf4lhc21.pdf}
-	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_HWM_14TEV_40_PHENO-global-pdf4lhc21.pdf}
-	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_WPWM_14TEV_40_PHENO-global-pdf4lhc21.pdf}
-	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_WPZ_14TEV_40_PHENO-global-pdf4lhc21.pdf}
-	\includegraphics[width=0.49\textwidth]{plots/LHCpheno/NNPDF_WMZ_14TEV_40_PHENO-global-pdf4lhc21.pdf}
-	\caption{
-		Same as Fig.~\ref{fig:NNPDF40_pheno_differential} but with PDF4LHC21.
-	}
-	\label{fig:PDF4LHC21_pheno_differential}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The studies presented in this section provide only a first glimpse of the potential
 of neutrino DIS measurements at the LHC to inform predictions for high-$p_T$ processes.
