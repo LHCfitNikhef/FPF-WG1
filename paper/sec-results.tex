@@ -104,7 +104,7 @@ one finds that the latter eventually become a limiting factor,
 but also that they not modify the qualitative findings of the statistics-only scenario.
 %
 Indeed, while systematic uncertainties somewhat degrade the PDF sensitivity,
-they do not wash it out for none of the quark PDFs.
+they do not wash it out for any of the quark PDFs.
 %
 Furthermore, in the projections presented in this work,
 we assume the performance parameters of  Table~\ref{tab:FPF_experiments}, which
@@ -456,15 +456,15 @@ strangeness enabled by the FPF charm-tagged structure function data.
   &
   & Statistical-only  & Statistical + systematics  \\
   \midrule
-  $\chi^2$ &  \multirow{4}{*}{Global}  & 1.170 &  1.161  & 1.145  \\
+  $\chi^2/n_{\rm dat}$ &  \multirow{4}{*}{Global}  & 1.170 &  1.161  & 1.145  \\
   $\la E_{\rm tr}\ra_{\rm rep}$
   &  &  2.256  &  2.242   & 2.215   \\
   $\la E_{\rm val}\ra_{\rm rep}$
   & & 2.360    &   2.332  & 2.311  \\
-  $\la \chi^2\ra_{\rm rep}$
+  $\la \chi^2/n_{\rm dat}\ra_{\rm rep}$
   & &   1.194   &    1.187    & 1.169  \\
   \midrule
-  \multirow{8}{*}{$\chi^2$}
+  \multirow{8}{*}{$\chi^2/n_{\rm dat}$}
   & DIS neutral-current                     &  1.220    &  1.230    &   1.220   \\
   & DIS charged-current                     &   0.904  &   0.942    &  0.913    \\
   & Drell--Yan (inclusive and one-jet) &  1.76   &   1.830    &   1.830   \\
@@ -473,7 +473,7 @@ strangeness enabled by the FPF charm-tagged structure function data.
   & Inclusive jet production                &  0.957   &  0.963     &   0.942   \\
   & Dijet production                        &  2.030    &    2.010   &   2.010   \\
   & Direct photon production                 &  0.740  &   0.729    &    0.744  \\
-  & FPF (total)                 &  -  &   1.192    &   0.919   \\
+  & FPF (total)                 &  1.301 / 0.958 &   1.192    &   0.919   \\
   \bottomrule
 \end{tabularx}
 \vspace{0.2cm}
@@ -482,13 +482,15 @@ strangeness enabled by the FPF charm-tagged structure function data.
   the combined FPF dataset shown in Figs.~\ref{fig:NNPDF40_baseline}
   and~\ref{fig:NNPDF40_lowQ_abs}.
   %
-  From top to bottom: total $\chi^2$, average
+  From top to bottom: total $\chi^2/n_{\rm dat}$, average
   over replicas of the training and validation figures of merit
   $\la E_{\rm tr}\ra_{\rm rep}$ and $\la E_{\rm val}\ra_{\rm rep}$,
-  average $\chi^2$ over replicas $\la \chi^2\ra_{\rm rep}$,
-  $\chi^2$ for datasets grouped by process.
+  average $\chi^2/n_{\rm dat}$ over replicas $\la \chi^2/n_{\rm dat}\ra_{\rm rep}$,
+  $\chi^2/n_{\rm dat}$ for datasets grouped by process.
   %
-  The last row displays the $\chi^2$ obtained for the combined FPF dataset.
+  The last row displays the $\chi^2/n_{\rm dat}$ obtained for the combined FPF dataset.
+  For the baseline fit we present both the value computed with only statistical error
+  and also adding the systematics so that it can be compared with both fits. 
   \label{tab:chi2_nnpdf40_baseline}
 }
 \end{table}
@@ -499,19 +501,19 @@ baseline fit, compared to the variants including
 the combined FPF dataset shown in Figs.~\ref{fig:NNPDF40_baseline}
 and~\ref{fig:NNPDF40_lowQ_abs}, are reported in Table~\ref{tab:chi2_nnpdf40_baseline}.
 %
-The last row displays the $\chi^2$ obtained for the combined FPF dataset,
-for which one finds $\chi^2 \sim 1$ up to fluctuations, consistent
+The last row displays the $\chi^2/n_{\rm dat}$ obtained for the combined FPF dataset,
+for which one finds $\chi^2/n_{\rm dat} \sim 1$ up to fluctuations, consistent
 with the fact that the FPF pseudo-data
 is produced by construction to be compatible with the NNPDF4.0 baseline.
 %
 For the same reason, the description of the other experiments entering
 the NNPDF4.0 global fit is not distorted by the inclusion of the FPF data.
 %
-In particular, the $\chi^2$ of the available (non-FPF) DIS neutral-current and charged-current
+In particular, the $\chi^2/n_{\rm dat}$ of the available (non-FPF) DIS neutral-current and charged-current
 datasets changes from 1.220 and 0.904 in NNPDF4.0 to 1.220 and 0.913 in the fit
 with FPF pseudo-data.
 %
-A moderate increase is found to the $\chi^2$ of Drell-Yan processes, from 1.76 to 1.83, possibly
+A moderate increase is found to the $\chi^2/n_{\rm dat}$ of Drell-Yan processes, from 1.76 to 1.83, possibly
 because of the enhanced weight that DIS data carries in this fit variant.
 
 Fig.~\ref{fig:nnpdf40_fpf_lumis} displays a comparison of the PDF luminosities at $\sqrt{s}=14$ TeV
@@ -555,16 +557,16 @@ and~\ref{fig:NNPDF40_lowQ_abs} is also visible
 for the partonic luminosities, specially on the scenario where only statistical
 uncertainties in the FPF pseudo-data are considered.
 %
-The improvement quark-antiquark luminosities at $Q\sim 100$ GeV
-benefits theoretical predictions for $W$ and $Z$ production at the LHC.
+The improved quark-antiquark luminosities at $Q\sim 100$ GeV
+benefit theoretical predictions for $W$ and $Z$ production at the LHC.
 %
 It is also worth noting the PDF error reduction for the quark-quark luminosity at
 high invariant masses,
 which will feed into searches for new heavy particles at the TeV scale
 driven by quark-initiated scattering.
 %
-Luminosities related to the strange PDF are those mostly
-improved, such as the $u\bar{s}$ channel which provides a significant
+Unsurprisingly, luminosities related to the strange PDF are those
+which improve the most, such as the $u\bar{s}$ channel which provides a significant
 contribution to inclusive $W^+$ production at the LHC.
 
 \subsection{Nuclear PDFs: impact on EPPS21}
