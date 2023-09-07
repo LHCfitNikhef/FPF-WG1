@@ -69,7 +69,7 @@ def xsec_as_enu_unc(
         result = (yp * f2 - (y**2) * fl + (-1) ** type * ym * xf3)
 
         # Normalization as defined in https://arxiv.org/pdf/1808.02034.pdf
-        prefac_const = (G_FERMI**2 * INVGEV2_TO_PB) / (4.0 * np.pi)
+        prefac_const = (G_FERMI**2 * INVGEV2_TO_PB) / (2.0 * np.pi)
         prefac_funct =  1 / (2 * x * (1 + (q2 / MW**2))**2)
         return prefac_funct * prefac_const * result
 

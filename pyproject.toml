@@ -7,7 +7,7 @@ authors = ["Tanjona  <rrabeman@nikhef.nl>"]
 [tool.poetry.dependencies]
 python = "^3.9,<3.11"
 click = "^8.1.3"
-yadism = "0.12.3"
+yadism = { path = "/home/tanjona/Documents/WORK/NNPDF/yadism", develop = true, extras = ["box", "mark"] }
 eko = "^0.12.0"
 pineappl = "^0.5.5"
 seaborn = "0.12.2"

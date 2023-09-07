@@ -307,9 +307,9 @@ def multiply_sfs_xsecs(
         result = (yp * f2 - (y**2) * fl + (-1) ** type * ym * xf3)
 
         # Normalization as defined in https://arxiv.org/pdf/1808.02034.pdf
-        prefac_const = (G_FERMI**2 * INVGEV2_TO_PB) / (4.0 * np.pi)
+        prefac_const = (G_FERMI**2 * INVGEV2_TO_PB) / (2.0 * np.pi)
         # TODO: Check where the factor of 2 is coming from
-        prefac_funct =  1 / (2 * x * (1 + (Q2 / MW**2))**2) / 2
+        prefac_funct =  1 / (2 * x * (1 + (Q2 / MW**2))**2)
         return prefac_funct * prefac_const * result
 
     results = []
