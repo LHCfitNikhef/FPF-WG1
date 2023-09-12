@@ -42,7 +42,7 @@ declare -a xFrunFiles=("constants.yaml" "parameters.yaml" "steering.txt" "plot.s
 declare -a xFprelFiles=("constants.yaml" "parameters.yaml" "steering.txt" "run.sh")
 for pdf in ${pdfs[@]}; do
 
-    if [[ ${pdf}=="PDF4LHC21" ]]; then
+    if [[ "${pdf}" == "PDF4LHC21" ]]; then
         declare -a statOnlyDirs=("FASERv" "AdvSND" "FLArE100" "FLArE10" "FPF" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
         declare -a systDirs=("FPF" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination" )
         declare -a fred05Dirs=("FPF" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
@@ -82,13 +82,13 @@ for pdf in ${pdfs[@]}; do
         git add ${profilingpath}/${pdf}/${unctype}/clean.sh
         for xFrunFile in ${xFrunFiles[@]}; do
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${xFrunFile}        
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_g_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_Sea_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
         done
-        if [[ ${pdf}=="PDF4LHC21" ]]; then
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_g_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_Sea_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
+        if [[ "${pdf}" == "PDF4LHC21" ]] && [[ "${subDir}" == "FPF" ]]; then
             git add -A ${profilingpath}/${pdf}/${unctype}/${subDir}/${pdf}-FPF-stat-only
         fi
     done
@@ -101,12 +101,12 @@ for pdf in ${pdfs[@]}; do
         git add ${profilingpath}/${pdf}/${unctype}/clean.sh
         for xFrunFile in ${xFrunFiles[@]}; do
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${xFrunFile}        
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_g_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_Sea_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
         done
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_g_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_Sea_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
     done
 
     #With statistical and systematic uncertainties (0.5 improvement factor)
@@ -117,12 +117,12 @@ for pdf in ${pdfs[@]}; do
         git add ${profilingpath}/${pdf}/${unctype}/clean.sh
         for xFrunFile in ${xFrunFiles[@]}; do
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${xFrunFile}        
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_g_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_Sea_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
         done
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_g_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_Sea_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
     done
 
     #With statistical and systematic uncertainties (0.5 correlation factor)
@@ -133,12 +133,12 @@ for pdf in ${pdfs[@]}; do
         git add ${profilingpath}/${pdf}/${unctype}/clean.sh
         for xFrunFile in ${xFrunFiles[@]}; do
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${xFrunFile}        
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_g_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_Sea_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
         done
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_g_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_Sea_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
     done
 
     #With statistical and systematic uncertainties (0.5 improvement & correlation factors)
@@ -149,13 +149,13 @@ for pdf in ${pdfs[@]}; do
         git add ${profilingpath}/${pdf}/${unctype}/clean.sh
         for xFrunFile in ${xFrunFiles[@]}; do
             git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${xFrunFile}        
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_g_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_Sea_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
-            git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
         done
-        if [[ ${pdf}=="PDF4LHC21" ]]; then
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_dv_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_g_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_Sea_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
+        git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
+        if [[ "${pdf}" == "PDF4LHC21" ]] && [[ "${subDir}" == "FPF" ]]; then
             git add -A ${profilingpath}/${pdf}/${unctype}/${subDir}/${pdf}-FPF    
         fi
     done
