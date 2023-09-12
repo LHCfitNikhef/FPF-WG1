@@ -976,8 +976,8 @@ int main(int argc, char* argv[]) {
     //Check if user input arg: write tables either for preliminary or final runs
     if (argc<2) {
         cout << "Please call the program as either:\n"
-             << "  ./parsetEXE 0    #Produce preliminary run tables\n OR\n"
-             << "  ./parsetEXE 1    #Produce final run tables" << endl;
+             << "  ./parserEXE 0    #Produce preliminary run tables\n OR\n"
+             << "  ./parserEXE 1    #Produce final run tables" << endl;
         return -1;
     }
     stringstream sstream;

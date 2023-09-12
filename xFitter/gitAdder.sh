@@ -50,9 +50,9 @@ for pdf in ${pdfs[@]}; do
         declare -a fred05fcorr05Dirs=("AdvSND" "FLArE100" "FLArE10" "FPF" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
     else
         declare -a statOnlyDirs=("AdvSND" "FLArE100" "FLArE10" "FPF" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
-        declare -a systDirs=("FPF" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
-        declare -a fred05Dirs=("FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
-        declare -a fcorr05Dirs=("FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
+        declare -a systDirs=("FASERv2" "FPF")
+        declare -a fred05Dirs=("FASERv2" "FPF")
+        declare -a fcorr05Dirs=("FASERv2" "FPF")
         declare -a fred05fcorr05Dirs=("AdvSND" "FLArE100" "FLArE10" "FPF" "FASERv2" "FASERv2_nochargediscrimination" "FASERv2_inclusive" "FASERv2_inclusive_nochargediscrimination" "FASERv2_charm" "FASERv2_charm_nochargediscrimination")
     fi
 
