@@ -89,7 +89,7 @@ for pdf in ${pdfs[@]}; do
         git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_s_ratio.pdf
         git add ${profilingpath}/${pdf}/${unctype}/${subDir}/${unctype}_`echo ${subDir} | sed 's/_.*//'`_q2_10000_pdf_uv_ratio.pdf        
         if [[ "${pdf}" == "PDF4LHC21" ]] && [[ "${subDir}" == "FPF" ]]; then
-            git add -A ${profilingpath}/${pdf}/${unctype}/${subDir}/${pdf}-FPF-stat-only
+            git add -A ${profilingpath}/${pdf}/${unctype}/${subDir}/${pdf}-FPF-statOnly
         fi
     done
     
