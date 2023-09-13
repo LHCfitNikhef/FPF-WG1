@@ -254,7 +254,7 @@ or instead using the electronic detector components of FASER, which enable the t
 of the outgoing downstream energetic muons.
 %
 FASER$\nu$ is sensitive to neutrinos with pseudorapidity $\eta_\nu \ge 8.5$
-and can also identify charm-tagged events.
+and can also identify charm-tagged events. To identify the charge of the lepton from a neutrino interaction, the lepton is required to pass through the FASER spectrometer. This imposes an angular requirement on the outgoing charged lepton, which we show in Table~\ref{tab:FPF_experiments}. Also, to identify a DIS interaction the emulsion detector requires at least 5 charged tracks to emerge from the interaction vertex. We implement this in our simulations by requiring a minimum hadronic energy when calculating the yield. 
 
 
 \paragraph{SND@LHC.}
@@ -352,7 +352,7 @@ muons would be measured in the FASER2 spectrometer
  %
  Here we present  projections for this baseline design of the experiment, FLArE10,
  as well as for a potential larger variant based on a fiducial mass of 100 tonnes, which
- is known as FLArE100.
+ is known as FLArE100. While FLArE100 is not one of the currently proposed FPF experiments, we include it for illustration purposes.
  %
  Reconstruction of the total energy of the hadronic final state will also
  possible. 
@@ -415,7 +415,7 @@ step function and accounts for the experimental acceptances
 in $E_\ell$, $\theta_\ell$, and $E_h$
 listed in Table~\ref{tab:FPF_experiments}.
 
-The incoming neutrino fluxes of~\cite{Kling:2021gos} account for the geometry
+The incoming neutrino fluxes of Ref.~\cite{Kling:2021gos} account for the geometry
 and neutrino pseudo-rapidity $\eta_\nu$ coverage of the considered detector and
 are encoded in Eq.~(\ref{eq:event_yields_calculation}) as $dN_{\nu}(E_\nu)/dE_{\nu}$.
 %
@@ -423,7 +423,7 @@ This neutrino flux takes into account both the prompt component associated with 
 %
 The prompt component used in this work was simulated at NLO using {\sc\small POWHEG}~\cite{Nason:2004rx,Frixione:2007vw,Alioli:2010xd} matched to {\sc\small Pythia8}~\cite{Sjostrand:2014zea, Bierlich:2022pfr} for the parton shower and hadronisation, and the displaced component was simulated with {\sc\small EPOS-LHC}~\cite{Pierog:2013ria}.
 %
-In comparison with~\cite{Kling:2021gos}, in addition to the updated charmed hadron production,
+In comparison with Ref.~\cite{Kling:2021gos}, in addition to the updated charmed hadron production~\cite{Sominka:2023},
 the neutrino flux has been updated to $\sqrt{s} = 13.6~{\rm TeV}$.
 
 The triple integral in  Eq.~(\ref{eq:event_yields_calculation}) is evaluated numerically by means
@@ -664,7 +664,7 @@ are at the percent level or smaller for this experiment.
 In addition to the statistical uncertainties evaluated from Eq.~(\ref{eq:statistical_uncertainties}),
 one needs to also estimate the systematic uncertainties associated to the
 finite precision in the reconstruction
-of the final state leptonic and hadronic variables listed in Table~\ref{tab:FPF_experiments}.
+of the final state leptonic and hadronic variables listed in Table~\ref{tab:FPF_experiments}. 
 %
 For instance, an event which would be classified into a given bin in $(x,Q^2,E_\nu)$ in the case
 of a perfect detector may end up being
@@ -716,7 +716,7 @@ Fig.~\ref{fig:percentage_uncertainties_overview}
 displays the projected systematic uncertainties associated
 to $E_\ell$, $\theta_\ell$, and $E_h$ 
 for the  measurements of the double-differential
-muon-neutrino scattering  at FASER$\nu$2.
+muon-neutrino scattering  at FASER$\nu$2. We note that there is a further systematic uncertainty associated to the overall neutrino flux, but we do not include this uncertainty in our estimation.
 %
 The magnitude of each systematic error is plotted as a function
 of the average momentum fraction per bin $\la x\ra$
