@@ -261,7 +261,7 @@ and can also identify charm-tagged events. To identify the charge of the lepton 
 %
 In the same manner as FASER, the SND@LHC experiment~\cite{SNDLHC:2022ihg}
 is located in a service tunnel (TI18)
-around 500 metres from the ATLAS interaction point and has been taking data
+around 500 meters from the ATLAS interaction point and has been taking data
 since the  beginning of Run III.
 %
 SND@LHC is installed off the LOS axis in order to cover the neutrino
@@ -332,7 +332,7 @@ Here we focus on the former.
  Building upon recent progress in liquid noble gas neutrino detectors over the last decade (ICARUS, MicroBooNE, SBND, DUNE), this experiment
  would rely on a modularized liquid argon (LAr) time projection detector.
  %
- The use of LAr as a target is beneficial for final-state particle identification, track angle, and kinetic energy measurements with sub-millimetre spatial resolution in all dimensions.
+ The use of LAr as a target is beneficial for final-state particle identification, track angle, and kinetic energy measurements with sub-millimeter spatial resolution in all dimensions.
  %
  The detector will be equipped with a magnetized hadron/muon calorimeter downstream of the liquid argon volume
  for muon charge and momentum measurements.
@@ -415,7 +415,7 @@ step function and accounts for the experimental acceptances
 in $E_\ell$, $\theta_\ell$, and $E_h$
 listed in Table~\ref{tab:FPF_experiments}.
 
-The incoming neutrino fluxes of Ref.~\cite{Kling:2021gos} account for the geometry
+The incoming neutrino fluxes of~\cite{Kling:2021gos} account for the geometry
 and neutrino pseudo-rapidity $\eta_\nu$ coverage of the considered detector and
 are encoded in Eq.~(\ref{eq:event_yields_calculation}) as $dN_{\nu}(E_\nu)/dE_{\nu}$.
 %
@@ -423,7 +423,7 @@ This neutrino flux takes into account both the prompt component associated with 
 %
 The prompt component used in this work was simulated at NLO using {\sc\small POWHEG}~\cite{Nason:2004rx,Frixione:2007vw,Alioli:2010xd} matched to {\sc\small Pythia8}~\cite{Sjostrand:2014zea, Bierlich:2022pfr} for the parton shower and hadronisation, and the displaced component was simulated with {\sc\small EPOS-LHC}~\cite{Pierog:2013ria}.
 %
-In comparison with Ref.~\cite{Kling:2021gos}, in addition to the updated charmed hadron production~\cite{Sominka:2023},
+In comparison with the calculation from~\cite{Kling:2021gos}, in addition to the updated charmed hadron production~\cite{Sominka:2023},
 the neutrino flux has been updated to $\sqrt{s} = 13.6~{\rm TeV}$.
 
 The triple integral in  Eq.~(\ref{eq:event_yields_calculation}) is evaluated numerically by means
@@ -612,6 +612,34 @@ to the one provided by the EIC measurements.
     \label{fig:Kin_nNNPDF30_EIC_FPF}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The inclusive yields listed in Table~\ref{tab:integrated_rates}
+differ from the total number of neutrinos interacting within the
+detector volume~\cite{Feng:2022inv,Kling:2021gos} due to both the
+DIS requirements  ($W^2 > 4\,{\rm GeV}^2$ and $Q^2 > 2\,{\rm GeV}^2$)
+and the detector fiducial acceptances summarised in Table~\ref{tab:FPF_experiments}.
+%
+The former is found to be negligible, with DIS cuts removing
+only  $\lesssim 1\%$ of the events, a consequence of the high energy of
+LHC neutrinos.
+%
+The latter is quantified in Table~\ref{tab:acceptance}, displaying
+the number of electron and muon neutrinos before and after applying
+acceptance cuts.
+%
+The acceptance efficiency, defined as the ratio between pre- and post-acceptance
+integrated event yields, depends on the detector and can be up to 50\%.
+%
+For instance, FASER$\nu$2 loses 63\% and 52\% of the interacting electron and muon
+neutrinos respectively due to the acceptance requirements.
+%
+From Table~\ref{tab:FPF_experiments}, is it also worth noting how FLArE has virtually
+perfect acceptance for electron neutrinos.
+%
+One also observes that SND@LHC and AdvSND exhibit relatively
+large acceptance efficiencies, which however are not sufficient to compensate
+the lower number of initial interacting neutrinos due to their off-axis location
+as compared to FASER$\nu$(2) and FLArE.
 
 \subsection{Statistical and systematic uncertainties}
 \label{subsec:uncertainties}
