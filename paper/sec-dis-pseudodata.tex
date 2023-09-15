@@ -1,7 +1,7 @@
 \section{Deep-inelastic scattering with LHC neutrinos}
 \label{sec:dis_pseudodata}
 
-We begin by describing the procedure adopted in order 
+Here we describe the procedure adopted 
 to generate projections for the kinematic coverage
 and uncertainties associated to  measurements
 of neutrino-nucleus scattering at the LHC far-forward experiments.
@@ -11,7 +11,7 @@ neutrino scattering in terms of DIS structure functions.
 %
 Then, we present an  overview of the operative and proposed
 LHC far-forward neutrino detectors that
-will be considered in the present study and indicate their
+are considered in the present study and indicate their
 acceptance and performance parameters.
 %
 By convoluting the expected electron and muon neutrino fluxes
@@ -22,7 +22,7 @@ and $E_\nu$ and the associated statistical and systematic uncertainties.
 %
 Finally, we discuss the procedure adopted to generate pseudo-data
 for LHC neutrino structure functions
-and quantify their impact
+and to quantify their impact
  into proton and nuclear PDF determinations.
 
  \subsection{Neutrino DIS revisited}
@@ -172,7 +172,7 @@ decomposition is \bea
  at the LHC far-forward detectors involves two main ingredients: the energy
  and flavour dependence of the incoming neutrino flux crossing
  the detector fiducial volume, on the one hand,
- and the scattering rates within the same fiducial volume, on the other hand.
+ and the scattering rates within the detector acceptance, on the other hand.
  %
  Here we summarise the main features of each of the existing and future
  far-forward detectors considered, in particular concerning
@@ -254,8 +254,18 @@ or instead using the electronic detector components of FASER, which enable the t
 of the outgoing downstream energetic muons.
 %
 FASER$\nu$ is sensitive to neutrinos with pseudorapidity $\eta_\nu \ge 8.5$
-and can also identify charm-tagged events. To identify the charge of the lepton from a neutrino interaction, the lepton is required to pass through the FASER spectrometer. This imposes an angular requirement on the outgoing charged lepton, which we show in Table~\ref{tab:FPF_experiments}. Also, to identify a DIS interaction the emulsion detector requires at least 5 charged tracks to emerge from the interaction vertex. We implement this in our simulations by requiring a minimum hadronic energy when calculating the yield. 
-
+and can also identify charm-tagged events.
+%
+To identify the charge of the lepton from a neutrino interaction, the lepton is required to pass through the FASER spectrometer.
+%
+This imposes an angular requirement on the outgoing charged lepton, indicated
+in Table~\ref{tab:FPF_experiments}.
+%
+Also, to identify a DIS interaction the emulsion detector requires at least 5 charged tracks
+to emerge from the interaction vertex.
+%
+We implement this last constraint
+in our simulations by requiring a minimum hadronic energy when calculating the event yields. 
 
 \paragraph{SND@LHC.}
 %
@@ -347,14 +357,16 @@ muons would be measured in the FASER2 spectrometer
  With an expected fiducial (active) mass of 10 tonnes (30 tonnes) and a length of 7 m, FLArE will
  detect final-state electrons with energies $E_{e}\lsim 2~\rm{TeV}$ and
  scattering angles up to 0.5 mrad,  while final-state muons
- with $\theta_\mu \lsim 0.025$ will be recorded by FASER$\nu$2
- downstream in the FPF cavern.
+ with $\theta_\mu \lsim 0.025$ will be recorded by FASER2.
  %
  Here we present  projections for this baseline design of the experiment, FLArE10,
- as well as for a potential larger variant based on a fiducial mass of 100 tonnes, which
- is known as FLArE100. While FLArE100 is not one of the currently proposed FPF experiments, we include it for illustration purposes.
+ as well as for a potential larger variant based on a fiducial mass of 100 tonnes,
+ denoted FLArE100.
  %
- Reconstruction of the total energy of the hadronic final state will also
+ While FLArE100 is not one of the currently proposed FPF experiments, we nevertheless
+ include it for illustration purposes.
+ %
+ Reconstruction of the total energy of the hadronic final state will be
  possible. 
  %
  In terms of performance, the targets
@@ -362,7 +374,7 @@ muons would be measured in the FASER2 spectrometer
  $\delta \theta_e \sim 15$ mrad of electron angular  resolution,
  and $\delta E_h \sim 30$\% for the hadronic energy.
  %
- Since the muon energy from a charged-current interaction would be measured by FASER$\nu$2, the
+ Since the muon energy from a charged-current interaction would be measured by FASER2, the
  performance parameters for $E_\mu$ are taken to be the same.
 
 \subsection{Differential scattering event rates}
