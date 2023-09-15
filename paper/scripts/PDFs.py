@@ -37,7 +37,8 @@ nset=3
 nrep=np.zeros(nset, dtype='int')
 nrep_max = 1000
 
-pdfset=["230309-ern-002","230824-tr-fpf-002","230824-jcm-fpf-001_iterated"]
+# Final grids, including missing factor 2, now added back
+pdfset=["230309-ern-002","230914-tr-fpf-001","230913-jcm-fpf-001"]
 
 for iset in range(nset):
 
