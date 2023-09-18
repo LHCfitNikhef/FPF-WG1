@@ -327,10 +327,9 @@ our current knowledge about the quark and gluon structure of the proton.
 \subsection{Proton PDFs: impact on NNPDF4.0}
 \label{sec:nnpdf40}
 
-The PDF sensitivity
-studies of the FPF neutrino data based on the {\sc\small xFitter} profiling
+The PDF sensitivity studies based on the {\sc\small xFitter} profiling
 of PDF4LHC21 are complemented by those based on their direct inclusion
-in the NNPDF4.0 global analysis.
+in the NNPDF4.0 analysis.
 %
 Here we present results for the impact of the combined FPF neutrino
 measurements on NNPDF4.0, namely the analogous study of that shown
@@ -339,7 +338,7 @@ in Fig.~\ref{fig:FPF_combined} in the case of PDF4LHC21.
 We have also produced results for the different variations studied in
 Sect.~\ref{sec:pdf4lhc21} with the NNPDF fitting methodology.
 %
-Given that the qualitative obtained with the NNPDF fits
+Given that the findings obtained with the NNPDF fits
 are compatible with those obtained with {\sc\small xFitter}, it is not necessary to duplicate them here
 and we only show results for the impact of the combined FPF pseudo-data.
 
@@ -393,9 +392,8 @@ that found in the the Hessian profiling of PDF4LHC21.
 In particular, the constraints are more significant for the up and down
 quark valence PDFs as well as for the total strangeness.
 %
-As was the case with the PDF4LHC21 baseline, the uncertainty reduction
-for the strangeness PDF is particularly
-striking.
+As was the case with PDF4LHC21, the uncertainty reduction
+for the strangeness is particularly striking.
 %
 Also consistently with the results of Sect.~\ref{sec:pdf4lhc21}, the gluon
 PDF is unchanged, and the impact on the total quark PDF
@@ -403,7 +401,7 @@ is restricted to the large-$x$ region.
 %
 While one can also identify differences related to analysis choices
 such as the PDF parametrisation and the method used to assess the PDF
-error reduction (for example, concerning the small-$x$ behaviour of $xu_V$ and $xd_V$)
+error reduction, for example, concerning the small-$x$ behaviour of $xu_V$ and $xd_V$,
 we conclude that by and large the projected impact of the FPF structure function
 measurements is independent of the specific fitting methodology adopted.
 
@@ -422,7 +420,7 @@ measurements is independent of the specific fitting methodology adopted.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 As indicated by Fig.~\ref{fig:NNPDF40_baseline}, the FPF data is also expected
-to reduce the uncertainties associated to the fitted charm PDF in the region $x\simeq 0.2$
+to reduce the uncertainties associated to the fitted charm PDF in the large-$x$ region 
 dominated by the non-perturbative component.
 %
 In order to highlight this impact on the large-$x$ region of the PDFs,
@@ -471,7 +469,7 @@ strangeness enabled by the FPF charm-tagged structure function data.
   & Inclusive jet production                &  0.96    &  0.96      &   0.94    \\
   & Dijet production                        &  2.03     &    2.03    &   2.00    \\
   & Direct photon production                 &  0.74   &   0.74     &    0.73   \\
-  & FPF (total)                 &  1.29  / 0.92  &   1.10     &   0.89    \\
+  & FPF (total)                 &  {\it 1.29  / 0.92}  &   1.10     &   0.89    \\
   \bottomrule
 \end{tabularx}
 \vspace{0.2cm}
@@ -487,8 +485,10 @@ strangeness enabled by the FPF charm-tagged structure function data.
   $\chi^2/n_{\rm dat}$ for datasets grouped by process.
   %
   The last row displays the $\chi^2/n_{\rm dat}$ obtained for the combined FPF dataset.
-  For the baseline fit we present both the value computed with only statistical error
-  and also adding the systematics so that it can be compared with both fits. 
+  %
+  For the baseline, we indicate the pre-fit values of $\chi^2/n_{\rm dat}$  for the  FPF dataset (in italics)
+  computed without
+  and with systematic errors in the covariance matrix.
   \label{tab:chi2_nnpdf40_baseline}
 }
 \end{table}
@@ -515,17 +515,30 @@ because of the enhanced weight that DIS data carries in this fit variant.
 
 Fig.~\ref{fig:nnpdf40_fpf_lumis} displays a comparison of the PDF luminosities at $\sqrt{s}=14$ TeV
 as a function of the final-state invariant mass $m_X$ between
-the baseline NNPDF4.0 determination and its variants which includes
-the combined FPF pseudo-data from the FASER$\nu$2, FLArE, and AdvSND experiments,
-see Figs.~\ref{fig:NNPDF40_baseline} or the corresponding PDF comparison.
+the baseline NNPDF4.0 fit and its variants including the combined FPF dataset,
+see Fig.~\ref{fig:NNPDF40_baseline} for the corresponding PDF comparison.
 %
 Results are shown normalised to the central value of the NNPDF4.0 baseline.
 %
 Specifically, we show the gluon-gluon, quark-antiquark, 
 quark-quark, down-antiup, up-antistrange, and strange-antistrange  luminosities.
 %
-These luminosities are useful to interpret the phenomenological studies with the FPF-improved
-PDFs for the HL-LHC that will be presented in Sect.~\ref{sec:pheno}.
+The reduction of PDF uncertainties found in  Figs.~\ref{fig:NNPDF40_baseline}
+and~\ref{fig:NNPDF40_lowQ_abs} is also visible
+for the partonic luminosities, specially in the best-case scenario where only statistical
+uncertainties in the FPF pseudo-data are considered.
+%
+The improved quark-antiquark luminosities at $Q\sim 100$ GeV
+benefit theoretical predictions for gauge-boson production at the LHC.
+%
+It is also worth noting the PDF error reduction for the quark-quark luminosity at
+high invariant masses,
+which will feed into searches for new heavy particles at the TeV scale
+driven by quark-initiated scattering.
+%
+Unsurprisingly, luminosities related to the strange PDF are those
+which improve the most, such as the $u\bar{s}$ channel which provides a significant
+contribution to inclusive $W^+$ production.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -548,23 +561,6 @@ PDFs for the HL-LHC that will be presented in Sect.~\ref{sec:pheno}.
 \label{fig:nnpdf40_fpf_lumis}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The reduction of PDF uncertainties found in  Figs.~\ref{fig:NNPDF40_baseline}
-and~\ref{fig:NNPDF40_lowQ_abs} is also visible
-for the partonic luminosities, specially on the scenario where only statistical
-uncertainties in the FPF pseudo-data are considered.
-%
-The improved quark-antiquark luminosities at $Q\sim 100$ GeV
-benefit theoretical predictions for $W$ and $Z$ production at the LHC.
-%
-It is also worth noting the PDF error reduction for the quark-quark luminosity at
-high invariant masses,
-which will feed into searches for new heavy particles at the TeV scale
-driven by quark-initiated scattering.
-%
-Unsurprisingly, luminosities related to the strange PDF are those
-which improve the most, such as the $u\bar{s}$ channel which provides a significant
-contribution to inclusive $W^+$ production at the LHC.
 
 \subsection{Nuclear PDFs: impact on EPPS21}
 \label{sec:nuclearPDFs}
@@ -631,29 +627,29 @@ to be contrasted with  $T^2 = 10$ used in PDF4LHC21.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Fig.~\ref{fig:profiling_FPF_nuclear} displays a similar comparison as that of
- Fig.~\ref{fig:FPF_combined}, now corresponding to the Hessian
- profiling of EPPS21 for a tungsten nucleus.
- %
- The FPF dataset is in this case composed by FASER$\nu$2 and AdvSND.
- %
- One finds that the impact of FPF structure function measurements
- is most important for the strange PDF, and to a lesser extent for the up and down
- valence quark PDFs.
- %
- For the latter, the projected impact of FPF measurements appears to be somewhat milder
- as in the case of PDF4LHC21, especially once systematic uncertainties are taken into account.
+Fig.~\ref{fig:FPF_combined}, now corresponding to the Hessian
+profiling of EPPS21 for a tungsten nucleus.
+%
+The FPF dataset is in this case composed by FASER$\nu$2 and AdvSND.
+%
+One finds that the impact of FPF structure function measurements
+is most important for the strange PDF, and to a lesser extent for the up and down
+valence quark PDFs.
+%
+For the latter, the projected impact of FPF measurements appears to be somewhat milder
+as in the case of PDF4LHC21, especially once systematic uncertainties are taken into account.
 
- While the main qualitative features of the nPDF profiling are consistent with the free-proton
- case, one reason explaining the observed differences is the choice of a larger tolerance factor $T$ in EPPS21
- as compared to PDF4HC21, which effectively reduces the impact of new data in the fit.
- %
- Another potential reason is the more restrictive functional form adopted in EPPS21 as compared
- to the PDF sets entering PDF4LHC21, a consequence of the smaller dataset available
- for hard scattering on nuclear targets.
- %
- Given that these  functional forms are fixed when applying Hessian profiling,
- assessing the impact on a nuclear PDFs by a direct refit, as was done for NNPDF4.0,
- may provide a more  robust estimate of the impact of FPF structure function data
- on nPDFs.
- %
- Additional results for the profiling of EPPS21 are presented in App.~\ref{app:nPDF_impact_appendix}.
+While the main qualitative features of the nPDF profiling are consistent with the free-proton
+case, one reason explaining the observed differences may be the usage of a larger tolerance factor $T$ in EPPS21
+as compared to PDF4HC21, which effectively reduces the impact of new data in the fit.
+%
+Another potential reason is the more restrictive functional form adopted in EPPS21 as compared
+to the PDF sets entering PDF4LHC21, a consequence of the smaller dataset available
+for hard scattering on nuclear targets.
+%
+Given that these  functional forms are fixed when applying Hessian profiling,
+assessing the impact on a nuclear PDFs by a direct refit, as was done for NNPDF4.0,
+may be required to establish the impact of FPF structure function data
+on nPDFs.
+%
+Additional results for the profiling of EPPS21 are presented in App.~\ref{app:nPDF_impact_appendix}.
