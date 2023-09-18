@@ -1,0 +1,51 @@
+{
+    "creators": [
+        {
+            "orcid": "0000-0002-8061-1965",
+            "affiliation": "CERN",
+            "name": "Cruz-Martinez, Juan"
+        },
+        {
+            "orcid": "",
+            "affiliation": "University of California",
+            "name": "Fieg, Max"
+        },
+        {
+            "orcid": "0000-0001-7135-6731",
+            "affiliation": "Nikhef",
+            "name": "Giani, Tommaso"
+        },
+        {
+            "orcid": "",
+            "affiliation": "Nikhef",
+            "name": "Krack, Peter"
+        },
+        {
+            "orcid": "",
+            "affiliation": "National Center for Nuclear Research, Warsaw",
+            "name": "Makela, Toni"
+        },
+        {
+            "orcid": "0000-0002-8395-8059",
+            "affiliation": "Nikhef",
+            "name": "Rabemananjara, Tanjona"
+        },
+        {
+            "orcid": "0000-0003-4279-2192",
+            "affiliation": "Nikhef",
+            "name": "Rojo, Juan"
+        }
+    ],
+
+    "keywords": [
+      "machine-learning",
+      "neutrino",
+      "python",
+      "scientific-computing",
+      "open-science",
+      "open-source",
+      "reproducible-research"
+    ],
+
+    "license": "GPL-3.0"
+}
