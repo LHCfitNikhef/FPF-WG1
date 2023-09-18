@@ -125,7 +125,7 @@ a diagonal CKM matrix, and no heavy quark mass effects.
  the strange and charm sea asymmetries $f_{s^-}$ and
  $f_{c^-}$ are not expected to vanish.
 
- In the projections presented in this work, when interpreting the LHC neutrino structure
+ In the projections presented here, when interpreting the LHC neutrino structure
  functions in terms of proton PDFs, we will assume a isoscalar free-nucleon target and neglect
  nuclear PDF modifications, along the lines of Eq.~(\ref{eq:neutrinoSFs_isoscalar}).
  %
@@ -155,9 +155,10 @@ decomposition is \bea
  \eea
  with $xF_3$ being negligible in this region.
  %
- Eq.~(\ref{eq:NC_chargedlepton}) showcases the complementarity between
+ Comparing Eqns.~(\ref{eq:neutrinoSFs_proton})--(\ref{eq:neutrinoSFs_isoscalar})
+ with Eq.~(\ref{eq:NC_chargedlepton}) showcases the complementarity between
  neutrino and charged-lepton DIS in terms of sensitivity
- to the different flavour PDF decomposition.
+ to different flavour PDF combinations.
  %
  This implies that the best sensitivity on the quark
   flavour separation in the nucleon
@@ -174,7 +175,7 @@ decomposition is \bea
  the detector fiducial volume, on the one hand,
  and the scattering rates within the detector acceptance, on the other hand.
  %
- Here we summarise the main features of each of the existing and future
+ Here we summarise the main features of the existing and future
  far-forward detectors considered, in particular concerning
  their acceptance and expected performance.
  %
@@ -390,7 +391,7 @@ events taking place in the fiducial volume of the detector when divided into bin
 momentum transfer $Q^2$, and neutrino energy $E_\nu$, that is,
 \be
 \label{eq:event_yields}
-N_{\nu_e,{\rm ev}}^{(i)}\lp \nu_e ; E_{{\rm min}}^{(i)} \le E_\nu \le E_{{\rm max}}^{(i)} ,\,
+N_{\nu_e,{\rm ev}}^{(i)}\lp \nu_e ; E_{{\rm min}}^{(i)} \le E_\nu \le E_{{\rm max}}^{(i)} ;\,
 x_{{\rm min}}^{(i)} \le x \le x_{{\rm max}}^{(i)} ;\, Q_{{\rm min}}^{2(i)} \le Q^2 \le Q_{{\rm max}}^{2(i)}\rp
 \, ,\quad i=1,\ldots, N_{\rm bin} \, ,
 \ee
@@ -435,7 +436,7 @@ This neutrino flux takes into account both the prompt component associated with 
 %
 The prompt component used in this work was simulated at NLO using {\sc\small POWHEG}~\cite{Nason:2004rx,Frixione:2007vw,Alioli:2010xd} matched to {\sc\small Pythia8}~\cite{Sjostrand:2014zea, Bierlich:2022pfr} for the parton shower and hadronisation, and the displaced component was simulated with {\sc\small EPOS-LHC}~\cite{Pierog:2013ria}.
 %
-In comparison with the calculation from~\cite{Kling:2021gos}, in addition to the updated charmed hadron production~\cite{Sominka:2023},
+In comparison with the calculation from~\cite{Kling:2021gos}, in addition to the improved charmed hadron production presented in~\cite{Sominka:2023},
 the neutrino flux has been updated to $\sqrt{s} = 13.6~{\rm TeV}$.
 
 The triple integral in  Eq.~(\ref{eq:event_yields_calculation}) is evaluated numerically by means
@@ -480,7 +481,7 @@ Assuming that charm quarks can be directly tagged by the detector one has
  Given that $\mathcal{B}\sim 0.1$, being able to tag directly charm quarks increases the event yields
  of charm production events by a factor of 10 as compared to reconstructing the dimuon final state.
 
- Table~\ref{tab:integrated_rates} summarises the predicted integrated event yields for the six
+ Table~\ref{tab:integrated_rates} summarises the predicted integrated event yields for the
  detectors
 considered, separated into electron neutrinos and antineutrinos
 and muon neutrinos and antineutrinos.
@@ -505,7 +506,8 @@ masses of 10 and 100 tonnes.
 %
 As opposed to the number of interacting neutrinos presented
 in~\cite{Feng:2022inv}, we now account for the
-detector acceptances listed in  Table~\ref{tab:FPF_experiments}. 
+detector acceptances listed in  Table~\ref{tab:FPF_experiments}, which reduce
+the event yields by up to a factor 2.
 
 %----------------------------------------------------
 \input{tables/integrated_yields.tex}
@@ -514,7 +516,6 @@ detector acceptances listed in  Table~\ref{tab:FPF_experiments}.
 %----------------------------------------------------
 \input{tables/acceptance.tex}
 %----------------------------------------------------
-
 
 Several observations can be derived from Table~\ref{tab:integrated_rates}.
 %
@@ -614,12 +615,9 @@ to the one provided by the EIC measurements.
     \caption{
       The kinematic coverage in the $(x,Q^2)$ plane of muon-neutrino scattering
       at the FASER$\nu$, FASER$\nu$2, FLArE10(100), and AdvSND experiments, see also Fig.~\ref{fig:fasernu2_muon},
-      compared to that of electron-ion collisions at the EIC for the highest centre-of-mass 
-      energies $\sqrt{s}$ planned as well as to the coverage of existing neutrino
-      (fixed-target) DIS measurements.
-      %
-      Bins with less than 100 events have been excluded fo all the pseudodata except for FASER$\nu$ where we retain
-      bins with at least 10 events.
+      compared to that of electron-ion collisions at the EIC
+      as well as to the coverage of existing neutrino
+      fixed-target DIS measurements.
     }
     \label{fig:Kin_nNNPDF30_EIC_FPF}
 \end{figure}
@@ -636,7 +634,7 @@ only  $\lesssim 1\%$ of the events, a consequence of the high energy of
 LHC neutrinos.
 %
 The latter is quantified in Table~\ref{tab:acceptance}, displaying
-the number of electron and muon neutrinos before and after applying
+the total number of electron and muon neutrinos before and after applying
 acceptance cuts.
 %
 The acceptance efficiency, defined as the ratio between pre- and post-acceptance
@@ -649,15 +647,15 @@ From Table~\ref{tab:FPF_experiments}, is it also worth noting how FLArE has virt
 perfect acceptance for electron neutrinos.
 %
 One also observes that SND@LHC and AdvSND exhibit relatively
-large acceptance efficiencies, which however are not sufficient to compensate
+large acceptance efficiencies, which however are not sufficient to compensate for
 the lower number of initial interacting neutrinos due to their off-axis location
 as compared to FASER$\nu$(2) and FLArE.
 
 \subsection{Statistical and systematic uncertainties}
 \label{subsec:uncertainties}
 
-The event yields displayed in Fig.~\ref{fig:fasernu2_muon} determine the associated statistical uncertainty 
-in each bin,
+The event yields displayed in Fig.~\ref{fig:fasernu2_muon} determine the associated
+statistical uncertainty in each bin,
 \be
 \label{eq:statistical_uncertainties}
 \delta^{\rm (stat)}  N_{\rm ev}^{(i)} = \sqrt{N_{\rm ev}^{(i)}} \, ,
@@ -737,7 +735,7 @@ The bin assignment of the events in the smeared samples $\mathcal{D}_k$ will in 
 
 We define the fractional uncertainty associated
 to a given systematic source, say $\delta E_\ell$, for bin $i$
-to be the mean of the absolute difference between the number of events in this bin for the smeared samples $\{\mathcal{D}_k\}$  and the number of events in this bin for ${\mathcal{D}_0}$ which also serves as a normalisation to produce a fractional uncertainty:
+to be the mean of the absolute difference between the number of events in this bin for the smeared samples $\{\mathcal{D}_k\}$  and the number of events in this bin for ${\mathcal{D}_0}$:
 \be
 \delta_{\rm sys}^{(E_\ell)} =\la \left|  \frac{{N}^{(i)}_{E_\ell-{\rm smeared},k} -N_0^{(i)}}{N_0^{(i)}}\right|\ra \, .
 \ee
@@ -794,11 +792,14 @@ statistical uncertainties in the same bins.
 \end{figure}
 %-----------------------------------------------------------------------
 
-In the case of FASER$\nu$2, the systematic uncertainties associated to the final state energies $E_\ell$ and $E_h$ are comparable and are typically at the $10\%$ level, ranging
-from $1\%$ to  ${\cal O}(1)$ across bins. The uncertainties associated with $\theta_\ell$ are typically at or well below $1\%$ for these experiments, which can be attributed to their good spatial
+In the case of FASER$\nu$2, the systematic uncertainties associated to the final state energies $E_\ell$ and $E_h$ are comparable and are in general at the $10\%$ level, ranging
+from $1\%$ to  $30\%$ across bins.
+%
+The uncertainties associated with $\theta_\ell$ are typically at or well below the $1\%$ level
+for these experiments, which can be attributed to their good spatial
 resolution. 
 %
-On the other hand, for the FLArE10(100) experiment, uncertainties associated with the scattering angle $\theta_\ell$ dominate, being at the $ 40\%$ level and ranging from a few percent to ${\cal O}(1)$,
+On the other hand, for the FLArE experiment, uncertainties associated with the scattering angle $\theta_\ell$ dominate, being at the $ 40\%$ level and ranging from a few percent to ${\cal O}(1)$,
 whereas the uncertainties associated with final-state energy reconstruction
 are smaller, around the $10\%$ level, and range from $\lesssim 1\%$ to up to around $80\%$
 depending on the bin.
@@ -867,9 +868,9 @@ A value of $f_{\rm corr} \sim 0.5$, obtained from the inspection of available me
  on correlated systematics is available, was estimated in ~\cite{AbdulKhalek:2018rok}
  and we adopt the same choice here.
 % 
-In Sect.~\ref{sec:pdf4lhc21} and Sect.~\ref{sec:nuclearPDFs} we present results with $f_{\rm red}=0.5$, 
- while the remainder of Sect.~\ref{sec:protonPDFs} assumes the conservative scenario $f_{\rm red}=1$, 
- but it is straightforward to revisit the projections for a more optimistic detector performance with $f_{\rm red}< 1$.
+ In  Sect.~\ref{sec:protonPDFs} we present results both for $f_{\rm red}=1$ (conservative)
+ and $f_{\rm red}=0.5$ (optimistic scenario), though we note that it would be straightforward to revisit
+ the projections for other assumptions of the detector performance.
 
  \subsection{Pseudo-data generation}
 
@@ -889,8 +890,8 @@ In Sect.~\ref{sec:pdf4lhc21} and Sect.~\ref{sec:nuclearPDFs} we present results 
  with $(x_i,Q^2_i,y_i)$ labeling the corresponding bin centres.
  %
  The observables $\mathcal{O}_i $ in Eq.~(\ref{eq:theory_dis_projections})
-are evaluated with the
-{\sc\small YADISM}~\cite{yadism,Candido:2023utz} program
+are evaluated with 
+{\sc\small YADISM}~\cite{yadism,Candido:2023utz}
 interfaced to {\sc\small PineAPPL}~\cite{Carrazza:2020gss, christopher_schwan_2023_7995675}
 to return a fast interpolation grid admitting a generic PDF input,
 and with DGLAP evolution effects provided by {\sc\small EKO}~\cite{Candido:2022tld}.
@@ -964,7 +965,7 @@ EPPS21~\cite{Eskola:2021nhw} respectively.
 %
 Second, the direct inclusion 
 in the NNPDF global analysis framework~\cite{NNPDF:2021uiq,NNPDF:2021njg}.
-%
+
 The profiling method applied to Hessian PDF fits is based
 on minimising a goodness-of-fit error function defined as
 \begin{equation}
@@ -1026,7 +1027,7 @@ one-sigma PDF uncertainties.
 %
 For the Hessian profiling of EPPS21, a value of $T^2 = 33$ is used consistently with~\cite{Eskola:2021nhw}, and the resulting uncertainties are scaled down by a factor of 1.645 to obtain 68\% confidence level intervals.
 
-Concerning the inclusion of the LHC far-forward neutrino pseudo-data
+Concerning the inclusion of the LHC neutrino pseudo-data
 in the NNPDF proton analysis framework, we follow the procedure
 outlined in~\cite{NNPDF:2021uiq}.
 %
