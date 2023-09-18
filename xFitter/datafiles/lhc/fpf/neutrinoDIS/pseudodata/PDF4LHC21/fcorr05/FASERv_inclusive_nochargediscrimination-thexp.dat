@@ -1,0 +1,57 @@
+* FASER$\nu$ inclusive $\nu_{\mu}+\bar{\nu}_{\mu}$ CC DIS pseudodata
+&Data
+   Name = 'FASER$\nu$ inclusive $\nu_{\mu}+\bar{\nu}_{\mu}$'
+   IndexDataset = 145
+   Reaction = 'CC nup'
+
+   NData = 26
+   NColumn = 8
+   ColumnType = 'Flag',2*'Bin','Sigma',4*'Error'
+   ColumnName = 'binFlag','x','Q2','Sigma','stat','uncor const','uncor const','uncor const'
+   TheoryType = 'expression'
+   TermType   = 'reaction','reaction'
+   TermName   = 'P','A'
+   TermSource = 'PineAPPL','PineAPPL'
+   TermInfo   = 'GridName=datafiles/lhc/fpf/neutrinoDIS/pseudodata/grids/grids-FASERv_inclusive_nochargediscrimination-a1/nu_A_1-FASERv_inclusive-XSFPFCC.pineappl.lz4',
+                'GridName=datafiles/lhc/fpf/neutrinoDIS/pseudodata/grids/grids-FASERv_inclusive_nochargediscrimination-a1/nub_A_1-FASERv_inclusive-XSFPFCC.pineappl.lz4'
+   TheorExpr  = 'P+A'
+
+   Percent = 4*True
+&End
+&PlotDesc
+   PlotN = 4
+   PlotDefColumn = 'Q2'
+   PlotVarColumn = 'x'
+   PlotDefValue = 3., 5., 11., 110., 1100.
+   PlotOptions(1)  = 'Experiment:FASER#nu inclusive #nu_{#mu}+#bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 4 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(2)  = 'Experiment:FASER#nu inclusive #nu_{#mu}+#bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 10 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(3)  = 'Experiment:FASER#nu inclusive #nu_{#mu}+#bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 100 @Ymin:0.01@Xlog@Ylog'
+   PlotOptions(4)  = 'Experiment:FASER#nu inclusive #nu_{#mu}+#bar{#nu}_{#mu}@ExtraLabel:#nu p (CC) @XTitle: x @YTitle: d^{2}#sigma/dxdQ^{2} @Title:Q^{2} > 1000 @Ymin:0.01@Xlog@Ylog'
+&End
+*binFlag                  x                      Q2                   Sigma                    stat             uncor const             uncor const             uncor const
+  1              0.01011409                6.581804        2.21638798598799        29.7717978036004                  1.2043                 3.40121                 4.44194
+  1              0.01020009                20.38246        2.34597675690451        27.2007135389653                0.227168                 5.89606                 2.06167
+  1              0.01387779                6.655704        1.86695466997385        26.0744163784564                 1.19803                  2.5834                 4.13083
+  1              0.01398555                23.62292        1.98015898251916        20.5495788127706                0.134001                  5.6601                 2.15394
+  1              0.01901525                6.739646        1.00586368364208        23.4048285129094                0.571463                 3.02924                  5.1105
+  1              0.01916209                26.81781        1.02301735905424        16.0617807333208               0.0963095                 5.58051                 2.04878
+  1               0.0258873                7.266555       0.684045743547764        23.6532053405185                0.308027                  3.3782                 9.89691
+  1              0.02630319                30.01822       0.804763771208638         12.954104956368               0.0812657                 4.24272                 2.30068
+  1              0.03529702                 8.24875       0.887123033335674        28.2926598887821                0.219635                 4.81154                 16.0055
+  1              0.03612675                32.90249       0.638625371635098        10.8342000859925                0.138071                 3.60079                 2.59008
+  1              0.04945883                35.13974       0.342657329834696        9.43762820347244               0.0710797                  2.9198                  3.7067
+  1              0.05006423                150.3654       0.425784169869963        23.8231548335908                 0.11044                 2.26749                 2.42626
+  1              0.06751423                39.56447       0.257662541198849        8.85518899438239               0.0620562                 1.14118                 4.76418
+  1              0.06846317                165.4263         0.2422780144358        16.9388668578162                0.181195                0.986592                 1.00462
+  1              0.09254843                 45.5231        0.18947210241971        8.78461241656056                0.057263                 2.70254                 5.82922
+  1              0.09357813                182.6868       0.146848685148503        13.0161053081342                0.110238                 3.85061                 2.00928
+  1               0.1269145                51.96812       0.140319512663072        9.06254671127953               0.0790328                 7.29498                 7.49002
+  1               0.1283415                202.0446      0.0993438263774306        10.6674437303975                0.150702                 7.51006                 3.54731
+  1               0.1741739                59.61387      0.0800094478061168        9.89915520064597               0.0494136                 11.4051                 9.21871
+  1               0.1763218                220.9139      0.0576183589940099        9.28208707039899               0.0607135                 11.3989                 4.78349
+  1               0.2381481                68.46379      0.0481379632243722        11.8553944504522               0.0528498                 13.9514                 10.7553
+  1               0.2417367                240.5777       0.034246874868405        8.73274312527597                0.110869                 13.7719                 5.57292
+  1               0.3229577                 78.4415      0.0318105644279414        16.5549652154276               0.0994429                 15.4266                 13.2103
+  1               0.3298547                258.3952      0.0161890227923813        9.03246860791364                0.149241                 13.1829                 6.35427
+  1               0.4448551                277.3949     0.00808677699145097        11.0472664156993               0.0738172                 1.55166                 3.72173
+  0               0.5967685                305.7761     0.00154778467421127         19.304317041404                0.123708                 60.0874                 27.6473
