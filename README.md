@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/560916233.svg)](https://zenodo.org/badge/latestdoi/560916233)
+
+
 # FPF-WG1 (PDF4LHC21)
 Working Group 1 "Neutrino interactions and hadron structure" of the Forward Physics Facility
 
