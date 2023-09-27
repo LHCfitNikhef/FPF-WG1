@@ -1,0 +1,290 @@
+%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is a template file for The European Physical Journal
+%
+% Copy it to a new file with a new name and use it as the basis
+% for your article
+%
+%%%%%%%%%%%%%%%%%%%%%%%% Springer-Verlag %%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\begin{filecontents}{leer.eps}
+	%!PS-Adobe-2.0 EPSF-2.0
+	%%CreationDate: Mon Jul 13 16:51:17 1992
+	%%DocumentFonts: (atend)
+	%%Pages: 0 1
+	%%BoundingBox: 72 31 601 342
+	%%EndComments
+	
+	gsave
+	72 31 moveto
+	72 342 lineto
+	601 342 lineto
+	601 31 lineto
+	72 31 lineto
+	showpage
+	grestore
+	%%Trailer
+	%%DocumentFonts: Helvetica
+\end{filecontents}
+%
+\documentclass[epj]{svjour}
+
+\usepackage[colorlinks=true, linkcolor=black!50!blue, urlcolor=blue, citecolor=blue, anchorcolor=blue]{hyperref}
+\usepackage[font=small,labelfont=bf,margin=0mm,labelsep=period,tableposition=top]{caption}
+%\usepackage[a4paper,top=1.5cm,bottom=2cm,left=1.5cm,right=1.5cm,bindingoffset=0mm]{geometry}
+
+% Various Packages
+\usepackage{placeins,cite}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{afterpage}
+\usepackage{epsfig}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{ulem}
+\usepackage{url}
+\usepackage{booktabs,multirow,longtable}
+\usepackage{textcomp}
+\graphicspath{{../}{./figures/}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{arrows.meta}
+\usepackage{varwidth}
+\usepackage{xcolor}
+%['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
+\definecolor{mtplotlib1}{HTML}{1f77b4}
+\definecolor{mtplotlib2}{HTML}{ff7f0e}
+\definecolor{mtplotlib3}{HTML}{2ca02c}
+\definecolor{mtplotlib4}{HTML}{d62728}
+
+\tikzset{%
+	>={Latex[width=2mm,length=2mm]},
+	% Specifications for style of nodes:
+	base/.style = {rectangle, rounded corners, draw=black,
+		minimum width=4cm, minimum height=1cm,
+		text centered}, %, font=\sffamily},
+mystyle/.style={rectangle, rounded corners, draw=black,
+	minimum width=12cm, minimum height=1cm,
+	text centered}, %, font=\sffamily},
+	col0/.style = {base, fill=white!30},
+	col1/.style = {base, fill=mtplotlib1!30},
+	col11/.style = {mystyle, fill=mtplotlib1!30},
+	col2/.style = {base, fill=mtplotlib2!30},
+	col3/.style = {base, fill=mtplotlib3!30},
+	col4/.style = {base, minimum width=2.5cm, fill=mtplotlib4!15,}%font=\ttfamily},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\smallfrac#1#2{\hbox{$\frac{#1}{#2}$}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\ben}{\begin{enumerate}}
+\newcommand{\een}{\end{enumerate}}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+\newcommand{\lc}{\left[}
+\newcommand{\rc}{\right]}
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\as}{\alpha_s}
+\newcommand{\aq}{\alpha_s\left( Q^2 \right)}
+\newcommand{\amz}{\alpha_s\left( M_Z^2 \right)}
+\newcommand{\aqq}{\alpha_s \left( Q^2_0 \right)}
+\newcommand{\aqz}{\alpha_s \left( Q^2_0 \right)}
+\def\toinf#1{\mathrel{\mathop{\sim}\limits_{\scriptscriptstyle
+{#1\rightarrow\infty }}}}
+\def\tozero#1{\mathrel{\mathop{\sim}\limits_{\scriptscriptstyle
+{#1\rightarrow0 }}}}
+\def\toone#1{\mathrel{\mathop{\sim}\limits_{\scriptscriptstyle
+{#1\rightarrow1 }}}}
+\def\frac#1#2{{{#1}\over {#2}}}
+\def\gsim{\mathrel{\rlap{\lower4pt\hbox{\hskip1pt$\sim$}}
+\raise1pt\hbox{$>$}}}       
+\def\lsim{\mathrel{\rlap{\lower4pt\hbox{\hskip1pt$\sim$}}
+\raise1pt\hbox{$<$}}}       
+\newcommand{\mrexp}{\mathrm{exp}}
+\newcommand{\dat}{\mathrm{dat}}
+\newcommand{\one}{\mathrm{(1)}}
+\newcommand{\two}{\mathrm{(2)}}
+\newcommand{\art}{\mathrm{art}}
+\newcommand{\rep}{\mathrm{rep}}
+\newcommand{\net}{\mathrm{net}}
+\newcommand{\stopp}{\mathrm{stop}}
+\newcommand{\sys}{\mathrm{sys}}
+\newcommand{\stat}{\mathrm{stat}}
+\newcommand{\pdf}{\mathrm{pdf}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\minn}{\mathrm{min}}
+\newcommand{\mut}{\mathrm{mut}}
+\newcommand{\partt}{\mathrm{part}}
+\newcommand{\dof}{\mathrm{dof}}
+\newcommand{\NS}{\mathrm{NS}}
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\gen}{\mathrm{gen}}
+\newcommand{\parr}{\mathrm{par}}
+\newcommand{\val}{\mathrm{val}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\checkk}{\mathrm{check}}
+\newcommand{\reff}{\mathrm{ref}}
+\newcommand{\Mll}{M_{ll}}
+\newcommand{\extra}{\mathrm{extra}}
+\newcommand{\draft}[1]{}
+\newcommand{\comment}[1]{{\bf \it  #1}}
+\newcommand{\todo}[1]{\footnote{{\bfseries{\color{red} TODO} #1}}} % For todo's
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\newcommand{\tmop}[1]{\ensuremath{\operatorname{#1}}}
+\newcommand{\tmtextit}[1]{{\itshape{#1}}}
+\newcommand{\tmtextrm}[1]{{\rmfamily{#1}}}
+\newcommand{\tmtexttt}[1]{{\ttfamily{#1}}}
+
+\usepackage{tabularx}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\DeclareRobustCommand{\RG}[1]{{\color{magenta}\textbf{[RG: #1]}}\xspace}
+
+\definecolor{darkblue}{rgb}{0.0,0,0.5}
+\definecolor{darkgreen}{rgb}{0.0,0.3,0.0}
+\definecolor{redish}{rgb}{0.675,0,0.2}
+\definecolor{red}{rgb}{0.8,0,0}
+\definecolor{green}{rgb}{0,0.6,0}
+\definecolor{bluish}{rgb}{0.2,0.2,0.675}
+\definecolor{mygrey}{rgb}{0.6,0.6,0.6}
+
+\usepackage{tikz} 
+\usetikzlibrary{shapes,arrows,positioning,automata,backgrounds,calc,er,patterns,arrows.meta}
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.0.0}
+\usepackage{varwidth}
+\usepackage{xcolor}
+%['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
+\definecolor{mtplotlib1}{HTML}{1f77b4}
+\definecolor{mtplotlib2}{HTML}{ff7f0e}
+\definecolor{mtplotlib3}{HTML}{2ca02c}
+\definecolor{mtplotlib4}{HTML}{d62728}
+
+\tikzset{%
+>={Latex[width=2mm,length=2mm]},
+% Specifications for style of nodes:
+base/.style = {rectangle, rounded corners, draw=black,
+minimum width=4cm, minimum height=1cm,
+text centered}, %, font=\sffamily},
+mystyle/.style={rectangle, rounded corners, draw=black,
+minimum width=12cm, minimum height=1cm,
+text centered}, %, font=\sffamily},
+col0/.style = {base, fill=white!30},
+col1/.style = {base, fill=mtplotlib1!30},
+col11/.style = {mystyle, fill=mtplotlib1!30},
+col2/.style = {base, fill=mtplotlib2!30},
+col3/.style = {base, fill=mtplotlib3!30},
+col4/.style = {base, minimum width=2.5cm, fill=mtplotlib4!15,}%font=\ttfamily},
+}
+
+\usepackage{tabularx}
+\usepackage{subcaption}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\DeclareRobustCommand{\RG}[1]{{\color{magenta}\textbf{[RG: #1]}}\xspace}
+
+
+\begin{document}
+	%
+	\title{The LHC as a Neutrino-Ion Collider}
+%	\subtitle{Do you have a subtitle?\\ If so, write it here}
+	\author{
+		Juan M. Cruz-Martinez\inst{1},
+		Max Fieg\inst{2},
+		Tommaso Giani\inst{3,4},
+		Peter Krack\inst{3,4},
+		Toni M\"akel\"a\inst{5},
+		Tanjona R. Rabemananjara\inst{3,4},
+		Juan Rojo\inst{3,4}
+	}
+	\titlerunning{The LHC as a Neutrino-Ion Collider}
+	\authorrunning{Juan M. Cruz-Martinez et al.}
+	\institute{
+		CERN, Theoretical Physics Department, CH-1211 Geneva 23, Switzerland  \and
+		Department of Physics and Astronomy, University of California, Irvine, CA 92697 USA \and
+		Department of Physics and Astronomy, Vrije Universiteit, NL-1081 HV Amsterdam \and
+		Nikhef Theory Group, Science Park 105, 1098 XG Amsterdam, The Netherlands \and
+		National Centre for Nuclear Research, Pasteura 7, Warsaw, PL-02-093, Poland
+	}
+	%
+	\date{Received: date / Revised version: date}
+	\abstract{
+		Proton-proton collisions at the LHC generate a high-intensity collimated beam of neutrinos
+		in the forward (beam) direction, characterised by energies of up to several TeV.
+		%
+		The recent  observation of LHC neutrinos by FASER$\nu$ and SND@LHC
+		signals that this hitherto ignored particle beam is now available for scientific inquiry.
+		%
+		Here we quantify the impact that neutrino deep-inelastic scattering (DIS)
+		measurements at the LHC would have
+		on the parton distributions (PDFs) of protons and heavy nuclei.
+		%
+		We generate projections for DIS structure functions
+		for FASER$\nu$ and SND@LHC at Run III,
+		as well as for the FASER$\nu$2, AdvSND, and FLArE experiments
+		to be  hosted at the proposed
+		Forward Physics Facility (FPF) operating concurrently with the High-Luminosity LHC (HL-LHC).
+		%
+		We determine that up to one million electron- and muon-neutrino DIS interactions
+		within detector acceptance can be expected by the end of the HL-LHC,
+		covering a kinematic region in $x$ and $Q^2$ overlapping with that
+		of the Electron-Ion Collider.
+		%
+		Including these DIS projections into
+		global (n)PDF analyses, specifically PDF4LHC21, NNPDF4.0,
+		and EPPS21,  reveals a significant reduction of PDF uncertainties, in particular
+		for strangeness and the up and down valence PDFs.
+		%
+		We show that LHC neutrino data enables improved theoretical
+		predictions for core processes at the HL-LHC, such as Higgs and weak gauge
+		boson production.
+		%
+		Our analysis demonstrates that exploiting the LHC neutrino beam effectively
+		provides CERN with a ``Neutrino-Ion Collider''
+		without  requiring modifications in its accelerator infrastructure.
+		%
+		\PACS{
+			{12.38.-t}{Quantum chromodynamics}   \and
+			{24.85.+p}{Quarks, gluons, and QCD in nuclear reactions}
+		} % end of PACS codes
+	} 
+	
+	
+	\maketitle
+	\setcounter{tocdepth}{3}
+	\tableofcontents
+	
+	\input{sec-introduction}
+	\input{sec-dis-pseudodata}
+	\input{sec-results}
+	\input{sec-pheno}
+	\input{sec-summary}
+	\appendix
+	\input{app-faser.tex}
+	\input{app-nuclearPDFs.tex}
+	
+	\bibliographystyle{utphys}
+	\bibliography{main.bib}
+	
+	
+\end{document}
+
