@@ -8,5 +8,4 @@ clean:
 
 arxiv:
 	rm -rf *.tgz
-	tar cvzf main.tgz *.tex plots main.bbl tables
-	mv main.tgz /Users/juanrojo/Desktop
+	tar cvzf main.tar.gz *.tex *.eps *.cls *.clo plots main.bbl tables
