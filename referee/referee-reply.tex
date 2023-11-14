@@ -1,0 +1,229 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{placeins}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{afterpage}
+\usepackage{amssymb,amsmath}
+\usepackage{multirow,booktabs,multirow}
+\usepackage{cite}
+\usepackage[colorlinks=true, linkcolor=black!50!blue, urlcolor=blue, citecolor=blue, anchorcolor=blue]{hyperref}
+\usepackage[font=small,labelfont=bf,margin=0mm,labelsep=period,tableposition=top]{caption}
+\usepackage[a4paper,top=3cm,bottom=2.5cm,left=2.5cm,right=2.5cm,bindingoffset=0mm]{geometry}
+\setlength{\unitlength}{1mm}
+
+\usepackage{tabularx}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\smallfrac#1#2{\hbox{$\frac{#1}{#2}$}}
+\newcommand{\be}{\begin{equation}}
+	\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+	\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\bi}{\begin{itemize}}
+	\newcommand{\ei}{\end{itemize}}
+\newcommand{\ben}{\begin{enumerate}}
+	\newcommand{\een}{\end{enumerate}}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+\newcommand{\lc}{\left[}
+\newcommand{\rc}{\right]}
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\as}{\alpha_s}
+\newcommand{\aq}{\alpha_s\left( Q^2 \right)}
+\newcommand{\amz}{\alpha_s\left( M_Z^2 \right)}
+\newcommand{\aqq}{\alpha_s \left( Q^2_0 \right)}
+\newcommand{\aqz}{\alpha_s \left( Q^2_0 \right)}
+\newcommand{\Ord}{\mathcal{O}}
+\newcommand{\MSbar}{\overline{\text{MS}}}
+\def\toinf#1{\mathrel{\mathop{\sim}\limits_{\scriptscriptstyle
+			{#1\rightarrow\infty }}}}
+\def\tozero#1{\mathrel{\mathop{\sim}\limits_{\scriptscriptstyle
+			{#1\rightarrow0 }}}}
+\def\toone#1{\mathrel{\mathop{\sim}\limits_{\scriptscriptstyle
+			{#1\rightarrow1 }}}}
+\def\frac#1#2{{{#1}\over {#2}}}
+\def\gsim{\gtrsim}
+\def\lsim{\lesssim}
+\newcommand{\mrexp}{\mathrm{exp}}
+\newcommand{\dat}{\mathrm{dat}}
+\newcommand{\one}{\mathrm{(1)}}
+\newcommand{\two}{\mathrm{(2)}}
+\newcommand{\art}{\mathrm{art}} 
+\newcommand{\rep}{\mathrm{rep}}
+\newcommand{\net}{\mathrm{net}}
+\newcommand{\stopp}{\mathrm{stop}}
+\newcommand{\sys}{\mathrm{sys}}
+\newcommand{\stat}{\mathrm{stat}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\pdf}{\mathrm{pdf}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\minn}{\mathrm{min}}
+\newcommand{\mut}{\mathrm{mut}}
+\newcommand{\partt}{\mathrm{part}}
+\newcommand{\dof}{\mathrm{dof}}
+\newcommand{\NS}{\mathrm{NS}}
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\gen}{\mathrm{gen}}
+\newcommand{\cut}{\mathrm{cut}}
+\newcommand{\parr}{\mathrm{par}}
+\newcommand{\val}{\mathrm{val}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\checkk}{\mathrm{check}}
+\newcommand{\reff}{\mathrm{ref}}
+\newcommand{\Mll}{M_{ll}}
+\newcommand{\extra}{\mathrm{extra}}
+\newcommand{\draft}[1]{}
+\newcommand{\comment}[1]{{\bf \it  #1}}
+\newcommand{\muf}{\mu_\text{F}}
+\newcommand{\mur}{\mu_\text{R}}
+
+\def\beq{\begin{equation}}
+	\def\eeq{\end{equation}}
+
+
+\def\({\left(}
+\def\){\right)}
+\def\[{\left[}
+\def\]{\right]}
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+
+%\let\sectionold\section
+%\renewcommand\section[2][]{%
+	%\sectionold{\boldmath #2}}
+
+\let\oldsubsection\subsection
+\renewcommand\subsection[2][\subsectiontoc]{%
+	\def\subsectiontoc{#2}%
+	\oldsubsection[#1]{\boldmath #2}%
+}
+
+\let\oldsubsubsection\subsubsection
+\renewcommand\subsubsection[2][\subsubsectiontoc]{%
+	\def\subsubsectiontoc{#2}%
+	\oldsubsubsection[#1]{\boldmath #2}%
+}
+
+
+\newcommand{\tmop}[1]{\ensuremath{\operatorname{#1}}}
+\newcommand{\tmtextit}[1]{{\itshape{#1}}}
+\newcommand{\tmtextrm}[1]{{\rmfamily{#1}}}
+\newcommand{\tmtexttt}[1]{{\ttfamily{#1}}}
+
+
+\usepackage{xcolor}
+\definecolor{tpurple}{RGB}{128,0,128}
+\definecolor{darkgreen}{RGB}{0,180,0}
+\newcommand{\SM}[1]{\textbf{\textcolor{blue}  {SM: #1}}}
+\newcommand{\MB}[1]{\textbf{\textcolor{red}   {MB: #1}}}
+\newcommand{\MBn}[2]{\textcolor{red}{OLD: #1 NEW: #2}}
+\newcommand{\LR}[1]{{\bf\color{orange}LR: #1}}
+\newcommand{\todo}[1]{{\bf\color{red}TODO: #1}}
+\newcommand{\JR}[1]{{\bf\color{purple}JR: #1}}
+\newcommand{\SF}[1]{{\bf\color{darkgreen}SF: #1}}
+\newcommand{\RDB}[1]{{\bf\color{cyan}RDB: #1}}
+
+\begin{document}
+	
+\noindent
+We would like to express our gratitude to the referee for the appreciation
+of our work and for providing constructive
+comments on our manuscript. The valuable feedback has been used to
+improve the quality and clarity of our work.
+%
+In response to the suggestions, we address below each of the points raised by 
+the referee and describe the actions that have been taken
+in the revised version of the manuscript.
+
+\noindent
+
+\begin{enumerate}
+	\item {\it Page 3, below (2.8). It is noted that nuclear corrections are not included when 
+		interpreting the neutrino structure function data in terms of proton PDFs. It would be good
+		to provide some brief discussion of the size of these and the associated uncertainties.
+	}
+	
+	$\cdots$
+	
+	\item {\it able 2.2. It is not clear to me at the point where these numbers are produced exactly
+		how the cross section inputs corresponding to these numbers are calculated. So I
+		think a reference forward to Section 2.5, where the theory settings are described, is
+		needed. Although even then, for completeness giving the PDF set that is used and
+		some uncertain
+		ty on the event rates here would be useful.
+	}
+	
+	$\cdots$
+	
+	\item {\it Page 11. The discussion about consistency between the PDF set and theory settings
+		used to produce the pseudodata and those entering the fit/profiling is in my view not
+		correct or at least too strong. In particular, while it is perfectly reasonable to keep
+		these the same there is definitely no requirement to, as is currently strongly implied in
+		the discussion. In real PDF fits we often see that the fit quality for a given dataset does
+		not follow textbook expectations, with $\chi^2/N \sim 1$. So some inconsistency between data
+		and theory is often observed, rather than being artificial. Indeed, it is precisely because
+		of this effect that tolerances (which are included in e.g. the PDF4LHC profiling) are
+		included. In other words, one could perfectly reasonably generate pseudodata with a
+		different PDF set, or different theory settings in order to emulate this inconsistency.
+		One is free not to, but it should not be suggested that complete consistency is the only
+		option here. It is a choice that is made, and not the only possible one.
+	}
+	
+	$\cdots$
+	
+	\item {\it Page 15, and Fig. 3.3. Perhaps some explanation of why dV and to a lesser extend uV
+		benefits from charge-lepton identification could be provided?
+	}
+	
+	$\cdots$
+	
+	\item {\it Page 16, and Appendix A. The fact that the FASER$\nu$ (and SNDLHC) projections lead
+		to a very limited improvement on the PDF uncertainties is rather hidden in a paragraph
+		here, and then in the appendix. In my view, this ‘negative’ result should be given more
+		prominence. It after all motivates the improvements that might come with the FPF. I
+		would suggest moving this to the main body of the text and starting with this as the
+		first study.
+	}
+	
+	$\cdots$
+	
+	\item {\it Page 22. I am rather unsure about the approach for presenting results here, and in
+		particular in showing numbers without including systematic errors, which are described
+		as being ‘optimistic’. Having zero systematic uncertainties is surely unrealistic, rather
+		than optimistic, so I feel as though a clearer justification for this needs to be given.
+		Even more importantly, the labelling of the result without systematic uncertainties as
+		‘FPF’ and those with as ‘FPF*’ is surely the wrong way round, given it implies that
+		the case where the systematic uncertainties are not included is the default in some
+		sense. So these should be swapped, and the rationale behind showing numbers without
+		systematic uncertainties accounted for more clearly presented.
+	}
+	
+	The referee is surely correct in that zero-systematic uncertainties is unrealistic. However,
+	the reason to also show results with statistical uncertainties only is twofold. First, it
+	substantiates the claim that FPF measurements will be statistically dominated. Second, in the
+	ideal scenario (most optimistic) in which all the sources of systematic uncertainties are 
+	under control, the statistic-only case would be the limit in terms of effects. It is also 
+	worth noting that the estimation of the systematic uncertainties in our analysis is very 
+	much conservative.
+	
+	According to the referee's suggestion, the results which only includes the statistical errors
+	are labelled "FPF$\star$" while the one that also account for the systematics are labelled "FPF".
+	
+	\item {\it Section 4 and elsewhere. Given these are HL-LHC projections, somewhere these should
+		be compared with the HL-LHC PDFs of Ref [34]. This would surely be the fairer
+		comparison, or in any case will give a clearer picture of where things may stand.
+	}
+	
+	$\cdots$
+
+\end{enumerate}
+	
+	
+\end{document}
