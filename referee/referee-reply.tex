@@ -152,7 +152,7 @@ in the revised version of the manuscript.
 	
 	In order to address the need for a comment regarding the sizes of the nuclear corrections
 	in proton PDF fits, we have swapped the order of the last two sentences in that paragraph.
-	The cited references, and the references therein, provide ample discussion regarding the
+	The cited references, and the references therein, provide extensive discussions regarding
 	the procedure to include nuclear corrections and their effects.
 	
 	\item {\it Table 2.2. It is not clear to me at the point where these numbers are produced exactly
@@ -166,7 +166,10 @@ in the revised version of the manuscript.
 	The numbers in Table 2.2 are computed by integrating the event yields shown in Eq.~2.12 in
 	which the differential cross sections are computed using the central value of the PDF4LHC21
 	set. For completeness, we have added a sentence above Eq. (2.16) that mention the exact
-	PDF set used to compute these numbers.
+	PDF set used to compute these numbers. Although
+	Section 2.5 indeed provides some descriptions regarding the computation of the differential cross sections
+	(which were also described in Section 2.1), it mainly focuses on the construction of the pseudodata
+	needed for the fit/re-weighting.
 	
 	\item {\it Page 11. The discussion about consistency between the PDF set and theory settings
 		used to produce the pseudodata and those entering the fit/profiling is in my view not
@@ -182,15 +185,16 @@ in the revised version of the manuscript.
 		option here. It is a choice that is made, and not the only possible one.
 	}
 	
-	$\cdots$
+	\textcolor{blue}{(TR) I was not sure how to best address this. We might indeed need to tone this down
+	a bit but I was not sure how to properly do so.}
 	
 	\item {\it Page 15, and Fig. 3.3. Perhaps some explanation of why dV and to a lesser extend uV
 		benefits from charge-lepton identification could be provided?
 	}
 	
 	We have slightly rephrased the subsequent sentences to make it clear that the improvements
-	seen in $d_v$ and to a lesser extend $u_v$ can be fully understood by looking at LO expressions
-	of the structure functions in terms of the PDFs for $\nu$ and $\bar{\nu}$.
+	seen in $d_v$ and to a lesser extend in $u_v$ can be fully understood by looking at analytical 
+	LO expressions of the structure functions in terms of the PDFs for $\nu$ and $\bar{\nu}$.
 	
 	\item {\it Page 16, and Appendix A. The fact that the FASER$\nu$ (and SNDLHC) projections lead
 		to a very limited improvement on the PDF uncertainties is rather hidden in a paragraph
@@ -200,9 +204,9 @@ in the revised version of the manuscript.
 		first study.
 	}
 	
-	The main reason the study of the constraints provided by FASER$\nu$ in the Appendix is because
-	the study in Section 3 is mainly dedicated to the FPF experiments. We nevertheless agree with the
-	referee such findings should be highlighted and used as a motivation for the FPF. In this regard, we
+	The main reason to put the study of the constraints provided by FASER$\nu$ in the Appendix is because
+	the analysis in Section 3 is mainly dedicated to the FPF experiments. We nevertheless agree with the
+	referee that such findings should be highlighted and used as a motivation for the FPF. In this regard, we
 	have added two sentences in the introductory paragraph of Section to describe this.
 	
 	\item {\it Page 22. I am rather unsure about the approach for presenting results here, and in
@@ -220,9 +224,9 @@ in the revised version of the manuscript.
 	the reason to also show results with statistical uncertainties only is twofold. First, it
 	substantiates the claim that FPF measurements will be statistically dominated. Second, in the
 	ideal scenario (most optimistic) in which all the sources of systematic uncertainties are 
-	under control, the statistic-only case would be the limit in terms of effects. It is also 
-	worth noting that the estimation of the systematic uncertainties in our analysis is very 
-	much conservative.
+	under control, the statistic-only case would be the limit in terms of constraints on PDF
+	determination.  It is also worth noting that the estimation of the systematic uncertainties in our 
+	analysis is very  much conservative.
 	
 	Following the referee's suggestion, the results which only includes the statistical errors
 	are labelled "FPF$\star$" while the one that also account for the systematics are labelled "FPF".
@@ -235,8 +239,8 @@ in the revised version of the manuscript.
 	The reason why we did not provide comparisons with the HL-LHC PDFs of ref. [34] is because
 	the pseudodata used to determine these PDFs were produced with the PDF4LHC15 set which
 	does not account for the recent LHC measurements. The most consistent comparisons would
-	be to re-do the analysis done in ref. [34] and then compare the resulting PDFs with our 
-	determination.
+	be to re-do the analysis done in ref. [34] using PDF4LHC21 and then compare the resulting PDFs 
+	with our determination.
 
 \end{enumerate}
 
@@ -272,7 +276,7 @@ We have added the original flare proposal paper as well as the whitepaper (ref[1
 \item{\it p.6 l. 50-53 col.2 “Here we neglect efficiency .. simulation.” I am aware that this might be difficult to simulate at this stage but I think this effect is non-negligible due to misidentification ( a large background could enter this sample). Can you comment further on it? In addition, some guesses on misidentification capabilities can be drawn by the current FASER and SND@CERN capabilities.}
 
 Indeed, misidentification is not expected to be negligible. While there are no detailed studies on efficiencies, as we point out in the paper charm tagging can be done by through multiple methods, including reconstructing the topology of D-meson decays, and through dimuon events. With multiple techniques, one can draw the conclusion that that charm-tagging efficiency is not small.
-{\color {red} [MF: looking for quantitative perofrmances/efficiencies, can't find anything. Is there more we can say?}
+{\color {red} [MF: looking for quantitative perofrmances/efficiencies, can't find anything. Is there more we can say?]}
 
 \item{\it p.9 l. 41-43 col.2 “We note that … in our estimation.” (see also the conclusions p. 27 l. 52-55 col.1) I am puzzled by this statement. It is well known that flux systematics in Faser and SND@CERN play a prominent role and set the normalization (and shape?) of eqn 2.12. How can you ignore such an important effect in your analyses? Even if the PDF constraints are marginally affected by the normalization of the neutrino flux, some of your considerations about the on-axis (faser and faser2) versus the off-axis experiments (SND@CERN and its upgrades) may be affected by flux uncertainties. Can you comment on it in the paper?}
 
