@@ -267,7 +267,9 @@ The meaning of the asterisk was to be clear that this row represents 2 proposed 
 
 \item{\it  p.5 l. 38 col.2 “is made of thin sensitive layers” What is the material/detector the layers are made of?}
 
-{\color{red} [MF: Not clear, Whitepaper says the same thing. Need to look closer or say that we don't know]}
+The target layers are interleaved with tungsten and emulsion. We make this clear by ammending this sentence:
+
+"...sensitive layers of emulsion..."
 
 \item{\it  p.5 l.49 col 1 and col 2 (“AdvSND” and “FLArE”) Can you put a reference about these experiments? Did you take the info from ref [10]?}
 
@@ -275,8 +277,8 @@ We have added the original flare proposal paper as well as the whitepaper (ref[1
 
 \item{\it p.6 l. 50-53 col.2 “Here we neglect efficiency .. simulation.” I am aware that this might be difficult to simulate at this stage but I think this effect is non-negligible due to misidentification ( a large background could enter this sample). Can you comment further on it? In addition, some guesses on misidentification capabilities can be drawn by the current FASER and SND@CERN capabilities.}
 
-Indeed, misidentification is not expected to be negligible. While there are no detailed studies on efficiencies, as we point out in the paper charm tagging can be done by through multiple methods, including reconstructing the topology of D-meson decays, and through dimuon events. With multiple techniques, one can draw the conclusion that that charm-tagging efficiency is not small.
-{\color {red} [MF: looking for quantitative perofrmances/efficiencies, can't find anything. Is there more we can say?]}
+Indeed, misidentification is not expected to be negligible. While there are no detailed studies of charm tagging efficiencies at the FPF, as we point out in the paper charm tagging can be done by through multiple methods, including reconstructing the topology of D-meson decays, and through dimuon events. With multiple techniques, one can draw the conclusion that that charm-tagging efficiency is not small.
+{\color {red} [MF: looking for quantitative perofrmances/efficiencies, can't find anything. Is there more we can say? We could look at older experiments]}
 
 \item{\it p.9 l. 41-43 col.2 “We note that … in our estimation.” (see also the conclusions p. 27 l. 52-55 col.1) I am puzzled by this statement. It is well known that flux systematics in Faser and SND@CERN play a prominent role and set the normalization (and shape?) of eqn 2.12. How can you ignore such an important effect in your analyses? Even if the PDF constraints are marginally affected by the normalization of the neutrino flux, some of your considerations about the on-axis (faser and faser2) versus the off-axis experiments (SND@CERN and its upgrades) may be affected by flux uncertainties. Can you comment on it in the paper?}
 
@@ -286,12 +288,15 @@ Indeed, neutrino flux uncertainties are well established, and the shape and norm
 
 \item{\it p.11 l. 33-37 col.1 Are you sure that an assumption of $f_{corr}$ = 0.5 is realistic? The estimates made in ref.[34] are for LHC experiments, not for fixed-target experiments like those of the FPF.}
 
+{\color{red} [MF: can someone comment here?]}
+
 \item{\it  Fig. 2.4 In the bottom-left plot, I see a sharp increase in the fractional error at about x= 4 e-2. Why?}
-{\color{red} [MF: Probably a binning effect, will think about it.]}
+
+The points near $x$=4e-2 with large uncertainties have small $E_h$, and are approaching the $E_h>100~ {\rm GeV}$ threshold that we set in Table 2.1. When we fluctuate the data according to our definition of uncertainty (Eq. 2.19 with $E_h$ instead of $E_{\ell}$), these points drop below the acceptance and thus contribute to a fluctuation in this bin.
 
 \item{\it p.19 l.50-53 col 1 and in general along the paper: I cannot see a discussion of the impact of neutral-current events at the FPF. Can you further comment on it?}
 
-There are expected to be roughly as many neutral current neutrino scattering events as charged current events. However, due to the lack of information on both the incoming and outgoing neutrino, the full event cannot be reconstructed, only the total hadronic energy can be measured. One could try to use the total NC event rate as a means of constraining the integrated PDF, however we expect that this would negligibly improve the impact on the PDF constraints as compared to fully reconstructed CC events. {\color{red} [MF: Does this agree with others' understanding?]}
+There are expected to be roughly as many neutral current neutrino scattering events as charged current events. However, due to the lack of information on both the incoming and outgoing neutrino, the full event cannot be reconstructed, only the total hadronic energy can be measured. One could try to use the total NC event rate as a means of constraining the integrated PDF, however we expect that this would negligibly improve the impact on the PDF constraints as compared to fully reconstructed CC events. {\color{red} [MF: Does this agree with others' understanding, should we add something to the paper? There is the possibility of using muons with NC for PDF constraints, which we could comment on.]}
 
 
 \end{enumerate}
