@@ -327,26 +327,28 @@ submission.
 		comparison, or in any case will give a clearer picture of where things may stand.
 	}
 	
-	The reason why we did not provide comparisons with the HL-LHC PDFs of ref. [34] is because
+	The reason why we did not provide comparisons with the HL-LHC PDFs of Ref. [34] is because
 	the pseudodata used to determine these PDFs were produced with the PDF4LHC15 set which
 	does not account for the recent LHC measurements. The most consistent comparisons would
 	be to re-do the analysis done in ref. [34] using PDF4LHC21 and then compare the resulting PDFs 
-	with our determination.
+	with our determination, something which is clearly outside the scope of this paper.
 
-        This said, to answer the point of the referee, we have repeated the phenomenological study of Sect 4
+        This said, to answer the question from the referee, we have repeated the phenomenological study of Sect 4
         comparing PDF4LHC15 with PDF4LHC15+HLHC PDFs for the same processes.
         %
-        We show below the results for the same inclusive cross-sections as in Sect 4.
-        %
-        As it can be seen from this comparison.
-        %
-        We have added to the paper an Appendix where the pheno study of Sect 4 is repeated
+        Specifically, we have added to the paper an Appendix where the phenomenology study of Sect 4 is repeated
         now for the PDF4LHC15 with PDF4LHC15+HLHC PDFs.
+        %
+        From this comparison, one can observe that .... ADD
 
-        Further, as mentioned in the paper, the PDF constraints from the FPF and from the HL-LHC are
+        Furthermore, as mentioned in the paper, the PDF constraints from the FPF and from the HL-LHC are
         fully orthogonal and complementary, and the former have the very important property that
         possible contamination from new physics on the PDF fits can be completely ignored, since
-        this process is driven by $Q^2$ values where we know QCD holds.
+        this process is driven by $Q^2$ values outside the possible presence of BSM physics.
+        %
+        Specially should a large-mass anomaly be revealed at the HL-LHC, having the fully independent
+        validation of the large-$x$ PDFs provided by the FPF would be extremely valuable for its
+        interpretation.
 
 \end{enumerate}
 
@@ -356,13 +358,18 @@ We now address the comments of referee B
 \begin{enumerate}
 \item{\it Page 3, lines 34-36 column 2 “since in general the strange and charm … not expected to vanish”. I agree but I suggest adding a reference or a comment supporting this statement. }
 
-We have added the following references which explore strange and charm PDF asymmetries Sufian:2018cpj, Sufian:2020coz
+  We have added the following references which explore strange and charm PDF asymmetries Sufian:2018cpj, Sufian:2020coz.
+  %
+  We have also added a reference to the recent NNPDF study of the intrinsic charm asymmetry in the proton,
+  showing that these effects are potentially sizable and could hence be relevant for the interpretation
+  of the FPF measurements.
 
 \item{\it p. 4 l. 30-35 col.2 “Also, to identify… event yields.” Why a cut on the hadronic energy should properly simulate a cut on the number of charged tracks emerging from the interaction vertex?}
 
 The charged track multiplicity is expected to grow with the hadronic system’s invariant mass. We make this clear and cite a neutrino-Hydrogen interaction multiplicity study (Aachen-Bonn-CERN-Munich-Oxford:1981lfk) as well as a FASER paper (FASER:2019dxq) which also point this out. We also append this sentence:
 
-"…, as the charged track multiplicity is expected to grow with $W$~\cite{Aachen-Bonn-CERN-Munich-Oxford:1981lfk,FASER:2019dxq}."
+"…, as the charged track multiplicity is expected to grow with the invariant mass of the hadronic
+final state $W$~\cite{Aachen-Bonn-CERN-Munich-Oxford:1981lfk,FASER:2019dxq}."
 
 
 \item{\it Table 2.1 What is the meaning of the asterisk in “FLArE (*)”? I cannot see it referred to in the caption} 
@@ -379,31 +386,71 @@ The target layers are interleaved with tungsten and emulsion. We make this clear
 
 \item{\it  p.5 l.49 col 1 and col 2 (“AdvSND” and “FLArE”) Can you put a reference about these experiments? Did you take the info from ref [10]?}
 
-We have added the original flare proposal paper as well as the whitepaper (ref[10]) to the FLArE section. For AdvSND, we have added included the whitepaper  
+  We have added the original FLArE experiment proposal paper as well as the FPF whitepaper (ref[10]) to the FLArE section. For AdvSND, we have added included the reference to the FPF whitepaper, which is currently the most detailed
+  description of this proposed experiment.
 
 \item{\it p.6 l. 50-53 col.2 “Here we neglect efficiency .. simulation.” I am aware that this might be difficult to simulate at this stage but I think this effect is non-negligible due to misidentification ( a large background could enter this sample). Can you comment further on it? In addition, some guesses on misidentification capabilities can be drawn by the current FASER and SND@CERN capabilities.}
 
-Indeed, misidentification is not expected to be negligible. While there are no detailed studies of charm tagging efficiencies at the FPF, as we point out in the paper charm tagging can be done by through multiple methods, including reconstructing the topology of D-meson decays, and through dimuon events. With multiple techniques, one can draw the conclusion that charm-tagging efficiency is not small.
-{\color {red} [MF: looking for quantitative performances/efficiencies, can't find anything. Is there more we can say? We could look at older experiments]}
+  Indeed, uncertainties due to misidentification are in general not expected to be negligible.
+%
+  While there are no detailed studies of charm tagging efficiencies at the FPF, as we point out in the paper, charm tagging can be done by through multiple methods, including reconstructing the topology of $D$-meson decays, and through dimuon events. With multiple techniques at hand, one should be able to determine in-situ quite well the $D$-meson tagging efficiencies, for example comparing the dimuon selection method with the charm tagging via the emulsion detector. Furthermore, the availability of different experiments based on complementary techniques will help to cross-calibrate these effects.
+
+It is worth pointing out that our framework is flexible enough to accomodate variations in the modelling of systematic uncertainties, and in particular there is no conceptual issue preventing anyone to repeat our analysis for different treatments of efficiencies and other related experimental parameters.  
+
 
 \item{\it p.9 l. 41-43 col.2 “We note that … in our estimation.” (see also the conclusions p. 27 l. 52-55 col.1) I am puzzled by this statement. It is well known that flux systematics in Faser and SND@CERN play a prominent role and set the normalization (and shape?) of eqn 2.12. How can you ignore such an important effect in your analyses? Even if the PDF constraints are marginally affected by the normalization of the neutrino flux, some of your considerations about the on-axis (faser and faser2) versus the off-axis experiments (SND@CERN and its upgrades) may be affected by flux uncertainties. Can you comment on it in the paper?}
 
-Indeed, neutrino flux uncertainties are well established, and the shape and normalization of the flux can vary widely between different models. It is important to note that neutrino measurements actually constrain the product of flux and cross-section - each of these components brings an uncertainty with it, and a full analysis with real data would constrain them simultaneously. We wish to motivate this joint analysis by calculating the  impact that FPF data can bring to a PDF fit. In this sense, by taking the flux to be known we can understand the full reach of FPF data on cross-section measurements, analogous to what was done in 2309.10417. Moreover, projections of FPF data on flux measurements has shown that HL-LHC data can bring flux uncertainties to a sub-percent level. We thank the referee for this important point and add the following paragraph after we introduce the flux model in the middle of section 2.3. 
+  Indeed, the large neutrino flux uncertainties are well established, and the shape and normalization of the flux can vary widely between different models, although the neutrino muon component which is mostly relevant for neutrino DIS experiments is the one which is known the best.
 
-"As pointed out in Ref.~\cite{Kling:2021gos} there are notable neutrino flux uncertainties, as various event generators do not agree on the forward parent hadron spectra. The spread of the generators' predictions can be taken as a means of flux uncertainty, in which case there is a $\lesssim 50\%$ uncertainty on the interacting muon neutrino spectrum --- if left unresolved this would be a significant systematic. Indeed, there are already projections of FPF measurements which would reduce this uncertainty to the sub-percent level~\cite{Kling:2023tgr} as well as efforts to describe the uncertainty in a data-driven way while improving the modelling of forward hadronization~\cite{Fieg:2023kld}. However, it is important to note that forward neutrino experiments actually constrain the product of flux and cross-section, and one must be assumed to measure the other. In a full analysis, they would be constrained simultaneously in a joint measurement. In our study, we aim to understand the full impact of FPF data on the PDF fit, thus motivating this future joint measurement. To this aim, we take the neutrino flux to be known and focus on the irreducible systematics associated with event reconstruction." 
+  It is important to note that neutrino measurements actually constrain the product of flux and cross-section - each of these components brings an uncertainty with it, and a full analysis with real data would constrain them simultaneously. We wish to motivate this joint analysis by calculating the  impact that FPF data can bring to a PDF fit. In this sense, by taking the flux to be known we can understand the full reach of FPF data on cross-section measurements, analogous to what was done in 2309.10417. Moreover, projections of FPF data on flux measurements has shown that HL-LHC data can bring flux uncertainties to a sub-percent level. We thank the referee for this important point and add the following paragraph after we introduce the flux model in the middle of section 2.3. 
+
+  "As pointed out in Ref.~\cite{Kling:2021gos} there are notable neutrino flux uncertainties, as various event generators do not agree on the forward parent hadron spectra. The spread of the generators' predictions can be taken as a means of flux uncertainty, in which case there is a $\lesssim 50\%$ uncertainty on the interacting muon neutrino spectrum --- if left unresolved this would be a significant systematic. Indeed, there are already projections of FPF measurements which would reduce this uncertainty to the sub-percent level~\cite{Kling:2023tgr} as well as efforts to describe the uncertainty in a data-driven way while improving the modelling of forward hadronization~\cite{Fieg:2023kld}. However, it is important to note that forward neutrino experiments actually constrain the product of flux and cross-section, and one must be assumed to measure the other. In a full analysis, they would be constrained simultaneously in a joint measurement. In our study, we aim to understand the full impact of FPF data on the PDF fit, thus motivating this future joint measurement. To this aim, we take the neutrino flux to be known and focus on the irreducible systematics associated with event reconstruction."
+
+  We would like to raise two more considerations which justify, in this work, to assume that the incoming neutrino
+  fluxes are known:
+  \begin{itemize}
+  \item As shown in appendix A, now moved to Sect 3, FASER$\nu$ and SND@LHC data from run III do not have sensitivity on the modelling of the neutrino-nucleus interaction cross-section.
+    %
+    This means that these measurements can be safely used, before the start of the FPF, to cross-calibrate
+    incoming neutrino fluxes and markedly improve their predictions for subsequent analysis.
+    %
+    Just due to this, by the time the FPF starts data taking the neutrino fluxes will be known
+    more precisely than now.
+
+  \item The flux and the neutrino DIS cross-section have very different kinematic dependences.
+    %
+    The incoming nuetrino flux is mostly fixed from the $(E_\nu, y_\nu)$ dependence of the event rates,
+    while the PDFs in the DIS cross-section are fixed by the $(x,Q^2)$ dependence.
+    %
+    By measuring event rates differentially in the three kinematic variables $(E_\nu, x,Q^2)$, and also
+    accessing the $y_\nu$ dependence of the incoming neutrinos, one can efficiency disentangle the
+    fluxes from the DIS cross-section.
+    %
+    Of course, one needs to explicitely demonstrate this via a dedicated analysis, but there
+    is no conceptual reason preventing us from this goal.
+
+    
+   \end{itemize} 
 
 \item{\it p.11 l. 33-37 col.1 Are you sure that an assumption of $f_{corr}$ = 0.5 is realistic? The estimates made in ref.[34] are for LHC experiments, not for fixed-target experiments like those of the FPF.}
 
-{\color{red} [MF: can someone comment here?]}
+  In the absence of full detector simulation and detailed correlation model, it is not possible to answer
+  this point conclusively.
+  %
+  What we can say is that we have repeated our analysis for $f_{corr}=1$ and find that our main
+  qualitative conclusions remain unchanged.
 
 \item{\it  Fig. 2.4 In the bottom-left plot, I see a sharp increase in the fractional error at about x= 4 e-2. Why?}
 
-The points near $x$=4e-2 with large uncertainties have small $E_h$, and are approaching the $E_h>100~ {\rm GeV}$ threshold that we set in Table 2.1. When we fluctuate the data according to our definition of uncertainty (Eq. 2.19 with $E_h$ instead of $E_{\ell}$), these points drop below the acceptance and thus contribute to a fluctuation in this bin.
+  The points near $x$=4e-2 with large uncertainties have small $E_h$, and are approaching the $E_h>100~ {\rm GeV}$ threshold that we set in Table 2.1. When we fluctuate the data according to our definition of uncertainty (Eq. 2.19 with $E_h$ instead of $E_{\ell}$), these points drop below the acceptance and thus contribute to a fluctuation in this bin.
+  %
+  We have added to the revised version of the paper a short discussion to explain this observation.
 
 \item{\it p.19 l.50-53 col 1 and in general along the paper: I cannot see a discussion of the impact of neutral-current events at the FPF. Can you further comment on it?}
 
-There are expected to be roughly as many neutral current neutrino scattering events as charged current events. However, due to the lack of information on both the incoming and outgoing neutrino, the full event cannot be reconstructed, only the total hadronic energy can be measured. One could try to use the total NC event rate as a means of constraining the integrated PDF, however we expect that this would negligibly improve the impact on the PDF constraints as compared to fully reconstructed CC events. {\color{red} [MF: Does this agree with others' understanding, should we add something to the paper? There is the possibility of using muons with NC for PDF constraints, which we could comment on.]}
+  There are expected to be roughly as many neutral current neutrino scattering events as charged current events. However, due to the lack of information on both the incoming and outgoing neutrino, the full event cannot be reconstructed, only the total hadronic energy can be measured. One could try to use the total NC event rate as a means of constraining the integrated PDF, however we expect that this would negligibly improve the impact on the PDF constraints as compared to fully reconstructed CC events. Indeed, if anything, NC scattering brings in less sensitivity to PDFs than CC events, as can be seen from the LO decomposition of the corresponding structure functions.
 
+  We have added to Sect 2 a short discussion on why it is very likely that NC events do not provide useful PDF information: first of all, event kinematics cannot be reconstructed on an event by event basis as in the CC case, second, that systematics will be large since are dominated by the hadronic final state, and third, that NC scattering in general provides less complete information on the PDF flavour decomposition as compared to CC scattering. 
 
 \end{enumerate}
 	
