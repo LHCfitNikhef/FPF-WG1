@@ -141,6 +141,10 @@ improve the quality and clarity of our work.
 In response to the suggestions, we address below each of the points raised by 
 the referee and describe the actions that have been taken
 in the revised version of the manuscript.
+%
+To facilitate the review process, in the revised version of the manuscript
+we have highlighted all the changes that have been made with respect to the original
+submission.
 
 \noindent
 
@@ -165,11 +169,23 @@ in the revised version of the manuscript.
 	
 	The numbers in Table 2.2 are computed by integrating the event yields shown in Eq.~2.12 in
 	which the differential cross sections are computed using the central value of the PDF4LHC21
-	set. For completeness, we have added a sentence above Eq. (2.16) that mention the exact
-	PDF set used to compute these numbers. Although
+	set. For completeness, we have added a sentence above Eq. (2.16) that mention the specific
+	PDF set used to compute these numbers, and where we also indicate that the calculation
+        is performed at NLO in the QCD expansion.
+        %
+        Although
 	Section 2.5 indeed provides some descriptions regarding the computation of the differential cross sections
 	(which were also described in Section 2.1), it mainly focuses on the construction of the pseudodata
-	needed for the fit/re-weighting.
+	needed for the fit/profiling.
+
+        This said, we would like to emphasize that the predicted event rates in Table 2.2 depend
+        only mildly on the specific settings of the DIS cross-section entering the calculation.
+        %
+        Furthermore, these event rates are only used to determine the expected bib-by-bin
+        statistical uncertainty.
+        %
+        Hence our results are relatively independent on the theoretical settings
+        entering the calculation of the event yields in Table 2.2.
 	
 	\item {\it Page 11. The discussion about consistency between the PDF set and theory settings
 		used to produce the pseudodata and those entering the fit/profiling is in my view not
@@ -185,9 +201,39 @@ in the revised version of the manuscript.
 		option here. It is a choice that is made, and not the only possible one.
 	}
 	
-	\textcolor{blue}{(TR) I was not sure how to best address this. We might indeed need to tone this down
-	a bit but I was not sure how to properly do so.}
-	
+          We agree with the referee that, when generating pseudo-data, one may or may not want to
+          assume the same underlying truth as in the prior of the corresponding PDF fit.
+          %
+          Indeed, data inconsistencies are present in real data.
+          
+          Our motivation to keep these settings consistent is that we would like to investigate
+          what is the PDF constraining power of the FPF measurements
+          assuming that there are no inconsistencies,
+          which is the best-case scenario.
+          %
+          In the presence of inconsistencies one finds two effects: a shift in the central value
+          of the PDF and a reduction of the PDF error whose magnitude depends on the assumed
+          inconsistencies.
+          %
+          For example, if we generate the FPF pseudo-data far from the PDF4LHC21 prior,
+          the main impact of the data will be to shift the central prediction, rather than
+          to reduce the uncertainty.
+
+          Another reason to assume this consistency  is that when carrying out Hessian profiling,
+          one keeps the PDF parametrisation fixed. In the presence of inconsistencies, it may be
+          that the best fit with FPF data requires a different parametrisation and hence
+          a different PDF error analysis.
+          %
+          So Hessian profiling is most reliable in the absence of data inconsistencies.
+
+          In the revised version of the paper, we have emphasized our two-fold region
+          to assume full consistency between the prior PDF and the FPF pseudo-data: to
+          quantify the PDF reach of the FPF pseudo-data in the most advantageous scenario,
+          and to ensure the procedural validity of the Hessian profiling procedure.
+
+          This said, the suggestion from the referee to generate data with an ``inconsistent'' PDF
+          set is valuable and it would be interesting to carry out this exercise in the future.
+          
 	\item {\it Page 15, and Fig. 3.3. Perhaps some explanation of why dV and to a lesser extend uV
 		benefits from charge-lepton identification could be provided?
 	}
@@ -278,7 +324,7 @@ We have added the original flare proposal paper as well as the whitepaper (ref[1
 \item{\it p.6 l. 50-53 col.2 “Here we neglect efficiency .. simulation.” I am aware that this might be difficult to simulate at this stage but I think this effect is non-negligible due to misidentification ( a large background could enter this sample). Can you comment further on it? In addition, some guesses on misidentification capabilities can be drawn by the current FASER and SND@CERN capabilities.}
 
 Indeed, misidentification is not expected to be negligible. While there are no detailed studies of charm tagging efficiencies at the FPF, as we point out in the paper charm tagging can be done by through multiple methods, including reconstructing the topology of D-meson decays, and through dimuon events. With multiple techniques, one can draw the conclusion that charm-tagging efficiency is not small.
-{\color {red} [MF: looking for quantitative perofrmances/efficiencies, can't find anything. Is there more we can say? We could look at older experiments]}
+{\color {red} [MF: looking for quantitative performances/efficiencies, can't find anything. Is there more we can say? We could look at older experiments]}
 
 \item{\it p.9 l. 41-43 col.2 “We note that … in our estimation.” (see also the conclusions p. 27 l. 52-55 col.1) I am puzzled by this statement. It is well known that flux systematics in Faser and SND@CERN play a prominent role and set the normalization (and shape?) of eqn 2.12. How can you ignore such an important effect in your analyses? Even if the PDF constraints are marginally affected by the normalization of the neutrino flux, some of your considerations about the on-axis (faser and faser2) versus the off-axis experiments (SND@CERN and its upgrades) may be affected by flux uncertainties. Can you comment on it in the paper?}
 
