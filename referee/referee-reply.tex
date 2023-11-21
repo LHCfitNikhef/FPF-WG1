@@ -206,12 +206,12 @@ submission.
           %
           Indeed, data inconsistencies are present in real data.
           
-          Our motivation to keep these settings consistent is that we would like to investigate
+          Our motivation to keep these settings consistent is that in this work we aim to investigate
           what is the PDF constraining power of the FPF measurements
           assuming that there are no inconsistencies,
           which is the best-case scenario.
           %
-          In the presence of inconsistencies one finds two effects: a shift in the central value
+          In the presence of inconsistencies, one finds two competing effects: a shift in the central value
           of the PDF and a reduction of the PDF error whose magnitude depends on the assumed
           inconsistencies.
           %
@@ -233,16 +233,21 @@ submission.
 
           This said, the suggestion from the referee to generate data with an ``inconsistent'' PDF
           set is valuable and it would be interesting to carry out this exercise in the future.
+          %
+          To emphasize this, we have added a sentence stating that generating pseudo-data with a different
+          PDF set from the prior would test the capabilities of the FPF to disentangle between
+          different PDF sets among them.
           
 	\item {\it Page 15, and Fig. 3.3. Perhaps some explanation of why dV and to a lesser extend uV
 		benefits from charge-lepton identification could be provided?
 	}
 	
 	We have slightly rephrased the subsequent sentences to make it clear that the improvements
-	seen in $d_v$ and to a lesser extend in $u_v$ can be fully understood by looking at analytical 
-	LO expressions of the structure functions in terms of the PDFs for $\nu$ and $\bar{\nu}$.
+	seen in $d_V$ and to a lesser extend in $u_V$ can be understood by looking at analytical 
+	LO expressions of the structure functions in terms of the PDFs for $\nu$ and $\bar{\nu}$
+        provided in Sect.~2.
 	
-	\item {\it Page 16, and Appendix A. The fact that the FASER$\nu$ (and SNDLHC) projections lead
+	\item {\it Page 16, and Appendix A. The fact that the FASER$\nu$ (and SND@LHC) projections lead
 		to a very limited improvement on the PDF uncertainties is rather hidden in a paragraph
 		here, and then in the appendix. In my view, this ‘negative’ result should be given more
 		prominence. It after all motivates the improvements that might come with the FPF. I
@@ -250,10 +255,27 @@ submission.
 		first study.
 	}
 	
-	The main reason to put the study of the constraints provided by FASER$\nu$ in the Appendix is because
+	The main reason to put the study of the constraints provided by FASER$\nu$ in the Appendix was because
 	the analysis in Section 3 is mainly dedicated to the FPF experiments. We nevertheless agree with the
-	referee that such findings should be highlighted and used as a motivation for the FPF. In this regard, we
-	have added two sentences in the introductory paragraph of Section to describe this.
+	referee that such findings should be highlighted and used as a motivation for the FPF.
+        %
+        We have moved App. A to the first subsection of Sect 3, to highlight that the ultimate
+        constraining power of LHC neutrino experiments can only be realised with the FPF.
+        
+        Actually, this result is also relevant concerning another points raised by the referee below:
+        the fact that the FASER$\nu$ and SND@LHC data not not impact the PDFs indicates that the
+        interpretation of their event rate measurements depends only loosely on the modelling
+        of the deep-inelastic scattering interaction.
+        %
+        Hence, the FASER$\nu$ and SND@LHC data can be safely used to tune the incoming neutrino fluxes
+        and learn for example about PDFs at very small-$x$, without compromising
+        the validity of the interpretation.
+        %
+        So this ``null result'' is also relevant in this context, and motivates the use of the current
+        FASER$\nu$ and SND@LHC data to validate models of charm production, forward light hadron
+        production, and small-$x$ QCD.
+
+        
 	
 	\item {\it Page 22. I am rather unsure about the approach for presenting results here, and in
 		particular in showing numbers without including systematic errors, which are described
@@ -266,16 +288,39 @@ submission.
 		systematic uncertainties accounted for more clearly presented.
 	}
 	
-	The referee is surely correct in that zero-systematic uncertainties is unrealistic. However,
+	  The referee is surely correct in that zero-systematic uncertainties is not realistic.
+          %
+          However,
 	the reason to also show results with statistical uncertainties only is twofold. First, it
-	substantiates the claim that FPF measurements will be statistically dominated. Second, in the
-	ideal scenario (most optimistic) in which all the sources of systematic uncertainties are 
-	under control, the statistic-only case would be the limit in terms of constraints on PDF
-	determination.  It is also worth noting that the estimation of the systematic uncertainties in our 
-	analysis is very  much conservative.
-	
-	Following the referee's suggestion, the results which only includes the statistical errors
-	are labelled "FPF$\star$" while the one that also account for the systematics are labelled "FPF".
+	substantiates the claim that FPF measurements will be dominated by systematics, rather
+        than statistical uncertainties, which is a very important and non-trivial consideration
+        informing detector design. The FPF detectors have not been designed with ``precision physics'' as main
+        goal, and showing that improving systematics has strong physics benefits is important
+        in the context of these studies.
+        %
+        Note that this is not the case in FASER$\nu$ and SND@LHC, where the physics reach
+        (at least concerning proton structure studies via neutrino DIS) is completely
+        limited by the low statistics available.
+
+        Second, and perhaps most importantly, we cannot claim to have a fully realistic modelling
+        of systematic errors, and in particular we miss a detailed estimate of their correlation, which
+        is known to be decisive in stablishing the PDF sensitivity.
+        %
+        Such analysis can only be carried by the experimental collaborations themselves and
+        be based on a complete detector simulation, and indeed our study provides
+        a strong motivation for this.
+        %
+        In this respect,  it is also worth noting that the estimation of the systematic uncertainties in our 
+	analysis is very  much conservative, and already the insights provided by our paper
+        are helping the experimentalists to improve designs to reduce systematics.
+        %
+        So there is a clear added value in separating the two scenarios.
+        	
+	Following the referee's suggestion, the results which only include the statistical errors
+	are now labelled "FPF$\star$" while the one that also account for the systematics are labelled "FPF".
+        %
+        We have also extended the rationale for showing results in the statistics-only scenario, alongside the
+        considerations described above.
 	
 	\item {\it Section 4 and elsewhere. Given these are HL-LHC projections, somewhere these should
 		be compared with the HL-LHC PDFs of Ref [34]. This would surely be the fairer
@@ -287,6 +332,21 @@ submission.
 	does not account for the recent LHC measurements. The most consistent comparisons would
 	be to re-do the analysis done in ref. [34] using PDF4LHC21 and then compare the resulting PDFs 
 	with our determination.
+
+        This said, to answer the point of the referee, we have repeated the phenomenological study of Sect 4
+        comparing PDF4LHC15 with PDF4LHC15+HLHC PDFs for the same processes.
+        %
+        We show below the results for the same inclusive cross-sections as in Sect 4.
+        %
+        As it can be seen from this comparison.
+        %
+        We have added to the paper an Appendix where the pheno study of Sect 4 is repeated
+        now for the PDF4LHC15 with PDF4LHC15+HLHC PDFs.
+
+        Further, as mentioned in the paper, the PDF constraints from the FPF and from the HL-LHC are
+        fully orthogonal and complementary, and the former have the very important property that
+        possible contamination from new physics on the PDF fits can be completely ignored, since
+        this process is driven by $Q^2$ values where we know QCD holds.
 
 \end{enumerate}
 
