@@ -1,0 +1,55 @@
+\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{1}
+
+\bibitem{Sufian:2018cpj}
+R.~S. Sufian, T.~Liu, G.~F. de~T\'eramond, H.~G. Dosch, S.~J. Brodsky, A.~Deur,
+  M.~T. Islam, and B.-Q. Ma, ``{Nonperturbative strange-quark sea from lattice
+  QCD, light-front holography, and meson-baryon fluctuation models},''
+  \href{http://dx.doi.org/10.1103/PhysRevD.98.114004}{{\em Phys. Rev. D}
+  {\bfseries 98} no.~11, (2018) 114004},
+  \href{http://arxiv.org/abs/1809.04975}{{\ttfamily arXiv:1809.04975
+  [hep-ph]}}.
+
+\bibitem{Sufian:2020coz}
+R.~S. Sufian, T.~Liu, A.~Alexandru, S.~J. Brodsky, G.~F. de~T\'eramond, H.~G.
+  Dosch, T.~Draper, K.-F. Liu, and Y.-B. Yang, ``{Constraints on
+  charm-anticharm asymmetry in the nucleon from lattice QCD},''
+  \href{http://dx.doi.org/10.1016/j.physletb.2020.135633}{{\em Phys. Lett. B}
+  {\bfseries 808} (2020) 135633},
+  \href{http://arxiv.org/abs/2003.01078}{{\ttfamily arXiv:2003.01078
+  [hep-lat]}}.
+
+\bibitem{Aachen-Bonn-CERN-Munich-Oxford:1981lfk}
+{\bfseries Aachen-Bonn-CERN-Munich-Oxford} Collaboration, P.~Allen {\em
+  et~al.}, ``{Multiplicity Distributions in Neutrino - Hydrogen
+  Interactions},'' \href{http://dx.doi.org/10.1016/0550-3213(81)90532-0}{{\em
+  Nucl. Phys. B} {\bfseries 181} (1981) 385--402}.
+
+\bibitem{FASER:2019dxq}
+{\bfseries FASER} Collaboration, H.~Abreu {\em et~al.}, ``{Detecting and
+  Studying High-Energy Collider Neutrinos with FASER at the LHC},''
+  \href{http://dx.doi.org/10.1140/epjc/s10052-020-7631-5}{{\em Eur. Phys. J. C}
+  {\bfseries 80} no.~1, (2020) 61},
+  \href{http://arxiv.org/abs/1908.02310}{{\ttfamily arXiv:1908.02310
+  [hep-ex]}}.
+
+\bibitem{Kling:2021gos}
+F.~Kling and L.~J. Nevay, ``{Forward neutrino fluxes at the LHC},''
+  \href{http://dx.doi.org/10.1103/PhysRevD.104.113008}{{\em Phys. Rev. D}
+  {\bfseries 104} no.~11, (2021) 113008},
+  \href{http://arxiv.org/abs/2105.08270}{{\ttfamily arXiv:2105.08270
+  [hep-ph]}}.
+
+\bibitem{Kling:2023tgr}
+F.~Kling, T.~M\"akel\"a, and S.~Trojanowski, ``{Investigating the fluxes and
+  physics potential of LHC neutrino experiments},''
+  \href{http://dx.doi.org/10.1103/PhysRevD.108.095020}{{\em Phys. Rev. D}
+  {\bfseries 108} no.~9, (2023) 095020},
+  \href{http://arxiv.org/abs/2309.10417}{{\ttfamily arXiv:2309.10417
+  [hep-ph]}}.
+
+\bibitem{Fieg:2023kld}
+M.~Fieg, F.~Kling, H.~Schulz, and T.~Sj\"ostrand, ``{Tuning Pythia for Forward
+  Physics Experiments},'' \href{http://arxiv.org/abs/2309.08604}{{\ttfamily
+  arXiv:2309.08604 [hep-ph]}}.
+
+\end{thebibliography}\endgroup
