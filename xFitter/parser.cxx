@@ -990,10 +990,11 @@ int main(int argc, char* argv[]) {
     
     //BEGIN user specifications
     string gitbr = "PDF4LHC21";  //Branch in git for fetching grids
-    vector<string> PDFs = {"PDF4LHC21","EPPS21nlo_CT18Anlo_W184"};
-    vector<string> expnames = {"FASERv2","FASERv","AdvSND","FLArE10","FLArE100"};
+    vector<string> PDFs = {"PDF4LHC21"}; //,"EPPS21nlo_CT18Anlo_W184"};
+    //vector<string> expnames = {"FASERv2","FASERv","AdvSND","FLArE10","FLArE100"};
+    vector<string> expnames = {"FESST"};
     vector<string> nuIDs = {"nu","nub","nochargediscrimination"};
-    vector<string> origins = {"_inclusive","_charm"};
+    vector<string> origins = {"_inclusive"}; //,"_charm"};
     
     //Reduction factor for systematic uncertainties, e.g. 0.5 for fred05
     //Tables will be produced without this i.e. at fred=1.0, and with the fred
