@@ -324,6 +324,51 @@ the analysis of neutrino DIS structure function data at the FPF,
 under the assumption that PDF4LHC21 represents
 our current knowledge about the quark and gluon structure of the proton.
 
+\paragraph{The effect of neutrino flux uncertainties.}
+%
+The estimation of the effect of neutrino flux uncertainties in the determination of PDFs is done by extending the procedure of Ref.~\cite{Kling:2023tgr}, using the predictions provided by Ref.s~\cite{Ahn:2009wx, Ahn:2011wt, Riehn:2015oba, Fedynitch:2018cbl, Pierog:2013ria, Buonocore:2023kna, Roesler:2000he, Fedynitch:2015kcn, Bai:2020ukz, Bai:2021ira, Bai:2022xad, Ostapchenko:2010vb, Bhattacharya:2023zei, Fieg:2023kld, Maciula:2022lzk}, by introducing an additional fit parameter to account for the normalisation of the neutrino flux. The constraint for the normalisation parameter is found considering two scenarios: by using all the expected run III data from FASER$\nu$, and 50\% of the data expected at FASER$\nu$2 during the high-luminosity LHC run. In the latter case, only the remaining 50\% of FASER$\nu$2 data is then considered available for PDF determination. The flux normalisation parameter can be constrained approximately to 6\% using FASER$\nu$ run III data, and to 0.4\% using 50\% of FASER$\nu$2 data, as illustrated in Fig.~\ref{fig:flux_constraints}. The constraints are passed to the profiling studies as additional fully correlated uncertainties, also accounting for an increase in statistical uncertainty in the case where only 50\% of data is used. The PDFs resulting from using the run III constraint are shown in Fig.~\ref{fig:FASERv2_flux_unc_run3}, and those obtained with the high-lumi LHC constraints in Fig.~\ref{fig:FASERv2_flux_unc_HL-LHC}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.42\textwidth]{plots/proton_fasernu2/FASERv2_flux_run3/normalization_constraint_run3.pdf}
+\includegraphics[width=0.42\textwidth]{plots/proton_fasernu2/FASERv2_flux_HL-LHC/normalization_constraint_HL-LHC.pdf}
+\caption{
+  An illustration of the difference of the obtained flux normalisation constraints to the baseline uncertainty of the amount of muon neutrino interactions, using FASER$\nu$ data (left) and 50\% of the expected FASER$\nu$2 data (right). The baseline uncertainty is obtained following Ref.~\cite{Kling:2023tgr}.
+}
+\label{fig:flux_constraints}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_flux_run3/fred05fcorr05_fluxR3_FASERv2_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_flux_run3/fred05fcorr05_fluxR3_FASERv2_q2_10000_pdf_dv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_flux_run3/fred05fcorr05_fluxR3_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_flux_run3/fred05fcorr05_fluxR3_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_flux_run3/fred05fcorr05_fluxR3_FASERv2_q2_10000_pdf_s_ratio.pdf}
+\caption{
+  Same as Fig.~\ref{fig:FASERnu2_baseline} now quantifying the
+  effect of neutrino flux uncertainties in the analysis of FASER$\nu$2 pseudodata, assuming that the neutrino flux normalisation is constrained using FASER$\nu$ run III data. 
+}
+\label{fig:FASERv2_flux_unc_run3}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_flux_HL-LHC/fred05fcorr05_fluxR4_FASERv2_q2_10000_pdf_uv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_flux_HL-LHC/fred05fcorr05_fluxR4_FASERv2_q2_10000_pdf_dv_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_flux_HL-LHC/fred05fcorr05_fluxR4_FASERv2_q2_10000_pdf_g_ratio.pdf}\\
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_flux_HL-LHC/fred05fcorr05_fluxR4_FASERv2_q2_10000_pdf_Sea_ratio.pdf}
+\includegraphics[width=0.32\textwidth]{plots/proton_fasernu2/FASERv2_flux_HL-LHC/fred05fcorr05_fluxR4_FASERv2_q2_10000_pdf_s_ratio.pdf}
+\caption{
+  Same as Fig.~\ref{fig:FASERnu2_baseline} now quantifying the
+  effect of neutrino flux uncertainties in the analysis of FASER$\nu$2 pseudodata, assuming that the neutrino flux normalisation is constrained using 50\% of FASER$\nu$2 data to constrain the flux and the remainder for PDF determination. 
+}
+\label{fig:FASERv2_flux_unc_HL-LHC}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \subsection{Proton PDFs: impact on NNPDF4.0}
 \label{sec:nnpdf40}
 
