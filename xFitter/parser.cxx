@@ -755,6 +755,7 @@ bool writeDatFinal(string PDF,
     vector<double> dvtmp;
     vector<string> svtmp, systnames;
     vector< vector<double> > systtmp, systunc, systuncfred;
+
     double fcorr2 = fcorr*fcorr;
 
     //Read xsec values from previous xFitter run
@@ -788,11 +789,12 @@ bool writeDatFinal(string PDF,
     vector<double> xav  = Mdat[colMap["x"]];
     vector<double> Q2av = Mdat[colMap["Q2"]];
     
-    //Check if stat unc given
-    vector<double> stat;
+    //Check if stat unc given. Compute also [stat unc]*sqrt(2)
+    vector<double> stat, stat05;
     bool useStat = find(cols.begin(),cols.end(),"stat")!=cols.end();
     if (useStat) stat = Mdat[colMap["stat"]];
-
+    for (double d : stat) stat05.push_back(d*sqrt(2));
+    
     //Check if uncor given (expect quadratic sum of all syst unc)
     vector<double> uncor;
     bool useUncor = find(cols.begin(),cols.end(),"uncor")!=cols.end();
@@ -810,7 +812,23 @@ bool writeDatFinal(string PDF,
         systuncfred.push_back(Mdati);
     }
     bool useSyst = systnames.size() > 0;
-
+    
+    //Include flux normalization uncertainty estimate
+    vector< vector<double> > systuncfredfluxR3, systuncfredfluxR4;
+    vector<string> systnamesflux = systnames;
+    if (useSyst) {
+        systnamesflux.push_back("uncor const");
+        vector<double> fluxUncR3, fluxUncR4;
+        for (int i=0; i!=systuncfred[0].size(); ++i) {
+            fluxUncR3.push_back(5.748108532148741);    //%
+            fluxUncR4.push_back(0.40302972808795023);  //%
+        }
+        systuncfredfluxR3 = systuncfred;
+        systuncfredfluxR4 = systuncfred;
+        systuncfredfluxR3.push_back(fluxUncR3);
+        systuncfredfluxR4.push_back(fluxUncR4);
+    }
+    
     //Bin-match xsec vector
     int i=0;
     vector<double> xsec1;
@@ -839,6 +857,8 @@ bool writeDatFinal(string PDF,
     //how much better the correlated data would constrain the PDFs, 
     //a reduction factor fred (e.g. 0.5) is applied to the correlated case
     vector<double> xsv, xsvstat, xsvuncfred, xsvuncfcorr, xsvuncfredfcorr;
+    vector<double> xsvuncfredfcorrfluxR3, xsvuncfredfcorrfluxR4;
+
     for (int ixs=0; ixs!=xsec.size(); ++ixs) {                    
 
         //Generate N = (#syst.unc.s + #stat.unc.) random numbers
@@ -857,30 +877,46 @@ bool writeDatFinal(string PDF,
         //           delta_syst_i = i:th syst unc (no quadratic sum!)
         
         //For obtaining quadratic sums of all stat and syst uncs
-        double stat2 = (useStat ? pow(stat[ixs],2) : 0.);
-        double syst2=0, systfred2=0;
+        double stat2   = (useStat ? pow(  stat[ixs],2) : 0.);
+        double stat052 = (useStat ? pow(stat05[ixs],2) : 0.);
+        double syst2=0, systfred2=0, systfredfluxR32=0, systfredfluxR42=0;
         for (int i=0; i!=systunc.size(); ++i) syst2 += pow(systunc[i][ixs],2);
         for (int i=0; i!=systunc.size(); ++i) systfred2 += pow(systuncfred[i][ixs],2);
+        for (int i=0; i!=systuncfredfluxR3.size(); ++i) {
+            systfredfluxR32 += pow(systuncfredfluxR3[i][ixs],2);
+            systfredfluxR42 += pow(systuncfredfluxR4[i][ixs],2);
+        }
 
         //Option 1:
         //[Random gaussian]*[total uncertainty from quad. sum of stat & syst]:
         //Factors of 0.01 due to Div by 100 since unc.s given in %
-        double errstat         = 0.01*rndm[0]*sqrt(stat2);
-        double errstatsyst     = 0.01*rndm[0]*sqrt(stat2 + syst2);
+        double errstat              = 0.01*rndm[0]*sqrt(stat2);
+        double errstat05            = 0.01*rndm[0]*sqrt(stat052);
+        double errstatsyst          = 0.01*rndm[0]*sqrt(stat2 + syst2);
         double errstatsystfcorr     = 0.01*rndm[0]*sqrt(stat2 + syst2*fcorr2);
         double errstatsystfred      = 0.01*rndm[0]*sqrt(stat2 + systfred2);
-        double errstatsystfredfcorr = 0.01*rndm[0]*sqrt(stat2 + systfred2*fcorr2);
+        double errstatsystfredfcorr = 0.01*rndm[0]*sqrt(stat2 + systfred2
+                                                                *fcorr2);
+        double errstatsystfredfcorrfluxR3 = 0.01*rndm[0]*sqrt(stat2 + 
+                                                              systfredfluxR32
+                                                              *fcorr2);
+        double errstatsystfredfcorrfluxR4 = 0.01*rndm[0]*sqrt(stat052 + 
+                                                              systfredfluxR42
+                                                              *fcorr2);
         
         //Option 2: fetch sums of various combinations of stat & syst uncs
         double errsyst=0, errsystfred=0, errsystfcorr=0, errsystfredfcorr=0;
+        double errsystfredfcorrfluxR3=0, errsystfredfcorrfluxR4=0;
         for (int i=0; i!=systunc.size(); ++i) {
             //Alternatively, individual factors for separate uncs, no quad sum:
             //Factors of 0.01 due to Div by 100 since unc.s given in %
             //Already account for rndm to assign them individually per source
-            errsyst          += 0.01*rndm[i+1]*systunc[    i][ixs];
-            errsystfcorr     += 0.01*rndm[i+1]*systunc[    i][ixs]*fcorr;
-            errsystfred      += 0.01*rndm[i+1]*systuncfred[i][ixs];
-            errsystfredfcorr += 0.01*rndm[i+1]*systuncfred[i][ixs]*fcorr;
+            errsyst                += 0.01*rndm[i+1]*systunc[    i][ixs];
+            errsystfcorr           += 0.01*rndm[i+1]*systunc[    i][ixs]*fcorr;
+            errsystfred            += 0.01*rndm[i+1]*systuncfred[i][ixs];
+            errsystfredfcorr       += 0.01*rndm[i+1]*systuncfred[i][ixs]*fcorr;
+            errsystfredfcorrfluxR3 += 0.01*rndm[i+1]*systuncfredfluxR3[i][ixs]*fcorr;
+            errsystfredfcorrfluxR4 += 0.01*rndm[i+1]*systuncfredfluxR4[i][ixs]*fcorr;
         }
         
         //Vary x-sec to obtain pseuodata 
@@ -889,15 +925,21 @@ bool writeDatFinal(string PDF,
         //Option (1): only a single random number, quadratic sums
         bool useQuadSum = true;
         if (useQuadSum) {
-            xsv.push_back(            xs*(1.0 +     errstatsyst       ));
-            xsvuncfred.push_back(     xs*(1.0 +   errstatsystfred     ));
-            xsvuncfcorr.push_back(    xs*(1.0 +   errstatsystfcorr    ));
-            xsvuncfredfcorr.push_back(xs*(1.0 +   errstatsystfredfcorr));
+            xsv.push_back(                  xs*(1.0+errstatsyst       ));
+            xsvuncfred.push_back(           xs*(1.0+errstatsystfred     ));
+            xsvuncfcorr.push_back(          xs*(1.0+errstatsystfcorr    ));
+            xsvuncfredfcorr.push_back(      xs*(1.0+errstatsystfredfcorr));
+            xsvuncfredfcorrfluxR3.push_back(xs*(1.0+errstatsystfredfcorrfluxR3));
+            xsvuncfredfcorrfluxR4.push_back(xs*(1.0+errstatsystfredfcorrfluxR4));
         } else {  //Opt. 2: separate random numbers for all sources, no quad sum
-            xsv.push_back(            xs*(1.0 + errstat + errsyst         ));
-            xsvuncfred.push_back(     xs*(1.0 + errstat + errsystfred     ));
-            xsvuncfcorr.push_back(    xs*(1.0 + errstat + errsystfcorr    ));
-            xsvuncfredfcorr.push_back(xs*(1.0 + errstat + errsystfredfcorr));
+            xsv.push_back(                  xs*(1.0+errstat+errsyst         ));
+            xsvuncfred.push_back(           xs*(1.0+errstat+errsystfred     ));
+            xsvuncfcorr.push_back(          xs*(1.0+errstat+errsystfcorr    ));
+            xsvuncfredfcorr.push_back(      xs*(1.0+errstat+errsystfredfcorr));
+            xsvuncfredfcorrfluxR3.push_back(xs*(1.0+errstat
+                                                   +errsystfredfcorrfluxR3));
+            xsvuncfredfcorrfluxR4.push_back(xs*(1.0+errstat05
+                                                   +errsystfredfcorrfluxR4));
         }
         
     }
@@ -914,6 +956,8 @@ bool writeDatFinal(string PDF,
     sstream << fcorr;
     string fcorrstr = replace(sstream.str(),".","");    
     
+    //FIXME rm these comment-outs when done
+    /*
     //Including all syst unc
     sdir = PDF+"/syst/";
     if (!xFtableWriter(mdir,sdir,
@@ -921,7 +965,7 @@ bool writeDatFinal(string PDF,
                        binF,xav,Q2av,xsv,                 //3 bins, x-sec
                        stat,dvtmp,                        //stat, uncor
                        systnames,systunc)) return false;  //systnames, systmatrix                       
-                       
+    
     //Use all syst unc but decrease them in pseudodata variation by factor fred
     sdir = PDF+"/fred"+fredstr+"/";
     if (!xFtableWriter(mdir,sdir,
@@ -929,7 +973,7 @@ bool writeDatFinal(string PDF,
                        binF,xav,Q2av,xsvuncfred,          //3 bins, x-sec
                        stat,dvtmp,                        //stat, uncor
                        systnames,systuncfred)) return false;  //systnames, systmatrix
-
+    
     //Use all syst unc but decrease them in pseudodata variation by factor fred
     sdir = PDF+"/fcorr"+fcorrstr+"/";
     if (!xFtableWriter(mdir,sdir,
@@ -937,8 +981,7 @@ bool writeDatFinal(string PDF,
                        binF,xav,Q2av,xsvuncfcorr,         //3 bins, x-sec
                        stat,dvtmp,                        //stat, uncor
                        systnames,systunc)) return false;  //systnames, systmatrix
-                       
-                       
+    
     //Use all syst unc but decrease them in pseudodata variation by factor fred
     sdir = PDF+"/fred"+fredstr+"fcorr"+fcorrstr+"/";
     if (!xFtableWriter(mdir,sdir,
@@ -946,13 +989,35 @@ bool writeDatFinal(string PDF,
                        binF,xav,Q2av,xsvuncfredfcorr,     //3 bins, x-sec
                        stat,dvtmp,                        //stat, uncor
                        systnames,systuncfred)) return false;  //systnames, systmatrix
-                                              
+     */  //FIXME rm these comment-outs when done                   
+
+    //Use all syst unc but decrease them in pseudodata variation by factor fred
+    //Include flux uncertainty estimate based on run III constraints (FASERv)
+    sdir = PDF+"/fred"+fredstr+"fcorr"+fcorrstr+"_fluxR3/";
+    if (!xFtableWriter(mdir,sdir,
+                       expname,nuID,origin,iexp,
+                       binF,xav,Q2av,xsvuncfredfcorrfluxR3,  //3 bins, x-sec
+                       stat,dvtmp,                        //stat, uncor
+                       systnamesflux,systuncfredfluxR3)) return false;  //systnames, systmatrix
+
+    //Use all syst unc but decrease them in pseudodata variation by factor fred
+    //Include flux uncertainty estimate based on run III constraints (FASERv)
+    sdir = PDF+"/fred"+fredstr+"fcorr"+fcorrstr+"_fluxR4/";
+    if (!xFtableWriter(mdir,sdir,
+                       expname,nuID,origin,iexp,
+                       binF,xav,Q2av,xsvuncfredfcorrfluxR4,  //3 bins, x-sec
+                       stat05,dvtmp,                        //stat, uncor
+                       systnamesflux,systuncfredfluxR4)) return false;  //systnames, systmatrix
+                       
+    //FIXME rm these comment-outs when done
+    /*
     //Stat unc only, no syst; neither as unc or in pseudodata variation
     if (!xFtableWriter(mdir,PDF+"/statOnly/",
                        expname,nuID,origin,iexp, 
                        binF,xav,Q2av,xsvstat,         //3 bins, x-sec
                        stat,dvtmp,                    //stat, uncor
                        svtmp,systtmp)) return false;  //systnames, systmatrix
+     */
 
     ////Syst unc considered fully uncorrelated
     //if (!xFtableWriter(mdir,PDF+"/uncor/",
@@ -991,10 +1056,10 @@ int main(int argc, char* argv[]) {
     //BEGIN user specifications
     string gitbr = "PDF4LHC21";  //Branch in git for fetching grids
     vector<string> PDFs = {"PDF4LHC21"}; //,"EPPS21nlo_CT18Anlo_W184"};
-    //vector<string> expnames = {"FASERv2","FASERv","AdvSND","FLArE10","FLArE100"};
-    vector<string> expnames = {"FESST"};
+    //vector<string> expnames = {"FASERv2","FASERv","AdvSND","FLArE10","FLArE100","FESST"};
+    vector<string> expnames = {"FASERv2"};
     vector<string> nuIDs = {"nu","nub","nochargediscrimination"};
-    vector<string> origins = {"_inclusive"}; //,"_charm"};
+    vector<string> origins = {"_inclusive","_charm"};
     
     //Reduction factor for systematic uncertainties, e.g. 0.5 for fred05
     //Tables will be produced without this i.e. at fred=1.0, and with the fred
