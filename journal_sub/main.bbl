@@ -1,4 +1,4 @@
-\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{10}
+\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{100}
 
 \bibitem{Kling:2021gos}
 F.~Kling and L.~J. Nevay, ``{Forward neutrino fluxes at the LHC},''
@@ -514,6 +514,8 @@ L.~Buonocore, F.~Kling, L.~Rottoli, and J.~Sominka, ``{Predictions for
 \bibitem{Kling:2023tgr}
 F.~Kling, T.~M\"akel\"a, and S.~Trojanowski, ``{Investigating the fluxes and
   physics potential of LHC neutrino experiments},''
+  \href{http://dx.doi.org/10.1103/PhysRevD.108.095020}{{\em Phys. Rev. D}
+  {\bfseries 108} no.~9, (2023) 095020},
   \href{http://arxiv.org/abs/2309.10417}{{\ttfamily arXiv:2309.10417
   [hep-ph]}}.
 
@@ -628,6 +630,99 @@ S.~Carrazza, S.~Forte, Z.~Kassabov, and J.~Rojo, ``{Specialized minimal PDFs
   \href{http://dx.doi.org/10.1140/epjc/s10052-016-4042-8}{{\em Eur. Phys. J. C}
   {\bfseries 76} no.~4, (2016) 205},
   \href{http://arxiv.org/abs/1602.00005}{{\ttfamily arXiv:1602.00005
+  [hep-ph]}}.
+
+\bibitem{Ahn:2009wx}
+E.-J. Ahn, R.~Engel, T.~K. Gaisser, P.~Lipari, and T.~Stanev, ``{Cosmic ray
+  interaction event generator SIBYLL 2.1}''
+  \href{http://dx.doi.org/10.1103/PhysRevD.80.094003}{{\em Phys. Rev. D}
+  {\bfseries 80} (2009) 094003},
+  \href{http://arxiv.org/abs/0906.4113}{{\ttfamily arXiv:0906.4113 [hep-ph]}}.
+
+\bibitem{Ahn:2011wt}
+E.-J. Ahn, R.~Engel, T.~K. Gaisser, P.~Lipari, and T.~Stanev, ``{Sibyll with
+  charm},'' in {\em 16th International Symposium on Very High Energy Cosmic Ray
+  Interactions}.
+\newblock 2, 2011.
+\newblock \href{http://arxiv.org/abs/1102.5705}{{\ttfamily arXiv:1102.5705
+  [astro-ph.HE]}}.
+
+\bibitem{Riehn:2015oba}
+F.~Riehn, R.~Engel, A.~Fedynitch, T.~K. Gaisser, and T.~Stanev, ``{A new
+  version of the event generator Sibyll},''
+  \href{http://dx.doi.org/10.22323/1.236.0558}{{\em PoS} {\bfseries ICRC2015}
+  (2016) 558}, \href{http://arxiv.org/abs/1510.00568}{{\ttfamily
+  arXiv:1510.00568 [hep-ph]}}.
+
+\bibitem{Fedynitch:2018cbl}
+A.~Fedynitch, F.~Riehn, R.~Engel, T.~K. Gaisser, and T.~Stanev, ``{Hadronic
+  interaction model sibyll 2.3c and inclusive lepton fluxes},''
+  \href{http://dx.doi.org/10.1103/PhysRevD.100.103018}{{\em Phys. Rev. D}
+  {\bfseries 100} no.~10, (2019) 103018},
+  \href{http://arxiv.org/abs/1806.04140}{{\ttfamily arXiv:1806.04140
+  [hep-ph]}}.
+
+\bibitem{Buonocore:2023kna}
+L.~Buonocore, F.~Kling, L.~Rottoli, and J.~Sominka, ``{Predictions for
+  Neutrinos and New Physics from Forward Heavy Hadron Production at the LHC},''
+  \href{http://arxiv.org/abs/2309.12793}{{\ttfamily arXiv:2309.12793
+  [hep-ph]}}.
+
+\bibitem{Roesler:2000he}
+S.~Roesler, R.~Engel, and J.~Ranft,
+  \href{http://dx.doi.org/10.1007/978-3-642-18211-2_166}{``{The Monte Carlo
+  event generator DPMJET-III},''} in {\em {International Conference on Advanced
+  Monte Carlo for Radiation Physics, Particle Transport Simulation and
+  Applications (MC 2000)}}, pp.~1033--1038.
+\newblock 12, 2000.
+\newblock \href{http://arxiv.org/abs/hep-ph/0012252}{{\ttfamily
+  arXiv:hep-ph/0012252}}.
+
+\bibitem{Fedynitch:2015kcn}
+A.~Fedynitch, \href{http://dx.doi.org/10.5445/IR/1000055433}{{\em {Cascade
+  equations and hadronic interactions at very high energies}}}.
+\newblock PhD thesis, KIT, Karlsruhe, Dept. Phys., 11, 2015.
+
+\bibitem{Bai:2020ukz}
+W.~Bai, M.~Diwan, M.~V. Garzelli, Y.~S. Jeong, and M.~H. Reno, ``{Far-forward
+  neutrinos at the Large Hadron Collider},''
+  \href{http://dx.doi.org/10.1007/JHEP06(2020)032}{{\em JHEP} {\bfseries 06}
+  (2020) 032}, \href{http://arxiv.org/abs/2002.03012}{{\ttfamily
+  arXiv:2002.03012 [hep-ph]}}.
+
+\bibitem{Bai:2021ira}
+W.~Bai, M.~Diwan, M.~V. Garzelli, Y.~S. Jeong, F.~K. Kumar, and M.~H. Reno,
+  ``{Parton distribution function uncertainties in theoretical predictions for
+  far-forward tau neutrinos at the Large Hadron Collider},''
+  \href{http://dx.doi.org/10.1007/JHEP06(2022)148}{{\em JHEP} {\bfseries 06}
+  (2022) 148}, \href{http://arxiv.org/abs/2112.11605}{{\ttfamily
+  arXiv:2112.11605 [hep-ph]}}.
+
+\bibitem{Bai:2022xad}
+W.~Bai, M.~Diwan, M.~V. Garzelli, Y.~S. Jeong, K.~Kumar, and M.~H. Reno,
+  ``{Forward production of prompt neutrinos from charm in the atmosphere and at
+  high energy colliders},'' \href{http://arxiv.org/abs/2212.07865}{{\ttfamily
+  arXiv:2212.07865 [hep-ph]}}.
+
+\bibitem{Ostapchenko:2010vb}
+S.~Ostapchenko, ``{Monte Carlo treatment of hadronic interactions in enhanced
+  Pomeron scheme: I. QGSJET-II model},''
+  \href{http://dx.doi.org/10.1103/PhysRevD.83.014018}{{\em Phys. Rev. D}
+  {\bfseries 83} (2011) 014018},
+  \href{http://arxiv.org/abs/1010.1869}{{\ttfamily arXiv:1010.1869 [hep-ph]}}.
+
+\bibitem{Bhattacharya:2023zei}
+A.~Bhattacharya, F.~Kling, I.~Sarcevic, and A.~M. Stasto, ``{Forward Neutrinos
+  from Charm at Large Hadron Collider},''
+  \href{http://arxiv.org/abs/2306.01578}{{\ttfamily arXiv:2306.01578
+  [hep-ph]}}.
+
+\bibitem{Maciula:2022lzk}
+R.~Maciula and A.~Szczurek, ``{Far-forward production of charm mesons and
+  neutrinos at forward physics facilities at the LHC and the intrinsic charm in
+  the proton},'' \href{http://dx.doi.org/10.1103/PhysRevD.107.034002}{{\em
+  Phys. Rev. D} {\bfseries 107} no.~3, (2023) 034002},
+  \href{http://arxiv.org/abs/2210.08890}{{\ttfamily arXiv:2210.08890
   [hep-ph]}}.
 
 \bibitem{Ball:2016neh}
