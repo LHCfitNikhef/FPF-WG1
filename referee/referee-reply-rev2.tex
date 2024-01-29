@@ -1,0 +1,171 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{placeins}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{afterpage}
+\usepackage{amssymb,amsmath}
+\usepackage{multirow,booktabs,multirow}
+\usepackage{cite}
+\usepackage[colorlinks=true, linkcolor=black!50!blue, urlcolor=blue, citecolor=blue, anchorcolor=blue]{hyperref}
+\usepackage[font=small,labelfont=bf,margin=0mm,labelsep=period,tableposition=top]{caption}
+\usepackage[a4paper,top=3cm,bottom=2.5cm,left=2.5cm,right=2.5cm,bindingoffset=0mm]{geometry}
+\setlength{\unitlength}{1mm}
+
+\usepackage{tabularx}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\smallfrac#1#2{\hbox{$\frac{#1}{#2}$}}
+\newcommand{\be}{\begin{equation}}
+	\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+	\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\bi}{\begin{itemize}}
+	\newcommand{\ei}{\end{itemize}}
+\newcommand{\ben}{\begin{enumerate}}
+	\newcommand{\een}{\end{enumerate}}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+\newcommand{\lc}{\left[}
+\newcommand{\rc}{\right]}
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\as}{\alpha_s}
+\newcommand{\aq}{\alpha_s\left( Q^2 \right)}
+\newcommand{\amz}{\alpha_s\left( M_Z^2 \right)}
+\newcommand{\aqq}{\alpha_s \left( Q^2_0 \right)}
+\newcommand{\aqz}{\alpha_s \left( Q^2_0 \right)}
+\newcommand{\Ord}{\mathcal{O}}
+\newcommand{\MSbar}{\overline{\text{MS}}}
+\def\toinf#1{\mathrel{\mathop{\sim}\limits_{\scriptscriptstyle
+			{#1\rightarrow\infty }}}}
+\def\tozero#1{\mathrel{\mathop{\sim}\limits_{\scriptscriptstyle
+			{#1\rightarrow0 }}}}
+\def\toone#1{\mathrel{\mathop{\sim}\limits_{\scriptscriptstyle
+			{#1\rightarrow1 }}}}
+\def\frac#1#2{{{#1}\over {#2}}}
+\def\gsim{\gtrsim}
+\def\lsim{\lesssim}
+\newcommand{\mrexp}{\mathrm{exp}}
+\newcommand{\dat}{\mathrm{dat}}
+\newcommand{\one}{\mathrm{(1)}}
+\newcommand{\two}{\mathrm{(2)}}
+\newcommand{\art}{\mathrm{art}} 
+\newcommand{\rep}{\mathrm{rep}}
+\newcommand{\net}{\mathrm{net}}
+\newcommand{\stopp}{\mathrm{stop}}
+\newcommand{\sys}{\mathrm{sys}}
+\newcommand{\stat}{\mathrm{stat}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\pdf}{\mathrm{pdf}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\minn}{\mathrm{min}}
+\newcommand{\mut}{\mathrm{mut}}
+\newcommand{\partt}{\mathrm{part}}
+\newcommand{\dof}{\mathrm{dof}}
+\newcommand{\NS}{\mathrm{NS}}
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\gen}{\mathrm{gen}}
+\newcommand{\cut}{\mathrm{cut}}
+\newcommand{\parr}{\mathrm{par}}
+\newcommand{\val}{\mathrm{val}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\checkk}{\mathrm{check}}
+\newcommand{\reff}{\mathrm{ref}}
+\newcommand{\Mll}{M_{ll}}
+\newcommand{\extra}{\mathrm{extra}}
+\newcommand{\draft}[1]{}
+\newcommand{\comment}[1]{{\bf \it  #1}}
+\newcommand{\muf}{\mu_\text{F}}
+\newcommand{\mur}{\mu_\text{R}}
+
+\def\beq{\begin{equation}}
+	\def\eeq{\end{equation}}
+
+
+\def\({\left(}
+\def\){\right)}
+\def\[{\left[}
+\def\]{\right]}
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+
+%\let\sectionold\section
+%\renewcommand\section[2][]{%
+	%\sectionold{\boldmath #2}}
+
+\let\oldsubsection\subsection
+\renewcommand\subsection[2][\subsectiontoc]{%
+	\def\subsectiontoc{#2}%
+	\oldsubsection[#1]{\boldmath #2}%
+}
+
+\let\oldsubsubsection\subsubsection
+\renewcommand\subsubsection[2][\subsubsectiontoc]{%
+	\def\subsubsectiontoc{#2}%
+	\oldsubsubsection[#1]{\boldmath #2}%
+}
+
+
+\newcommand{\tmop}[1]{\ensuremath{\operatorname{#1}}}
+\newcommand{\tmtextit}[1]{{\itshape{#1}}}
+\newcommand{\tmtextrm}[1]{{\rmfamily{#1}}}
+\newcommand{\tmtexttt}[1]{{\ttfamily{#1}}}
+
+
+\usepackage{xcolor}
+\definecolor{tpurple}{RGB}{128,0,128}
+\definecolor{darkgreen}{RGB}{0,180,0}
+\newcommand{\SM}[1]{\textbf{\textcolor{blue}  {SM: #1}}}
+\newcommand{\MB}[1]{\textbf{\textcolor{red}   {MB: #1}}}
+\newcommand{\MBn}[2]{\textcolor{red}{OLD: #1 NEW: #2}}
+\newcommand{\LR}[1]{{\bf\color{orange}LR: #1}}
+\newcommand{\todo}[1]{{\bf\color{red}TODO: #1}}
+\newcommand{\JR}[1]{{\bf\color{purple}JR: #1}}
+\newcommand{\SF}[1]{{\bf\color{darkgreen}SF: #1}}
+\newcommand{\RDB}[1]{{\bf\color{cyan}RDB: #1}}
+
+\begin{document}
+
+We thank the referee for their additional observations.
+%
+The referee suggests that we should provide a more quantitative answer to the objections concerning
+the possible degradation of our results once one accounts for the uncertainties associated to the incoming neutrino fluxes:\\
+	
+{\it So, the authors essentially appear to be arguing that as the flux uncertainties will be smaller in the future than the current (very large) ones then they are justified in ignoring them entirely. But this has not been quantitively justified anywhere. In the text and their response to referee B the authors in particular mention two points, namely the possibility for Run 3 data to reduce the flux uncertainty, and the potential for a combined analysis, given the different kinematic dependencies of the flux and DIS cross sections.
+  
+  These are both perfectly reasonable points to make, but as thing stand, and in particular without further quantitative analysis, there is no way to tell to what extent these will really allow the flux uncertainty to be disentangled from the PDF impact. And without that one simply cannot say whether the projections presented here are reasonable or not. The authors point to 2309.1047, but of course this omits the PDF uncertainty on the DIS cross section, so the issue remains. Any PDF impact study of this sort therefore has to account for all known sources of uncertainty, including the flux, and determine to what extent these points will be true. To do otherwise, and describe this as the ‘full’ impact of FPF data on the PDF fit, as the authors do, seems to me to be very problematic. Moreover, as I pointed out in my earlier report, at the moment they still talk in the abstract, introduction and elsewhere as if the projected PDF impact is fully assessed here, i.e. as if the flux uncertainty were actually zero.
+  
+  So, all I can (again) say is that the machinery is there to account for this issue in the analysis, by simply accounting for a reasonable flux uncertainty (as per e.g. 2309.1047) and seeing to what extent this impacts on the PDF projections. The authors could consider a range of possible uncertainty sizes (e.g. to demonstrate that so long as the flux uncertainty is constrained to a given degree the PDF impact will not be washed out), and presumably would in any case be able to demonstrate this point about kinematic separation between the flux and DIS cross sections, which should come out in the analysis. I regret to say that unless the issue of the flux uncertainty is quantitatively accounted for in this way in the analysis for at least one projection study then I cannot recommend the paper for publication, as was made clear in my original report.}\\
+
+To address this point, we have extended our analysis with a dedicated quantitative discussion on the impact of neutrino flux uncertainties in our PDF projection results.
+%
+The procedure we have adopted is described in the paragraph ``The effect of neutrino flux uncertainties'' towards the end of Sect 3.1, and the main results are presented in the new figures 3.7, 3.8, and 3.9.
+
+First, we demonstrate that Run 3 data from FASERnu can constrain the overall normalisation of the muon neutrino flux by 6\%, while 50\% of the HL-LHC data would constrain it down to the permille level.
+%
+We then repeat the PDF profiling analysis by adding an extra fully correlated (across bins) systematic uncertainty in the fitted DIS cross-sections, associated to this overall normalisation of the incoming muon neutrino flux.
+%
+As shown by Fig. 3.8, already once the muon neutrino fluxes have been constrained by FASER$\nu$ Run 3 data, the remaining residual uncertainties would have a very small effect in the PDF profiling.
+%
+The key observation, as mentioned in our first rebuttal, is the fact that constraints on the overall normalisation of the fluxes and on the PDFs have more or less an orthogonal kinematic sensitivity.
+%
+One may conclude that neutrino flux uncertainties do not significantly degrade the PDF constraining potential of the FPF experiments presented in this work.
+
+We point out that the overall normalisation is the main source of theory uncertainty in the modelling of far-forward neutrino flux at the LHC, and hence our choice to focus on it.
+%
+This analysis could be further refined by adding more nuisance parameters accounting for instance for a $E_\nu$ and $y_\nu$ variation of the fluxes as compared to the baseline, or different normalizations for each of the flux components, but it is unlikely that the conclusions that we find would be qualitatively modified.
+%
+
+
+We hope that, having addressed the objection of the referee with a dedicated quantitative discussion as requested, our paper will now be considered suitable for publication.
+
+
+
+\bibliography{main.bib}
+\end{document}
