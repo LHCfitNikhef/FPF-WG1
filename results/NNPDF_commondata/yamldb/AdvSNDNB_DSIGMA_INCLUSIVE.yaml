@@ -1,5 +1,0 @@
-conversion_factor: 1.0
-operands:
-   - - AdvSNDNB_DSIGMA_INCLUSIVE
-operation: 'null'
-target_dataset: AdvSNDNB_DSIGMA_INCLUSIVE

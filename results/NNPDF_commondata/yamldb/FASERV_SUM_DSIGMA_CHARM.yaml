@@ -1,6 +1,0 @@
-conversion_factor: 1.0
-operands:
-   - - FASERVNU_SUM_DSIGMA_CHARM
-   - - FASERVNB_SUM_DSIGMA_CHARM
-operation: 'ADD'
-target_dataset: FASERV_SUM_DSIGMA_CHARM

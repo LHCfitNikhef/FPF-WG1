@@ -1,5 +1,0 @@
-conversion_factor: 1.0
-operands:
-   - - FASERV2NU_DSIGMA_INCLUSIVE
-operation: 'null'
-target_dataset: FASERV2NU_DSIGMA_INCLUSIVE
