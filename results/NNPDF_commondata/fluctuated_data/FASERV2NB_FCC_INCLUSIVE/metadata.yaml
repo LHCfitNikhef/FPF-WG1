@@ -23,7 +23,7 @@ implemented_observables:
   - 0
   plotting:
     kinematics_override: dis_sqrt_scale
-    dataset_label: COMPASS (g1)
+    dataset_label: FPF at FCC
     y_label: $d\sigma / dxdQ^2$
     plot_x: Q2
     line_by:
