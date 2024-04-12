@@ -7,7 +7,7 @@ authors = ["Tanjona  <rrabeman@nikhef.nl>"]
 [tool.poetry.dependencies]
 python = "^3.9,<3.11"
 click = "^8.1.3"
-yadism = { git = "https://github.com/NNPDF/yadism", rev = "dc5494a"}
+yadism = { git = "https://github.com/NNPDF/yadism", rev = "dc5494a", extras = ["box", "mark"]}
 eko = "^0.13.4"
 pineappl = "^0.6.0"
 seaborn = "0.12.2"
