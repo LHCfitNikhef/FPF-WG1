@@ -16,7 +16,7 @@ implemented_observables:
     label: $d\sigma / dxdQ^2$
     units: ''
   process_type: DIS
-  ndata: 89
+  ndata: 71
   tables:
   - 0
   npoints:
