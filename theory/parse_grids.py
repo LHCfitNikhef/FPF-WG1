@@ -16,12 +16,14 @@ all_pgrids = path_grids.glob("*grids-FASERv2FCC*.tar")
 
 # Map grid to the correct FK table names
 MAP_DATASET_NAMES = {
-    "FASERv2FCC_wide_inclusive_nu": 'FASERV2NU_FCC_WIDE_INCLUSIVE',
-    "FASERv2FCC_wide_inclusive_nub": 'FASERV2NB_FCC_WIDE_INCLUSIVE',
+    # "FASERv2FCC_wide_inclusive_nu": 'FASERV2NU_FCC_WIDE_INCLUSIVE',
+    # "FASERv2FCC_wide_inclusive_nub": 'FASERV2NB_FCC_WIDE_INCLUSIVE',
+    "FASERv2FCC_wide_WithCuts_inclusive_nu": 'FASERV2NU_FCC_WIDE_INCLUSIVE',
+    "FASERv2FCC_wide_WithCuts_inclusive_nub": 'FASERV2NB_FCC_WIDE_INCLUSIVE',
     "FASERv2FCC_inclusive_nu": 'FASERV2NU_FCC_INCLUSIVE',
     "FASERv2FCC_inclusive_nub": 'FASERV2NB_FCC_INCLUSIVE',
-    "FASERv2FCC_deep_inclusive_nu": 'FASERV2NU_FCC_DEEP_INCLUSIVE',
-    "FASERv2FCC_deep_inclusive_nub": 'FASERV2NB_FCC_DEEP_INCLUSIVE',
+    # "FASERv2FCC_deep_inclusive_nu": 'FASERV2NU_FCC_DEEP_INCLUSIVE',
+    # "FASERv2FCC_deep_inclusive_nub": 'FASERV2NB_FCC_DEEP_INCLUSIVE',
 }
 
 
