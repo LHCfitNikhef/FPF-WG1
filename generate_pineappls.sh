@@ -31,12 +31,12 @@ for prj in "${PROJECTILE[@]}"; do
         CMD0="cd /data/theorie/tanjona/NNPDF/FPF-WG1/"
         # CMD1="${NUFPF} xsecs runcards results/INCLUSIVE/${exp}/clipped_nan/clipped_nan_binned_sysevents_${exp}_inclusive_${prj}.txt --no-sgrid --obs XSEC"
         # CMD2="${NUFPF} xsecs grids theory/runcards-${exp}_inclusive_${prj}-a1.tar"
-        CMD3="${NUFPF} xsecs generate_xsecs_datfile theory/grids-${exp}_inclusive_${prj}-a1.tar results/INCLUSIVE/${exp}/clipped_nan/clipped_nan_binned_sysevents_${exp}_inclusive_${prj}.txt NNPDF40_nnlo_as_01180 --no-sgrid"
+        CMD3="${NUFPF} xsecs generate_xsecs_datfile theory/grids/grids-${exp}_inclusive_${prj}-a1.tar results/INCLUSIVE/${exp}/clipped_nan/clipped_nan_binned_sysevents_${exp}_inclusive_${prj}.txt 240401-01-rs-nnpdf40like-baseline --no-sgrid"
 
         # Construct the main script
         echo $CMD0 >> ${exp}_${prj}.sh
-        echo $CMD1 >> ${exp}_${prj}.sh
-        echo $CMD2 >> ${exp}_${prj}.sh
+        # echo $CMD1 >> ${exp}_${prj}.sh
+        # echo $CMD2 >> ${exp}_${prj}.sh
         echo $CMD3 >> ${exp}_${prj}.sh
 
         # # submit the jobs & clean
