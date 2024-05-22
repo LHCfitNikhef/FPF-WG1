@@ -32,7 +32,7 @@ XIR: 1.0
 alphaqed: 0.007496252
 alphas: 0.118
 global_nx: 0
-kbThr: 1.0
+kbThr: 4.0
 kcThr: 1.0
 ktThr: 1.0
 mb: 4.92

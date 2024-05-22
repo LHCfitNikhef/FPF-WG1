@@ -10,7 +10,7 @@ OUTLOGS="/data/theorie/tanjona/NNPDF/FPF-WG1/outlogs"
 PROJECTILE=(
     nu
     nub
-    nochargediscrimination
+    # nochargediscrimination
 )
 
 MAIN_EXP=(
@@ -29,20 +29,20 @@ for prj in "${PROJECTILE[@]}"; do
 
         # Define the main commands
         CMD0="cd /data/theorie/tanjona/NNPDF/FPF-WG1/"
-        # CMD1="${NUFPF} xsecs runcards results/INCLUSIVE/${exp}/clipped_nan/clipped_nan_binned_sysevents_${exp}_inclusive_${prj}.txt --no-sgrid --obs XSEC"
-        # CMD2="${NUFPF} xsecs grids theory/runcards-${exp}_inclusive_${prj}-a1.tar"
+        CMD1="${NUFPF} xsecs runcards results/INCLUSIVE/${exp}/clipped_nan/clipped_nan_binned_sysevents_${exp}_inclusive_${prj}.txt --no-sgrid --obs XSEC"
+        CMD2="${NUFPF} xsecs grids theory/runcards-${exp}_inclusive_${prj}-a1.tar"
         CMD3="${NUFPF} xsecs generate_xsecs_datfile theory/grids/grids-${exp}_inclusive_${prj}-a1.tar results/INCLUSIVE/${exp}/clipped_nan/clipped_nan_binned_sysevents_${exp}_inclusive_${prj}.txt 240401-01-rs-nnpdf40like-baseline --no-sgrid"
 
         # Construct the main script
         echo $CMD0 >> ${exp}_${prj}.sh
-        # echo $CMD1 >> ${exp}_${prj}.sh
-        # echo $CMD2 >> ${exp}_${prj}.sh
+        echo $CMD1 >> ${exp}_${prj}.sh
+        echo $CMD2 >> ${exp}_${prj}.sh
         echo $CMD3 >> ${exp}_${prj}.sh
 
         # # submit the jobs & clean
-        # echo "[+] Computing ${exp} with ${prj}."
-        # qsub -q short7 -W group_list=theorie -l walltime=04:00:00 -l nodes=1:ppn=4 -l vmem=8gb -e $ERRLOGS -o $OUTLOGS ${exp}_${prj}.sh
-        sh ${exp}_${prj}.sh
+        echo "[+] Computing ${exp} with ${prj}."
+        qsub -q short7 -W group_list=theorie -l walltime=04:00:00 -l nodes=1:ppn=4 -l vmem=8gb -e $ERRLOGS -o $OUTLOGS ${exp}_${prj}.sh
+        # sh ${exp}_${prj}.sh
         rm ${exp}_${prj}.sh
     done
 done
