@@ -8,8 +8,8 @@ ERRLOGS="/data/theorie/tanjona/NNPDF/FPF-WG1/errlogs"
 OUTLOGS="/data/theorie/tanjona/NNPDF/FPF-WG1/outlogs"
 
 PREDICTIONS=(
-  "CHARM charm"
-  # "INCLUSIVE inclusive"
+  # "CHARM charm"
+  "INCLUSIVE inclusive"
 )
 
 PROJECTILE=(
@@ -21,7 +21,7 @@ PROJECTILE=(
 MAIN_EXP=(
     # FASERv2FCC
     FASERv2FCC_deep
-    FASERv2FCC_wide
+    # FASERv2FCC_wide
     # FASERv2FCC_wide_WithCuts
 )
 
