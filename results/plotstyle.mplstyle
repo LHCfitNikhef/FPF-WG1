@@ -43,8 +43,8 @@ font.size             : 13
 font.weight           : bold
 
 ### TEXTS
-text.usetex           : True
-text.latex.preamble   : \usepackage{amsmath}
+# text.usetex           : True
+# text.latex.preamble   : \usepackage{amsmath}
 
 ### AXES
 axes.grid             : True
