@@ -13,24 +13,25 @@ TARGET_DIR.mkdir(exist_ok=True)
 # Collect all the grids in the directory
 path_grids = CURR_PATH.joinpath("grids")
 # all_pgrids = path_grids.glob("*grids-FASERv2FCC_deep_inclusive*.tar")
-all_pgrids = path_grids.glob("*charm*.tar")
+# all_pgrids = path_grids.glob("*charm*.tar")
+all_pgrids = path_grids.glob("*inclusive*.tar")
 
 # Map grid to the correct FK table names
 MAP_DATASET_NAMES = {
-    # "FASERv2FCC_wide_WithCuts_inclusive_nu": 'FASERV2NU_FCC_WIDE_INCLUSIVE',
-    # "FASERv2FCC_wide_WithCuts_inclusive_nub": 'FASERV2NB_FCC_WIDE_INCLUSIVE',
-    # "FASERv2FCC_inclusive_nu": 'FASERV2NU_FCC_INCLUSIVE',
-    # "FASERv2FCC_inclusive_nub": 'FASERV2NB_FCC_INCLUSIVE',
-    "FASERv2FCC_charm_nu": 'FASERV2NU_FCC_CHARM',
-    "FASERv2FCC_charm_nub": 'FASERV2NB_FCC_CHARM',
-    "FASERv2FCC_deep_charm_nu" : 'FASERV2NU_FCC_DEEP_CHARM',
-    "FASERv2FCC_deep_charm_nub": 'FASERV2NB_FCC_DEEP_CHARM',
-    "FASERv2FCC_wide_charm_nu" : 'FASERV2NU_FCC_WIDE_CHARM',
-    "FASERv2FCC_wide_charm_nub": 'FASERV2NB_FCC_WIDE_CHARM',
+    "FASERv2FCC_wide_WithCuts_inclusive_nu": 'FASERV2NU_FCC_WIDE_INCLUSIVE',
+    "FASERv2FCC_wide_WithCuts_inclusive_nub": 'FASERV2NB_FCC_WIDE_INCLUSIVE',
+    "FASERv2FCC_inclusive_nu": 'FASERV2NU_FCC_INCLUSIVE',
+    "FASERv2FCC_inclusive_nub": 'FASERV2NB_FCC_INCLUSIVE',
+    # "FASERv2FCC_charm_nu": 'FASERV2NU_FCC_CHARM',
+    # "FASERv2FCC_charm_nub": 'FASERV2NB_FCC_CHARM',
+    # "FASERv2FCC_deep_charm_nu" : 'FASERV2NU_FCC_DEEP_CHARM',
+    # "FASERv2FCC_deep_charm_nub": 'FASERV2NB_FCC_DEEP_CHARM',
+    # "FASERv2FCC_wide_charm_nu" : 'FASERV2NU_FCC_WIDE_CHARM',
+    # "FASERv2FCC_wide_charm_nub": 'FASERV2NB_FCC_WIDE_CHARM',
     # "FASERv2FCC_wide_inclusive_nu": 'FASERV2NU_FCC_WIDE_INCLUSIVE',
     # "FASERv2FCC_wide_inclusive_nub": 'FASERV2NB_FCC_WIDE_INCLUSIVE',
-    # "FASERv2FCC_deep_inclusive_nu": 'FASERV2NU_FCC_DEEP_INCLUSIVE',
-    # "FASERv2FCC_deep_inclusive_nub": 'FASERV2NB_FCC_DEEP_INCLUSIVE',
+    "FASERv2FCC_deep_inclusive_nu": 'FASERV2NU_FCC_DEEP_INCLUSIVE',
+    "FASERv2FCC_deep_inclusive_nub": 'FASERV2NB_FCC_DEEP_INCLUSIVE',
 }
 
 
@@ -63,7 +64,8 @@ for grid in all_pgrids:
     # Name of the subgrid to copy from
     new_gridname = gridname.removesuffix(f"_{projectile}")
     # TODO: Remove the `_charm` for inclusive predictions.
-    correct_name = f"{projectile}_A_1-{new_gridname}-XSFPFCC_charm.pineappl.lz4"
+    # correct_name = f"{projectile}_A_1-{new_gridname}-XSFPFCC_charm.pineappl.lz4"
+    correct_name = f"{projectile}_A_1-{new_gridname}-XSFPFCC.pineappl.lz4"
     new_correct_name = f"{MAP_DATASET_NAMES[gridname]}.pineappl.lz4"
 
     with tempfile.TemporaryDirectory() as tmpdir:

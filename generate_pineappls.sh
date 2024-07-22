@@ -9,8 +9,8 @@ WALLTIME='00:20:00'
 MEMORY='8000M'
 
 PREDICTIONS=(
-  "CHARM charm"
-  # "INCLUSIVE inclusive"
+  # "CHARM charm"
+  "INCLUSIVE inclusive"
 )
 
 PROJECTILE=(
@@ -20,10 +20,10 @@ PROJECTILE=(
 )
 
 MAIN_EXP=(
-    FASERv2FCC
-    FASERv2FCC_deep
-    FASERv2FCC_wide
-    # FASERv2FCC_wide_WithCuts
+    # FASERv2FCC
+    # FASERv2FCC_deep
+    # FASERv2FCC_wide
+    FASERv2FCC_wide_WithCuts
 )
 
 for type in "${PREDICTIONS[@]}"; do
@@ -42,7 +42,8 @@ for type in "${PREDICTIONS[@]}"; do
           # Define the main commands
           CMD0="cd /data/theorie/tanjona/NNPDF/FPF-WG1/"
           # TODO: Replace the following `--obs` if not CHARM
-          CMD1="${NUFPF} xsecs runcards results/${mtype}/${exp}/clipped_nan/clipped_nan_binned_sysevents_${exp}_${stype}_${prj}.txt --no-sgrid --obs XSEC_${mtype}"
+          # CMD1="${NUFPF} xsecs runcards results/${mtype}/${exp}/clipped_nan/clipped_nan_binned_sysevents_${exp}_${stype}_${prj}.txt --no-sgrid --obs XSEC_${mtype}"
+          CMD1="${NUFPF} xsecs runcards results/${mtype}/${exp}/clipped_nan/clipped_nan_binned_sysevents_${exp}_${stype}_${prj}.txt --no-sgrid --obs XSEC"
           CMD2="${NUFPF} xsecs grids theory/runcards-${exp}_${stype}_${prj}-a1.tar"
           CMDX="mv theory/grids-* theory/grids/"
           CMD3="${NUFPF} xsecs generate_xsecs_datfile theory/grids/grids-${exp}_${stype}_${prj}-a1.tar results/${mtype}/${exp}/clipped_nan/clipped_nan_binned_sysevents_${exp}_${stype}_${prj}.txt 240401-01-rs-nnpdf40like-baseline --no-sgrid"
